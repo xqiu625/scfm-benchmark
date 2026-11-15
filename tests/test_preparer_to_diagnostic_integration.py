@@ -8,6 +8,7 @@ CLI: both run as real subprocesses against a small, real, on-disk MatrixMarket
 fixture, exactly as each is tested in isolation elsewhere
 (test_prepare_provisional_diagnostic_input.py, test_execution_readiness.py).
 """
+
 from __future__ import annotations
 
 import json
@@ -17,7 +18,6 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import pytest
 from scipy import sparse
 from scipy.io import mmwrite
 
@@ -33,18 +33,27 @@ def _build_fixture(root: Path, n_cells=80, n_genes=15, seed=0):
     donors = [f"D{i:02d}" for i in range(10)]
     rows = []
     for i in range(n_cells):
-        rows.append(dict(
-            cell_id=f"cell_{i:04d}", cohort=cohorts[i % 3], donor_id=donors[i % len(donors)],
-            harmonized_lineage=lineages[i % 2],
-            event=(1.0 if i % 9 == 0 else (0.0 if i % 11 != 0 else np.nan)),
-        ))
+        rows.append(
+            dict(
+                cell_id=f"cell_{i:04d}",
+                cohort=cohorts[i % 3],
+                donor_id=donors[i % len(donors)],
+                harmonized_lineage=lineages[i % 2],
+                event=(1.0 if i % 9 == 0 else (0.0 if i % 11 != 0 else np.nan)),
+            )
+        )
     cells = pd.DataFrame(rows)
     cells.to_csv(root / "raw" / "cells.csv", index=False)
     cells[["cell_id"]].to_csv(root / "decontx" / "cells.csv", index=False)
     genes = pd.DataFrame({"gene": [f"GENE{i:03d}" for i in range(n_genes)]})
     genes.to_csv(root / "genes.csv", index=False)
-    raw_counts = sparse.random(n_genes, n_cells, density=0.4, random_state=seed,
-                                 data_rvs=lambda n: rng.poisson(3, size=n).astype(np.float64) + 1)
+    raw_counts = sparse.random(
+        n_genes,
+        n_cells,
+        density=0.4,
+        random_state=seed,
+        data_rvs=lambda n: rng.poisson(3, size=n).astype(np.float64) + 1,
+    )
     decontx_counts = raw_counts.multiply(0.7)
     mmwrite(str(root / "raw" / "counts.mtx"), raw_counts.tocoo())
     mmwrite(str(root / "decontx" / "counts.mtx"), decontx_counts.tocoo())
@@ -58,15 +67,27 @@ def test_preparer_output_feeds_diagnostic_cli_with_documented_job_spec_arguments
 
     # Step 1, exactly as PROVISIONAL_JOB_SPEC_v3.md's Step 1 command (minus
     # cluster-specific paths).
-    prep = subprocess.run([
-        sys.executable, str(CODE_DIR / "prepare_provisional_diagnostic_input.py"),
-        "--input-root", str(input_root), "--out", str(prepared_h5ad),
-        "--n-per-donor", "20", "--seed", "0",
-    ], capture_output=True, text=True)
+    prep = subprocess.run(
+        [
+            sys.executable,
+            str(CODE_DIR / "prepare_provisional_diagnostic_input.py"),
+            "--input-root",
+            str(input_root),
+            "--out",
+            str(prepared_h5ad),
+            "--n-per-donor",
+            "20",
+            "--seed",
+            "0",
+        ],
+        capture_output=True,
+        text=True,
+    )
     assert prep.returncode == 0, prep.stdout + prep.stderr
     assert prepared_h5ad.exists()
 
     import anndata
+
     adata = anndata.read_h5ad(prepared_h5ad)
     assert adata.uns["population_stage_id"] == "pre_gate2_decontx_provisional"
     population_stage_text = str(adata.uns["population_stage"])
@@ -76,17 +97,38 @@ def test_preparer_output_feeds_diagnostic_cli_with_documented_job_spec_arguments
     # (not independently retyped), which is the actual fix for the stage-text
     # mismatch finding: the two steps' free-text label is bound to one source
     # instead of two independently-authored strings that can drift.
-    diag = subprocess.run([
-        sys.executable, str(CODE_DIR / "run_batch_diagnostics.py"),
-        "--h5ad", str(prepared_h5ad), "--out-dir", str(diag_out),
-        "--population-stage", population_stage_text,
-        "--stage-id", "pre_gate2_decontx_provisional",
-        "--code-revision", "integration-test-fixture",
-        "--expression-source", "decontx_counts",
-        "--batch-col", "cohort", "--patient-col", "patient_id",
-        "--lineage-col", "lineage", "--outcome-col", "outcome",
-        "--diagnostic-n-per-patient", "20", "--min-group-size", "2",
-    ], capture_output=True, text=True)
+    diag = subprocess.run(
+        [
+            sys.executable,
+            str(CODE_DIR / "run_batch_diagnostics.py"),
+            "--h5ad",
+            str(prepared_h5ad),
+            "--out-dir",
+            str(diag_out),
+            "--population-stage",
+            population_stage_text,
+            "--stage-id",
+            "pre_gate2_decontx_provisional",
+            "--code-revision",
+            "integration-test-fixture",
+            "--expression-source",
+            "decontx_counts",
+            "--batch-col",
+            "cohort",
+            "--patient-col",
+            "patient_id",
+            "--lineage-col",
+            "lineage",
+            "--outcome-col",
+            "outcome",
+            "--diagnostic-n-per-patient",
+            "20",
+            "--min-group-size",
+            "2",
+        ],
+        capture_output=True,
+        text=True,
+    )
     assert diag.returncode == 0, diag.stdout + diag.stderr
 
     manifest = json.loads((diag_out / "manifest.json").read_text())

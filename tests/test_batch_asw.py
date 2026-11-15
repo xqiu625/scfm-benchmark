@@ -108,8 +108,10 @@ def test_unequal_stratum_sizes_each_stratum_weighted_equally_not_by_cell_count()
     rng = np.random.RandomState(4)
     n_big, n_small = 2000, 20
     bio = np.array(["big"] * n_big + ["small"] * n_small)
-    batch_big = np.tile(["A", "B"], n_big // 2)   # perfectly mixed
-    batch_small = np.array(["A"] * (n_small // 2) + ["B"] * (n_small // 2))  # separated by construction below
+    batch_big = np.tile(["A", "B"], n_big // 2)  # perfectly mixed
+    batch_small = np.array(
+        ["A"] * (n_small // 2) + ["B"] * (n_small // 2)
+    )  # separated by construction below
     X_big = rng.normal(size=(n_big, 4))  # batch has no effect -> well mixed
     X_small = rng.normal(size=(n_small, 4)) * 0.1
     X_small += np.where(batch_small == "A", 0.0, 20.0)[:, None]  # batch fully separates "small"
@@ -137,7 +139,7 @@ def test_per_stratum_score_matches_abs_silhouette_exactly_not_the_signed_mean():
     this fixture those two differ by construction (verified below)."""
     rng = np.random.RandomState(7)
     n_blob = 50
-    blob1 = rng.normal(0, 0.3, size=(n_blob, 4))          # near x=0
+    blob1 = rng.normal(0, 0.3, size=(n_blob, 4))  # near x=0
     blob2 = rng.normal(0, 0.3, size=(n_blob, 4)) + 100.0  # near x=100, all dims shifted
     X = np.vstack([blob1, blob2])
     batch = np.array(["A"] * n_blob + ["B"] * n_blob)
@@ -151,7 +153,9 @@ def test_per_stratum_score_matches_abs_silhouette_exactly_not_the_signed_mean():
         f"fixture assumption failed: expected most of the 10 mislabeled "
         f"points to have strongly negative silhouette, got {sorted(raw[:10])}"
     )
-    assert raw.mean() > 0, "fixture assumption failed: expected the majority-correct labeling to keep the signed mean positive"
+    assert (
+        raw.mean() > 0
+    ), "fixture assumption failed: expected the majority-correct labeling to keep the signed mean positive"
     reference_abs_mean = float(np.mean(np.abs(raw)))
     assert reference_abs_mean > raw.mean() + 0.05, (
         "fixture assumption failed: expected abs-mean to exceed signed-mean "

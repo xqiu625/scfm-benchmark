@@ -3,6 +3,7 @@ parsing/classification/join functions (not mocks). Covers the 5 defects
 `review:20261010_202340` found in v1 (F1-F5) plus the v1 mutation
 scenarios that still apply.
 """
+
 import csv
 import gzip
 import json
@@ -18,16 +19,26 @@ CODE_DIR = Path(__file__).parent.parent / "scripts/33_batch_effect_audit/code"
 sys.path.insert(0, str(CODE_DIR))
 
 from audit_stephenson_source_identity import (  # noqa: E402
-    parse_sdrf_pool_membership, parse_bcr_pool_membership,
-    parse_tcr_cambridge_and_sanger, build_identity_conflicts,
-    parse_canonical_donor_pools, classify_multi_pool_donor,
-    classify_pool_evidence, parse_gex_cambridge, parse_annotation_cellids,
-    cross_source_cell_join, build_dependency_components, diff_component_mappings,
+    build_dependency_components,
+    build_identity_conflicts,
+    classify_multi_pool_donor,
+    classify_pool_evidence,
+    cross_source_cell_join,
+    diff_component_mappings,
     exclude_donors_from_pools,
+    parse_annotation_cellids,
+    parse_bcr_pool_membership,
+    parse_canonical_donor_pools,
+    parse_gex_cambridge,
+    parse_tcr_cambridge_and_sanger,
 )
 
-SDRF_HEADER = ["Source Name", "Characteristics[organism]", "Characteristics[individual]",
-               "Characteristics[sequence pool]"]
+SDRF_HEADER = [
+    "Source Name",
+    "Characteristics[organism]",
+    "Characteristics[individual]",
+    "Characteristics[sequence pool]",
+]
 
 
 def _write_sdrf(path, rows):
@@ -57,6 +68,7 @@ def _write_tcr(path, rows):
 
 
 # ---- F1: multi-pool donor classification -----------------------------------
+
 
 def test_classify_multi_pool_donor_same_day_is_not_a_resample():
     entries = [("BGCV01", "Initial", "D0"), ("BGCV02", "Initial", "D0")]
@@ -96,40 +108,65 @@ def test_classify_multi_pool_donor_handles_non_d_prefixed_or_multi_digit_days():
 
 # ---- F2: declared vs observed conflict semantics ----------------------------
 
+
 def test_two_declared_sources_disagreeing_is_a_real_conflict():
-    result = classify_pool_evidence("P1", {
-        "sdrf": {"D1", "D2"}, "local_pool_composition": {"D1", "D3"}, "gex_processed": None,
-        "bcr": None, "tcr_cambridge": None,
-    })
+    result = classify_pool_evidence(
+        "P1",
+        {
+            "sdrf": {"D1", "D2"},
+            "local_pool_composition": {"D1", "D3"},
+            "gex_processed": None,
+            "bcr": None,
+            "tcr_cambridge": None,
+        },
+    )
     assert result["conflict_type"] == "declared_membership_disagreement"
 
 
 def test_observed_subset_of_declared_is_coverage_gap_not_conflict():
     """The exact static counterexample automated review named: SDRF declares {D1,D2},
     TCR observes only {D1} -- this must NOT be reported as a conflict."""
-    result = classify_pool_evidence("P1", {
-        "sdrf": {"D1", "D2"}, "local_pool_composition": None, "gex_processed": None,
-        "bcr": None, "tcr_cambridge": {"D1"},
-    })
+    result = classify_pool_evidence(
+        "P1",
+        {
+            "sdrf": {"D1", "D2"},
+            "local_pool_composition": None,
+            "gex_processed": None,
+            "bcr": None,
+            "tcr_cambridge": {"D1"},
+        },
+    )
     assert result["conflict_type"] == "none"
     assert "subset_of_sdrf" in result["observed_coverage"]["tcr_cambridge"]
     assert "missing=['D2']" in result["observed_coverage"]["tcr_cambridge"]
 
 
 def test_observed_member_not_in_any_declared_is_a_real_contradiction():
-    result = classify_pool_evidence("P1", {
-        "sdrf": {"D1", "D2"}, "local_pool_composition": None, "gex_processed": None,
-        "bcr": {"D1", "D9"}, "tcr_cambridge": None,  # D9 is nowhere in declared
-    })
+    result = classify_pool_evidence(
+        "P1",
+        {
+            "sdrf": {"D1", "D2"},
+            "local_pool_composition": None,
+            "gex_processed": None,
+            "bcr": {"D1", "D9"},
+            "tcr_cambridge": None,  # D9 is nowhere in declared
+        },
+    )
     assert result["conflict_type"] == "observed_contradicts_declared"
     assert result["observed_contradictions"]["bcr"] == ["D9"]
 
 
 def test_pool_with_no_declared_reference_is_reported_not_silently_passed():
-    result = classify_pool_evidence("P1", {
-        "sdrf": None, "local_pool_composition": None, "gex_processed": None,
-        "bcr": {"D1"}, "tcr_cambridge": None,
-    })
+    result = classify_pool_evidence(
+        "P1",
+        {
+            "sdrf": None,
+            "local_pool_composition": None,
+            "gex_processed": None,
+            "bcr": {"D1"},
+            "tcr_cambridge": None,
+        },
+    )
     assert result["conflict_type"] == "insufficient_declared_reference"
 
 
@@ -151,6 +188,7 @@ def test_build_identity_conflicts_end_to_end_matches_real_bgcv06_pattern():
 
 
 # ---- F3: GEX / annotation / BCR / TCR per-cell join -------------------------
+
 
 def _write_minimal_gex_h5ad(path, cells):
     """cells: list of (cell_id, site, sample_id_label). Builds the LEGACY
@@ -174,22 +212,28 @@ def _write_minimal_gex_h5ad(path, cells):
 
 def test_parse_gex_cambridge_reads_legacy_categorical_encoding(tmp_path):
     h5ad_path = tmp_path / "fixture_gex.h5ad"
-    _write_minimal_gex_h5ad(h5ad_path, [
-        ("BGCV06_AAA-1", "Cambridge", "BGCV06_CV0201"),
-        ("BGCV06_BBB-1", "Cambridge", "BGCV06_CV0037"),
-        ("MH123_CCC-1", "Ncl", "MH123"),  # non-Cambridge, no "_" donor split -> excluded
-    ])
+    _write_minimal_gex_h5ad(
+        h5ad_path,
+        [
+            ("BGCV06_AAA-1", "Cambridge", "BGCV06_CV0201"),
+            ("BGCV06_BBB-1", "Cambridge", "BGCV06_CV0037"),
+            ("MH123_CCC-1", "Ncl", "MH123"),  # non-Cambridge, no "_" donor split -> excluded
+        ],
+    )
     pools, cell_counts, cell_donor, conflicts, coverage = parse_gex_cambridge(h5ad_path)
     assert pools == {"BGCV06": {"CV0201", "CV0037"}}
     assert cell_counts == {"BGCV06": 2}
     assert cell_donor == {"BGCV06_AAA-1": "CV0201", "BGCV06_BBB-1": "CV0037"}
     assert conflicts == []
     assert coverage == {
-        "n_missing_site_or_cell_id": 0, "n_missing_sample_id_label": 0, "n_cell_id_conflicts": 0,
+        "n_missing_site_or_cell_id": 0,
+        "n_missing_sample_id_label": 0,
+        "n_cell_id_conflicts": 0,
     }
 
 
 # ---- F2a: legacy -1 missing-code sentinel must not become the last category --
+
 
 def test_legacy_categorical_missing_code_becomes_none_not_last_category(tmp_path):
     """The real bug: `cats[codes]` with `codes == -1` silently indexed the
@@ -205,13 +249,19 @@ def test_legacy_categorical_missing_code_becomes_none_not_last_category(tmp_path
         # Site: both real cells are Cambridge (code 0); "Zzz_not_cambridge"
         # deliberately sorts LAST so a -1-as-cats[-1] bug would misroute.
         obs.create_dataset("Site", data=np.array([0, 0], dtype="i2"))
-        cats_grp.create_dataset("Site", data=np.array(["Cambridge", "Zzz_not_cambridge"], dtype="S"))
+        cats_grp.create_dataset(
+            "Site", data=np.array(["Cambridge", "Zzz_not_cambridge"], dtype="S")
+        )
         # sample_id: c1 has a REAL code (0); c2 has the missing sentinel (-1).
         obs.create_dataset("sample_id", data=np.array([0, -1], dtype="i2"))
-        cats_grp.create_dataset("sample_id", data=np.array(["BGCV06_CV0201", "Zzz_last_label"], dtype="S"))
+        cats_grp.create_dataset(
+            "sample_id", data=np.array(["BGCV06_CV0201", "Zzz_last_label"], dtype="S")
+        )
 
     pools, cell_counts, cell_donor, conflicts, coverage = parse_gex_cambridge(h5ad_path)
-    assert pools == {"BGCV06": {"CV0201"}}  # c2's missing label must not contribute "Zzz_last_label"
+    assert pools == {
+        "BGCV06": {"CV0201"}
+    }  # c2's missing label must not contribute "Zzz_last_label"
     assert cell_donor == {"c1": "CV0201"}
     assert "c2" not in cell_donor
     assert coverage["n_missing_sample_id_label"] == 1
@@ -235,12 +285,16 @@ def test_legacy_categorical_out_of_range_code_raises_not_wraps(tmp_path):
 
 # ---- F2c: a repeated CellID must not silently overwrite a prior donor ------
 
+
 def test_parse_gex_cambridge_duplicate_cell_id_different_donor_is_a_conflict(tmp_path):
     h5ad_path = tmp_path / "fixture_dup.h5ad"
-    _write_minimal_gex_h5ad(h5ad_path, [
-        ("BGCV06_AAA-1", "Cambridge", "BGCV06_CV0201"),
-        ("BGCV06_AAA-1", "Cambridge", "BGCV06_CV0037"),  # same CellID, different donor
-    ])
+    _write_minimal_gex_h5ad(
+        h5ad_path,
+        [
+            ("BGCV06_AAA-1", "Cambridge", "BGCV06_CV0201"),
+            ("BGCV06_AAA-1", "Cambridge", "BGCV06_CV0037"),  # same CellID, different donor
+        ],
+    )
     pools, cell_counts, cell_donor, conflicts, coverage = parse_gex_cambridge(h5ad_path)
     assert conflicts == [("BGCV06_AAA-1", {"CV0201", "CV0037"})]
     assert "BGCV06_AAA-1" not in cell_donor  # excluded, not silently picked
@@ -250,18 +304,25 @@ def test_parse_gex_cambridge_duplicate_cell_id_different_donor_is_a_conflict(tmp
 # ---- F2b: GEX is OBSERVED, not DECLARED -- a GEX subset must not become --
 # ---- a declared_membership_disagreement (the same coverage-gap rule BCR/TCR get)
 
+
 def test_gex_subset_of_declared_roster_is_not_a_declared_conflict():
-    result = classify_pool_evidence("P1", {
-        "sdrf": {"D1", "D2"}, "local_pool_composition": {"D1", "D2"},
-        "gex_processed": {"D1"},  # GEX only observed D1 -- a coverage gap, not a conflict
-        "bcr": None, "tcr_cambridge": None,
-    })
+    result = classify_pool_evidence(
+        "P1",
+        {
+            "sdrf": {"D1", "D2"},
+            "local_pool_composition": {"D1", "D2"},
+            "gex_processed": {"D1"},  # GEX only observed D1 -- a coverage gap, not a conflict
+            "bcr": None,
+            "tcr_cambridge": None,
+        },
+    )
     assert result["conflict_type"] == "none"
     assert "subset_of" in result["observed_coverage"]["gex_processed"]
 
 
 def test_gex_processed_is_in_observed_not_declared_sources():
     import audit_stephenson_source_identity as mod
+
     assert "gex_processed" not in mod.DECLARED_SOURCES
     assert "gex_processed" in mod.OBSERVED_SOURCES
 
@@ -319,18 +380,34 @@ def test_cross_source_cell_join_combined_flags_disagreement_with_either_source()
 
 # ---- TCR per-cell conflicts (extends the v1 BCR-only check) -----------------
 
+
 def test_tcr_detects_per_cell_identity_conflict_via_cellid():
     tcr_path_rows = [
-        {"CellID": "BGCV01_AAA-1", "Sample": "BGCV01", "patient_id": "D1",
-         "Site": "Cambridge", "Resample": "Initial", "Collection_Day": "D0"},
-        {"CellID": "BGCV01_AAA-1", "Sample": "BGCV01", "patient_id": "D2",
-         "Site": "Cambridge", "Resample": "Initial", "Collection_Day": "D0"},
+        {
+            "CellID": "BGCV01_AAA-1",
+            "Sample": "BGCV01",
+            "patient_id": "D1",
+            "Site": "Cambridge",
+            "Resample": "Initial",
+            "Collection_Day": "D0",
+        },
+        {
+            "CellID": "BGCV01_AAA-1",
+            "Sample": "BGCV01",
+            "patient_id": "D2",
+            "Site": "Cambridge",
+            "Resample": "Initial",
+            "Collection_Day": "D0",
+        },
     ]
     import tempfile
+
     with tempfile.TemporaryDirectory() as d:
         tcr_path = Path(d) / "tcr.tsv"
         _write_tcr(tcr_path, tcr_path_rows)
-        _pools, _resample, _sanger, cell_conflicts, _cell_donor = parse_tcr_cambridge_and_sanger(tcr_path)
+        _pools, _resample, _sanger, cell_conflicts, _cell_donor = parse_tcr_cambridge_and_sanger(
+            tcr_path
+        )
     assert len(cell_conflicts) == 1
     cell_id, ids = cell_conflicts[0]
     assert cell_id == "BGCV01_AAA-1"
@@ -339,12 +416,17 @@ def test_tcr_detects_per_cell_identity_conflict_via_cellid():
 
 # ---- carried-over v1 coverage: bare-barcode merge, canonical "nan" sentinel --
 
+
 def test_bcr_bare_barcode_reused_across_pools_is_not_merged(tmp_path):
     bcr_path = tmp_path / "fixture_bcr.csv.gz"
-    _write_bcr_gz(bcr_path, [
-        ("P1_AAAACCC-1", "D1"), ("P1_AAAACCC-1", "D1"),
-        ("P2_AAAACCC-1", "D9"),
-    ])
+    _write_bcr_gz(
+        bcr_path,
+        [
+            ("P1_AAAACCC-1", "D1"),
+            ("P1_AAAACCC-1", "D1"),
+            ("P2_AAAACCC-1", "D9"),
+        ],
+    )
     pool_donors, cell_conflicts, _cell_donor = parse_bcr_pool_membership(bcr_path)
     assert pool_donors == {"P1": {"D1"}, "P2": {"D9"}}
     assert cell_conflicts == []
@@ -365,6 +447,7 @@ def test_canonical_notes_nan_sentinel_is_not_an_answer(tmp_path):
 
 # ---- item 3: two-mapping dependency component diff -------------------------
 
+
 def test_build_dependency_components_transitive_closure():
     pools = {"P1": {"D1", "D2"}, "P2": {"D2", "D3"}, "P3": {"D9"}}
     comps = build_dependency_components(pools)
@@ -384,7 +467,8 @@ def test_excluding_disputed_donors_does_not_change_an_unrelated_donors_component
     donors from the pool graph must not perturb a donor in an unrelated
     pool that never shared a pool with them."""
     pools = {
-        "BGCV06": {"D_shared6", "D326"}, "BGCV08": {"D_shared8", "D201"},
+        "BGCV06": {"D_shared6", "D326"},
+        "BGCV08": {"D_shared8", "D201"},
         "BGCV13": {"D_shared8", "D_shared13"},
         "BGCV99_unrelated": {"D_other1", "D_other2"},
     }
@@ -402,12 +486,14 @@ def test_diff_component_mappings_flags_only_donors_whose_component_actually_chan
     and D_shared8/D_shared13 legitimately change too -- but a donor in a
     completely unrelated pool must NOT be flagged."""
     pools_a = {  # "sdrf"-style
-        "BGCV06": {"D_shared6", "D326"}, "BGCV08": {"D_shared8", "D201"},
+        "BGCV06": {"D_shared6", "D326"},
+        "BGCV08": {"D_shared8", "D201"},
         "BGCV13": {"D_shared8", "D_shared13"},
         "BGCV99_unrelated": {"D_other1", "D_other2"},
     }
     pools_b = {  # "local"-style: D201/D326 swapped
-        "BGCV06": {"D_shared6", "D201"}, "BGCV08": {"D_shared8", "D201"},
+        "BGCV06": {"D_shared6", "D201"},
+        "BGCV08": {"D_shared8", "D201"},
         "BGCV13": {"D_shared8", "D326", "D_shared13"},
         "BGCV99_unrelated": {"D_other1", "D_other2"},
     }
@@ -418,6 +504,7 @@ def test_diff_component_mappings_flags_only_donors_whose_component_actually_chan
 
 
 # ---- F5: no-clobber --out-dir, via the real CLI entry point ----------------
+
 
 def test_cli_refuses_to_overwrite_a_nonempty_out_dir(tmp_path):
     sdrf_path = tmp_path / "f.sdrf.txt"
@@ -440,12 +527,28 @@ def test_cli_refuses_to_overwrite_a_nonempty_out_dir(tmp_path):
     (out_dir / "preexisting.txt").write_text("already here")
 
     result = subprocess.run(
-        [sys.executable, str(CODE_DIR / "audit_stephenson_source_identity.py"),
-         "--sdrf", str(sdrf_path), "--local-pool-composition", str(local_csv),
-         "--canonical-donor-labels", str(canonical_csv), "--gex-h5ad", str(gex_path),
-         "--annotation-csv", str(annotation_csv), "--bcr-gz", str(bcr_path),
-         "--tcr-tsv", str(tcr_path), "--out-dir", str(out_dir)],
-        capture_output=True, text=True,
+        [
+            sys.executable,
+            str(CODE_DIR / "audit_stephenson_source_identity.py"),
+            "--sdrf",
+            str(sdrf_path),
+            "--local-pool-composition",
+            str(local_csv),
+            "--canonical-donor-labels",
+            str(canonical_csv),
+            "--gex-h5ad",
+            str(gex_path),
+            "--annotation-csv",
+            str(annotation_csv),
+            "--bcr-gz",
+            str(bcr_path),
+            "--tcr-tsv",
+            str(tcr_path),
+            "--out-dir",
+            str(out_dir),
+        ],
+        capture_output=True,
+        text=True,
     )
     assert result.returncode != 0
     assert "already exists" in (result.stdout + result.stderr)
@@ -474,12 +577,28 @@ def test_cli_allows_reusing_a_preexisting_but_empty_out_dir(tmp_path):
     out_dir.mkdir()  # pre-exists, but empty
 
     result = subprocess.run(
-        [sys.executable, str(CODE_DIR / "audit_stephenson_source_identity.py"),
-         "--sdrf", str(sdrf_path), "--local-pool-composition", str(local_csv),
-         "--canonical-donor-labels", str(canonical_csv), "--gex-h5ad", str(gex_path),
-         "--annotation-csv", str(annotation_csv), "--bcr-gz", str(bcr_path),
-         "--tcr-tsv", str(tcr_path), "--out-dir", str(out_dir)],
-        capture_output=True, text=True,
+        [
+            sys.executable,
+            str(CODE_DIR / "audit_stephenson_source_identity.py"),
+            "--sdrf",
+            str(sdrf_path),
+            "--local-pool-composition",
+            str(local_csv),
+            "--canonical-donor-labels",
+            str(canonical_csv),
+            "--gex-h5ad",
+            str(gex_path),
+            "--annotation-csv",
+            str(annotation_csv),
+            "--bcr-gz",
+            str(bcr_path),
+            "--tcr-tsv",
+            str(tcr_path),
+            "--out-dir",
+            str(out_dir),
+        ],
+        capture_output=True,
+        text=True,
     )
     assert result.returncode == 0, result.stdout + result.stderr
     assert (out_dir / "summary.json").exists()
@@ -492,7 +611,7 @@ def test_claim_ownership_is_atomic_for_two_truly_simultaneous_starts(tmp_path):
     (modeling two processes that both passed the outer non-empty check
     before either wrote anything) must let exactly one through."""
     sys.path.insert(0, str(Path(__file__).parent.parent / "scripts/00_shared/code"))
-    from run_ownership import claim_ownership, OwnershipError  # noqa: E402
+    from run_ownership import OwnershipError, claim_ownership  # noqa: E402
 
     lock_path = tmp_path / "race" / ".run_owner.json"
     lock_path.parent.mkdir()
@@ -532,17 +651,34 @@ def test_cli_refuses_a_dir_already_claimed_by_another_run(tmp_path):
     out_dir.mkdir()
     sys.path.insert(0, str(Path(__file__).parent.parent / "scripts/00_shared/code"))
     from run_ownership import claim_ownership  # noqa: E402
-    a_owner = claim_ownership(out_dir / ".run_owner.json", command="process-A (simulated concurrent run)")
+
+    claim_ownership(out_dir / ".run_owner.json", command="process-A (simulated concurrent run)")
     lock_path = out_dir / ".run_owner.json"
     before = lock_path.read_text()
 
     result = subprocess.run(
-        [sys.executable, str(CODE_DIR / "audit_stephenson_source_identity.py"),
-         "--sdrf", str(sdrf_path), "--local-pool-composition", str(local_csv),
-         "--canonical-donor-labels", str(canonical_csv), "--gex-h5ad", str(gex_path),
-         "--annotation-csv", str(annotation_csv), "--bcr-gz", str(bcr_path),
-         "--tcr-tsv", str(tcr_path), "--out-dir", str(out_dir)],
-        capture_output=True, text=True,
+        [
+            sys.executable,
+            str(CODE_DIR / "audit_stephenson_source_identity.py"),
+            "--sdrf",
+            str(sdrf_path),
+            "--local-pool-composition",
+            str(local_csv),
+            "--canonical-donor-labels",
+            str(canonical_csv),
+            "--gex-h5ad",
+            str(gex_path),
+            "--annotation-csv",
+            str(annotation_csv),
+            "--bcr-gz",
+            str(bcr_path),
+            "--tcr-tsv",
+            str(tcr_path),
+            "--out-dir",
+            str(out_dir),
+        ],
+        capture_output=True,
+        text=True,
     )
     assert result.returncode != 0
     assert "already exists and is non-empty" in (result.stdout + result.stderr)

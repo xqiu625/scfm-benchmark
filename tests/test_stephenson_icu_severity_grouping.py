@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 
 sys.path.insert(
     0,
@@ -9,15 +9,15 @@ sys.path.insert(
 )
 
 from stephenson_icu_severity_grouping import (
-    care_setting_at_sampling,
-    candidate_main_group,
     CARE_SETTING_ICU,
     CARE_SETTING_NON_ICU,
     CARE_SETTING_UNKNOWN,
     GROUP_COMPARISON,
-    GROUP_REFERENCE,
-    GROUP_EXCLUDED_PENDING_ICU_EVIDENCE,
     GROUP_EXCLUDED_OTHER,
+    GROUP_EXCLUDED_PENDING_ICU_EVIDENCE,
+    GROUP_REFERENCE,
+    candidate_main_group,
+    care_setting_at_sampling,
 )
 
 

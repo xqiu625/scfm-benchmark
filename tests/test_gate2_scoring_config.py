@@ -1,5 +1,6 @@
 """The scoring config must fail closed on every substitution the audit named."""
 
+import hashlib
 import json
 import os
 import sys
@@ -48,6 +49,7 @@ def _two_commit_repo(tmp_path, edit_implementation_in_b=False):
     """
     import shutil
     import subprocess
+
     if shutil.which("git") is None:
         pytest.skip("git unavailable")
     repo = tmp_path / "permitrepo"
@@ -61,8 +63,9 @@ def _two_commit_repo(tmp_path, edit_implementation_in_b=False):
         shutil.copyfile(src, dst)
 
     def git(*a, **kw):
-        return subprocess.run(["git", *a], cwd=repo, check=kw.pop("check", True),
-                              capture_output=True, text=True)
+        return subprocess.run(
+            ["git", *a], cwd=repo, check=kw.pop("check", True), capture_output=True, text=True
+        )
 
     git("init", "-q")
     git("add", "-A")
@@ -87,6 +90,7 @@ def _write(permit):
 
 # ---- the config is not runnable -----------------------------------------
 
+
 def test_the_config_is_not_runnable():
     cfg = C.scoring_config()
     assert cfg["runnable"] is False
@@ -98,6 +102,7 @@ def test_the_production_ruling_is_still_empty():
 
 
 # ---- missing permit ------------------------------------------------------
+
 
 def test_scoring_is_refused_without_a_permit(monkeypatch):
     monkeypatch.delenv(C.PERMIT_PATH_ENV, raising=False)
@@ -146,8 +151,7 @@ def test_the_permit_commit_gate_is_satisfiable_at_all(tmp_path, monkeypatch):
     assert C._assert_implementation_commit(commit_a)
 
 
-def test_an_implementation_edited_after_the_reviewed_commit_is_refused(
-        tmp_path, monkeypatch):
+def test_an_implementation_edited_after_the_reviewed_commit_is_refused(tmp_path, monkeypatch):
     """Ancestry alone is too weak: B could have edited the implementation."""
     repo, commit_a = _two_commit_repo(tmp_path, edit_implementation_in_b=True)
     monkeypatch.setattr(C, "_repo_root", lambda: str(repo))
@@ -159,15 +163,19 @@ def test_a_commit_that_is_not_an_ancestor_is_refused(tmp_path, monkeypatch):
     repo, _ = _two_commit_repo(tmp_path)
     monkeypatch.setattr(C, "_repo_root", lambda: str(repo))
     import subprocess
+
     subprocess.run(["git", "checkout", "-q", "-b", "side", "HEAD~1"], cwd=repo, check=True)
     (repo / "unrelated.txt").write_text("x")
     subprocess.run(["git", "add", "-A"], cwd=repo, check=True)
-    subprocess.run(["git", "-c", "user.email=t@t", "-c", "user.name=t",
-                    "commit", "-qm", "side"], cwd=repo, check=True)
-    side = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo,
-                          capture_output=True, text=True).stdout.strip()
-    subprocess.run(["git", "checkout", "-q", "master"], cwd=repo,
-                   capture_output=True)
+    subprocess.run(
+        ["git", "-c", "user.email=t@t", "-c", "user.name=t", "commit", "-qm", "side"],
+        cwd=repo,
+        check=True,
+    )
+    side = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=repo, capture_output=True, text=True
+    ).stdout.strip()
+    subprocess.run(["git", "checkout", "-q", "master"], cwd=repo, capture_output=True)
     subprocess.run(["git", "checkout", "-q", "main"], cwd=repo, capture_output=True)
     with pytest.raises(R.Gate2RunnerError, match="is not an ancestor"):
         C._assert_implementation_commit(side)
@@ -181,9 +189,10 @@ def test_an_implementation_dirty_on_disk_is_refused(tmp_path, monkeypatch):
     by mutation M11, which survived because nothing exercised this branch.
     """
     import subprocess
+
     repo, commit_a = _two_commit_repo(tmp_path)
     monkeypatch.setattr(C, "_repo_root", lambda: str(repo))
-    assert C._assert_implementation_commit(commit_a)      # clean first
+    assert C._assert_implementation_commit(commit_a)  # clean first
     target = repo / C.IMPLEMENTATION_FILES[4]
     target.write_text(target.read_text() + "\n# uncommitted local edit\n")
     with pytest.raises(R.Gate2RunnerError, match="differ from deployed HEAD on disk"):
@@ -203,6 +212,7 @@ def test_a_commit_predating_the_implementation_is_refused(tmp_path, monkeypatch)
     """
     import shutil
     import subprocess
+
     if shutil.which("git") is None:
         pytest.skip("git unavailable")
     repo = tmp_path / "early"
@@ -210,8 +220,7 @@ def test_a_commit_predating_the_implementation_is_refused(tmp_path, monkeypatch)
     (repo / "unrelated.txt").write_text("before the implementation existed\n")
 
     def git(*a):
-        return subprocess.run(["git", *a], cwd=repo, check=True,
-                              capture_output=True, text=True)
+        return subprocess.run(["git", *a], cwd=repo, check=True, capture_output=True, text=True)
 
     git("init", "-q")
     git("add", "-A")
@@ -261,6 +270,7 @@ def test_no_source_branch_skips_verification_on_the_bypass_variable():
     os.environ.get(...) whose truth causes an early `return`."""
     import ast
     import inspect
+
     src = inspect.getsource(C.assert_permitted)
     tree = ast.parse(textwrap.dedent(src))
     for node in ast.walk(tree):
@@ -268,13 +278,16 @@ def test_no_source_branch_skips_verification_on_the_bypass_variable():
             body = getattr(node, "body", [])
             mentions = C.REMOVED_BYPASS_ENV in ast.dump(node.test) or any(
                 isinstance(n, ast.Name) and n.id == "REMOVED_BYPASS_ENV"
-                for n in ast.walk(node.test))
+                for n in ast.walk(node.test)
+            )
             if mentions:
-                assert any(isinstance(s, ast.Raise) for s in body), (
-                    "a branch on the removed bypass must raise, never return early")
+                assert any(
+                    isinstance(s, ast.Raise) for s in body
+                ), "a branch on the removed bypass must raise, never return early"
 
 
 # ---- capture / input substitution ---------------------------------------
+
 
 def test_a_permit_for_another_capture_is_refused():
     with pytest.raises(R.Gate2RunnerError, match="permit is for capture"):
@@ -290,6 +303,7 @@ def test_a_permit_with_substituted_inputs_is_refused():
 
 
 # ---- config / parameter drift -------------------------------------------
+
 
 def test_a_permit_for_a_different_config_is_refused():
     with pytest.raises(R.Gate2RunnerError, match="config_sha256"):
@@ -318,6 +332,7 @@ def test_resolved_values_match_the_preflight_measurements():
 def test_the_eleven_parameters_come_from_the_ruling():
     cfg = C.scoring_config()
     import gate2_parameter_ruling as RULING
+
     for k, v in RULING.METHODOLOGY_PARAMETER_RULING.items():
         if k == "n_neighbors":
             continue
@@ -327,10 +342,17 @@ def test_the_eleven_parameters_come_from_the_ruling():
 
 # ---- input hash drift on disk -------------------------------------------
 
-def test_input_hash_drift_on_disk_fails_closed(monkeypatch):
+
+def test_input_hash_drift_on_disk_fails_closed(tmp_path, monkeypatch):
     """If a deposit file changes, the C1-C3 evidence no longer describes it."""
-    real = C.INPUT_SHA256
-    monkeypatch.setattr(C, "INPUT_SHA256", dict(real, **{sorted(real)[0]: "0" * 64}))
+    source = tmp_path / sorted(C.INPUT_SHA256)[0]
+    source.write_bytes(b"original input")
+    monkeypatch.setattr(C, "DEPOSIT_DIR", str(tmp_path))
+    monkeypatch.setattr(
+        C, "INPUT_SHA256", {source.name: hashlib.sha256(source.read_bytes()).hexdigest()}
+    )
+    assert C.assert_inputs_unchanged()
+    source.write_bytes(b"changed input")
     with pytest.raises(R.Gate2RunnerError, match="does not describe this file"):
         C.assert_inputs_unchanged()
 
@@ -343,6 +365,7 @@ def test_a_missing_input_fails_closed(monkeypatch):
 
 # ---- the graph limitation must stay explicit -----------------------------
 
+
 def test_the_graph_limitation_is_present_and_false():
     cfg = C.scoring_config()
     assert cfg["graph_preflight_verified"] is False
@@ -351,6 +374,7 @@ def test_the_graph_limitation_is_present_and_false():
 
 def test_dropping_the_graph_reason_fails_closed(monkeypatch):
     """`false` without a stated reason reads as an oversight rather than a finding."""
+
     def no_reason():
         cfg = dict(original())
         cfg["graph_preflight_reason"] = ""
@@ -363,6 +387,7 @@ def test_dropping_the_graph_reason_fails_closed(monkeypatch):
 
 
 # ---- outcome fields and output reuse ------------------------------------
+
 
 def test_no_outcome_field_appears_in_the_config():
     blob = json.dumps(C.scoring_config())
@@ -461,8 +486,7 @@ def test_the_graph_acceptance_criteria_are_bound_by_the_config_hash():
     assert ga["expected_shape"] == list(C.expected_graph_shape())
     before = C.config_sha256()
     body = C._config_body()
-    body["graph_acceptance"] = dict(body["graph_acceptance"],
-                                    constructions_per_prior=0)
+    body["graph_acceptance"] = dict(body["graph_acceptance"], constructions_per_prior=0)
     assert C.config_sha256(body) != before
 
 
@@ -519,10 +543,10 @@ def test_the_scoped_ruling_requires_a_permit():
 def test_the_scoped_ruling_does_not_activate_the_global_one(tmp_path, monkeypatch):
     repo, commit_a = _two_commit_repo(tmp_path)
     monkeypatch.setattr(C, "_repo_root", lambda: str(repo))
-    permit = C.assert_permitted(_write(_permit(implementation_commit=commit_a)),
-                                repo_verifier=_ok)
+    permit = C.assert_permitted(_write(_permit(implementation_commit=commit_a)), repo_verifier=_ok)
     scoped = C.scoped_ruling(permit)
     import gate2_parameter_ruling as RULING
+
     assert scoped == dict(RULING.METHODOLOGY_PARAMETER_RULING)
     assert R.PRODUCTION_PARAMETER_RULING == {}
 
@@ -551,8 +575,7 @@ def test_a_permit_with_a_larger_resource_ceiling_is_refused():
 
 def test_a_permit_for_another_commit_is_refused():
     with pytest.raises(R.Gate2RunnerError, match="implementation_commit"):
-        C.assert_permitted(_write(_permit(implementation_commit="0" * 40)),
-                           repo_verifier=_ok)
+        C.assert_permitted(_write(_permit(implementation_commit="0" * 40)), repo_verifier=_ok)
 
 
 def test_the_implementation_digest_covers_the_transitive_diagnostics_module():

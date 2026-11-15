@@ -74,6 +74,8 @@ dev = [
     # lightweight next to torch, which intentionally stays in [ml]; CI installs
     # .[ml,dev] and is unaffected.
     "scanpy>=1.11.0",
+    "gseapy>=1.0.0",  # Required by the local prerank GSEA tests.
+    "harmonypy==0.0.10",  # Batch diagnostics use the original features-by-cells API.
 ]
 docs = [
     "mkdocs-material>=9.5",

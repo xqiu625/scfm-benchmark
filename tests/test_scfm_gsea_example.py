@@ -3,6 +3,7 @@ regular test suite. Per `review:20261012_171916` item 6: a local gene
 set with a known direction, a complete ranking, a real backend call, persisted
 results, and a manifest re-read -- not a mocked or synthetic-only unit test.
 """
+
 import importlib
 import json
 import os
@@ -19,8 +20,9 @@ EXAMPLE = os.path.join(EXAMPLES_DIR, "run_gsea_example.py")
 
 def test_run_gsea_example_end_to_end(tmp_path):
     out_dir = tmp_path / "gsea_example_run"
-    result = subprocess.run([sys.executable, EXAMPLE, "--out-dir", str(out_dir)],
-                            capture_output=True, text=True)
+    result = subprocess.run(
+        [sys.executable, EXAMPLE, "--out-dir", str(out_dir)], capture_output=True, text=True
+    )
     assert result.returncode == 0, result.stdout + result.stderr
     assert "OK: read_gsea_result" in result.stdout
 
@@ -38,8 +40,9 @@ def test_run_gsea_example_refuses_nonempty_out_dir(tmp_path):
     out_dir = tmp_path / "gsea_example_run"
     out_dir.mkdir()
     (out_dir / "junk.txt").write_text("pre-existing")
-    result = subprocess.run([sys.executable, EXAMPLE, "--out-dir", str(out_dir)],
-                            capture_output=True, text=True)
+    result = subprocess.run(
+        [sys.executable, EXAMPLE, "--out-dir", str(out_dir)], capture_output=True, text=True
+    )
     assert result.returncode != 0
     assert (out_dir / "junk.txt").read_text() == "pre-existing"
 
@@ -68,13 +71,16 @@ def test_run_gsea_example_detects_a_real_sign_flip_regression(tmp_path, monkeypa
     def _flipped(enriched_genes, unrelated_genes):
         ranking = real_build_ranking(enriched_genes, unrelated_genes)
         from enrichment_providers import GeneRanking
+
         # Flip every score's sign -- TOY_ENRICHED_SET's genes are now at the
         # BOTTOM of the ranking, not the top.
-        return GeneRanking(species=ranking.species,
-                           gene_id_namespace=ranking.gene_id_namespace,
-                           ranking_definition=ranking.ranking_definition,
-                           genes=ranking.genes,
-                           scores=tuple(-s for s in ranking.scores))
+        return GeneRanking(
+            species=ranking.species,
+            gene_id_namespace=ranking.gene_id_namespace,
+            ranking_definition=ranking.ranking_definition,
+            genes=ranking.genes,
+            scores=tuple(-s for s in ranking.scores),
+        )
 
     monkeypatch.setattr(run_gsea_example, "build_known_direction_ranking", _flipped)
     out_dir = tmp_path / "gsea_example_flipped"

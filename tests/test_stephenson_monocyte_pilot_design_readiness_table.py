@@ -43,10 +43,14 @@ def _write_fixtures(tmp_path):
         "s4\t5\t2\t3\n"
         # s5/s6 (donor::C) deliberately missing from the counts table.
     )
-    coverage_summary_path.write_text(json.dumps({
-        "symptomatic_donor_rows": [{"true_donor_group": "donor::A"}],
-        "asymptomatic_donor_rows": [{"true_donor_group": "donor::B"}],
-    }))
+    coverage_summary_path.write_text(
+        json.dumps(
+            {
+                "symptomatic_donor_rows": [{"true_donor_group": "donor::A"}],
+                "asymptomatic_donor_rows": [{"true_donor_group": "donor::B"}],
+            }
+        )
+    )
     return str(roster_path), str(grouping_path), str(counts_path), str(coverage_summary_path)
 
 
@@ -54,7 +58,9 @@ def test_build_design_readiness_table_joins_counts_severity_and_icu_evidence(tmp
     roster_path, grouping_path, counts_path, coverage_summary_path = _write_fixtures(tmp_path)
 
     table_rows, fieldnames, cutoff_sensitivity, summary = DRT.build_design_readiness_table(
-        roster_path=roster_path, grouping_path=grouping_path, counts_path=counts_path,
+        roster_path=roster_path,
+        grouping_path=grouping_path,
+        counts_path=counts_path,
         coverage_summary_path=coverage_summary_path,
     )
 
@@ -85,7 +91,9 @@ def test_cutoff_sensitivity_requires_every_visit_to_clear_the_threshold(tmp_path
     roster_path, grouping_path, counts_path, coverage_summary_path = _write_fixtures(tmp_path)
 
     _, _, cutoff_sensitivity, _ = DRT.build_design_readiness_table(
-        roster_path=roster_path, grouping_path=grouping_path, counts_path=counts_path,
+        roster_path=roster_path,
+        grouping_path=grouping_path,
+        counts_path=counts_path,
         coverage_summary_path=coverage_summary_path,
     )
 
@@ -105,7 +113,9 @@ def test_cutoff_sensitivity_requires_every_visit_to_clear_the_threshold(tmp_path
     # donor::C is missing from the counts table entirely -- must never appear
     # in any cutoff bucket (not silently treated as passing or failing).
     for cutoff_bucket in cutoff_sensitivity["A"].values():
-        all_donors = cutoff_bucket["symptomatic"] + cutoff_bucket["asymptomatic"] + cutoff_bucket["unknown"]
+        all_donors = (
+            cutoff_bucket["symptomatic"] + cutoff_bucket["asymptomatic"] + cutoff_bucket["unknown"]
+        )
         assert "donor::C" not in {r["true_donor_group"] for r in all_donors}
 
 
@@ -117,8 +127,12 @@ def test_main_refuses_to_overwrite_an_existing_output_file(tmp_path):
 
     try:
         DRT.main(
-            roster_path=roster_path, grouping_path=grouping_path, counts_path=counts_path,
-            coverage_summary_path=coverage_summary_path, out_tsv=str(out_tsv), out_json=str(out_json),
+            roster_path=roster_path,
+            grouping_path=grouping_path,
+            counts_path=counts_path,
+            coverage_summary_path=coverage_summary_path,
+            out_tsv=str(out_tsv),
+            out_json=str(out_json),
         )
         assert False, "expected SystemExit when out_tsv already exists"
     except SystemExit:
@@ -136,8 +150,12 @@ def test_mutation_kill_the_overwrite_guard(tmp_path, monkeypatch):
 
     monkeypatch.setattr(DRT, "_require_output_does_not_already_exist", lambda *a, **k: None)
     DRT.main(
-        roster_path=roster_path, grouping_path=grouping_path, counts_path=counts_path,
-        coverage_summary_path=coverage_summary_path, out_tsv=str(out_tsv), out_json=str(out_json),
+        roster_path=roster_path,
+        grouping_path=grouping_path,
+        counts_path=counts_path,
+        coverage_summary_path=coverage_summary_path,
+        out_tsv=str(out_tsv),
+        out_json=str(out_json),
     )
     assert out_tsv.read_text() != "DO NOT TOUCH"
 

@@ -1,6 +1,7 @@
 """Tests for the local, versioned gene-set cache. Never touches a URL or an
 online library name -- every case here is a local .gmt file on disk.
 """
+
 import os
 import sys
 
@@ -8,7 +9,9 @@ import pytest
 
 CODE = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    "scripts", "34_scfm_discovery_framework", "code",
+    "scripts",
+    "34_scfm_discovery_framework",
+    "code",
 )
 sys.path.insert(0, CODE)
 
@@ -61,9 +64,13 @@ def test_import_gene_sets_records_real_metadata_not_fabricated(tmp_path):
     _write_gmt(gmt, {"SET_A": ["G1", "G2"]})
     out_dir = tmp_path / "cache"
     manifest = G.import_gene_sets(
-        source_gmt_path=str(gmt), collection_name="TEST_COLLECTION", species="human",
-        gene_id_namespace="gene_symbol", source_version="local-test-v1",
-        out_dir=str(out_dir))
+        source_gmt_path=str(gmt),
+        collection_name="TEST_COLLECTION",
+        species="human",
+        gene_id_namespace="gene_symbol",
+        source_version="local-test-v1",
+        out_dir=str(out_dir),
+    )
     assert manifest["source_type"] == "local_file"
     assert manifest["collection_name"] == "TEST_COLLECTION"
     assert manifest["n_gene_sets"] == 1
@@ -79,9 +86,13 @@ def test_import_gene_sets_requires_all_identity_fields_nonempty(tmp_path):
     _write_gmt(gmt, {"SET_A": ["G1"]})
     with pytest.raises(SystemExit, match="must all be non-empty"):
         G.import_gene_sets(
-            source_gmt_path=str(gmt), collection_name="", species="human",
-            gene_id_namespace="gene_symbol", source_version="v1",
-            out_dir=str(tmp_path / "cache"))
+            source_gmt_path=str(gmt),
+            collection_name="",
+            species="human",
+            gene_id_namespace="gene_symbol",
+            source_version="v1",
+            out_dir=str(tmp_path / "cache"),
+        )
 
 
 def test_import_gene_sets_refuses_nonempty_out_dir(tmp_path):
@@ -92,9 +103,13 @@ def test_import_gene_sets_refuses_nonempty_out_dir(tmp_path):
     (out_dir / "junk.txt").write_text("pre-existing")
     with pytest.raises(SystemExit, match="must be new or empty"):
         G.import_gene_sets(
-            source_gmt_path=str(gmt), collection_name="TEST", species="human",
-            gene_id_namespace="gene_symbol", source_version="v1",
-            out_dir=str(out_dir))
+            source_gmt_path=str(gmt),
+            collection_name="TEST",
+            species="human",
+            gene_id_namespace="gene_symbol",
+            source_version="v1",
+            out_dir=str(out_dir),
+        )
     assert (out_dir / "junk.txt").read_text() == "pre-existing"
 
 
@@ -103,8 +118,13 @@ def test_load_cached_gene_sets_round_trips_exactly(tmp_path):
     _write_gmt(gmt, {"SET_A": ["G1", "G2"], "SET_B": ["G3"]})
     out_dir = tmp_path / "cache"
     G.import_gene_sets(
-        source_gmt_path=str(gmt), collection_name="TEST", species="mouse",
-        gene_id_namespace="gene_symbol", source_version="v1", out_dir=str(out_dir))
+        source_gmt_path=str(gmt),
+        collection_name="TEST",
+        species="mouse",
+        gene_id_namespace="gene_symbol",
+        source_version="v1",
+        out_dir=str(out_dir),
+    )
     gene_sets, manifest = G.load_cached_gene_sets(str(out_dir))
     assert gene_sets == {"SET_A": ["G1", "G2"], "SET_B": ["G3"]}
     assert manifest["species"] == "mouse"
@@ -125,12 +145,18 @@ def test_load_cached_gene_sets_rejects_tampered_content(tmp_path):
     is doing any work).
     """
     import json
+
     gmt = tmp_path / "test.gmt"
     _write_gmt(gmt, {"SET_A": ["G1", "G2"]})
     out_dir = tmp_path / "cache"
     manifest = G.import_gene_sets(
-        source_gmt_path=str(gmt), collection_name="TEST", species="human",
-        gene_id_namespace="gene_symbol", source_version="v1", out_dir=str(out_dir))
+        source_gmt_path=str(gmt),
+        collection_name="TEST",
+        species="human",
+        gene_id_namespace="gene_symbol",
+        source_version="v1",
+        out_dir=str(out_dir),
+    )
     with open(manifest["cached_gene_sets_path"], "w") as fh:
         json.dump({"SET_A": ["G1", "G2", "SNEAKILY_ADDED_GENE"]}, fh)
     with pytest.raises(SystemExit, match="hash mismatch"):
@@ -144,12 +170,18 @@ def test_load_cached_gene_sets_rejects_manifest_missing_a_required_field(tmp_pat
     gene-sets file's own content hash is untouched and correct.
     """
     import json
+
     gmt = tmp_path / "test.gmt"
     _write_gmt(gmt, {"SET_A": ["G1", "G2"]})
     out_dir = tmp_path / "cache"
     G.import_gene_sets(
-        source_gmt_path=str(gmt), collection_name="TEST", species="human",
-        gene_id_namespace="gene_symbol", source_version="v1", out_dir=str(out_dir))
+        source_gmt_path=str(gmt),
+        collection_name="TEST",
+        species="human",
+        gene_id_namespace="gene_symbol",
+        source_version="v1",
+        out_dir=str(out_dir),
+    )
     manifest_path = out_dir / "CACHE_MANIFEST.json"
     manifest = json.loads(manifest_path.read_text())
     del manifest["species"]
@@ -166,12 +198,18 @@ def test_mutation_kill_cache_manifest_schema_validation(monkeypatch, tmp_path):
     what the test above actually relies on.
     """
     import json
+
     gmt = tmp_path / "test.gmt"
     _write_gmt(gmt, {"SET_A": ["G1", "G2"]})
     out_dir = tmp_path / "cache"
     G.import_gene_sets(
-        source_gmt_path=str(gmt), collection_name="TEST", species="human",
-        gene_id_namespace="gene_symbol", source_version="v1", out_dir=str(out_dir))
+        source_gmt_path=str(gmt),
+        collection_name="TEST",
+        species="human",
+        gene_id_namespace="gene_symbol",
+        source_version="v1",
+        out_dir=str(out_dir),
+    )
     manifest_path = out_dir / "CACHE_MANIFEST.json"
     manifest = json.loads(manifest_path.read_text())
     del manifest["species"]
@@ -189,20 +227,32 @@ def test_mutation_kill_hash_verification(monkeypatch, tmp_path):
     the same content-level tamper now gets through silently.
     """
     import json
+
     gmt = tmp_path / "test.gmt"
     _write_gmt(gmt, {"SET_A": ["G1", "G2"]})
     out_dir = tmp_path / "cache"
     manifest = G.import_gene_sets(
-        source_gmt_path=str(gmt), collection_name="TEST", species="human",
-        gene_id_namespace="gene_symbol", source_version="v1", out_dir=str(out_dir))
+        source_gmt_path=str(gmt),
+        collection_name="TEST",
+        species="human",
+        gene_id_namespace="gene_symbol",
+        source_version="v1",
+        out_dir=str(out_dir),
+    )
     with open(manifest["cached_gene_sets_path"], "w") as fh:
         json.dump({"SET_A": ["G1", "G2", "SNEAKILY_ADDED_GENE"]}, fh)
 
     real_sha256_file = G.sha256_file
     # Mutant: pretend every file hashes to whatever the manifest expects.
-    monkeypatch.setattr(G, "sha256_file", lambda path: (
-        manifest["cached_gene_sets_sha256"]
-        if path == manifest["cached_gene_sets_path"] else real_sha256_file(path)))
+    monkeypatch.setattr(
+        G,
+        "sha256_file",
+        lambda path: (
+            manifest["cached_gene_sets_sha256"]
+            if path == manifest["cached_gene_sets_path"]
+            else real_sha256_file(path)
+        ),
+    )
     gene_sets, _ = G.load_cached_gene_sets(str(out_dir))
     # Did NOT raise, AND silently returned the tampered content -- proving the
     # real hash check (not this mutant) is what the real test above relies on.

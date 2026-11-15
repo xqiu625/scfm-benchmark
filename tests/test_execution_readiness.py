@@ -5,6 +5,7 @@ actually prevents two concurrent writers, unknown-outcome cells stay
 eligible for technical diagnostics while excluded only from bio-labeled
 scoring, and a corrected-UMAP failure is not silently dropped from status.
 """
+
 from __future__ import annotations
 
 import json
@@ -23,14 +24,14 @@ SHARED_DIR = Path(__file__).parent.parent / "scripts/00_shared/code"
 sys.path.insert(0, str(CODE_DIR))
 sys.path.insert(0, str(SHARED_DIR))
 
-from run_batch_diagnostics import determine_embedding_status, _resolve_code_identity  # noqa: E402
-from population_stage import check_stage_id, KNOWN_STAGE_IDS  # noqa: E402
-from run_ownership import claim_ownership, OwnershipError  # noqa: E402
-
+from population_stage import check_stage_id  # noqa: E402
+from run_batch_diagnostics import _resolve_code_identity, determine_embedding_status  # noqa: E402
+from run_ownership import OwnershipError, claim_ownership  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # population_stage.check_stage_id -- hard fail, not warn
 # ---------------------------------------------------------------------------
+
 
 def test_stage_id_match_passes():
     check_stage_id("synthetic_fixture", "synthetic_fixture", context="test")
@@ -49,6 +50,7 @@ def test_stage_id_unregistered_value_raises():
 # ---------------------------------------------------------------------------
 # run_ownership.claim_ownership -- atomic, proven with a real race
 # ---------------------------------------------------------------------------
+
 
 def test_claim_ownership_second_caller_loses(tmp_path):
     lock = tmp_path / ".run_owner.json"
@@ -80,8 +82,10 @@ def test_claim_ownership_two_real_threads_racing_exactly_one_wins(tmp_path):
 
     t1 = threading.Thread(target=attempt, args=("a",))
     t2 = threading.Thread(target=attempt, args=("b",))
-    t1.start(); t2.start()
-    t1.join(); t2.join()
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
 
     assert sorted(results.values()) == ["lost", "won"]
 
@@ -89,6 +93,7 @@ def test_claim_ownership_two_real_threads_racing_exactly_one_wins(tmp_path):
 # ---------------------------------------------------------------------------
 # _resolve_code_identity -- an arbitrary asserted string must not claim verified
 # ---------------------------------------------------------------------------
+
 
 def test_arbitrary_code_revision_string_is_not_verified(tmp_path):
     """tmp_path is not a git checkout at all -- the exact situation this
@@ -101,8 +106,10 @@ def test_arbitrary_code_revision_string_is_not_verified(tmp_path):
     source files", which are different things _resolve_code_identity must
     distinguish."""
     import shutil
+
     real_repo_root = Path(__file__).parent.parent
     from run_batch_diagnostics import _SOURCE_FILES_RELATIVE_TO_REPO_ROOT
+
     for rel in _SOURCE_FILES_RELATIVE_TO_REPO_ROOT:
         dst = tmp_path / rel
         dst.parent.mkdir(parents=True, exist_ok=True)
@@ -112,7 +119,10 @@ def test_arbitrary_code_revision_string_is_not_verified(tmp_path):
     assert identity["code_revision_verified"] is False
     assert identity["code_revision_asserted"] == "totally-made-up-revision-xyz"
     assert identity["code_revision_resolved_git_head"] is None
-    assert identity["code_revision_verification_method"] == "not_a_git_checkout_unverified_asserted_string"
+    assert (
+        identity["code_revision_verification_method"]
+        == "not_a_git_checkout_unverified_asserted_string"
+    )
     # The honest substitute: real content hashes are still recorded.
     assert "source_file_sha256" in identity
     assert any(v is not None for v in identity["source_file_sha256"].values())
@@ -124,10 +134,15 @@ def test_code_identity_verified_in_a_real_clean_git_checkout():
     at all) IS verified; this is the positive case the negative test above
     is contrasted against."""
     repo_root = Path(__file__).parent.parent
-    head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo_root,
-                            capture_output=True, text=True).stdout.strip()
-    clean = subprocess.run(["git", "status", "--porcelain"], cwd=repo_root,
-                             capture_output=True, text=True).stdout.strip() == ""
+    head = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=repo_root, capture_output=True, text=True
+    ).stdout.strip()
+    clean = (
+        subprocess.run(
+            ["git", "status", "--porcelain"], cwd=repo_root, capture_output=True, text=True
+        ).stdout.strip()
+        == ""
+    )
     if not head or not clean:
         pytest.skip("local checkout is not HEAD-resolvable and clean at test time")
     identity = _resolve_code_identity(repo_root, head)
@@ -139,43 +154,59 @@ def test_code_identity_verified_in_a_real_clean_git_checkout():
 # determine_embedding_status -- corrected-UMAP failure must not be silently dropped
 # ---------------------------------------------------------------------------
 
-@pytest.mark.parametrize("asw_skipped,unc_ok,harmony,blocked,corr_ok,expected", [
-    (False, True, False, False, None, "complete"),
-    (True, True, False, False, None, "partial"),
-    (False, False, False, False, None, "partial"),
-    (False, True, True, False, True, "complete"),
-    (False, True, True, False, False, "partial"),   # <-- the finding: corrected UMAP failed
-    (False, True, True, True, None, "failed"),       # Harmony itself blocked/failed
-])
+
+@pytest.mark.parametrize(
+    "asw_skipped,unc_ok,harmony,blocked,corr_ok,expected",
+    [
+        (False, True, False, False, None, "complete"),
+        (True, True, False, False, None, "partial"),
+        (False, False, False, False, None, "partial"),
+        (False, True, True, False, True, "complete"),
+        (False, True, True, False, False, "partial"),  # <-- the finding: corrected UMAP failed
+        (False, True, True, True, None, "failed"),  # Harmony itself blocked/failed
+    ],
+)
 def test_determine_embedding_status(asw_skipped, unc_ok, harmony, blocked, corr_ok, expected):
-    assert determine_embedding_status(
-        asw_skipped_groups=asw_skipped, uncorrected_umap_ok=unc_ok,
-        run_harmony=harmony, harmony_blocked_or_failed=blocked,
-        corrected_umap_ok=corr_ok,
-    ) == expected
+    assert (
+        determine_embedding_status(
+            asw_skipped_groups=asw_skipped,
+            uncorrected_umap_ok=unc_ok,
+            run_harmony=harmony,
+            harmony_blocked_or_failed=blocked,
+            corrected_umap_ok=corr_ok,
+        )
+        == expected
+    )
 
 
 # ---------------------------------------------------------------------------
 # End-to-end CLI: stage-id, eligibility split, concurrent ownership
 # ---------------------------------------------------------------------------
 
-def _build_tiny_h5ad(path: Path, *, n_cells=60, n_genes=20, seed=0,
-                       population_stage_id="synthetic_fixture"):
+
+def _build_tiny_h5ad(
+    path: Path, *, n_cells=60, n_genes=20, seed=0, population_stage_id="synthetic_fixture"
+):
     rng = np.random.RandomState(seed)
     cohorts = ["CohortA", "CohortB", "CohortC"]
     outcomes = ["fatal", "survived", "unknown"]
-    obs = pd.DataFrame({
-        "lineage": ["Platelet"] * n_cells,
-        "cohort": [cohorts[i % 3] for i in range(n_cells)],
-        "patient_id": [f"P{(i % 12):02d}" for i in range(n_cells)],
-        # roughly 1/3 unknown -- deliberately large enough that bio_known_mask
-        # genuinely excludes a nontrivial chunk, while technical diagnostics
-        # should still see all n_cells.
-        "outcome": [outcomes[i % 3] for i in range(n_cells)],
-    }, index=[f"cell_{i:04d}" for i in range(n_cells)])
+    obs = pd.DataFrame(
+        {
+            "lineage": ["Platelet"] * n_cells,
+            "cohort": [cohorts[i % 3] for i in range(n_cells)],
+            "patient_id": [f"P{(i % 12):02d}" for i in range(n_cells)],
+            # roughly 1/3 unknown -- deliberately large enough that bio_known_mask
+            # genuinely excludes a nontrivial chunk, while technical diagnostics
+            # should still see all n_cells.
+            # Each outcome spans multiple cohorts, with one outcome per patient.
+            "outcome": [outcomes[(i % 12) // 4] for i in range(n_cells)],
+        },
+        index=[f"cell_{i:04d}" for i in range(n_cells)],
+    )
     X = rng.poisson(3, size=(n_cells, n_genes)).astype(np.float32)
-    adata = anndata.AnnData(X=X, obs=obs,
-                              var=pd.DataFrame(index=[f"GENE{i:03d}" for i in range(n_genes)]))
+    adata = anndata.AnnData(
+        X=X, obs=obs, var=pd.DataFrame(index=[f"GENE{i:03d}" for i in range(n_genes)])
+    )
     adata.layers["counts"] = X.copy()
     adata.uns["population_stage"] = "synthetic_fixture"
     adata.uns["population_stage_id"] = population_stage_id
@@ -187,16 +218,27 @@ def _build_tiny_h5ad(path: Path, *, n_cells=60, n_genes=20, seed=0,
 def _run_diag_cli(args_list):
     return subprocess.run(
         [sys.executable, str(CODE_DIR / "run_batch_diagnostics.py")] + args_list,
-        capture_output=True, text=True,
+        capture_output=True,
+        text=True,
     )
 
 
 def _common_args(h5ad, out_dir, stage_id="synthetic_fixture"):
     return [
-        "--h5ad", str(h5ad), "--out-dir", str(out_dir),
-        "--population-stage", "synthetic_fixture", "--stage-id", stage_id,
-        "--code-revision", "test-fixture-revision",
-        "--diagnostic-n-per-patient", "10", "--min-group-size", "2",
+        "--h5ad",
+        str(h5ad),
+        "--out-dir",
+        str(out_dir),
+        "--population-stage",
+        "synthetic_fixture",
+        "--stage-id",
+        stage_id,
+        "--code-revision",
+        "test-fixture-revision",
+        "--diagnostic-n-per-patient",
+        "10",
+        "--min-group-size",
+        "2",
     ]
 
 
@@ -224,12 +266,19 @@ def test_cli_unknown_outcome_cells_stay_in_technical_population(tmp_path):
     manifest = json.loads((out_dir / "manifest.json").read_text())
     rec = manifest["per_lineage"][0]
     assert rec["n_diagnostic_cells_bio_known"] < rec["n_diagnostic_cells"]
-    assert rec["n_diagnostic_cells_bio_known"] + rec["n_diagnostic_cells_bio_unknown"] == rec["n_diagnostic_cells"]
+    assert (
+        rec["n_diagnostic_cells_bio_known"] + rec["n_diagnostic_cells_bio_unknown"]
+        == rec["n_diagnostic_cells"]
+    )
     emb = rec["embeddings"]["expression_pca"]
     tech = emb["uncorrected"]["n_cells_technical"]
     bio = emb["uncorrected"]["n_cells_bio_known"]
-    assert tech == rec["n_diagnostic_cells"], "technical population must be the FULL diagnostic subsample"
-    assert bio == rec["n_diagnostic_cells_bio_known"], "bio-scored population must be the known-outcome subset"
+    assert (
+        tech == rec["n_diagnostic_cells"]
+    ), "technical population must be the FULL diagnostic subsample"
+    assert (
+        bio == rec["n_diagnostic_cells_bio_known"]
+    ), "bio-scored population must be the known-outcome subset"
     assert bio < tech
 
 
@@ -267,8 +316,10 @@ def test_cli_concurrent_runs_against_same_out_dir_exactly_one_wins(tmp_path):
 
     t1 = threading.Thread(target=launch_synced, args=("a",))
     t2 = threading.Thread(target=launch_synced, args=("b",))
-    t1.start(); t2.start()
-    t1.join(); t2.join()
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
 
     # A negative returncode means that side was killed by a signal (e.g. -9 /
     # SIGKILL from the HPCC login node's own resource limits under heavy
@@ -295,10 +346,10 @@ def test_cli_concurrent_runs_against_same_out_dir_exactly_one_wins(tmp_path):
     # asserts exactly one winner and that the loser failed for one of those two
     # legitimate reasons, not a specific wording.
     returncodes = sorted(r.returncode for r in results.values())
-    outputs = [r.stdout + r.stderr for r in results.values()]
     n_zero = sum(1 for rc in returncodes if rc == 0)
     assert n_zero == 1, f"expected exactly one winner (returncode 0), got {n_zero}: {returncodes}"
-    loser_output = outputs[0] if results["a"].returncode != 0 else outputs[1]
+    loser = next(r for r in results.values() if r.returncode != 0)
+    loser_output = loser.stdout + loser.stderr
     valid_rejections = ("already owned by another run", "already exists and is non-empty")
     assert any(msg in loser_output for msg in valid_rejections), (
         f"loser failed for an unexpected reason (neither ownership-lock nor "

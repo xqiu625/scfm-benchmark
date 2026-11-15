@@ -20,7 +20,7 @@ def _id_num(cell_id):
     where the derived identity/QC values are irrelevant to what those scenarios test).
     """
     try:
-        return int(cell_id[len("cell"):])
+        return int(cell_id[len("cell") :])
     except ValueError:
         return 0
 
@@ -77,7 +77,8 @@ def _make_embedded_adata(obs_names, obsm=None, required_columns=True, column_val
 
 def test_find_embedding_keys_matches_known_prefixes():
     assert VAL.find_embedding_keys(["X_scprint_umap", "X_pca", "scprint_emb", "other"]) == [
-        "X_scprint_umap", "scprint_emb",
+        "X_scprint_umap",
+        "scprint_emb",
     ]
 
 
@@ -130,7 +131,9 @@ def test_validate_embedding_output_fails_hard_on_unrelated_ids_even_with_the_rig
     """The review's 'unrelated_ids' probe: same COUNT, completely different ids --
     v2's expected_n_obs-only contract passed this; the id-aware v3 contract must not.
     """
-    adata = _make_embedded_adata(["alien0", "alien1", "alien2"], obsm={"scprint_emb": np.ones((3, 4))})
+    adata = _make_embedded_adata(
+        ["alien0", "alien1", "alien2"], obsm={"scprint_emb": np.ones((3, 4))}
+    )
     report, hard_failures = VAL.validate_embedding_output(adata, _make_expected_obs(3))
     assert any("not in the expected" in f for f in hard_failures)
     assert any("missing from the output" in f for f in hard_failures)
@@ -193,15 +196,22 @@ def test_validate_embedding_output_fails_hard_on_a_missing_required_column_even_
     )
     assert any("required obs column 'patient_id' is missing" in f for f in hard_failures)
     assert report["required_obs_columns"]["gate1_flag_would_delete"]["present_in_output"] is False
-    assert "recovered_from_expected_manifest" not in report["required_obs_columns"]["gate1_flag_would_delete"]
+    assert (
+        "recovered_from_expected_manifest"
+        not in report["required_obs_columns"]["gate1_flag_would_delete"]
+    )
 
 
 def test_validate_embedding_output_fails_hard_on_a_missing_required_column_when_ids_do_not_fully_match():
     """Missing + id mismatch is still just "missing" -- the fail-closed rule does not
     depend on whether the ids otherwise match (see the no-recovery test above)."""
-    adata = _make_embedded_adata(["cell0"], obsm={"scprint_emb": np.ones((1, 4))}, required_columns=False)
+    adata = _make_embedded_adata(
+        ["cell0"], obsm={"scprint_emb": np.ones((1, 4))}, required_columns=False
+    )
     report, hard_failures = VAL.validate_embedding_output(adata, _make_expected_obs(3))
-    assert any("required obs column 'gate1_flag_would_delete' is missing" in f for f in hard_failures)
+    assert any(
+        "required obs column 'gate1_flag_would_delete' is missing" in f for f in hard_failures
+    )
 
 
 def test_validate_embedding_output_fails_hard_on_a_present_but_misrouted_qc_column():
@@ -211,12 +221,18 @@ def test_validate_embedding_output_fails_hard_on_a_present_but_misrouted_qc_colu
     """
     ids = ["cell0", "cell1", "cell2"]
     adata = _make_embedded_adata(
-        ids, obsm={"scprint_emb": np.ones((3, 4))},
+        ids,
+        obsm={"scprint_emb": np.ones((3, 4))},
         column_values={"gate1_flag_would_delete": [True, True, True]},  # expected is all False
     )
     report, hard_failures = VAL.validate_embedding_output(adata, _make_expected_obs(3))
     assert any("diverges from the frozen prepared-input manifest" in f for f in hard_failures)
-    assert report["required_obs_columns"]["gate1_flag_would_delete"]["n_values_diverging_from_expected_manifest"] == 3
+    assert (
+        report["required_obs_columns"]["gate1_flag_would_delete"][
+            "n_values_diverging_from_expected_manifest"
+        ]
+        == 3
+    )
 
 
 @pytest.mark.parametrize("col", ["patient_id", "Sample_ID"])
@@ -230,13 +246,20 @@ def test_validate_embedding_output_fails_hard_on_a_present_but_misrouted_identit
     they are now checked by id exactly like the QC columns.
     """
     ids = ["cell0", "cell1", "cell2"]
-    reversed_vals = [_patient_id_for_id(i) for i in ids][::-1] if col == "patient_id" else \
-        [_sample_id_for_id(i) for i in ids][::-1]
+    reversed_vals = (
+        [_patient_id_for_id(i) for i in ids][::-1]
+        if col == "patient_id"
+        else [_sample_id_for_id(i) for i in ids][::-1]
+    )
     adata = _make_embedded_adata(
-        ids, obsm={"scprint_emb": np.ones((3, 4))}, column_values={col: reversed_vals},
+        ids,
+        obsm={"scprint_emb": np.ones((3, 4))},
+        column_values={col: reversed_vals},
     )
     report, hard_failures = VAL.validate_embedding_output(adata, _make_expected_obs(3))
-    assert any(f"obs[{col!r}] diverges from the frozen prepared-input manifest" in f for f in hard_failures)
+    assert any(
+        f"obs[{col!r}] diverges from the frozen prepared-input manifest" in f for f in hard_failures
+    )
     assert report["required_obs_columns"][col]["n_values_diverging_from_expected_manifest"] > 0
 
 
@@ -266,12 +289,14 @@ def test_validate_embedding_output_records_order_change_without_failing_but_neve
 
 def test_main_writes_report_and_returns_nonzero_on_a_real_hard_failure(tmp_path):
     embedded_path = tmp_path / "embedded.h5ad"
-    _make_embedded_adata(["alien0", "alien1", "alien2"], obsm={"scprint_emb": np.ones((3, 4))}).write_h5ad(
-        embedded_path
-    )
+    _make_embedded_adata(
+        ["alien0", "alien1", "alien2"], obsm={"scprint_emb": np.ones((3, 4))}
+    ).write_h5ad(embedded_path)
     expected_input_path = tmp_path / "expected_input.h5ad"
     ad.AnnData(
-        X=np.zeros((3, 1), dtype="float32"), obs=_make_expected_obs(3), var=pd.DataFrame(index=["g1"])
+        X=np.zeros((3, 1), dtype="float32"),
+        obs=_make_expected_obs(3),
+        var=pd.DataFrame(index=["g1"]),
     ).write_h5ad(expected_input_path)
     out_json = tmp_path / "report.json"
 
@@ -286,7 +311,9 @@ def test_main_returns_zero_on_a_real_pass(tmp_path):
     _make_embedded_adata(ids, obsm={"scprint_emb": np.ones((3, 4))}).write_h5ad(embedded_path)
     expected_input_path = tmp_path / "expected_input.h5ad"
     ad.AnnData(
-        X=np.zeros((3, 1), dtype="float32"), obs=_make_expected_obs(3), var=pd.DataFrame(index=["g1"])
+        X=np.zeros((3, 1), dtype="float32"),
+        obs=_make_expected_obs(3),
+        var=pd.DataFrame(index=["g1"]),
     ).write_h5ad(expected_input_path)
     out_json = tmp_path / "report.json"
 
@@ -297,7 +324,9 @@ def test_main_returns_zero_on_a_real_pass(tmp_path):
 def test_main_fails_when_the_output_file_does_not_exist(tmp_path):
     expected_input_path = tmp_path / "expected_input.h5ad"
     ad.AnnData(
-        X=np.zeros((3, 1), dtype="float32"), obs=_make_expected_obs(3), var=pd.DataFrame(index=["g1"])
+        X=np.zeros((3, 1), dtype="float32"),
+        obs=_make_expected_obs(3),
+        var=pd.DataFrame(index=["g1"]),
     ).write_h5ad(expected_input_path)
     rc = VAL.main(
         str(tmp_path / "missing.h5ad"), str(expected_input_path), str(tmp_path / "report.json")

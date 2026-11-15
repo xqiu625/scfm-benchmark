@@ -7,6 +7,7 @@ data. `ExpressionDERankingProvider` (`gene_ranking_providers.py`) still
 has no real backend; this module's own output is "DE input/design
 prepared" only.
 """
+
 import os
 import sys
 
@@ -15,7 +16,9 @@ import pytest
 
 CODE = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    "scripts", "34_scfm_discovery_framework", "code",
+    "scripts",
+    "34_scfm_discovery_framework",
+    "code",
 )
 sys.path.insert(0, CODE)
 
@@ -27,13 +30,20 @@ from dataset_schema import NO_BATCH_SENTINEL  # noqa: E402
 
 def _base_config(matrix_path, **overrides):
     config = {
-        "dataset_id": "test_de_design_pilot", "species": "human",
-        "tissue_or_target_cell_type": "monocyte", "subject_id_column": "donor_id",
-        "sample_id_column": "sample_id", "biological_replicate_unit": "donor_id",
-        "technical_batch_column": NO_BATCH_SENTINEL, "expression_matrix_path": matrix_path,
-        "counts_semantics": "raw_counts", "counts_slot": "X",
-        "gene_id_namespace": "gene_symbol", "cell_id_column": "cell_barcode",
-        "qc_status": "provisional", "qc_version_ref": "none (provisional)",
+        "dataset_id": "test_de_design_pilot",
+        "species": "human",
+        "tissue_or_target_cell_type": "monocyte",
+        "subject_id_column": "donor_id",
+        "sample_id_column": "sample_id",
+        "biological_replicate_unit": "donor_id",
+        "technical_batch_column": NO_BATCH_SENTINEL,
+        "expression_matrix_path": matrix_path,
+        "counts_semantics": "raw_counts",
+        "counts_slot": "X",
+        "gene_id_namespace": "gene_symbol",
+        "cell_id_column": "cell_barcode",
+        "qc_status": "provisional",
+        "qc_version_ref": "none (provisional)",
     }
     config.update(overrides)
     return config
@@ -42,8 +52,13 @@ def _base_config(matrix_path, **overrides):
 def _make_h5ad(tmp_path, *, X, cell_ids, sample_ids, donor_ids, conditions, name="de_design.h5ad"):
     import anndata as ad
     import pandas as pd
-    obs = {"cell_barcode": cell_ids, "donor_id": donor_ids, "sample_id": sample_ids,
-          "condition": conditions}
+
+    obs = {
+        "cell_barcode": cell_ids,
+        "donor_id": donor_ids,
+        "sample_id": sample_ids,
+        "condition": conditions,
+    }
     obs_df = pd.DataFrame(obs, index=[f"idx{i}" for i in range(len(cell_ids))])
     var = pd.DataFrame(index=[f"GENE{i}" for i in range(X.shape[1])])
     a = ad.AnnData(X=np.asarray(X, dtype="float32"), obs=obs_df, var=var)
@@ -53,17 +68,24 @@ def _make_h5ad(tmp_path, *, X, cell_ids, sample_ids, donor_ids, conditions, name
 
 
 def _comparison(**overrides):
-    base = dict(group_column="condition", reference_level="healthy",
-               comparison_level="disease",
-               direction_definition="disease vs. healthy, positive = higher in disease")
+    base = dict(
+        group_column="condition",
+        reference_level="healthy",
+        comparison_level="disease",
+        direction_definition="disease vs. healthy, positive = higher in disease",
+    )
     base.update(overrides)
     return GR.ComparisonSpec(**base)
 
 
 def _sample_structure(**overrides):
-    base = dict(donor_or_animal_id_column="donor_id", sample_id_column="sample_id",
-               repeated_sampling_or_pairing="none_single_sample_per_donor",
-               group_column="condition", design_type="independent_donors_unpaired")
+    base = dict(
+        donor_or_animal_id_column="donor_id",
+        sample_id_column="sample_id",
+        repeated_sampling_or_pairing="none_single_sample_per_donor",
+        group_column="condition",
+        design_type="independent_donors_unpaired",
+    )
     base.update(overrides)
     return GR.SampleStructure(**base)
 
@@ -75,15 +97,25 @@ def _aggregate(tmp_path, out_dir_name, *, X, cell_ids, sample_ids, donor_ids, co
     `manifest`/`counts` returned alongside for tests that assert against
     the real producer's own output.
     """
-    h5ad = _make_h5ad(tmp_path, X=X, cell_ids=cell_ids, sample_ids=sample_ids,
-                      donor_ids=donor_ids, conditions=conditions)
+    h5ad = _make_h5ad(
+        tmp_path,
+        X=X,
+        cell_ids=cell_ids,
+        sample_ids=sample_ids,
+        donor_ids=donor_ids,
+        conditions=conditions,
+    )
     config = _base_config(h5ad)
     config_path = str(tmp_path / "dataset_config.json")
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, config_path, out_dir=str(tmp_path / out_dir_name),
-        cell_ids_subset=tuple(cell_ids), cell_type_or_state_label="monocyte",
-        condition_column="condition")
+        config,
+        config_path,
+        out_dir=str(tmp_path / out_dir_name),
+        cell_ids_subset=tuple(cell_ids),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     assert result.status == "complete", result.reason
     path = str(tmp_path / out_dir_name / "PSEUDOBULK_RESULT.json")
     manifest = PB.read_pseudobulk_result(path)
@@ -101,9 +133,15 @@ _UNPAIRED_CONDITION = ["healthy", "healthy", "disease", "disease"]
 
 
 def _unpaired_fixture(tmp_path):
-    return _aggregate(tmp_path, "pb_unpaired", X=_UNPAIRED_X, cell_ids=_UNPAIRED_CELL_IDS,
-                      sample_ids=_UNPAIRED_SAMPLE, donor_ids=_UNPAIRED_DONOR,
-                      conditions=_UNPAIRED_CONDITION)
+    return _aggregate(
+        tmp_path,
+        "pb_unpaired",
+        X=_UNPAIRED_X,
+        cell_ids=_UNPAIRED_CELL_IDS,
+        sample_ids=_UNPAIRED_SAMPLE,
+        donor_ids=_UNPAIRED_DONOR,
+        conditions=_UNPAIRED_CONDITION,
+    )
 
 
 #: 2 donors, each contributing ONE healthy + ONE disease sample (fully
@@ -116,13 +154,21 @@ _PAIRED_CONDITION = ["healthy", "disease", "healthy", "disease"]
 
 
 def _paired_fixture(tmp_path):
-    return _aggregate(tmp_path, "pb_paired", X=_PAIRED_X, cell_ids=_PAIRED_CELL_IDS,
-                      sample_ids=_PAIRED_SAMPLE, donor_ids=_PAIRED_DONOR,
-                      conditions=_PAIRED_CONDITION)
+    return _aggregate(
+        tmp_path,
+        "pb_paired",
+        X=_PAIRED_X,
+        cell_ids=_PAIRED_CELL_IDS,
+        sample_ids=_PAIRED_SAMPLE,
+        donor_ids=_PAIRED_DONOR,
+        conditions=_PAIRED_CONDITION,
+    )
+
 
 # ===========================================================================
 # Happy path: hand-computable design matrix, rank, residual df, contrast.
 # ===========================================================================
+
 
 def test_prepare_unpaired_design_hand_computable(tmp_path):
     manifest, counts, pb_path = _unpaired_fixture(tmp_path)
@@ -130,8 +176,11 @@ def test_prepare_unpaired_design_hand_computable(tmp_path):
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = DD.DEDesignPreparationProvider()
     result = provider.prepare(
-        pseudobulk_result_path=pb_path, comparison=comparison,
-        sample_structure=sample_structure, out_dir=str(tmp_path / "prep_unpaired"))
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(tmp_path / "prep_unpaired"),
+    )
 
     assert result.status == "prepared", result.reason
     # Row order: donor id ascending (each donor contributes exactly one row).
@@ -156,8 +205,7 @@ def test_prepare_unpaired_design_hand_computable(tmp_path):
     assert reloaded["status"] == "prepared"
     prepared_counts = DD.load_prepared_de_counts(reloaded)
     # S0=[1,2], S1=[3,4], S2=[5,6], S3=[7,8] (1 cell/sample => counts == raw cell values).
-    np.testing.assert_array_equal(
-        prepared_counts, [[1.0, 2.0], [3.0, 4.0], [5.0, 6.0], [7.0, 8.0]])
+    np.testing.assert_array_equal(prepared_counts, [[1.0, 2.0], [3.0, 4.0], [5.0, 6.0], [7.0, 8.0]])
 
 
 def test_prepare_paired_design_hand_computable(tmp_path):
@@ -165,11 +213,15 @@ def test_prepare_paired_design_hand_computable(tmp_path):
     comparison = _comparison()
     sample_structure = _sample_structure(
         design_type="paired_or_repeated_within_donor",
-        repeated_sampling_or_pairing="paired:pre_post")
+        repeated_sampling_or_pairing="paired:pre_post",
+    )
     provider = DD.DEDesignPreparationProvider()
     result = provider.prepare(
-        pseudobulk_result_path=pb_path, comparison=comparison,
-        sample_structure=sample_structure, out_dir=str(tmp_path / "prep_paired"))
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(tmp_path / "prep_paired"),
+    )
 
     assert result.status == "prepared", result.reason
     # Row order: donor (D0, D1), group (healthy before disease) within each donor.
@@ -179,7 +231,11 @@ def test_prepare_paired_design_hand_computable(tmp_path):
     assert result.n_distinct_donors == 2
     assert len(result.column_names) == 3  # intercept, donor[D1], condition[disease]
     assert result.design_matrix == (
-        (1.0, 0.0, 0.0), (1.0, 0.0, 1.0), (1.0, 1.0, 0.0), (1.0, 1.0, 1.0))
+        (1.0, 0.0, 0.0),
+        (1.0, 0.0, 1.0),
+        (1.0, 1.0, 0.0),
+        (1.0, 1.0, 1.0),
+    )
     assert result.rank == 3
     assert result.residual_degrees_of_freedom == 1  # exactly at the >=1 boundary
     assert result.contrast_vector == (0.0, 0.0, 1.0)
@@ -187,8 +243,7 @@ def test_prepare_paired_design_hand_computable(tmp_path):
     path = tmp_path / "prep_paired" / "PREPARED_DE_DESIGN.json"
     reloaded = DD.read_prepared_de_design(str(path))
     prepared_counts = DD.load_prepared_de_counts(reloaded)
-    np.testing.assert_array_equal(
-        prepared_counts, [[1.0, 2.0], [3.0, 4.0], [5.0, 6.0], [7.0, 8.0]])
+    np.testing.assert_array_equal(prepared_counts, [[1.0, 2.0], [3.0, 4.0], [5.0, 6.0], [7.0, 8.0]])
 
 
 def test_prepare_aligns_by_sample_id_not_by_pseudobulk_row_order(tmp_path):
@@ -209,17 +264,25 @@ def test_prepare_aligns_by_sample_id_not_by_pseudobulk_row_order(tmp_path):
     X = np.array([[1, 2], [3, 4], [5, 6], [7, 8]], dtype="float32")
     cell_ids = ["CELL0", "CELL1", "CELL2", "CELL3"]
     manifest, counts, pb_path = _aggregate(
-        tmp_path, "pb_reversed_order", X=X, cell_ids=cell_ids,
-        sample_ids=["Z0", "Y1", "X2", "W3"], donor_ids=["D0", "D1", "D2", "D3"],
-        conditions=["healthy", "healthy", "disease", "disease"])
+        tmp_path,
+        "pb_reversed_order",
+        X=X,
+        cell_ids=cell_ids,
+        sample_ids=["Z0", "Y1", "X2", "W3"],
+        donor_ids=["D0", "D1", "D2", "D3"],
+        conditions=["healthy", "healthy", "disease", "disease"],
+    )
     assert [r["sample_id"] for r in manifest["sample_rows"]] == ["W3", "X2", "Y1", "Z0"]
 
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = DD.DEDesignPreparationProvider()
     result = provider.prepare(
-        pseudobulk_result_path=pb_path, comparison=comparison,
-        sample_structure=sample_structure, out_dir=str(tmp_path / "prep_reversed"))
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(tmp_path / "prep_reversed"),
+    )
     assert result.status == "prepared", result.reason
     assert result.sample_ids == ("Z0", "Y1", "X2", "W3")  # re-sorted to donor order
 
@@ -227,23 +290,27 @@ def test_prepare_aligns_by_sample_id_not_by_pseudobulk_row_order(tmp_path):
     reloaded = DD.read_prepared_de_design(str(path))
     prepared_counts = DD.load_prepared_de_counts(reloaded)
     # Z0=[1,2] (CELL0), Y1=[3,4] (CELL1), X2=[5,6] (CELL2), W3=[7,8] (CELL3).
-    np.testing.assert_array_equal(
-        prepared_counts, [[1.0, 2.0], [3.0, 4.0], [5.0, 6.0], [7.0, 8.0]])
+    np.testing.assert_array_equal(prepared_counts, [[1.0, 2.0], [3.0, 4.0], [5.0, 6.0], [7.0, 8.0]])
 
 
 # ===========================================================================
 # Explicit refusals: never silently pooled, never a partial/degenerate matrix.
 # ===========================================================================
 
+
 def test_prepare_rejects_declared_covariate_columns(tmp_path):
     manifest, counts, pb_path = _unpaired_fixture(tmp_path)
     comparison = _comparison()
     sample_structure = _sample_structure(
-        design_type="independent_donors_unpaired", covariate_columns=("age",))
+        design_type="independent_donors_unpaired", covariate_columns=("age",)
+    )
     provider = DD.DEDesignPreparationProvider()
     result = provider.prepare(
-        pseudobulk_result_path=pb_path, comparison=comparison,
-        sample_structure=sample_structure, out_dir=str(tmp_path / "prep_covariate"))
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(tmp_path / "prep_covariate"),
+    )
     assert result.status == "failed"
     assert "covariate_columns" in result.reason
     assert result.sample_ids == ()  # no partial/fabricated design on failure
@@ -257,15 +324,23 @@ def test_prepare_rejects_a_straddling_donor_under_unpaired_design(tmp_path):
     X = np.array([[1, 2], [3, 4], [5, 6]], dtype="float32")
     cell_ids = ["CELL0", "CELL1", "CELL2"]
     manifest, counts, pb_path = _aggregate(
-        tmp_path, "pb_straddle", X=X, cell_ids=cell_ids,
-        sample_ids=["S0", "S1", "S2"], donor_ids=["D0", "D0", "D1"],
-        conditions=["healthy", "disease", "disease"])
+        tmp_path,
+        "pb_straddle",
+        X=X,
+        cell_ids=cell_ids,
+        sample_ids=["S0", "S1", "S2"],
+        donor_ids=["D0", "D0", "D1"],
+        conditions=["healthy", "disease", "disease"],
+    )
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = DD.DEDesignPreparationProvider()
     result = provider.prepare(
-        pseudobulk_result_path=pb_path, comparison=comparison,
-        sample_structure=sample_structure, out_dir=str(tmp_path / "prep_straddle"))
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(tmp_path / "prep_straddle"),
+    )
     assert result.status == "failed"
     assert "BOTH compared groups" in result.reason
 
@@ -277,17 +352,26 @@ def test_prepare_rejects_incomplete_pairing_under_paired_design(tmp_path):
     X = np.array([[1, 2], [3, 4], [5, 6]], dtype="float32")
     cell_ids = ["CELL0", "CELL1", "CELL2"]
     manifest, counts, pb_path = _aggregate(
-        tmp_path, "pb_unpaired_donor", X=X, cell_ids=cell_ids,
-        sample_ids=["S0", "S1", "S2"], donor_ids=["D0", "D0", "D1"],
-        conditions=["healthy", "disease", "healthy"])
+        tmp_path,
+        "pb_unpaired_donor",
+        X=X,
+        cell_ids=cell_ids,
+        sample_ids=["S0", "S1", "S2"],
+        donor_ids=["D0", "D0", "D1"],
+        conditions=["healthy", "disease", "healthy"],
+    )
     comparison = _comparison()
     sample_structure = _sample_structure(
         design_type="paired_or_repeated_within_donor",
-        repeated_sampling_or_pairing="paired:pre_post")
+        repeated_sampling_or_pairing="paired:pre_post",
+    )
     provider = DD.DEDesignPreparationProvider()
     result = provider.prepare(
-        pseudobulk_result_path=pb_path, comparison=comparison,
-        sample_structure=sample_structure, out_dir=str(tmp_path / "prep_unpaired_donor"))
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(tmp_path / "prep_unpaired_donor"),
+    )
     assert result.status == "failed"
     assert "FULLY-paired" in result.reason
 
@@ -300,15 +384,23 @@ def test_prepare_rejects_a_repeated_sample_within_the_same_donor_group(tmp_path)
     X = np.array([[1, 2], [3, 4], [5, 6]], dtype="float32")
     cell_ids = ["CELL0", "CELL1", "CELL2"]
     manifest, counts, pb_path = _aggregate(
-        tmp_path, "pb_repeat", X=X, cell_ids=cell_ids,
-        sample_ids=["S0", "S1", "S2"], donor_ids=["D0", "D0", "D1"],
-        conditions=["healthy", "healthy", "disease"])
+        tmp_path,
+        "pb_repeat",
+        X=X,
+        cell_ids=cell_ids,
+        sample_ids=["S0", "S1", "S2"],
+        donor_ids=["D0", "D0", "D1"],
+        conditions=["healthy", "healthy", "disease"],
+    )
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = DD.DEDesignPreparationProvider()
     result = provider.prepare(
-        pseudobulk_result_path=pb_path, comparison=comparison,
-        sample_structure=sample_structure, out_dir=str(tmp_path / "prep_repeat"))
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(tmp_path / "prep_repeat"),
+    )
     assert result.status == "failed"
     assert "more than one pseudobulk sample" in result.reason
 
@@ -317,15 +409,23 @@ def test_prepare_rejects_a_missing_comparison_level(tmp_path):
     X = np.array([[1, 2], [3, 4]], dtype="float32")
     cell_ids = ["CELL0", "CELL1"]
     manifest, counts, pb_path = _aggregate(
-        tmp_path, "pb_missing_group", X=X, cell_ids=cell_ids,
-        sample_ids=["S0", "S1"], donor_ids=["D0", "D1"],
-        conditions=["healthy", "healthy"])
+        tmp_path,
+        "pb_missing_group",
+        X=X,
+        cell_ids=cell_ids,
+        sample_ids=["S0", "S1"],
+        donor_ids=["D0", "D1"],
+        conditions=["healthy", "healthy"],
+    )
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = DD.DEDesignPreparationProvider()
     result = provider.prepare(
-        pseudobulk_result_path=pb_path, comparison=comparison,
-        sample_structure=sample_structure, out_dir=str(tmp_path / "prep_missing_group"))
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(tmp_path / "prep_missing_group"),
+    )
     assert result.status == "failed"
     assert "zero pseudobulk samples" in result.reason
 
@@ -334,15 +434,24 @@ def test_prepare_rejects_a_failed_pseudobulk_aggregation(tmp_path):
     """A failed/incomplete pseudobulk aggregation must never enter DE
     design preparation at all.
     """
-    h5ad = _make_h5ad(tmp_path, X=np.array([[1.0]], dtype="float32"),
-                      cell_ids=["CELL0"], sample_ids=["S0"], donor_ids=["D0"],
-                      conditions=["healthy"])
+    h5ad = _make_h5ad(
+        tmp_path,
+        X=np.array([[1.0]], dtype="float32"),
+        cell_ids=["CELL0"],
+        sample_ids=["S0"],
+        donor_ids=["D0"],
+        conditions=["healthy"],
+    )
     config = _base_config(h5ad)
     config_path = str(tmp_path / "dataset_config.json")
     pb_provider = PB.PseudobulkAggregationProvider()
     failed = pb_provider.aggregate(
-        config, config_path, out_dir=str(tmp_path / "pb_failed"),
-        cell_ids_subset=(), cell_type_or_state_label="monocyte")  # empty subset -> fails
+        config,
+        config_path,
+        out_dir=str(tmp_path / "pb_failed"),
+        cell_ids_subset=(),
+        cell_type_or_state_label="monocyte",
+    )  # empty subset -> fails
     assert failed.status == "failed"
     pb_path = str(tmp_path / "pb_failed" / "PSEUDOBULK_RESULT.json")
 
@@ -350,8 +459,11 @@ def test_prepare_rejects_a_failed_pseudobulk_aggregation(tmp_path):
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = DD.DEDesignPreparationProvider()
     result = provider.prepare(
-        pseudobulk_result_path=pb_path, comparison=comparison,
-        sample_structure=sample_structure, out_dir=str(tmp_path / "prep_from_failed"))
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(tmp_path / "prep_from_failed"),
+    )
     assert result.status == "failed"
     assert "never enter DE design preparation" in result.reason
 
@@ -364,22 +476,33 @@ def test_prepare_rejects_a_design_with_no_residual_degrees_of_freedom(tmp_path):
     X = np.array([[1, 2], [3, 4]], dtype="float32")
     cell_ids = ["CELL0", "CELL1"]
     manifest, counts, pb_path = _aggregate(
-        tmp_path, "pb_one_donor_paired", X=X, cell_ids=cell_ids,
-        sample_ids=["S0", "S1"], donor_ids=["D0", "D0"],
-        conditions=["healthy", "disease"])
+        tmp_path,
+        "pb_one_donor_paired",
+        X=X,
+        cell_ids=cell_ids,
+        sample_ids=["S0", "S1"],
+        donor_ids=["D0", "D0"],
+        conditions=["healthy", "disease"],
+    )
     comparison = _comparison()
     sample_structure = _sample_structure(
         design_type="paired_or_repeated_within_donor",
-        repeated_sampling_or_pairing="paired:pre_post")
+        repeated_sampling_or_pairing="paired:pre_post",
+    )
     provider = DD.DEDesignPreparationProvider()
     result = provider.prepare(
-        pseudobulk_result_path=pb_path, comparison=comparison,
-        sample_structure=sample_structure, out_dir=str(tmp_path / "prep_zero_df"))
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(tmp_path / "prep_zero_df"),
+    )
     assert result.status == "failed"
     assert "residual_degrees_of_freedom=0" in result.reason
 
 
-def test_prepare_rejects_an_unsupported_design_type_even_if_gene_ranking_would_accept_it(monkeypatch):
+def test_prepare_rejects_an_unsupported_design_type_even_if_gene_ranking_would_accept_it(
+    monkeypatch,
+):
     """Per the module docstring: `_SUPPORTED_DESIGN_TYPES` is declared
     independently of `gene_ranking_providers._VALID_DESIGN_TYPES` on
     purpose. Simulates a hypothetical design type gene_ranking_providers
@@ -406,6 +529,7 @@ def test_prepare_rejects_an_unsupported_design_type_even_if_gene_ranking_would_a
 # caller-supplied counts array independently of the manifest.
 # ===========================================================================
 
+
 def test_prepare_signature_has_no_caller_supplied_counts_parameter():
     """Per F1: the fix is that `prepare` can no longer be called with an
     independently-supplied `counts` array at all -- a static guard against
@@ -414,6 +538,7 @@ def test_prepare_signature_has_no_caller_supplied_counts_parameter():
     exploited: same shape, reversed/negated content, still accepted).
     """
     import inspect
+
     sig = inspect.signature(DD.DEDesignPreparationProvider.prepare)
     assert "counts" not in sig.parameters
     assert "pseudobulk_manifest" not in sig.parameters
@@ -440,8 +565,11 @@ def test_prepare_rejects_a_tampered_on_disk_counts_npz(tmp_path):
     provider = DD.DEDesignPreparationProvider()
     with pytest.raises(SystemExit, match="aggregation_sha256"):
         provider.prepare(
-            pseudobulk_result_path=pb_path, comparison=comparison,
-            sample_structure=sample_structure, out_dir=str(tmp_path / "prep_tampered_npz"))
+            pseudobulk_result_path=pb_path,
+            comparison=comparison,
+            sample_structure=sample_structure,
+            out_dir=str(tmp_path / "prep_tampered_npz"),
+        )
 
 
 def test_prepare_rejects_a_reordered_sample_rows_manifest(tmp_path):
@@ -451,6 +579,7 @@ def test_prepare_rejects_a_reordered_sample_rows_manifest(tmp_path):
     `prepare` now calls refuses it before any design is built.
     """
     import json
+
     manifest, counts, pb_path = _unpaired_fixture(tmp_path)
     payload = json.loads(open(pb_path).read())
     payload["sample_rows"] = list(reversed(payload["sample_rows"]))
@@ -462,8 +591,11 @@ def test_prepare_rejects_a_reordered_sample_rows_manifest(tmp_path):
     provider = DD.DEDesignPreparationProvider()
     with pytest.raises(SystemExit, match="failed validation"):
         provider.prepare(
-            pseudobulk_result_path=pb_path, comparison=comparison,
-            sample_structure=sample_structure, out_dir=str(tmp_path / "prep_tampered_rows"))
+            pseudobulk_result_path=pb_path,
+            comparison=comparison,
+            sample_structure=sample_structure,
+            out_dir=str(tmp_path / "prep_tampered_rows"),
+        )
 
 
 def test_prepare_carries_dataset_identity_and_manifest_identity_forward(tmp_path):
@@ -476,12 +608,21 @@ def test_prepare_carries_dataset_identity_and_manifest_identity_forward(tmp_path
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = DD.DEDesignPreparationProvider()
     result = provider.prepare(
-        pseudobulk_result_path=pb_path, comparison=comparison,
-        sample_structure=sample_structure, out_dir=str(tmp_path / "prep_identity"))
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(tmp_path / "prep_identity"),
+    )
     assert result.status == "prepared", result.reason
     assert result.dataset_identity["species"] == manifest["dataset_identity"]["species"]
-    assert result.dataset_identity["gene_id_namespace"] == manifest["dataset_identity"]["gene_id_namespace"]
-    assert result.dataset_identity["counts_semantics"] == manifest["dataset_identity"]["counts_semantics"]
+    assert (
+        result.dataset_identity["gene_id_namespace"]
+        == manifest["dataset_identity"]["gene_id_namespace"]
+    )
+    assert (
+        result.dataset_identity["counts_semantics"]
+        == manifest["dataset_identity"]["counts_semantics"]
+    )
     assert result.pseudobulk_identity["pseudobulk_manifest_sha256"] == DD.sha256_file(pb_path)
     assert result.pseudobulk_identity["pseudobulk_manifest_path"] == os.path.abspath(pb_path)
 
@@ -495,6 +636,7 @@ def test_prepare_carries_dataset_identity_and_manifest_identity_forward(tmp_path
 # not match what the pseudobulk aggregation actually used must be refused.
 # ===========================================================================
 
+
 def test_prepare_rejects_a_group_column_that_does_not_match_the_aggregation(tmp_path):
     """Reproduces the review's probe: declaring `group_column` as a column
     the aggregation never used (`condition_value` was still produced from
@@ -506,8 +648,11 @@ def test_prepare_rejects_a_group_column_that_does_not_match_the_aggregation(tmp_
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = DD.DEDesignPreparationProvider()
     result = provider.prepare(
-        pseudobulk_result_path=pb_path, comparison=comparison,
-        sample_structure=sample_structure, out_dir=str(tmp_path / "prep_bad_group_column"))
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(tmp_path / "prep_bad_group_column"),
+    )
     assert result.status == "failed"
     assert "do not match what the pseudobulk aggregation actually used" in result.reason
     assert "unmeasured_visit" in result.reason
@@ -517,11 +662,15 @@ def test_prepare_rejects_a_donor_column_that_does_not_match_the_aggregation(tmp_
     manifest, counts, pb_path = _unpaired_fixture(tmp_path)
     comparison = _comparison()
     sample_structure = _sample_structure(
-        design_type="independent_donors_unpaired", donor_or_animal_id_column="not_the_real_column")
+        design_type="independent_donors_unpaired", donor_or_animal_id_column="not_the_real_column"
+    )
     provider = DD.DEDesignPreparationProvider()
     result = provider.prepare(
-        pseudobulk_result_path=pb_path, comparison=comparison,
-        sample_structure=sample_structure, out_dir=str(tmp_path / "prep_bad_donor_column"))
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(tmp_path / "prep_bad_donor_column"),
+    )
     assert result.status == "failed"
     assert "not_the_real_column" in result.reason
 
@@ -532,15 +681,21 @@ def test_prepare_rejects_a_donor_column_that_does_not_match_the_aggregation(tmp_
 # increment fixed in `pseudobulk_providers.load_pseudobulk_counts`).
 # ===========================================================================
 
+
 def test_read_prepared_de_design_rejects_a_tampered_design_matrix(tmp_path):
     import json
+
     manifest, counts, pb_path = _unpaired_fixture(tmp_path)
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = DD.DEDesignPreparationProvider()
     out_dir = tmp_path / "prep_tamper_dm"
-    provider.prepare(pseudobulk_result_path=pb_path, comparison=comparison,
-                     sample_structure=sample_structure, out_dir=str(out_dir))
+    provider.prepare(
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(out_dir),
+    )
 
     path = out_dir / "PREPARED_DE_DESIGN.json"
     payload = json.loads(path.read_text())
@@ -555,13 +710,18 @@ def test_read_prepared_de_design_rejects_a_tampered_rank_claim(tmp_path):
     `design_matrix` on read, never trusted as given.
     """
     import json
+
     manifest, counts, pb_path = _unpaired_fixture(tmp_path)
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = DD.DEDesignPreparationProvider()
     out_dir = tmp_path / "prep_tamper_rank"
-    provider.prepare(pseudobulk_result_path=pb_path, comparison=comparison,
-                     sample_structure=sample_structure, out_dir=str(out_dir))
+    provider.prepare(
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(out_dir),
+    )
 
     path = out_dir / "PREPARED_DE_DESIGN.json"
     payload = json.loads(path.read_text())
@@ -580,13 +740,18 @@ def test_load_prepared_de_counts_rejects_a_sample_id_order_swap(tmp_path):
     it. Mirrors `pseudobulk_providers.load_pseudobulk_counts`'s R1 fix.
     """
     import json
+
     manifest, counts, pb_path = _unpaired_fixture(tmp_path)
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = DD.DEDesignPreparationProvider()
     out_dir = tmp_path / "prep_swap"
-    provider.prepare(pseudobulk_result_path=pb_path, comparison=comparison,
-                     sample_structure=sample_structure, out_dir=str(out_dir))
+    provider.prepare(
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(out_dir),
+    )
 
     path = out_dir / "PREPARED_DE_DESIGN.json"
     payload = json.loads(path.read_text())
@@ -614,11 +779,15 @@ def test_mutation_kill_load_prepared_de_counts_identity_binding(tmp_path, monkey
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = DD.DEDesignPreparationProvider()
     out_dir = tmp_path / "prep_mutation"
-    result = provider.prepare(
-        pseudobulk_result_path=pb_path, comparison=comparison,
-        sample_structure=sample_structure, out_dir=str(out_dir))
+    provider.prepare(
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(out_dir),
+    )
 
     import json
+
     path = out_dir / "PREPARED_DE_DESIGN.json"
     payload = json.loads(path.read_text())
     payload["sample_ids"] = list(reversed(payload["sample_ids"]))
@@ -650,10 +819,15 @@ def test_mutation_kill_load_prepared_de_counts_source_binding(tmp_path, monkeypa
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = DD.DEDesignPreparationProvider()
     out_dir = tmp_path / "prep_donor_swap"
-    provider.prepare(pseudobulk_result_path=pb_path, comparison=comparison,
-                     sample_structure=sample_structure, out_dir=str(out_dir))
+    provider.prepare(
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(out_dir),
+    )
 
     import json
+
     path = out_dir / "PREPARED_DE_DESIGN.json"
     payload = json.loads(path.read_text())
     payload["donor_ids"] = ["OTHER0", "OTHER1", "OTHER2", "OTHER3"]  # sample_ids UNCHANGED
@@ -673,28 +847,39 @@ def _build_valid_unpaired_result(tmp_path):
     call this entry point directly, bypassing `prepare()` entirely.
     """
     import dataclasses
+
     manifest, counts, pb_path = _unpaired_fixture(tmp_path)
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     core_problems, fields = DD._prepare_de_design_core(
-        manifest["sample_rows"], comparison, sample_structure)
+        manifest["sample_rows"], comparison, sample_structure
+    )
     assert not core_problems
     design_matrix_sha256 = DD.array_content_sha256(np.array(fields["design_matrix"], dtype=float))
     result = DD.PreparedDEDesign(
-        status="prepared", gene_ids=tuple(manifest["gene_ids"]),
+        status="prepared",
+        gene_ids=tuple(manifest["gene_ids"]),
         pseudobulk_identity=dict(
             pseudobulk_manifest_path=os.path.abspath(pb_path),
             pseudobulk_manifest_sha256=DD.sha256_file(pb_path),
             aggregation_path=manifest["aggregation_path"],
             aggregation_sha256=manifest["aggregation_sha256"],
-            identity_sha256=manifest["identity_sha256"]),
-        dataset_identity={k: manifest["dataset_identity"][k]
-                         for k in ("species", "gene_id_namespace", "counts_semantics")},
-        comparison=dataclasses.asdict(comparison), sample_structure=dataclasses.asdict(sample_structure),
+            identity_sha256=manifest["identity_sha256"],
+        ),
+        dataset_identity={
+            k: manifest["dataset_identity"][k]
+            for k in ("species", "gene_id_namespace", "counts_semantics")
+        },
+        comparison=dataclasses.asdict(comparison),
+        sample_structure=dataclasses.asdict(sample_structure),
         design_type="independent_donors_unpaired",
-        backend="design_matrix_preparation_only", backend_version="1",
-        source_code_revision_or_hash="rev", dependency_versions={"python": "3"},
-        design_matrix_sha256=design_matrix_sha256, **fields)
+        backend="design_matrix_preparation_only",
+        backend_version="1",
+        source_code_revision_or_hash="rev",
+        dependency_versions={"python": "3"},
+        design_matrix_sha256=design_matrix_sha256,
+        **fields,
+    )
     return result, counts, pb_path, manifest
 
 
@@ -713,6 +898,7 @@ def test_write_prepared_de_design_refuses_a_counts_shape_mismatch(tmp_path):
 # self-consistency. Reproduces the review's own `probe_binding.py` cases.
 # ===========================================================================
 
+
 def test_write_prepared_de_design_refuses_a_reversed_counts_array(tmp_path):
     """Reproduces the review's `writer_reversed_counts` case: calling the
     PUBLIC `write_prepared_de_design` entry point directly (bypassing
@@ -721,7 +907,9 @@ def test_write_prepared_de_design_refuses_a_reversed_counts_array(tmp_path):
     """
     result, counts, pb_path, manifest = _build_valid_unpaired_result(tmp_path)
     with pytest.raises(ValueError, match="does not match the submatrix freshly recomputed"):
-        DD.write_prepared_de_design(str(tmp_path / "writer_reversed"), result, counts=counts[::-1].copy())
+        DD.write_prepared_de_design(
+            str(tmp_path / "writer_reversed"), result, counts=counts[::-1].copy()
+        )
 
 
 def test_write_prepared_de_design_refuses_a_negative_counts_array(tmp_path):
@@ -733,6 +921,7 @@ def test_write_prepared_de_design_refuses_a_negative_counts_array(tmp_path):
 
 def _prepared_payload_for_tamper(tmp_path):
     import json
+
     result, counts, pb_path, manifest = _build_valid_unpaired_result(tmp_path)
     out_dir = tmp_path / "prep_for_tamper"
     os.makedirs(str(out_dir))
@@ -744,6 +933,7 @@ def _prepared_payload_for_tamper(tmp_path):
 def test_source_binding_rejects_a_species_swap(tmp_path):
     """Reproduces the review's `species_changed_human_to_mouse` case."""
     import json
+
     path, payload = _prepared_payload_for_tamper(tmp_path)
     payload["dataset_identity"]["species"] = "mouse"
     path.write_text(json.dumps(payload))
@@ -755,6 +945,7 @@ def test_source_binding_rejects_a_species_swap(tmp_path):
 def test_source_binding_rejects_a_gene_namespace_swap(tmp_path):
     """Reproduces the review's `gene_namespace_changed` case."""
     import json
+
     path, payload = _prepared_payload_for_tamper(tmp_path)
     payload["dataset_identity"]["gene_id_namespace"] = "ensembl_gene_id"
     path.write_text(json.dumps(payload))
@@ -772,6 +963,7 @@ def test_source_binding_rejects_both_declared_group_columns_changed(tmp_path):
     was tampered AFTER being legitimately prepared.
     """
     import json
+
     path, payload = _prepared_payload_for_tamper(tmp_path)
     payload["comparison"]["group_column"] = "unmeasured_condition"
     payload["sample_structure"]["group_column"] = "unmeasured_condition"
@@ -784,6 +976,7 @@ def test_source_binding_rejects_both_declared_group_columns_changed(tmp_path):
 def test_source_binding_rejects_a_stale_upstream_hash(tmp_path):
     """Reproduces the review's `upstream_hash_changed` case."""
     import json
+
     path, payload = _prepared_payload_for_tamper(tmp_path)
     payload["pseudobulk_identity"]["pseudobulk_manifest_sha256"] = "0" * 64
     path.write_text(json.dumps(payload))
@@ -799,6 +992,7 @@ def test_source_binding_rejects_donor_ids_replaced_order_preserved(tmp_path):
     than the mutation-kill demonstration).
     """
     import json
+
     path, payload = _prepared_payload_for_tamper(tmp_path)
     payload["donor_ids"] = ["OTHER0", "OTHER1", "OTHER2", "OTHER3"]
     path.write_text(json.dumps(payload))
@@ -810,8 +1004,11 @@ def test_source_binding_rejects_donor_ids_replaced_order_preserved(tmp_path):
 def test_source_binding_rejects_a_nonexistent_upstream_path(tmp_path):
     """Reproduces the review's `upstream_path_nonexistent` case."""
     import json
+
     path, payload = _prepared_payload_for_tamper(tmp_path)
-    payload["pseudobulk_identity"]["pseudobulk_manifest_path"] = str(tmp_path / "does_not_exist.json")
+    payload["pseudobulk_identity"]["pseudobulk_manifest_path"] = str(
+        tmp_path / "does_not_exist.json"
+    )
     path.write_text(json.dumps(payload))
     reloaded = DD.read_prepared_de_design(str(path))
     with pytest.raises(SystemExit, match="could not be resolved"):
@@ -851,22 +1048,34 @@ def test_write_prepared_de_design_refuses_a_large_integer_drift(tmp_path):
     previously accepted this silently.
     """
     manifest, counts, pb_path = _aggregate(
-        tmp_path, "pb_large_integer", X=np.array([[100000, 2], [100002, 4], [200000, 6], [200002, 8]]),
-        cell_ids=["CELL0", "CELL1", "CELL2", "CELL3"], sample_ids=["S0", "S1", "S2", "S3"],
-        donor_ids=["D0", "D1", "D2", "D3"], conditions=["healthy", "healthy", "disease", "disease"])
+        tmp_path,
+        "pb_large_integer",
+        X=np.array([[100000, 2], [100002, 4], [200000, 6], [200002, 8]]),
+        cell_ids=["CELL0", "CELL1", "CELL2", "CELL3"],
+        sample_ids=["S0", "S1", "S2", "S3"],
+        donor_ids=["D0", "D1", "D2", "D3"],
+        conditions=["healthy", "healthy", "disease", "disease"],
+    )
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = DD.DEDesignPreparationProvider()
-    result = provider.prepare(pseudobulk_result_path=pb_path, comparison=comparison,
-                              sample_structure=sample_structure, out_dir=str(tmp_path / "prep_large_int"))
+    result = provider.prepare(
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(tmp_path / "prep_large_int"),
+    )
     assert result.status == "prepared", result.reason
     real_counts = DD.load_prepared_de_counts(
-        DD.read_prepared_de_design(str(tmp_path / "prep_large_int" / "PREPARED_DE_DESIGN.json")))
+        DD.read_prepared_de_design(str(tmp_path / "prep_large_int" / "PREPARED_DE_DESIGN.json"))
+    )
 
     drifted = real_counts.copy()
     drifted[0, 0] += 1  # 100000 -> 100001: still a valid integer, same shape, WRONG content
     out_dir_1 = tmp_path / "writer_drift_plus_one"
-    os.makedirs(str(out_dir_1))  # so a pre-fix silent-accept would fail on a real write, not a missing dir
+    os.makedirs(
+        str(out_dir_1)
+    )  # so a pre-fix silent-accept would fail on a real write, not a missing dir
     with pytest.raises(ValueError, match="does not match the submatrix freshly recomputed"):
         DD.write_prepared_de_design(str(out_dir_1), result, counts=drifted)
 
@@ -886,19 +1095,25 @@ def test_write_prepared_de_design_refuses_a_large_integer_drift(tmp_path):
 # full-rank design (`c @ pinv(X) @ X == c` identically for ANY `c`).
 # ===========================================================================
 
+
 def _prepared_unpaired_path(tmp_path):
     manifest, counts, pb_path = _unpaired_fixture(tmp_path)
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = DD.DEDesignPreparationProvider()
     out_dir = tmp_path / "prep_semantic"
-    provider.prepare(pseudobulk_result_path=pb_path, comparison=comparison,
-                     sample_structure=sample_structure, out_dir=str(out_dir))
+    provider.prepare(
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=str(out_dir),
+    )
     return out_dir / "PREPARED_DE_DESIGN.json"
 
 
 def _tamper_and_reload(path, mutate):
     import json
+
     payload = json.loads(path.read_text())
     mutate(payload)
     path.write_text(json.dumps(payload))
@@ -970,6 +1185,7 @@ def test_mutation_kill_validate_prepared_de_design_semantic_recompute(tmp_path, 
     back -- i.e. a guard that trusts its own input is no guard at all.
     """
     import json
+
     path = _prepared_unpaired_path(tmp_path)
     payload = json.loads(path.read_text())
     payload["contrast_vector"] = [0.0, -1.0]
@@ -980,14 +1196,21 @@ def test_mutation_kill_validate_prepared_de_design_semantic_recompute(tmp_path, 
 
     def _echo(sample_ids, donor_ids, group_values, comparison, sample_structure):
         return [], dict(
-            sample_ids=tuple(sample_ids), donor_ids=tuple(donor_ids), group_values=tuple(group_values),
+            sample_ids=tuple(sample_ids),
+            donor_ids=tuple(donor_ids),
+            group_values=tuple(group_values),
             design_matrix=tuple(tuple(r) for r in payload["design_matrix"]),
-            column_names=tuple(payload["column_names"]), formula=payload["formula"],
-            encoding_convention=payload["encoding_convention"], contrast_name=payload["contrast_name"],
+            column_names=tuple(payload["column_names"]),
+            formula=payload["formula"],
+            encoding_convention=payload["encoding_convention"],
+            contrast_name=payload["contrast_name"],
             contrast_vector=tuple(payload["contrast_vector"]),
             contrast_direction=payload["contrast_direction"],
-            rank=payload["rank"], residual_degrees_of_freedom=payload["residual_degrees_of_freedom"],
-            n_samples=payload["n_samples"], n_distinct_donors=payload["n_distinct_donors"])
+            rank=payload["rank"],
+            residual_degrees_of_freedom=payload["residual_degrees_of_freedom"],
+            n_samples=payload["n_samples"],
+            n_distinct_donors=payload["n_distinct_donors"],
+        )
 
     monkeypatch.setattr(DD, "_expected_design_fields_from_identity", _echo)
     reloaded = DD.read_prepared_de_design(str(path))  # with the mutant: silently accepted

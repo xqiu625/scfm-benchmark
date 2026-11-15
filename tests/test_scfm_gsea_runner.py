@@ -5,6 +5,7 @@ synthetic rankings where the enrichment direction is known by construction
 (a deliberately boosted "top" gene set), not a significant p-value used as the
 sole pass/fail criterion.
 """
+
 import os
 import sys
 
@@ -12,7 +13,9 @@ import pytest
 
 CODE = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    "scripts", "34_scfm_discovery_framework", "code",
+    "scripts",
+    "34_scfm_discovery_framework",
+    "code",
 )
 sys.path.insert(0, CODE)
 
@@ -27,25 +30,28 @@ def _write_gmt(path, sets: dict):
         fh.write("\n".join(lines) + "\n")
 
 
-def _make_cache(tmp_path, sets: dict, *, species="human", namespace="gene_symbol",
-                name="cache"):
+def _make_cache(tmp_path, sets: dict, *, species="human", namespace="gene_symbol", name="cache"):
     gmt = tmp_path / "sets.gmt"
     _write_gmt(gmt, sets)
     cache_dir = tmp_path / name
     G.import_gene_sets(
-        source_gmt_path=str(gmt), collection_name="TEST_COLLECTION", species=species,
-        gene_id_namespace=namespace, source_version="local-test-v1",
-        out_dir=str(cache_dir))
+        source_gmt_path=str(gmt),
+        collection_name="TEST_COLLECTION",
+        species=species,
+        gene_id_namespace=namespace,
+        source_version="local-test-v1",
+        out_dir=str(cache_dir),
+    )
     return str(cache_dir)
 
 
-def _make_known_direction_ranking(n_genes=200, n_top=20, species="human",
-                                  namespace="gene_symbol"):
+def _make_known_direction_ranking(n_genes=200, n_top=20, species="human", namespace="gene_symbol"):
     """A ranking where TOP_SET's genes are deliberately given the highest
     scores by construction -- the enrichment direction is known, not hoped
     for. RANDOM_SET is an arbitrary, unrelated set of the same size class.
     """
     import numpy as np
+
     rng = np.random.default_rng(0)
     genes = [f"G{i}" for i in range(n_genes)]
     scores = list(rng.normal(size=n_genes))
@@ -53,9 +59,13 @@ def _make_known_direction_ranking(n_genes=200, n_top=20, species="human",
     for i, g in enumerate(top_genes):
         scores[genes.index(g)] = 5.0 - i * 0.05
     random_genes = list(rng.choice(genes[n_top:], size=15, replace=False))
-    ranking = GeneRanking(species=species, gene_id_namespace=namespace,
-                          ranking_definition="synthetic, TOP_SET boosted by construction",
-                          genes=tuple(genes), scores=tuple(scores))
+    ranking = GeneRanking(
+        species=species,
+        gene_id_namespace=namespace,
+        ranking_definition="synthetic, TOP_SET boosted by construction",
+        genes=tuple(genes),
+        scores=tuple(scores),
+    )
     return ranking, top_genes, random_genes
 
 
@@ -69,9 +79,16 @@ def test_run_complete_detects_known_enriched_set_direction(tmp_path):
     out_dir = tmp_path / "gsea_out"
 
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(out_dir),
-                          min_set_size=1, max_set_size=500, permutation_num=100,
-                          threads=1, random_seed=0)
+    result = provider.run(
+        ranking,
+        cache_dir,
+        out_dir=str(out_dir),
+        min_set_size=1,
+        max_set_size=500,
+        permutation_num=100,
+        threads=1,
+        random_seed=0,
+    )
 
     assert result.status == "complete", result.reason
     by_term = {row["term"]: row for row in result.results_table}
@@ -97,8 +114,9 @@ def test_run_result_persists_and_rereads_exactly(tmp_path):
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes, "RANDOM_SET": random_genes})
     out_dir = tmp_path / "gsea_out"
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(out_dir),
-                          min_set_size=1, permutation_num=100, random_seed=0)
+    result = provider.run(
+        ranking, cache_dir, out_dir=str(out_dir), min_set_size=1, permutation_num=100, random_seed=0
+    )
     read_back = R.read_gsea_result(str(out_dir / "GSEA_RESULT.json"))
     assert read_back["status"] == "complete"
     assert read_back["ranking_sha256"] == result.ranking_sha256
@@ -111,10 +129,24 @@ def test_run_is_reproducible_given_fixed_seed_threads_and_params(tmp_path):
     ranking, top_genes, random_genes = _make_known_direction_ranking()
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes, "RANDOM_SET": random_genes})
     provider = R.LocalPrerankGSEAProvider()
-    r1 = provider.run(ranking, cache_dir, out_dir=str(tmp_path / "out1"),
-                      min_set_size=1, permutation_num=100, threads=1, random_seed=7)
-    r2 = provider.run(ranking, cache_dir, out_dir=str(tmp_path / "out2"),
-                      min_set_size=1, permutation_num=100, threads=1, random_seed=7)
+    r1 = provider.run(
+        ranking,
+        cache_dir,
+        out_dir=str(tmp_path / "out1"),
+        min_set_size=1,
+        permutation_num=100,
+        threads=1,
+        random_seed=7,
+    )
+    r2 = provider.run(
+        ranking,
+        cache_dir,
+        out_dir=str(tmp_path / "out2"),
+        min_set_size=1,
+        permutation_num=100,
+        threads=1,
+        random_seed=7,
+    )
     rows1 = {row["term"]: row for row in r1.results_table}
     rows2 = {row["term"]: row for row in r2.results_table}
     for term in rows1:
@@ -127,8 +159,9 @@ def test_run_fails_closed_on_species_mismatch(tmp_path):
     ranking, top_genes, random_genes = _make_known_direction_ranking(species="mouse")
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes}, species="human")
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(tmp_path / "out"),
-                          min_set_size=1, permutation_num=50)
+    result = provider.run(
+        ranking, cache_dir, out_dir=str(tmp_path / "out"), min_set_size=1, permutation_num=50
+    )
     assert result.status == "failed"
     assert "species mismatch" in result.reason
 
@@ -137,8 +170,9 @@ def test_run_fails_closed_on_namespace_mismatch(tmp_path):
     ranking, top_genes, random_genes = _make_known_direction_ranking(namespace="ensembl_gene_id")
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes}, namespace="gene_symbol")
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(tmp_path / "out"),
-                          min_set_size=1, permutation_num=50)
+    result = provider.run(
+        ranking, cache_dir, out_dir=str(tmp_path / "out"), min_set_size=1, permutation_num=50
+    )
     assert result.status == "failed"
     assert "gene_id_namespace mismatch" in result.reason
 
@@ -147,20 +181,26 @@ def test_run_reports_no_overlap_distinct_from_complete(tmp_path):
     """Ranking genes and gene-set genes share nothing at all -- must be
     'no_overlap', never silently 'complete' with an empty/degenerate table.
     """
-    ranking = GeneRanking(species="human", gene_id_namespace="gene_symbol",
-                          ranking_definition="disjoint by construction",
-                          genes=("RANKED_ONLY_1", "RANKED_ONLY_2"), scores=(1.0, -1.0))
+    ranking = GeneRanking(
+        species="human",
+        gene_id_namespace="gene_symbol",
+        ranking_definition="disjoint by construction",
+        genes=("RANKED_ONLY_1", "RANKED_ONLY_2"),
+        scores=(1.0, -1.0),
+    )
     cache_dir = _make_cache(tmp_path, {"SET_A": ["OTHER_GENE_1", "OTHER_GENE_2"]})
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(tmp_path / "out"),
-                          min_set_size=1, permutation_num=50)
+    result = provider.run(
+        ranking, cache_dir, out_dir=str(tmp_path / "out"), min_set_size=1, permutation_num=50
+    )
     assert result.status == "no_overlap"
     assert result.results_table == ()
 
 
 def test_run_fails_closed_on_invalid_ranking(tmp_path):
-    ranking = GeneRanking(species="human", gene_id_namespace="gene_symbol",
-                          ranking_definition="", genes=(), scores=())
+    ranking = GeneRanking(
+        species="human", gene_id_namespace="gene_symbol", ranking_definition="", genes=(), scores=()
+    )
     cache_dir = _make_cache(tmp_path, {"SET_A": ["G1"]})
     provider = R.LocalPrerankGSEAProvider()
     result = provider.run(ranking, cache_dir, out_dir=str(tmp_path / "out"))
@@ -173,6 +213,7 @@ def test_run_detects_cache_tampering_before_calling_gseapy(tmp_path):
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes, "RANDOM_SET": random_genes})
     manifest_path = os.path.join(cache_dir, "CACHE_MANIFEST.json")
     import json
+
     manifest = json.load(open(manifest_path))
     # cached_gene_sets_path is stored RELATIVE to the manifest's own
     # directory (per review:20261012_220407 F4) -- resolve it the
@@ -182,8 +223,9 @@ def test_run_detects_cache_tampering_before_calling_gseapy(tmp_path):
         fh.write("\n// tampered")
     provider = R.LocalPrerankGSEAProvider()
     with pytest.raises(SystemExit, match="hash mismatch"):
-        provider.run(ranking, cache_dir, out_dir=str(tmp_path / "out"),
-                     min_set_size=1, permutation_num=50)
+        provider.run(
+            ranking, cache_dir, out_dir=str(tmp_path / "out"), min_set_size=1, permutation_num=50
+        )
 
 
 def test_run_refuses_nonempty_out_dir(tmp_path):
@@ -200,20 +242,28 @@ def test_run_refuses_nonempty_out_dir(tmp_path):
 
 def test_run_never_connects_to_network(tmp_path, monkeypatch):
     import socket
+
     def _boom(self, *a, **k):
-        raise AssertionError("LocalPrerankGSEAProvider.run must never open a "
-                             "network connection")
+        raise AssertionError("LocalPrerankGSEAProvider.run must never open a " "network connection")
+
     monkeypatch.setattr(socket.socket, "connect", _boom)
     ranking, top_genes, random_genes = _make_known_direction_ranking(n_genes=60, n_top=8)
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes})
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(tmp_path / "out"),
-                          min_set_size=1, permutation_num=20, threads=1)
+    result = provider.run(
+        ranking,
+        cache_dir,
+        out_dir=str(tmp_path / "out"),
+        min_set_size=1,
+        permutation_num=20,
+        threads=1,
+    )
     assert result.status == "complete"
 
 
 def test_read_gsea_result_rejects_illegal_status(tmp_path):
     import json
+
     path = tmp_path / "tampered.json"
     path.write_text(json.dumps({"schema": R.RESULT_SCHEMA, "status": "definitely_ran"}))
     with pytest.raises(SystemExit, match="status"):
@@ -222,8 +272,12 @@ def test_read_gsea_result_rejects_illegal_status(tmp_path):
 
 def test_read_gsea_result_rejects_literal_nan_in_results_table(tmp_path):
     import json
-    payload = {"schema": R.RESULT_SCHEMA, "status": "complete",
-              "results_table": [{"term": "X", "es": 1.0}]}
+
+    payload = {
+        "schema": R.RESULT_SCHEMA,
+        "status": "complete",
+        "results_table": [{"term": "X", "es": 1.0}],
+    }
     text = json.dumps(payload).replace('"es": 1.0', '"es": NaN')
     path = tmp_path / "tampered.json"
     path.write_text(text)
@@ -237,8 +291,12 @@ def test_read_gsea_result_rejects_overflow_to_infinity_in_results_table(tmp_path
     finiteness walk over results_table.
     """
     import json
-    payload = {"schema": R.RESULT_SCHEMA, "status": "complete",
-              "results_table": [{"term": "X", "es": 1.0}]}
+
+    payload = {
+        "schema": R.RESULT_SCHEMA,
+        "status": "complete",
+        "results_table": [{"term": "X", "es": 1.0}],
+    }
     text = json.dumps(payload).replace('"es": 1.0', '"es": 1e999')
     path = tmp_path / "tampered.json"
     path.write_text(text)
@@ -258,8 +316,9 @@ def test_mutation_kill_species_and_namespace_mismatch_checks(monkeypatch, tmp_pa
     ranking, top_genes, _ = _make_known_direction_ranking(species="mouse")
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes}, species="human")
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(tmp_path / "out"),
-                          min_set_size=1, permutation_num=50)
+    result = provider.run(
+        ranking, cache_dir, out_dir=str(tmp_path / "out"), min_set_size=1, permutation_num=50
+    )
     # With the mutant, a genuine species mismatch is NOT caught -- the run
     # proceeds to completion instead of failing closed, proving the real
     # _find_identity_mismatches is what makes test_run_fails_closed_on_*
@@ -276,6 +335,7 @@ def test_mutation_kill_species_and_namespace_mismatch_checks(monkeypatch, tmp_pa
 # can never disagree about which genes actually matched.
 # ===========================================================================
 
+
 def test_run_f1_case_mismatch_intersection_and_leading_edge_stay_consistent(tmp_path):
     """The review's own reproduction: a mouse ranking in mixed case
     ("GeneN") against a gene set written in all-caps ("GENEn") plus one
@@ -287,15 +347,25 @@ def test_run_f1_case_mismatch_intersection_and_leading_edge_stay_consistent(tmp_
     """
     ranking_genes = tuple(f"Gene{i}" for i in range(80)) + ("ANCHOR",)
     ranking_scores = tuple(float(80 - i) for i in range(80)) + (1.0,)
-    ranking = GeneRanking(species="mouse", gene_id_namespace="gene_symbol",
-                          ranking_definition="f1 regression: mixed-case mouse ranking",
-                          genes=ranking_genes, scores=ranking_scores)
+    ranking = GeneRanking(
+        species="mouse",
+        gene_id_namespace="gene_symbol",
+        ranking_definition="f1 regression: mixed-case mouse ranking",
+        genes=ranking_genes,
+        scores=ranking_scores,
+    )
     geneset_genes = [f"GENE{i}" for i in range(12)] + ["ANCHOR"]
     cache_dir = _make_cache(tmp_path, {"CASE_SET": geneset_genes}, species="mouse")
 
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(tmp_path / "out"),
-                          min_set_size=1, max_set_size=500, permutation_num=50)
+    result = provider.run(
+        ranking,
+        cache_dir,
+        out_dir=str(tmp_path / "out"),
+        min_set_size=1,
+        max_set_size=500,
+        permutation_num=50,
+    )
     assert result.status == "complete", result.reason
     row = {r["term"]: r for r in result.results_table}["CASE_SET"]
     assert row["intersection_size"] == 1
@@ -309,6 +379,7 @@ def test_run_f1_legitimate_consistent_mixed_case_mouse_input_still_works(tmp_pat
     fix must not start rejecting or degrading correctly-cased input.
     """
     import numpy as np
+
     rng = np.random.default_rng(0)
     n_genes = 200
     genes = tuple(f"Mgene{i}" for i in range(n_genes))
@@ -316,13 +387,18 @@ def test_run_f1_legitimate_consistent_mixed_case_mouse_input_still_works(tmp_pat
     top = genes[:20]
     for i, g in enumerate(top):
         scores[i] = 5.0 - i * 0.05
-    ranking = GeneRanking(species="mouse", gene_id_namespace="gene_symbol",
-                          ranking_definition="f1: consistent mixed-case mouse input",
-                          genes=genes, scores=tuple(scores))
+    ranking = GeneRanking(
+        species="mouse",
+        gene_id_namespace="gene_symbol",
+        ranking_definition="f1: consistent mixed-case mouse input",
+        genes=genes,
+        scores=tuple(scores),
+    )
     cache_dir = _make_cache(tmp_path, {"TOP_SET": list(top)}, species="mouse")
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(tmp_path / "out"),
-                          min_set_size=1, permutation_num=50)
+    result = provider.run(
+        ranking, cache_dir, out_dir=str(tmp_path / "out"), min_set_size=1, permutation_num=50
+    )
     assert result.status == "complete", result.reason
     row = {r["term"]: r for r in result.results_table}["TOP_SET"]
     assert row["intersection_size"] == len(top)
@@ -336,8 +412,9 @@ def test_run_f1_regular_uppercase_human_input_unaffected(tmp_path):
     ranking, top_genes, random_genes = _make_known_direction_ranking(species="human")
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes, "RANDOM_SET": random_genes})
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(tmp_path / "out"),
-                          min_set_size=1, permutation_num=50)
+    result = provider.run(
+        ranking, cache_dir, out_dir=str(tmp_path / "out"), min_set_size=1, permutation_num=50
+    )
     assert result.status == "complete", result.reason
     row = {r["term"]: r for r in result.results_table}["TOP_SET"]
     assert row["intersection_size"] == len(top_genes)
@@ -356,20 +433,32 @@ def test_mutation_kill_f1_exact_case_prefilter(monkeypatch, tmp_path):
     intersection_size and leading_edge_genes in agreement.
     """
     monkeypatch.setattr(
-        R, "_exact_case_sensitive_filter",
-        lambda gene_sets, ranking_genes: {t: list(g) for t, g in gene_sets.items()})
+        R,
+        "_exact_case_sensitive_filter",
+        lambda gene_sets, ranking_genes: {t: list(g) for t, g in gene_sets.items()},
+    )
 
     ranking_genes = tuple(f"Gene{i}" for i in range(80)) + ("ANCHOR",)
     ranking_scores = tuple(float(80 - i) for i in range(80)) + (1.0,)
-    ranking = GeneRanking(species="mouse", gene_id_namespace="gene_symbol",
-                          ranking_definition="f1 mutation-kill",
-                          genes=ranking_genes, scores=ranking_scores)
+    ranking = GeneRanking(
+        species="mouse",
+        gene_id_namespace="gene_symbol",
+        ranking_definition="f1 mutation-kill",
+        genes=ranking_genes,
+        scores=ranking_scores,
+    )
     geneset_genes = [f"GENE{i}" for i in range(12)] + ["ANCHOR"]
     cache_dir = _make_cache(tmp_path, {"CASE_SET": geneset_genes}, species="mouse")
 
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(tmp_path / "out"),
-                          min_set_size=1, max_set_size=500, permutation_num=50)
+    result = provider.run(
+        ranking,
+        cache_dir,
+        out_dir=str(tmp_path / "out"),
+        min_set_size=1,
+        max_set_size=500,
+        permutation_num=50,
+    )
 
     # With the real filter, this exact fixture reaches "complete" with a
     # consistent intersection_size=1 (see the paired regression test above).
@@ -393,17 +482,20 @@ def test_mutation_kill_f1_exact_case_prefilter(monkeypatch, tmp_path):
 # alone via gsea_replay.py.
 # ===========================================================================
 
+
 def test_run_writes_a_ranking_snapshot_matching_its_own_sha(tmp_path):
     ranking, top_genes, random_genes = _make_known_direction_ranking()
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes, "RANDOM_SET": random_genes})
     out_dir = tmp_path / "out"
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(out_dir),
-                          min_set_size=1, permutation_num=50)
+    result = provider.run(
+        ranking, cache_dir, out_dir=str(out_dir), min_set_size=1, permutation_num=50
+    )
     snapshot_path = out_dir / "RANKING_SNAPSHOT.json"
     assert snapshot_path.exists()
     assert result.ranking_snapshot_path == str(snapshot_path)
     import hashlib
+
     assert hashlib.sha256(snapshot_path.read_bytes()).hexdigest() == result.ranking_snapshot_sha256
     reread = R.read_ranking_snapshot(str(snapshot_path))
     assert reread.genes == ranking.genes
@@ -415,8 +507,9 @@ def test_run_binds_source_revision_and_dependency_versions(tmp_path):
     ranking, top_genes, random_genes = _make_known_direction_ranking()
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes})
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(tmp_path / "out"),
-                          min_set_size=1, permutation_num=50)
+    result = provider.run(
+        ranking, cache_dir, out_dir=str(tmp_path / "out"), min_set_size=1, permutation_num=50
+    )
     assert result.source_code_revision_or_hash
     assert set(result.dependency_versions) >= {"gseapy", "numpy", "pandas", "python"}
     assert result.dependency_versions["gseapy"] == result.backend_version
@@ -425,12 +518,18 @@ def test_run_binds_source_revision_and_dependency_versions(tmp_path):
 def test_run_records_tie_count_in_params(tmp_path):
     genes = tuple(f"G{i}" for i in range(20))
     scores = tuple([5.0] * 10 + [1.0] * 10)  # two tied blocks of 10
-    ranking = GeneRanking(species="human", gene_id_namespace="gene_symbol",
-                          ranking_definition="tie-count probe", genes=genes, scores=scores)
+    ranking = GeneRanking(
+        species="human",
+        gene_id_namespace="gene_symbol",
+        ranking_definition="tie-count probe",
+        genes=genes,
+        scores=scores,
+    )
     cache_dir = _make_cache(tmp_path, {"SET_A": list(genes[:5])})
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(tmp_path / "out"),
-                          min_set_size=1, permutation_num=20)
+    result = provider.run(
+        ranking, cache_dir, out_dir=str(tmp_path / "out"), min_set_size=1, permutation_num=20
+    )
     assert result.params["n_tied_score_values"] == 20
 
 
@@ -440,18 +539,22 @@ def test_replay_from_frozen_artifacts_matches_original_in_a_new_process(tmp_path
     confirms it reports every scientific field as matching.
     """
     import subprocess
+
     ranking, top_genes, random_genes = _make_known_direction_ranking()
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes, "RANDOM_SET": random_genes})
     out_dir = tmp_path / "original"
     provider = R.LocalPrerankGSEAProvider()
-    provider.run(ranking, cache_dir, out_dir=str(out_dir),
-                min_set_size=1, permutation_num=100, random_seed=3)
+    provider.run(
+        ranking, cache_dir, out_dir=str(out_dir), min_set_size=1, permutation_num=100, random_seed=3
+    )
 
     replay_script = os.path.join(CODE, "gsea_replay.py")
     replay_out = tmp_path / "replay"
     proc = subprocess.run(
         [sys.executable, replay_script, "--from", str(out_dir), "--out", str(replay_out)],
-        capture_output=True, text=True)
+        capture_output=True,
+        text=True,
+    )
     assert proc.returncode == 0, proc.stdout + proc.stderr
     assert "REPLAY MATCH" in proc.stdout
 
@@ -468,6 +571,7 @@ def test_replay_fails_when_ranking_snapshot_is_missing(tmp_path):
     os.remove(out_dir / "RANKING_SNAPSHOT.json")
 
     import gsea_replay
+
     with pytest.raises(SystemExit, match="not found"):
         gsea_replay.replay(str(out_dir), str(tmp_path / "replay"))
 
@@ -479,6 +583,7 @@ def test_mutation_kill_replay_detects_a_tampered_frozen_ranking(monkeypatch, tmp
     not merely informational.
     """
     import json
+
     ranking, top_genes, random_genes = _make_known_direction_ranking()
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes})
     out_dir = tmp_path / "original"
@@ -499,8 +604,10 @@ def test_mutation_kill_replay_detects_a_tampered_frozen_ranking(monkeypatch, tmp
 # validate_gsea_result() shared by writer and reader.
 # ===========================================================================
 
+
 def test_read_gsea_result_rejects_minimal_complete_payload_missing_everything(tmp_path):
     import json
+
     path = tmp_path / "bad.json"
     path.write_text(json.dumps({"schema": R.RESULT_SCHEMA, "status": "complete"}))
     with pytest.raises(SystemExit, match="requires a non-empty"):
@@ -509,6 +616,7 @@ def test_read_gsea_result_rejects_minimal_complete_payload_missing_everything(tm
 
 def test_read_gsea_result_rejects_impossible_pvalue(tmp_path):
     import json
+
     payload = _minimal_valid_complete_payload()
     payload["results_table"][0]["p_value"] = 2.0
     path = tmp_path / "bad.json"
@@ -519,6 +627,7 @@ def test_read_gsea_result_rejects_impossible_pvalue(tmp_path):
 
 def test_read_gsea_result_rejects_overflow_in_params(tmp_path):
     import json
+
     payload = _minimal_valid_complete_payload()
     text = json.dumps(payload).replace('"weight": 1.0', '"weight": 1e999')
     path = tmp_path / "bad.json"
@@ -530,6 +639,7 @@ def test_read_gsea_result_rejects_overflow_in_params(tmp_path):
 def test_read_gsea_result_accepts_a_legitimate_zero_pvalue(tmp_path):
     """A real, legal p-value/FDR of exactly 0 must NOT be rejected."""
     import json
+
     payload = _minimal_valid_complete_payload()
     payload["results_table"][0]["p_value"] = 0.0
     payload["results_table"][0]["fdr"] = 0.0
@@ -541,28 +651,56 @@ def test_read_gsea_result_accepts_a_legitimate_zero_pvalue(tmp_path):
 
 def _minimal_valid_complete_payload() -> dict:
     return {
-        "schema": R.RESULT_SCHEMA, "status": "complete", "reason": "",
-        "ranking_sha256": "a" * 64, "backend": "gseapy", "backend_version": "1.2.1",
-        "gene_set_collection_name": "T", "gene_set_cache_path": "/x/gene_sets.json",
+        "schema": R.RESULT_SCHEMA,
+        "status": "complete",
+        "reason": "",
+        "ranking_sha256": "a" * 64,
+        "backend": "gseapy",
+        "backend_version": "1.2.1",
+        "gene_set_collection_name": "T",
+        "gene_set_cache_path": "/x/gene_sets.json",
         "gene_set_content_sha256": "b" * 64,
-        "gene_set_species": "human", "gene_set_namespace": "gene_symbol",
+        "gene_set_species": "human",
+        "gene_set_namespace": "gene_symbol",
         "gene_set_source_version": "test-v1",
         "ranking_snapshot_path": "/x/RANKING_SNAPSHOT.json",
         "ranking_snapshot_sha256": "c" * 64,
         "source_code_revision_or_hash": "git:deadbeef",
-        "dependency_versions": {"gseapy": "1.2.1", "numpy": "1.0", "pandas": "1.0", "python": "3.10"},
-        "params": {"min_set_size": 1, "max_set_size": 500, "random_seed": 0,
-                   "permutation_num": 100, "threads": 1, "weight": 1.0},
+        "dependency_versions": {
+            "gseapy": "1.2.1",
+            "numpy": "1.0",
+            "pandas": "1.0",
+            "python": "3.10",
+        },
+        "params": {
+            "min_set_size": 1,
+            "max_set_size": 500,
+            "random_seed": 0,
+            "permutation_num": 100,
+            "threads": 1,
+            "weight": 1.0,
+        },
         "excluded_gene_sets": [],
-        "results_table": [{"term": "SET_A", "es": 0.9, "nes": 1.5, "p_value": 0.01,
-                          "fdr": 0.02, "fwer_p_value": 0.03, "input_set_size": 10,
-                          "intersection_size": 5, "leading_edge_genes": ["G1", "G2"]}],
+        "results_table": [
+            {
+                "term": "SET_A",
+                "es": 0.9,
+                "nes": 1.5,
+                "p_value": 0.01,
+                "fdr": 0.02,
+                "fwer_p_value": 0.03,
+                "input_set_size": 10,
+                "intersection_size": 5,
+                "leading_edge_genes": ["G1", "G2"],
+            }
+        ],
     }
 
 
 def test_write_result_atomic_really_rejects_incomplete_complete_result(tmp_path):
-    bad_result = GSEARunResult(status="complete", backend="gseapy",
-                               backend_version="1.2.1", ranking_sha256="a" * 64)
+    bad_result = GSEARunResult(
+        status="complete", backend="gseapy", backend_version="1.2.1", ranking_sha256="a" * 64
+    )
     with pytest.raises(ValueError, match="refusing to write"):
         R._write_result_atomic(str(tmp_path / "GSEA_RESULT.json"), bad_result)
 
@@ -574,8 +712,9 @@ def test_mutation_kill_validate_gsea_result_skipped_on_write(monkeypatch, tmp_pa
     some other check -- is what makes the test above actually raise.
     """
     monkeypatch.setattr(R, "validate_gsea_result", lambda payload: [])
-    bad_result = GSEARunResult(status="complete", backend="gseapy",
-                               backend_version="1.2.1", ranking_sha256="a" * 64)
+    bad_result = GSEARunResult(
+        status="complete", backend="gseapy", backend_version="1.2.1", ranking_sha256="a" * 64
+    )
     path = tmp_path / "GSEA_RESULT.json"
     R._write_result_atomic(str(path), bad_result)  # does NOT raise with the mutant
     assert path.exists()
@@ -588,15 +727,21 @@ def test_mutation_kill_validate_gsea_result_skipped_on_write(monkeypatch, tmp_pa
 # was actually missing.
 # ===========================================================================
 
+
 def test_load_cache_after_cwd_change_with_relative_import(tmp_path):
     gmt = tmp_path / "s.gmt"
     _write_gmt(gmt, {"SET_A": ["G1", "G2"]})
     old_cwd = os.getcwd()
     os.chdir(tmp_path)
     try:
-        G.import_gene_sets(source_gmt_path=str(gmt), collection_name="T", species="human",
-                           gene_id_namespace="gene_symbol", source_version="v1",
-                           out_dir="relative_cache")
+        G.import_gene_sets(
+            source_gmt_path=str(gmt),
+            collection_name="T",
+            species="human",
+            gene_id_namespace="gene_symbol",
+            source_version="v1",
+            out_dir="relative_cache",
+        )
     finally:
         os.chdir(old_cwd)
     gene_sets, manifest = G.load_cached_gene_sets(str(tmp_path / "relative_cache"))
@@ -605,12 +750,18 @@ def test_load_cache_after_cwd_change_with_relative_import(tmp_path):
 
 def test_load_cache_after_whole_directory_copied_elsewhere(tmp_path):
     import shutil
+
     gmt = tmp_path / "s.gmt"
     _write_gmt(gmt, {"SET_A": ["G1", "G2"]})
     cache_dir = tmp_path / "cache"
-    G.import_gene_sets(source_gmt_path=str(gmt), collection_name="T", species="human",
-                       gene_id_namespace="gene_symbol", source_version="v1",
-                       out_dir=str(cache_dir))
+    G.import_gene_sets(
+        source_gmt_path=str(gmt),
+        collection_name="T",
+        species="human",
+        gene_id_namespace="gene_symbol",
+        source_version="v1",
+        out_dir=str(cache_dir),
+    )
     copied_dir = tmp_path / "copied_elsewhere" / "cache"
     shutil.copytree(cache_dir, copied_dir)
     gene_sets, manifest = G.load_cached_gene_sets(str(copied_dir))
@@ -623,20 +774,32 @@ def test_load_cache_after_whole_directory_copied_elsewhere(tmp_path):
 # unhandled LookupError and no GSEA_RESULT.json was ever written.
 # ===========================================================================
 
+
 def test_run_all_gene_sets_filtered_out_is_a_structured_failure(tmp_path):
     top = [f"T{i}" for i in range(10)]
     rest = [f"R{i}" for i in range(40)]
     genes = tuple(top + rest)
     scores = tuple([5.0 - i * 0.1 for i in range(len(top))] + [0.0] * len(rest))
-    ranking = GeneRanking(species="human", gene_id_namespace="gene_symbol",
-                          ranking_definition="f5 regression", genes=genes, scores=scores)
+    ranking = GeneRanking(
+        species="human",
+        gene_id_namespace="gene_symbol",
+        ranking_definition="f5 regression",
+        genes=genes,
+        scores=scores,
+    )
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top})
     out_dir = tmp_path / "out"
     provider = R.LocalPrerankGSEAProvider()
     # min_set_size=100 is far larger than TOP_SET's real (10-gene) overlap --
     # must become an audited failure, never an unhandled exception.
-    result = provider.run(ranking, cache_dir, out_dir=str(out_dir),
-                          min_set_size=100, max_set_size=500, permutation_num=20)
+    result = provider.run(
+        ranking,
+        cache_dir,
+        out_dir=str(out_dir),
+        min_set_size=100,
+        max_set_size=500,
+        permutation_num=20,
+    )
     assert result.status == "failed"
     assert "no gene set passed size filtering" in result.reason
     assert result.excluded_gene_sets[0]["term"] == "TOP_SET"
@@ -653,8 +816,6 @@ def test_run_unexpected_backend_exception_is_recorded_then_reraised(monkeypatch,
     ranking, top_genes, random_genes = _make_known_direction_ranking()
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes})
     out_dir = tmp_path / "out"
-
-    import gseapy as real_gseapy
 
     def _boom(*a, **k):
         raise RuntimeError("simulated unexpected backend failure")
@@ -680,6 +841,7 @@ def test_run_unexpected_backend_exception_is_recorded_then_reraised(monkeypatch,
 # drifted source/dependency identity was silently accepted as "REPLAY MATCH".
 # ===========================================================================
 
+
 def test_replay_rejects_a_different_but_internally_valid_ranking_snapshot(tmp_path):
     """Swaps in another LEGITIMATE snapshot (same scores, different
     ranking_definition, its own correctly self-recomputed hash) after a real
@@ -688,19 +850,23 @@ def test_replay_rejects_a_different_but_internally_valid_ranking_snapshot(tmp_pa
     ORIGINAL result's own recorded ranking_sha256/ranking_snapshot_sha256.
     """
     import dataclasses
+
     ranking, top_genes, random_genes = _make_known_direction_ranking()
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes, "RANDOM_SET": random_genes})
     out_dir = tmp_path / "original"
     provider = R.LocalPrerankGSEAProvider()
-    provider.run(ranking, cache_dir, out_dir=str(out_dir),
-                min_set_size=1, permutation_num=50, random_seed=0)
+    provider.run(
+        ranking, cache_dir, out_dir=str(out_dir), min_set_size=1, permutation_num=50, random_seed=0
+    )
 
     other_ranking = dataclasses.replace(
-        ranking, ranking_definition="DIFFERENT_COMPARISON: unrelated score meaning")
+        ranking, ranking_definition="DIFFERENT_COMPARISON: unrelated score meaning"
+    )
     other_sha = R._ranking_sha256(other_ranking)
     R.write_ranking_snapshot(str(out_dir), other_ranking, other_sha)  # overwrites in place
 
     import gsea_replay
+
     with pytest.raises(SystemExit, match="semantic hash"):
         gsea_replay.replay(str(out_dir), str(tmp_path / "replay"))
 
@@ -712,21 +878,29 @@ def test_replay_rejects_a_cache_swapped_for_a_different_collection_or_version(tm
     --cache-dir, and even if it happens to contain the same gene set.
     """
     ranking, top_genes, random_genes = _make_known_direction_ranking()
-    cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes, "RANDOM_SET": random_genes},
-                            name="cache_a")
+    cache_dir = _make_cache(
+        tmp_path, {"TOP_SET": top_genes, "RANDOM_SET": random_genes}, name="cache_a"
+    )
     out_dir = tmp_path / "original"
     provider = R.LocalPrerankGSEAProvider()
-    provider.run(ranking, cache_dir, out_dir=str(out_dir),
-                min_set_size=1, permutation_num=50, random_seed=0)
+    provider.run(
+        ranking, cache_dir, out_dir=str(out_dir), min_set_size=1, permutation_num=50, random_seed=0
+    )
 
     gmt = tmp_path / "alt.gmt"
     _write_gmt(gmt, {"TOP_SET": top_genes, "RANDOM_SET": random_genes})
     alt_cache = tmp_path / "cache_b"
-    G.import_gene_sets(source_gmt_path=str(gmt), collection_name="DIFFERENT_COLLECTION",
-                       species="human", gene_id_namespace="gene_symbol",
-                       source_version="alternate-v2", out_dir=str(alt_cache))
+    G.import_gene_sets(
+        source_gmt_path=str(gmt),
+        collection_name="DIFFERENT_COLLECTION",
+        species="human",
+        gene_id_namespace="gene_symbol",
+        source_version="alternate-v2",
+        out_dir=str(alt_cache),
+    )
 
     import gsea_replay
+
     with pytest.raises(SystemExit, match="gene_set_collection_name"):
         gsea_replay.replay(str(out_dir), str(tmp_path / "replay"), str(alt_cache))
 
@@ -737,17 +911,20 @@ def test_replay_accepts_a_relocated_copy_of_the_same_cache(tmp_path):
     the R1 fix must not block legitimate relocation, only substitution.
     """
     import shutil
+
     ranking, top_genes, random_genes = _make_known_direction_ranking()
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes, "RANDOM_SET": random_genes})
     out_dir = tmp_path / "original"
     provider = R.LocalPrerankGSEAProvider()
-    provider.run(ranking, cache_dir, out_dir=str(out_dir),
-                min_set_size=1, permutation_num=50, random_seed=0)
+    provider.run(
+        ranking, cache_dir, out_dir=str(out_dir), min_set_size=1, permutation_num=50, random_seed=0
+    )
 
     relocated = tmp_path / "relocated_elsewhere" / "cache"
     shutil.copytree(cache_dir, relocated)
 
     import gsea_replay
+
     outcome = gsea_replay.replay(str(out_dir), str(tmp_path / "replay"), str(relocated))
     assert outcome["mismatches"] == []
 
@@ -761,12 +938,14 @@ def test_replay_rejects_source_or_dependency_identity_drift_by_default(tmp_path)
     cross-version comparison mode that tolerates it.
     """
     import json
+
     ranking, top_genes, random_genes = _make_known_direction_ranking()
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes, "RANDOM_SET": random_genes})
     out_dir = tmp_path / "original"
     provider = R.LocalPrerankGSEAProvider()
-    provider.run(ranking, cache_dir, out_dir=str(out_dir),
-                min_set_size=1, permutation_num=50, random_seed=0)
+    provider.run(
+        ranking, cache_dir, out_dir=str(out_dir), min_set_size=1, permutation_num=50, random_seed=0
+    )
 
     result_path = out_dir / "GSEA_RESULT.json"
     payload = json.loads(result_path.read_text())
@@ -774,11 +953,13 @@ def test_replay_rejects_source_or_dependency_identity_drift_by_default(tmp_path)
     result_path.write_text(json.dumps(payload))
 
     import gsea_replay
+
     strict = gsea_replay.replay(str(out_dir), str(tmp_path / "replay_strict"))
     assert any("source_code_revision_or_hash" in m for m in strict["mismatches"])
 
-    comparison = gsea_replay.replay(str(out_dir), str(tmp_path / "replay_drift"),
-                                    allow_identity_drift=True)
+    comparison = gsea_replay.replay(
+        str(out_dir), str(tmp_path / "replay_drift"), allow_identity_drift=True
+    )
     assert comparison["mismatches"] == []
     assert comparison["identity_drifts"]
 
@@ -789,18 +970,22 @@ def test_mutation_kill_replay_ranking_identity_check(monkeypatch, tmp_path):
     some other guard -- is what rejects it.
     """
     import dataclasses
+
     import gsea_replay
+
     monkeypatch.setattr(gsea_replay, "_check_ranking_identity_or_raise", lambda *a, **k: None)
 
     ranking, top_genes, random_genes = _make_known_direction_ranking()
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes, "RANDOM_SET": random_genes})
     out_dir = tmp_path / "original"
     provider = R.LocalPrerankGSEAProvider()
-    provider.run(ranking, cache_dir, out_dir=str(out_dir),
-                min_set_size=1, permutation_num=50, random_seed=0)
+    provider.run(
+        ranking, cache_dir, out_dir=str(out_dir), min_set_size=1, permutation_num=50, random_seed=0
+    )
 
     other_ranking = dataclasses.replace(
-        ranking, ranking_definition="DIFFERENT_COMPARISON: unrelated score meaning")
+        ranking, ranking_definition="DIFFERENT_COMPARISON: unrelated score meaning"
+    )
     other_sha = R._ranking_sha256(other_ranking)
     R.write_ranking_snapshot(str(out_dir), other_ranking, other_sha)
 
@@ -812,22 +997,30 @@ def test_mutation_kill_replay_cache_identity_check(monkeypatch, tmp_path):
     """Disables `_check_cache_identity_or_raise` and confirms the
     cache-swap scenario above would then silently pass."""
     import gsea_replay
+
     monkeypatch.setattr(gsea_replay, "_check_cache_identity_or_raise", lambda *a, **k: None)
 
     ranking, top_genes, random_genes = _make_known_direction_ranking()
-    cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes, "RANDOM_SET": random_genes},
-                            name="cache_a")
+    cache_dir = _make_cache(
+        tmp_path, {"TOP_SET": top_genes, "RANDOM_SET": random_genes}, name="cache_a"
+    )
     out_dir = tmp_path / "original"
     provider = R.LocalPrerankGSEAProvider()
-    provider.run(ranking, cache_dir, out_dir=str(out_dir),
-                min_set_size=1, permutation_num=50, random_seed=0)
+    provider.run(
+        ranking, cache_dir, out_dir=str(out_dir), min_set_size=1, permutation_num=50, random_seed=0
+    )
 
     gmt = tmp_path / "alt.gmt"
     _write_gmt(gmt, {"TOP_SET": top_genes, "RANDOM_SET": random_genes})
     alt_cache = tmp_path / "cache_b"
-    G.import_gene_sets(source_gmt_path=str(gmt), collection_name="DIFFERENT_COLLECTION",
-                       species="human", gene_id_namespace="gene_symbol",
-                       source_version="alternate-v2", out_dir=str(alt_cache))
+    G.import_gene_sets(
+        source_gmt_path=str(gmt),
+        collection_name="DIFFERENT_COLLECTION",
+        species="human",
+        gene_id_namespace="gene_symbol",
+        source_version="alternate-v2",
+        out_dir=str(alt_cache),
+    )
 
     outcome = gsea_replay.replay(str(out_dir), str(tmp_path / "replay"), str(alt_cache))
     assert outcome["mismatches"] == []  # with the mutant: silently "passes"
@@ -837,6 +1030,7 @@ def test_read_gsea_result_rejects_boolean_identity_field(tmp_path):
     """A probe found `source_code_revision_or_hash=True` accepted by the
     previous `not payload.get(key)` check -- truthy but not a string."""
     import json
+
     payload = _minimal_valid_complete_payload()
     payload["source_code_revision_or_hash"] = True
     path = tmp_path / "bad.json"
@@ -851,6 +1045,7 @@ def test_read_gsea_result_rejects_params_missing_required_numeric_keys(tmp_path)
     numeric key the backend actually used, or replay would have to silently
     default it."""
     import json
+
     payload = _minimal_valid_complete_payload()
     payload["params"] = {"unrelated": 1}
     path = tmp_path / "bad.json"
@@ -867,18 +1062,21 @@ def test_read_gsea_result_rejects_params_missing_required_numeric_keys(tmp_path)
 # behind a clean audited record" claim.
 # ===========================================================================
 
+
 def test_run_with_nan_score_leaves_no_snapshot_and_records_a_clean_failed_result(tmp_path):
     ranking, top_genes, random_genes = _make_known_direction_ranking()
     bad_scores = list(ranking.scores)
     bad_scores[0] = float("nan")
     import dataclasses
+
     bad_ranking = dataclasses.replace(ranking, scores=tuple(bad_scores))
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes})
     out_dir = tmp_path / "out"
 
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(bad_ranking, cache_dir, out_dir=str(out_dir),
-                          min_set_size=1, permutation_num=20)
+    result = provider.run(
+        bad_ranking, cache_dir, out_dir=str(out_dir), min_set_size=1, permutation_num=20
+    )
 
     assert result.status == "failed"
     assert "no snapshot was written" in result.reason
@@ -901,20 +1099,23 @@ def test_mutation_kill_r2_validate_gate_before_snapshot_write(monkeypatch, tmp_p
     regression test above depends on.
     """
     from enrichment_providers import GeneRanking
+
     monkeypatch.setattr(GeneRanking, "validate", lambda self: [])
 
     ranking, top_genes, random_genes = _make_known_direction_ranking()
     bad_scores = list(ranking.scores)
     bad_scores[0] = float("nan")
     import dataclasses
+
     bad_ranking = dataclasses.replace(ranking, scores=tuple(bad_scores))
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes})
     out_dir = tmp_path / "out"
 
     provider = R.LocalPrerankGSEAProvider()
     with pytest.raises(ValueError, match="not JSON compliant|Infinity|NaN"):
-        provider.run(bad_ranking, cache_dir, out_dir=str(out_dir),
-                    min_set_size=1, permutation_num=20)
+        provider.run(
+            bad_ranking, cache_dir, out_dir=str(out_dir), min_set_size=1, permutation_num=20
+        )
 
 
 # ===========================================================================
@@ -926,6 +1127,7 @@ def test_mutation_kill_r2_validate_gate_before_snapshot_write(monkeypatch, tmp_p
 # accurately rather than claimed to be universally impossible.
 # ===========================================================================
 
+
 def test_run_case_collision_within_ranking_fails_closed_not_silently_wrong(tmp_path):
     """Per the review's own reproduction: a ranking containing BOTH `ANCHOR`
     and `Anchor` as distinct entries, against a gene set containing only
@@ -935,14 +1137,25 @@ def test_run_case_collision_within_ranking_fails_closed_not_silently_wrong(tmp_p
     """
     genes = ("ANCHOR",) + tuple(f"Gene{i}" for i in range(80)) + ("Anchor",)
     scores = (20.0,) + tuple(19.0 - i * 0.5 for i in range(80)) + (-5.25,)
-    ranking = GeneRanking(species="mouse", gene_id_namespace="gene_symbol",
-                          ranking_definition="C1 regression: case collision within ranking",
-                          genes=genes, scores=scores)
+    ranking = GeneRanking(
+        species="mouse",
+        gene_id_namespace="gene_symbol",
+        ranking_definition="C1 regression: case collision within ranking",
+        genes=genes,
+        scores=scores,
+    )
     cache_dir = _make_cache(tmp_path, {"TOY_CASE": ["ANCHOR"]}, species="mouse")
 
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(tmp_path / "out"),
-                          min_set_size=1, permutation_num=50, random_seed=0, threads=1)
+    result = provider.run(
+        ranking,
+        cache_dir,
+        out_dir=str(tmp_path / "out"),
+        min_set_size=1,
+        permutation_num=50,
+        random_seed=0,
+        threads=1,
+    )
 
     # This must NEVER silently report "complete" with a wrong leading edge --
     # either it stays 'failed' (current fail-closed behaviour) or a future,
@@ -977,12 +1190,17 @@ def test_source_modules_includes_artifact_schema(tmp_path):
 # the backend is ever called.
 # ===========================================================================
 
+
 def _make_zero_overlap_ranking(species="human", namespace="gene_symbol"):
     genes = tuple(f"RG{i}" for i in range(20))
     scores = tuple(float(20 - i) for i in range(20))
-    ranking = GeneRanking(species=species, gene_id_namespace=namespace,
-                          ranking_definition="R3 regression: zero-overlap ranking",
-                          genes=genes, scores=scores)
+    ranking = GeneRanking(
+        species=species,
+        gene_id_namespace=namespace,
+        ranking_definition="R3 regression: zero-overlap ranking",
+        genes=genes,
+        scores=scores,
+    )
     return ranking
 
 
@@ -996,18 +1214,25 @@ def test_replay_refuses_a_no_overlap_original_even_with_a_swapped_cache(tmp_path
     cache_dir = _make_cache(tmp_path, {"UNRELATED_SET": ["Z0", "Z1"]}, name="cache_a")
     out_dir = tmp_path / "original"
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(out_dir),
-                          min_set_size=1, permutation_num=20)
+    result = provider.run(
+        ranking, cache_dir, out_dir=str(out_dir), min_set_size=1, permutation_num=20
+    )
     assert result.status == "no_overlap"
 
     gmt = tmp_path / "alt.gmt"
     _write_gmt(gmt, {"ANOTHER_UNRELATED_SET": ["Z0", "Z1"]})
     alt_cache = tmp_path / "cache_b"
-    G.import_gene_sets(source_gmt_path=str(gmt), collection_name="DIFFERENT_COLLECTION",
-                       species="human", gene_id_namespace="gene_symbol",
-                       source_version="alternate-v2", out_dir=str(alt_cache))
+    G.import_gene_sets(
+        source_gmt_path=str(gmt),
+        collection_name="DIFFERENT_COLLECTION",
+        species="human",
+        gene_id_namespace="gene_symbol",
+        source_version="alternate-v2",
+        out_dir=str(alt_cache),
+    )
 
     import gsea_replay
+
     with pytest.raises(SystemExit, match="only supports"):
         gsea_replay.replay(str(out_dir), str(tmp_path / "replay"), str(alt_cache))
 
@@ -1017,17 +1242,28 @@ def test_replay_refuses_a_failed_original_before_touching_snapshot_or_backend(tm
     rest = [f"Rr{i}" for i in range(40)]
     genes = tuple(top + rest)
     scores = tuple([5.0 - i * 0.1 for i in range(len(top))] + [0.0] * len(rest))
-    ranking = GeneRanking(species="human", gene_id_namespace="gene_symbol",
-                          ranking_definition="R3 regression: failed original",
-                          genes=genes, scores=scores)
+    ranking = GeneRanking(
+        species="human",
+        gene_id_namespace="gene_symbol",
+        ranking_definition="R3 regression: failed original",
+        genes=genes,
+        scores=scores,
+    )
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top})
     out_dir = tmp_path / "original"
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(out_dir),
-                          min_set_size=100, max_set_size=500, permutation_num=20)
+    result = provider.run(
+        ranking,
+        cache_dir,
+        out_dir=str(out_dir),
+        min_set_size=100,
+        max_set_size=500,
+        permutation_num=20,
+    )
     assert result.status == "failed"
 
     import gsea_replay
+
     with pytest.raises(SystemExit, match="only supports"):
         gsea_replay.replay(str(out_dir), str(tmp_path / "replay"))
     # The original record must be left exactly as it was.
@@ -1047,6 +1283,7 @@ def test_mutation_kill_replay_status_restriction(monkeypatch, tmp_path):
     a non-'complete' original.
     """
     import gsea_replay
+
     monkeypatch.setattr(gsea_replay, "_REPLAYABLE_STATUSES", ("complete", "no_overlap"))
 
     ranking = _make_zero_overlap_ranking()
@@ -1068,11 +1305,13 @@ def test_replay_still_accepts_a_complete_original_after_the_r3_restriction(tmp_p
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes, "RANDOM_SET": random_genes})
     out_dir = tmp_path / "original"
     provider = R.LocalPrerankGSEAProvider()
-    result = provider.run(ranking, cache_dir, out_dir=str(out_dir),
-                          min_set_size=1, permutation_num=50, random_seed=0)
+    result = provider.run(
+        ranking, cache_dir, out_dir=str(out_dir), min_set_size=1, permutation_num=50, random_seed=0
+    )
     assert result.status == "complete"
 
     import gsea_replay
+
     outcome = gsea_replay.replay(str(out_dir), str(tmp_path / "replay"))
     assert outcome["mismatches"] == []
 
@@ -1087,8 +1326,10 @@ def test_replay_still_accepts_a_complete_original_after_the_r3_restriction(tmp_p
 # REPLAY MATCH, even when every number agrees").
 # ===========================================================================
 
+
 def test_replay_label_reflects_requested_mode_not_observed_drift(tmp_path):
     import gsea_replay
+
     # Flag explicitly set, but nothing was tampered with -- no real drift.
     comparison_no_drift = {"allow_identity_drift": True, "identity_drifts": []}
     label, extra = gsea_replay._replay_label_and_extra(comparison_no_drift)
@@ -1099,8 +1340,10 @@ def test_replay_label_reflects_requested_mode_not_observed_drift(tmp_path):
     label, extra = gsea_replay._replay_label_and_extra(strict_no_drift)
     assert label == "REPLAY MATCH"
 
-    comparison_with_drift = {"allow_identity_drift": True,
-                             "identity_drifts": ["source_code_revision_or_hash: ..."]}
+    comparison_with_drift = {
+        "allow_identity_drift": True,
+        "identity_drifts": ["source_code_revision_or_hash: ..."],
+    }
     label, extra = gsea_replay._replay_label_and_extra(comparison_with_drift)
     assert label == "REPLAY COMPARISON"
     assert "identity drift tolerated" in extra
@@ -1112,20 +1355,30 @@ def test_replay_cli_prints_comparison_label_for_requested_mode_with_no_drift(tmp
     environment pair must still print 'REPLAY COMPARISON', never 'REPLAY
     MATCH'.
     """
-    import gsea_replay
     ranking, top_genes, random_genes = _make_known_direction_ranking()
     cache_dir = _make_cache(tmp_path, {"TOP_SET": top_genes, "RANDOM_SET": random_genes})
     out_dir = tmp_path / "original"
     provider = R.LocalPrerankGSEAProvider()
-    provider.run(ranking, cache_dir, out_dir=str(out_dir),
-                min_set_size=1, permutation_num=50, random_seed=0)
+    provider.run(
+        ranking, cache_dir, out_dir=str(out_dir), min_set_size=1, permutation_num=50, random_seed=0
+    )
 
     import subprocess
+
     replay_script = os.path.join(CODE, "gsea_replay.py")
     proc = subprocess.run(
-        [sys.executable, replay_script, "--from", str(out_dir),
-         "--out", str(tmp_path / "replay"), "--allow-identity-drift"],
-        capture_output=True, text=True)
+        [
+            sys.executable,
+            replay_script,
+            "--from",
+            str(out_dir),
+            "--out",
+            str(tmp_path / "replay"),
+            "--allow-identity-drift",
+        ],
+        capture_output=True,
+        text=True,
+    )
     assert proc.returncode == 0, proc.stdout + proc.stderr
     assert "REPLAY COMPARISON" in proc.stdout
     assert "REPLAY MATCH" not in proc.stdout
@@ -1138,6 +1391,7 @@ def test_mutation_kill_replay_label_reflects_requested_mode(monkeypatch):
     'REPLAY MATCH' -- proving the fixed function, not something else, is
     what the regression test above depends on.
     """
+
     def _old_buggy_label_and_extra(outcome):
         label = "REPLAY COMPARISON" if outcome["identity_drifts"] else "REPLAY MATCH"
         extra = ""

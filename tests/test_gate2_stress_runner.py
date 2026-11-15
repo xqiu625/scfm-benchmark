@@ -735,11 +735,11 @@ def test_default_neighbor_rule_is_resolved_before_library_echo_comparison():
     for n_obs, expected in [(36, 3), (100, 5), (400, 10)]:
         for rate in D.RESIDUAL_RATE_GRID:
             params = R.scrublet_call_parameters(rate, 123, ruling, n_obs=n_obs)
-            assert params['n_neighbors'] == expected
-            assert R._echo_agrees(params, {'n_neighbors': expected})['agree']
-            assert not R._echo_agrees(params, {'n_neighbors': expected + 1})['agree']
-    assert ruling['n_neighbors'] is None
-    with pytest.raises(R.Gate2RunnerError, match='post-filter'):
+            assert params["n_neighbors"] == expected
+            assert R._echo_agrees(params, {"n_neighbors": expected})["agree"]
+            assert not R._echo_agrees(params, {"n_neighbors": expected + 1})["agree"]
+    assert ruling["n_neighbors"] is None
+    with pytest.raises(R.Gate2RunnerError, match="post-filter"):
         R.scrublet_call_parameters(0.04, 123, ruling)
 
 

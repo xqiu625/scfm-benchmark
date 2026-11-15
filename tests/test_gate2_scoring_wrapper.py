@@ -6,6 +6,7 @@ the documented dry-run success path unreachable. This test runs the real wrapper
 from a clean tracked fixture and proves the two exit codes differ.
 """
 
+import hashlib
 import os
 import re
 import shutil
@@ -15,8 +16,7 @@ import sys
 import pytest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-WRAPPER_REL = ("reports/manuscript/revision/gate2_capture_audit_2026-09-24/"
-               "run_capture_scoring.sh")
+WRAPPER_REL = "reports/manuscript/revision/gate2_capture_audit_2026-09-24/" "run_capture_scoring.sh"
 WRAPPER = os.path.join(ROOT, WRAPPER_REL)
 
 
@@ -41,10 +41,25 @@ def _fixture(tmp_path):
         dst = repo / rel
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(src, dst)
+    # The wrapper validates bytes and hashes; CI cannot read the HPCC deposit.
+    deposit = tmp_path / "deposit"
+    deposit.mkdir()
+    hashes = {}
+    for suffix in ("barcodes.tsv.gz", "features.tsv.gz", "matrix.mtx.gz"):
+        source = deposit / f"GSM5102900_HC1_{suffix}"
+        source.write_bytes(f"synthetic {suffix}\n".encode())
+        hashes[source.name] = hashlib.sha256(source.read_bytes()).hexdigest()
+    config = repo / "scripts/32_rebuild_upfront_qc/code/gate2_scoring_config_GSM5102900_HC1.py"
+    config.write_text(
+        config.read_text() + f"\nDEPOSIT_DIR = {str(deposit)!r}\nINPUT_SHA256 = {hashes!r}\n"
+    )
     subprocess.run(["git", "init", "-q"], cwd=repo, check=True)
     subprocess.run(["git", "add", "-A"], cwd=repo, check=True)
-    subprocess.run(["git", "-c", "user.email=t@t", "-c", "user.name=t",
-                    "commit", "-qm", "fixture"], cwd=repo, check=True)
+    subprocess.run(
+        ["git", "-c", "user.email=t@t", "-c", "user.name=t", "commit", "-qm", "fixture"],
+        cwd=repo,
+        check=True,
+    )
     return repo
 
 
@@ -53,8 +68,9 @@ def _run(repo, *args):
     env.pop("GATE2_PILOT_PERMIT", None)
     env.pop("GATE2_PERMIT_TEST_BYPASS", None)
     env["PATH"] = os.path.dirname(sys.executable) + os.pathsep + env["PATH"]
-    return subprocess.run(["bash", WRAPPER_REL, *args], cwd=repo,
-                          capture_output=True, text=True, env=env)
+    return subprocess.run(
+        ["bash", WRAPPER_REL, *args], cwd=repo, capture_output=True, text=True, env=env
+    )
 
 
 def test_dry_run_exits_zero_when_the_permit_is_absent(tmp_path):
@@ -73,6 +89,21 @@ def test_normal_mode_exits_nonzero_when_the_permit_is_absent(tmp_path):
     assert p.returncode != 0, f"stdout:\n{p.stdout}"
     assert p.returncode == 3, p.returncode
     assert "REFUSING to score without a valid scoped pilot permit" in p.stderr
+
+
+@pytest.mark.parametrize("missing", [False, True])
+def test_dry_run_refuses_changed_or_missing_input(tmp_path, missing):
+    repo = _fixture(tmp_path)
+    source = tmp_path / "deposit" / "GSM5102900_HC1_barcodes.tsv.gz"
+    if missing:
+        source.unlink()
+    else:
+        source.write_bytes(b"changed input")
+    p = _run(repo, "--dry-run")
+    assert p.returncode == 1, f"stdout:\n{p.stdout}\nstderr:\n{p.stderr}"
+    expected = "input missing" if missing else "does not describe this file"
+    assert expected in p.stderr
+    assert "DRY RUN COMPLETE" not in p.stdout
 
 
 def test_the_wrapper_refuses_modified_files(tmp_path):
@@ -98,7 +129,8 @@ def test_the_wrapper_guards_exactly_what_the_permit_digests(tmp_path):
     guarded = set(re.findall(r'"(scripts/[^"]+\.py|reports/[^"]+\.sh)"', src))
     assert guarded == set(C.IMPLEMENTATION_FILES), (
         f"guarded not digested: {sorted(guarded - set(C.IMPLEMENTATION_FILES))}; "
-        f"digested not guarded: {sorted(set(C.IMPLEMENTATION_FILES) - guarded)}")
+        f"digested not guarded: {sorted(set(C.IMPLEMENTATION_FILES) - guarded)}"
+    )
 
 
 def test_a_divergent_guard_list_is_refused_by_the_running_wrapper(tmp_path):
@@ -111,8 +143,20 @@ def test_a_divergent_guard_list_is_refused_by_the_running_wrapper(tmp_path):
     assert drop in src, "anchor missing; the mutation would be a no-op"
     w.write_text(src.replace(drop, "", 1))
     subprocess.run(["git", "add", "-A"], cwd=repo, check=True)
-    subprocess.run(["git", "-c", "user.email=t@t", "-c", "user.name=t",
-                    "commit", "-qm", "drop one guarded file"], cwd=repo, check=True)
+    subprocess.run(
+        [
+            "git",
+            "-c",
+            "user.email=t@t",
+            "-c",
+            "user.name=t",
+            "commit",
+            "-qm",
+            "drop one guarded file",
+        ],
+        cwd=repo,
+        check=True,
+    )
     p = _run(repo, "--dry-run")
     assert p.returncode == 4, f"rc={p.returncode}\nstdout:\n{p.stdout}\nstderr:\n{p.stderr}"
     assert "guards a different file set than the permit digests" in p.stderr
@@ -135,8 +179,11 @@ def test_errexit_is_suspended_only_around_the_validation():
     `rc=$?` while explaining it, so scanning the raw text finds the explanation
     before the code and reports a false inversion. That is the same substring
     trap DEVELOPMENT.md rule 2 names, and it caught this test on first run."""
-    code = [ln.strip() for ln in open(WRAPPER).read().splitlines()
-            if ln.strip() and not ln.strip().startswith("#")]
+    code = [
+        ln.strip()
+        for ln in open(WRAPPER).read().splitlines()
+        if ln.strip() and not ln.strip().startswith("#")
+    ]
     assert "set +e" in code, "errexit is never suspended"
     off = code.index("set +e")
     rc = next(i for i, ln in enumerate(code) if ln.startswith("rc=$?"))
@@ -148,8 +195,9 @@ def test_errexit_is_suspended_only_around_the_validation():
 
 import ast as _ast  # noqa: E402
 
-ENTRY = os.path.join(ROOT, "scripts", "32_rebuild_upfront_qc", "code",
-                     "gate2_score_capture_GSM5102900_HC1.py")
+ENTRY = os.path.join(
+    ROOT, "scripts", "32_rebuild_upfront_qc", "code", "gate2_score_capture_GSM5102900_HC1.py"
+)
 ENTRY_SRC = open(ENTRY).read()
 ENTRY_TREE = _ast.parse(ENTRY_SRC)
 
@@ -184,25 +232,35 @@ def test_every_sidecar_is_written_to_a_temp_and_replaced():
     found the PROSE at offset 398 and reported the promotion as happening before
     the validation at 1698. Same substring trap as DEVELOPMENT.md rule 2.
     """
-    fn = next(n for n in _ast.walk(ENTRY_TREE)
-              if isinstance(n, _ast.FunctionDef) and n.name == "_promote_sidecars")
+    fn = next(
+        n
+        for n in _ast.walk(ENTRY_TREE)
+        if isinstance(n, _ast.FunctionDef) and n.name == "_promote_sidecars"
+    )
     stmts = [n for n in _ast.walk(fn) if not isinstance(n, _ast.Constant)]
 
-    replaces = [n.lineno for n in stmts
-                if isinstance(n, _ast.Call)
-                and getattr(n.func, "attr", None) == "replace"
-                and getattr(getattr(n.func, "value", None), "id", None) == "os"]
-    fsyncs = [n.lineno for n in stmts
-              if isinstance(n, _ast.Call) and getattr(n.func, "attr", None) == "fsync"]
-    validations = [n.lineno for n in stmts
-                   if isinstance(n, _ast.Raise)
-                   and "does not match its payload" in _ast.unparse(n)]
+    replaces = [
+        n.lineno
+        for n in stmts
+        if isinstance(n, _ast.Call)
+        and getattr(n.func, "attr", None) == "replace"
+        and getattr(getattr(n.func, "value", None), "id", None) == "os"
+    ]
+    fsyncs = [
+        n.lineno
+        for n in stmts
+        if isinstance(n, _ast.Call) and getattr(n.func, "attr", None) == "fsync"
+    ]
+    validations = [
+        n.lineno
+        for n in stmts
+        if isinstance(n, _ast.Raise) and "does not match its payload" in _ast.unparse(n)
+    ]
 
     assert replaces, "no os.replace call"
     assert fsyncs, "no fsync call"
     assert validations, "no byte-for-byte validation"
-    assert max(validations) < min(replaces), \
-        "temps must be validated before any is promoted"
+    assert max(validations) < min(replaces), "temps must be validated before any is promoted"
     assert min(fsyncs) < min(replaces), "temps must be fsynced before promotion"
 
 
@@ -216,8 +274,11 @@ def test_per_cell_scores_are_written_not_inferred():
 
 def test_the_manifest_lists_every_output_with_hashes_and_schema():
     assert "'outputs': " in ENTRY_SRC or "outputs=outputs" in ENTRY_SRC
-    fn = next(n for n in _ast.walk(ENTRY_TREE)
-              if isinstance(n, _ast.FunctionDef) and n.name == "_promote_sidecars")
+    fn = next(
+        n
+        for n in _ast.walk(ENTRY_TREE)
+        if isinstance(n, _ast.FunctionDef) and n.name == "_promote_sidecars"
+    )
     body = _ast.unparse(fn)
     for field in ("'sha256'", "'bytes'", "'schema_version'"):
         assert field in body, field
@@ -230,9 +291,9 @@ def test_the_manifest_lists_every_output_with_hashes_and_schema():
 # cannot tell you whether the instrumentation is attached to the right object.
 
 sys.path.insert(0, os.path.join(ROOT, "scripts/32_rebuild_upfront_qc/code"))
-import numpy as _np  # noqa: E402
 import gate2_score_capture_GSM5102900_HC1 as E  # noqa: E402
 import gate2_scoring_config_GSM5102900_HC1 as C2  # noqa: E402
+import numpy as _np  # noqa: E402
 
 K_ADJ = C2.RESOLVED["k_adj"]
 SHAPE = C2.expected_graph_shape()
@@ -251,10 +312,15 @@ class _FakeCapture:
 
 
 def _rec(n=None, shape=None, idx_sha="a" * 64, dist_sha="b" * 64):
-    return {"shape": list(shape or SHAPE), "n_neighbors_arg": K_ADJ if n is None else n,
-            "n_queries": (shape or SHAPE)[0], "columns": (shape or SHAPE)[1],
-            "indices_sha256": idx_sha, "distances_sha256": dist_sha,
-            "self_first_column": False}
+    return {
+        "shape": list(shape or SHAPE),
+        "n_neighbors_arg": K_ADJ if n is None else n,
+        "n_queries": (shape or SHAPE)[0],
+        "columns": (shape or SHAPE)[1],
+        "indices_sha256": idx_sha,
+        "distances_sha256": dist_sha,
+        "self_first_column": False,
+    }
 
 
 def _evidence(records):
@@ -332,8 +398,9 @@ def test_distances_are_recorded_but_not_claimed_invariant():
 
 def test_the_run_stops_on_any_acceptance_problem():
     """The branch must be on the problem list, never on a tri-state field."""
-    main = next(n for n in _ast.walk(ENTRY_TREE)
-                if isinstance(n, _ast.FunctionDef) and n.name == "main")
+    main = next(
+        n for n in _ast.walk(ENTRY_TREE) if isinstance(n, _ast.FunctionDef) and n.name == "main"
+    )
     src = _ast.unparse(main)
     assert "graph_problems" in src
     assert "graph_unacceptable" in src
@@ -342,11 +409,11 @@ def test_the_run_stops_on_any_acceptance_problem():
 
 def test_the_graph_capture_passes_values_through_untouched():
     """Instrumentation must observe, not alter, the graph scanpy uses."""
-    fn = next(n for n in _ast.walk(ENTRY_TREE)
-              if isinstance(n, _ast.FunctionDef) and n.name == "patched")
+    fn = next(
+        n for n in _ast.walk(ENTRY_TREE) if isinstance(n, _ast.FunctionDef) and n.name == "patched"
+    )
     body = _ast.unparse(fn)
-    assert body.rstrip().endswith("return (idx, dist)"), \
-        "the captured value is not returned as-is"
+    assert body.rstrip().endswith("return (idx, dist)"), "the captured value is not returned as-is"
 
 
 @pytest.mark.scanpy_integration
@@ -373,14 +440,16 @@ def test_the_capture_actually_attaches_to_the_pinned_scanpy_path():
     for rate in (0.05, 0.10):
         b = a.copy()
         with E._GraphCapture() as gcap:
-            sc.pp.scrublet(b, expected_doublet_rate=rate, n_prin_comps=10,
-                           random_state=0, verbose=False)
+            sc.pp.scrublet(
+                b, expected_doublet_rate=rate, n_prin_comps=10, random_state=0, verbose=False
+            )
         per_prior.append(gcap.digest())
 
     for d in per_prior:
         assert len(d) == C2.GRAPH_CONSTRUCTIONS_PER_PRIOR, (
             f"captured {len(d)} constructions, expected "
-            f"{C2.GRAPH_CONSTRUCTIONS_PER_PRIOR} per prior")
+            f"{C2.GRAPH_CONSTRUCTIONS_PER_PRIOR} per prior"
+        )
         g = d[0]
         assert g["indices_sha256"] and g["distances_sha256"]
         # the columns rule production relies on, re-derived here
@@ -412,24 +481,33 @@ def test_patching_nearest_neighbors_would_have_captured_nothing():
         rng = _np.random.default_rng(0)
         X = sp.csr_matrix(rng.poisson(0.4, size=(300, 200)).astype(_np.float32))
         b = ad.AnnData(X=X)
-        sc.pp.scrublet(b, expected_doublet_rate=0.05, n_prin_comps=10,
-                       random_state=0, verbose=False)
+        sc.pp.scrublet(
+            b, expected_doublet_rate=0.05, n_prin_comps=10, random_state=0, verbose=False
+        )
     finally:
         NearestNeighbors.kneighbors = orig
     assert seen == [], (
         "NearestNeighbors.kneighbors now fires; the recorded reason for moving "
-        "the capture point no longer holds and must be re-reviewed")
+        "the capture point no longer holds and must be re-reviewed"
+    )
 
 
 def test_no_scoring_happens_without_the_permit_gate():
-    main = next(n for n in _ast.walk(ENTRY_TREE)
-                if isinstance(n, _ast.FunctionDef) and n.name == "main")
-    order = [n.lineno for n in _ast.walk(main) if isinstance(n, _ast.Call)
-             and getattr(n.func, "attr", getattr(n.func, "id", "")) == "assert_permitted"]
-    load = [n.lineno for n in _ast.walk(main) if isinstance(n, _ast.Call)
-            and getattr(n.func, "id", "") == "_load_deposit"]
-    assert order and load and min(order) < min(load), \
-        "the deposit is loaded before the permit gate"
+    main = next(
+        n for n in _ast.walk(ENTRY_TREE) if isinstance(n, _ast.FunctionDef) and n.name == "main"
+    )
+    order = [
+        n.lineno
+        for n in _ast.walk(main)
+        if isinstance(n, _ast.Call)
+        and getattr(n.func, "attr", getattr(n.func, "id", "")) == "assert_permitted"
+    ]
+    load = [
+        n.lineno
+        for n in _ast.walk(main)
+        if isinstance(n, _ast.Call) and getattr(n.func, "id", "") == "_load_deposit"
+    ]
+    assert order and load and min(order) < min(load), "the deposit is loaded before the permit gate"
 
 
 def test_identity_mismatch_cannot_publish_a_complete_manifest(tmp_path, monkeypatch):
@@ -438,29 +516,36 @@ def test_identity_mismatch_cannot_publish_a_complete_manifest(tmp_path, monkeypa
     import json
     import types
 
-    out = tmp_path / 'output'
-    monkeypatch.setattr(sys, 'argv', ['pilot', '--out-dir', str(out)])
-    monkeypatch.setattr(C2, 'assert_permitted', lambda *a: {'permit_id': 'TEST-ONLY'})
-    monkeypatch.setattr(C2, 'scoring_config', lambda: {'output': {'directory': str(out)}})
-    monkeypatch.setattr(C2, 'config_sha256', lambda: 'test-config')
+    out = tmp_path / "output"
+    monkeypatch.setattr(sys, "argv", ["pilot", "--out-dir", str(out)])
+    monkeypatch.setattr(C2, "assert_permitted", lambda *a: {"permit_id": "TEST-ONLY"})
+    monkeypatch.setattr(C2, "scoring_config", lambda: {"output": {"directory": str(out)}})
+    monkeypatch.setattr(C2, "config_sha256", lambda: "test-config")
     versions = dict(C2.DEPENDENCY_VERSIONS, python=sys.version.split()[0])
-    monkeypatch.setattr(C2, 'DEPENDENCY_VERSIONS', versions)
-    for name in ('scanpy', 'anndata', 'numpy', 'scipy', 'sklearn'):
+    monkeypatch.setattr(C2, "DEPENDENCY_VERSIONS", versions)
+    for name in ("scanpy", "anndata", "numpy", "scipy", "sklearn"):
         monkeypatch.setitem(sys.modules, name, types.SimpleNamespace(__version__=versions[name]))
-    monkeypatch.setattr(E, '_load_deposit', lambda: types.SimpleNamespace(shape=(7666, 1576)))
-    rows = [{'expected_doublet_rate': rate, 'n_cells': 7666,
-             'identity_verified': False, 'parameters_echo_agree': {'agree': True},
-             'simulated_checksum': 'same'} for rate in C2.RESIDUAL_RATE_GRID]
-    monkeypatch.setattr(E, 'score_capture', lambda *a: (rows, {}, {}))
+    monkeypatch.setattr(E, "_load_deposit", lambda: types.SimpleNamespace(shape=(7666, 1576)))
+    rows = [
+        {
+            "expected_doublet_rate": rate,
+            "n_cells": 7666,
+            "identity_verified": False,
+            "parameters_echo_agree": {"agree": True},
+            "simulated_checksum": "same",
+        }
+        for rate in C2.RESIDUAL_RATE_GRID
+    ]
+    monkeypatch.setattr(E, "score_capture", lambda *a: (rows, {}, {}))
 
     @contextlib.contextmanager
     def graph():
         yield _FakeCapture([_rec() for _ in range(N_PRIORS)])
 
-    monkeypatch.setattr(E, '_GraphCapture', graph)
-    with pytest.raises(SystemExit, match='identity mismatch'):
+    monkeypatch.setattr(E, "_GraphCapture", graph)
+    with pytest.raises(SystemExit, match="identity mismatch"):
         E.main()
-    manifest = json.loads((out / 'SCORING_MANIFEST.json').read_text())
-    assert manifest['status'] == 'stopped'
-    assert manifest['stage'] == 'drift_detected'
-    assert not (out / 'PER_PRIOR_SCORES.json').exists()
+    manifest = json.loads((out / "SCORING_MANIFEST.json").read_text())
+    assert manifest["status"] == "stopped"
+    assert manifest["stage"] == "drift_detected"
+    assert not (out / "PER_PRIOR_SCORES.json").exists()

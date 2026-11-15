@@ -3,12 +3,15 @@
 No field is silently defaulted: every test here either supplies a field
 explicitly or expects validate_dataset_config to name it as missing/empty.
 """
+
 import os
 import sys
 
 CODE = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    "scripts", "34_scfm_discovery_framework", "code",
+    "scripts",
+    "34_scfm_discovery_framework",
+    "code",
 )
 sys.path.insert(0, CODE)
 
@@ -108,6 +111,7 @@ def test_unrecognized_extra_field_is_flagged():
 # not merely non-None/non-empty. Each of these reproduces a case the review found
 # passing with `ok=True` before this fix. ---
 
+
 def test_list_typed_dataset_id_is_rejected():
     config = _base_config(dataset_id=[])
     result = D.validate_dataset_config(config)
@@ -119,24 +123,21 @@ def test_int_typed_subject_id_column_is_rejected():
     config = _base_config(subject_id_column=17)
     result = D.validate_dataset_config(config)
     assert not result.ok
-    assert any(i.field == "subject_id_column" and "string" in i.reason
-               for i in result.issues)
+    assert any(i.field == "subject_id_column" and "string" in i.reason for i in result.issues)
 
 
 def test_bool_typed_expression_matrix_path_is_rejected():
     config = _base_config(expression_matrix_path=False)
     result = D.validate_dataset_config(config)
     assert not result.ok
-    assert any(i.field == "expression_matrix_path" and "string" in i.reason
-               for i in result.issues)
+    assert any(i.field == "expression_matrix_path" and "string" in i.reason for i in result.issues)
 
 
 def test_all_three_type_errors_reported_together():
     """The exact combination review:20261012_153316 R1 reproduced as
     a single, previously-passing config.
     """
-    config = _base_config(dataset_id=[], subject_id_column=17,
-                           expression_matrix_path=False)
+    config = _base_config(dataset_id=[], subject_id_column=17, expression_matrix_path=False)
     result = D.validate_dataset_config(config)
     assert not result.ok
     bad_fields = {i.field for i in result.issues}

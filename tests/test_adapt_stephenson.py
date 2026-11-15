@@ -18,7 +18,7 @@ sys.path.insert(
     0,
     str(Path(__file__).parent.parent / "scripts/33_batch_effect_audit/code"),
 )
-from build_batch_metadata_inventory import adapt_stephenson, T3_DIR, T4_DIR
+from build_batch_metadata_inventory import T3_DIR, T4_DIR, adapt_stephenson
 
 
 def _write_fixture(root: Path, patients: list[dict], pools: list[dict], severities: list[dict]):
@@ -31,18 +31,32 @@ def _write_fixture(root: Path, patients: list[dict], pools: list[dict], severiti
     t3.mkdir(parents=True, exist_ok=True)
     t4.mkdir(parents=True, exist_ok=True)
     pd.DataFrame(patients).to_csv(t3 / "stephenson_patient_outcomes.csv", index=False)
-    pools_df = pd.DataFrame(pools) if pools else pd.DataFrame(
-        columns=["pool", "n_donors", "donors", "distinct_outcomes", "outcomes"])
+    pools_df = (
+        pd.DataFrame(pools)
+        if pools
+        else pd.DataFrame(columns=["pool", "n_donors", "donors", "distinct_outcomes", "outcomes"])
+    )
     pools_df.to_csv(t3 / "stephenson_pool_composition.csv", index=False)
-    sev_df = pd.DataFrame(severities) if severities else pd.DataFrame(columns=["sample_id", "n_cells"])
+    sev_df = (
+        pd.DataFrame(severities) if severities else pd.DataFrame(columns=["sample_id", "n_cells"])
+    )
     sev_df.to_csv(t4 / "stephenson_sample_severity.csv", index=False)
 
 
 def _base_patient(**overrides):
-    row = dict(patient_id="P1", n_samples=1, sample_ids="P1", pools="",
-               Outcome="Home", outcome_unique_within_patient=True,
-               Days_from_onset=1, Collection_Days="D0", Resample="Initial",
-               Site="Sanger", n_cells=100)
+    row = dict(
+        patient_id="P1",
+        n_samples=1,
+        sample_ids="P1",
+        pools="",
+        Outcome="Home",
+        outcome_unique_within_patient=True,
+        Days_from_onset=1,
+        Collection_Days="D0",
+        Resample="Initial",
+        Site="Sanger",
+        n_cells=100,
+    )
     row.update(overrides)
     return row
 
@@ -71,10 +85,14 @@ def test_unpooled_donor_gets_unknown_status_not_a_literal_nan_string(tmp_path):
 def test_cambridge_pooled_donor_gets_confirmed_pooled_status(tmp_path):
     _write_fixture(
         tmp_path,
-        patients=[_base_patient(patient_id="CV0001", sample_ids="BGCV01_CV0001",
-                                 pools="BGCV01", Site="Cambridge")],
-        pools=[dict(pool="BGCV01", n_donors=1, donors="CV0001",
-                     distinct_outcomes=1, outcomes="Home")],
+        patients=[
+            _base_patient(
+                patient_id="CV0001", sample_ids="BGCV01_CV0001", pools="BGCV01", Site="Cambridge"
+            )
+        ],
+        pools=[
+            dict(pool="BGCV01", n_donors=1, donors="CV0001", distinct_outcomes=1, outcomes="Home")
+        ],
         severities=[dict(sample_id="BGCV01_CV0001", n_cells=500)],
     )
     out = adapt_stephenson(tmp_path)
@@ -107,10 +125,20 @@ def test_sample_to_pool_positional_mismatch_against_pool_composition_raises(tmp_
     silently trust positional alignment."""
     _write_fixture(
         tmp_path,
-        patients=[_base_patient(patient_id="CV0001", sample_ids="BGCV01_CV0001",
-                                 pools="BGCV01", Site="Cambridge")],
-        pools=[dict(pool="BGCV01", n_donors=1, donors="CV9999",  # wrong donor!
-                     distinct_outcomes=1, outcomes="Home")],
+        patients=[
+            _base_patient(
+                patient_id="CV0001", sample_ids="BGCV01_CV0001", pools="BGCV01", Site="Cambridge"
+            )
+        ],
+        pools=[
+            dict(
+                pool="BGCV01",
+                n_donors=1,
+                donors="CV9999",  # wrong donor!
+                distinct_outcomes=1,
+                outcomes="Home",
+            )
+        ],
         severities=[dict(sample_id="BGCV01_CV0001", n_cells=500)],
     )
     with pytest.raises(ValueError, match="does not contain"):
@@ -134,10 +162,16 @@ def test_repeated_draw_patient_produces_one_row_per_sample_with_correct_counts(t
     aggregate."""
     _write_fixture(
         tmp_path,
-        patients=[_base_patient(patient_id="CV0068", n_samples=2,
-                                 sample_ids="BGCV02_CV0068;BGCV12_CV0068",
-                                 pools="BGCV02;BGCV12", Site="Cambridge",
-                                 n_cells=4951)],
+        patients=[
+            _base_patient(
+                patient_id="CV0068",
+                n_samples=2,
+                sample_ids="BGCV02_CV0068;BGCV12_CV0068",
+                pools="BGCV02;BGCV12",
+                Site="Cambridge",
+                n_cells=4951,
+            )
+        ],
         pools=[
             dict(pool="BGCV02", n_donors=1, donors="CV0068", distinct_outcomes=1, outcomes="Home"),
             dict(pool="BGCV12", n_donors=1, donors="CV0068", distinct_outcomes=1, outcomes="Home"),
@@ -166,10 +200,16 @@ def test_swapped_pool_order_is_not_caught_known_limitation(tmp_path):
     is fixed."""
     _write_fixture(
         tmp_path,
-        patients=[_base_patient(patient_id="CV0068", n_samples=2,
-                                 sample_ids="BGCV02_CV0068;BGCV12_CV0068",
-                                 pools="BGCV12;BGCV02",  # SWAPPED relative to sample_ids
-                                 Site="Cambridge", n_cells=4951)],
+        patients=[
+            _base_patient(
+                patient_id="CV0068",
+                n_samples=2,
+                sample_ids="BGCV02_CV0068;BGCV12_CV0068",
+                pools="BGCV12;BGCV02",  # SWAPPED relative to sample_ids
+                Site="Cambridge",
+                n_cells=4951,
+            )
+        ],
         pools=[
             dict(pool="BGCV02", n_donors=1, donors="CV0068", distinct_outcomes=1, outcomes="Home"),
             dict(pool="BGCV12", n_donors=1, donors="CV0068", distinct_outcomes=1, outcomes="Home"),

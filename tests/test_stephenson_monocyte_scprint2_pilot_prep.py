@@ -32,7 +32,9 @@ def _make_gate1_flags():
 
 
 def _make_decontx_scores():
-    return pd.Series([0.1, 0.2, 0.3], index=["AAA-S1", "BBB-S1", "CCC-S2"], name="decontX_contamination")
+    return pd.Series(
+        [0.1, 0.2, 0.3], index=["AAA-S1", "BBB-S1", "CCC-S2"], name="decontX_contamination"
+    )
 
 
 def test_build_prepared_adata_drops_antibody_capture_and_keeps_all_cells():
@@ -106,6 +108,7 @@ def test_mutation_kill_validate_catches_a_cell_count_change():
     the target call, so a validator that stops raising makes this test fail, not pass.
     """
     import pytest
+
     adata = _make_fixture_adata()
     prepared, report = PREP.build_prepared_adata(adata, _make_gate1_flags(), _make_decontx_scores())
 
@@ -116,6 +119,7 @@ def test_mutation_kill_validate_catches_a_cell_count_change():
 
 def test_mutation_kill_validate_catches_a_missing_qc_annotation():
     import pytest
+
     adata = _make_fixture_adata()
     flags = _make_gate1_flags().drop(index="CCC-S2")
     scores = _make_decontx_scores().drop(index="CCC-S2")
@@ -135,6 +139,7 @@ def test_mutation_kill_a_no_op_validator_is_caught_by_these_tests(monkeypatch):
     itself raising `Failed` when the expected exception never occurs) -- genuinely
     observing the target tests fail, not just inferring it from the no-op's behavior.
     """
+
     def noop(*a, **k):
         return True
 
@@ -261,26 +266,42 @@ def _write_fixture_h5ad_file(path):
 
 def _write_gate1_csv(path):
     import csv
+
     with open(path, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["cell_id", "channel_id", "n_flags", "flag_would_delete"])
         w.writeheader()
-        w.writerows([
-            {"cell_id": "AAA-S1", "channel_id": "s", "n_flags": 0, "flag_would_delete": "False"},
-            {"cell_id": "BBB-S1", "channel_id": "s", "n_flags": 1, "flag_would_delete": "True"},
-            {"cell_id": "CCC-S2", "channel_id": "s", "n_flags": 0, "flag_would_delete": "False"},
-        ])
+        w.writerows(
+            [
+                {
+                    "cell_id": "AAA-S1",
+                    "channel_id": "s",
+                    "n_flags": 0,
+                    "flag_would_delete": "False",
+                },
+                {"cell_id": "BBB-S1", "channel_id": "s", "n_flags": 1, "flag_would_delete": "True"},
+                {
+                    "cell_id": "CCC-S2",
+                    "channel_id": "s",
+                    "n_flags": 0,
+                    "flag_would_delete": "False",
+                },
+            ]
+        )
 
 
 def _write_decontx_csv(path):
     import csv
+
     with open(path, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["cell_id", "channel_id", "decontX_contamination"])
         w.writeheader()
-        w.writerows([
-            {"cell_id": "AAA-S1", "channel_id": "s", "decontX_contamination": 0.1},
-            {"cell_id": "BBB-S1", "channel_id": "s", "decontX_contamination": 0.2},
-            {"cell_id": "CCC-S2", "channel_id": "s", "decontX_contamination": 0.3},
-        ])
+        w.writerows(
+            [
+                {"cell_id": "AAA-S1", "channel_id": "s", "decontX_contamination": 0.1},
+                {"cell_id": "BBB-S1", "channel_id": "s", "decontX_contamination": 0.2},
+                {"cell_id": "CCC-S2", "channel_id": "s", "decontX_contamination": 0.3},
+            ]
+        )
 
 
 def test_main_refuses_to_overwrite_an_existing_h5ad_output(tmp_path):
@@ -362,5 +383,7 @@ def test_prep_counts_and_identity_survive_an_actual_h5ad_write_and_read_back(tmp
     assert list(reread.obs_names) == list(prepared.obs_names) == list(adata.obs_names)
     assert list(reread.var_names) == list(prepared.var_names)
     assert np.array_equal(np.asarray(reread.X), np.asarray(prepared.X))
-    assert list(reread.obs["gate1_flag_would_delete"]) == list(prepared.obs["gate1_flag_would_delete"])
+    assert list(reread.obs["gate1_flag_would_delete"]) == list(
+        prepared.obs["gate1_flag_would_delete"]
+    )
     assert PREP.validate_prepared_adata(adata, reread, report) is True

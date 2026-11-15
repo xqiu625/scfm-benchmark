@@ -4,6 +4,7 @@
 model backend. Every `run()` call here must return `status in ('failed',
 'not_run')`, never a fabricated `'complete'`.
 """
+
 import os
 import sys
 
@@ -11,30 +12,39 @@ import pytest
 
 CODE = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    "scripts", "34_scfm_discovery_framework", "code",
+    "scripts",
+    "34_scfm_discovery_framework",
+    "code",
 )
 sys.path.insert(0, CODE)
 
 import gene_ranking_providers as GR  # noqa: E402
 from enrichment_providers import GeneRanking  # noqa: E402
 
-
 # ===========================================================================
 # ExpressionDERankingProvider
 # ===========================================================================
 
+
 def _comparison(**overrides):
-    base = dict(group_column="condition", reference_level="healthy",
-               comparison_level="disease",
-               direction_definition="disease vs. healthy, positive = higher in disease")
+    base = dict(
+        group_column="condition",
+        reference_level="healthy",
+        comparison_level="disease",
+        direction_definition="disease vs. healthy, positive = higher in disease",
+    )
     base.update(overrides)
     return GR.ComparisonSpec(**base)
 
 
 def _sample_structure(**overrides):
-    base = dict(donor_or_animal_id_column="donor_id", sample_id_column="sample_id",
-               repeated_sampling_or_pairing="none_single_sample_per_donor",
-               group_column="condition", design_type="independent_donors_unpaired")
+    base = dict(
+        donor_or_animal_id_column="donor_id",
+        sample_id_column="sample_id",
+        repeated_sampling_or_pairing="none_single_sample_per_donor",
+        group_column="condition",
+        design_type="independent_donors_unpaired",
+    )
     base.update(overrides)
     return GR.SampleStructure(**base)
 
@@ -51,8 +61,12 @@ def test_expression_de_run_never_fabricates_a_complete_result(tmp_path):
     group_values = ["healthy", "healthy", "healthy", "disease", "disease", "disease"]
     donor_values = ["D1", "D2", "D3", "D4", "D5", "D6"]  # each donor only ONE level
     provider = GR.ExpressionDERankingProvider()
-    result = provider.run(comparison=comparison, sample_structure=sample_structure,
-                          group_values=group_values, donor_values=donor_values)
+    result = provider.run(
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=group_values,
+        donor_values=donor_values,
+    )
     assert result.status == "not_run"
     assert result.ranking is None
     assert "ExpressionDERankingProvider.run is a contract" in result.reason
@@ -67,8 +81,12 @@ def test_expression_de_run_accepts_a_genuinely_fully_paired_design():
     group_values = ["healthy", "disease", "healthy", "disease"]
     donor_values = ["D1", "D1", "D2", "D2"]
     provider = GR.ExpressionDERankingProvider()
-    result = provider.run(comparison=comparison, sample_structure=sample_structure,
-                          group_values=group_values, donor_values=donor_values)
+    result = provider.run(
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=group_values,
+        donor_values=donor_values,
+    )
     assert result.status == "not_run", result.reason
 
 
@@ -82,8 +100,12 @@ def test_expression_de_run_rejects_a_partially_paired_design():
     group_values = ["healthy", "disease", "healthy", "disease", "disease"]
     donor_values = ["D1", "D1", "D2", "D3", "D3"]  # only D1 is actually paired
     provider = GR.ExpressionDERankingProvider()
-    result = provider.run(comparison=comparison, sample_structure=sample_structure,
-                          group_values=group_values, donor_values=donor_values)
+    result = provider.run(
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=group_values,
+        donor_values=donor_values,
+    )
     assert result.status == "failed"
     assert "contribute to only ONE" in result.reason
 
@@ -98,8 +120,12 @@ def test_expression_de_run_rejects_an_unpaired_design_with_a_straddling_donor():
     group_values = ["healthy", "disease", "healthy", "disease"]
     donor_values = ["D1", "D1", "D2", "D2"]  # both donors actually straddle
     provider = GR.ExpressionDERankingProvider()
-    result = provider.run(comparison=comparison, sample_structure=sample_structure,
-                          group_values=group_values, donor_values=donor_values)
+    result = provider.run(
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=group_values,
+        donor_values=donor_values,
+    )
     assert result.status == "failed"
     assert "contribute to BOTH" in result.reason
 
@@ -108,30 +134,44 @@ def test_expression_de_rejects_an_unknown_design_type():
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="some_other_design")
     provider = GR.ExpressionDERankingProvider()
-    result = provider.run(comparison=comparison, sample_structure=sample_structure,
-                          group_values=["healthy", "disease"], donor_values=["D1", "D2"])
+    result = provider.run(
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+    )
     assert result.status == "failed"
     assert "design_type" in result.reason
 
 
 def test_expression_de_rejects_inconsistent_group_columns():
     comparison = _comparison(group_column="condition")
-    sample_structure = _sample_structure(group_column="different_column",
-                                         design_type="independent_donors_unpaired")
+    sample_structure = _sample_structure(
+        group_column="different_column", design_type="independent_donors_unpaired"
+    )
     provider = GR.ExpressionDERankingProvider()
-    result = provider.run(comparison=comparison, sample_structure=sample_structure,
-                          group_values=["healthy", "disease"], donor_values=["D1", "D2"])
+    result = provider.run(
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+    )
     assert result.status == "failed"
     assert "must be the SAME column" in result.reason
 
 
 def test_expression_de_run_flags_declared_covariates_as_unverified():
     comparison = _comparison()
-    sample_structure = _sample_structure(design_type="independent_donors_unpaired",
-                                         covariate_columns=("age",))
+    sample_structure = _sample_structure(
+        design_type="independent_donors_unpaired", covariate_columns=("age",)
+    )
     provider = GR.ExpressionDERankingProvider()
-    result = provider.run(comparison=comparison, sample_structure=sample_structure,
-                          group_values=["healthy", "disease"], donor_values=["D1", "D2"])
+    result = provider.run(
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+    )
     assert result.status == "not_run"
     assert "UNVERIFIED" in result.reason
     assert "age" in result.reason
@@ -141,8 +181,12 @@ def test_expression_de_rejects_an_empty_comparison_spec_field():
     comparison = _comparison(direction_definition="")
     sample_structure = _sample_structure()
     provider = GR.ExpressionDERankingProvider()
-    result = provider.run(comparison=comparison, sample_structure=sample_structure,
-                          group_values=["healthy", "disease"], donor_values=["D1", "D2"])
+    result = provider.run(
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+    )
     assert result.status == "failed"
     assert "direction_definition is empty" in result.reason
 
@@ -151,8 +195,12 @@ def test_expression_de_rejects_reference_equal_to_comparison_level():
     comparison = _comparison(comparison_level="healthy")  # same as reference_level
     sample_structure = _sample_structure()
     provider = GR.ExpressionDERankingProvider()
-    result = provider.run(comparison=comparison, sample_structure=sample_structure,
-                          group_values=["healthy"], donor_values=["D1"])
+    result = provider.run(
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy"],
+        donor_values=["D1"],
+    )
     assert result.status == "failed"
     assert "must differ" in result.reason
 
@@ -161,9 +209,13 @@ def test_expression_de_rejects_a_blank_estimator():
     comparison = _comparison()
     sample_structure = _sample_structure()
     provider = GR.ExpressionDERankingProvider()
-    result = provider.run(comparison=comparison, sample_structure=sample_structure,
-                          group_values=["healthy", "disease"], donor_values=["D1", "D2"],
-                          estimator="")
+    result = provider.run(
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+        estimator="",
+    )
     assert result.status == "failed"
     assert "estimator must be stated explicitly" in result.reason
 
@@ -175,6 +227,7 @@ def test_expression_de_rejects_a_blank_estimator():
 # uncaught TypeError on a None/str mix.
 # ===========================================================================
 
+
 def test_expression_de_rejects_a_comparison_missing_one_entire_group():
     """Per R1: the prior round's check only asked 'does ANY sample carry a
     compared group value', which `healthy`-only input passed -- it never
@@ -185,8 +238,11 @@ def test_expression_de_rejects_a_comparison_missing_one_entire_group():
     sample_structure = _sample_structure()
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "healthy", "healthy"], donor_values=["D1", "D2", "D3"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "healthy", "healthy"],
+        donor_values=["D1", "D2", "D3"],
+    )
     assert result.status == "failed"
     assert "missing comparison level" in result.reason
 
@@ -196,8 +252,11 @@ def test_expression_de_rejects_an_empty_string_donor_id():
     sample_structure = _sample_structure()
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=["", "D2"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["", "D2"],
+    )
     assert result.status == "failed"
     assert "donor_values has 1 non-string/empty value" in result.reason
 
@@ -211,8 +270,11 @@ def test_expression_de_rejects_a_none_donor_id_without_crashing():
     sample_structure = _sample_structure()
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=[None, "D2"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=[None, "D2"],
+    )
     assert result.status == "failed"
     assert "donor_values has 1 non-string/empty value" in result.reason
 
@@ -222,8 +284,11 @@ def test_expression_de_rejects_a_non_string_group_value():
     sample_structure = _sample_structure()
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", 7], donor_values=["D1", "D2"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", 7],
+        donor_values=["D1", "D2"],
+    )
     assert result.status == "failed"
     assert "group_values has 1 non-string/empty value" in result.reason
 
@@ -231,7 +296,8 @@ def test_expression_de_rejects_a_non_string_group_value():
 def test_design_estimability_rejects_a_comparison_missing_one_entire_group():
     comparison = _comparison()
     problems = GR.check_design_estimability(
-        ["healthy", "healthy"], ["D1", "D2"], comparison, "independent_donors_unpaired")
+        ["healthy", "healthy"], ["D1", "D2"], comparison, "independent_donors_unpaired"
+    )
     assert problems
     assert "missing comparison level" in problems[0]
 
@@ -247,8 +313,11 @@ def test_mutation_kill_expression_de_group_donor_value_validation(monkeypatch):
     sample_structure = _sample_structure()
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "healthy", "healthy"], donor_values=["D1", "D2", "D3"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "healthy", "healthy"],
+        donor_values=["D1", "D2", "D3"],
+    )
     assert result.status == "not_run"  # with the mutant: a one-sided comparison is no longer caught
 
 
@@ -259,12 +328,14 @@ def test_mutation_kill_expression_de_group_donor_value_validation(monkeypatch):
 # (not free text, not an estimator= string) decides which check applies.
 # ===========================================================================
 
+
 def test_design_estimability_accepts_a_fully_paired_design():
     comparison = _comparison()
     group_values = ["healthy", "disease", "healthy", "disease"]
     donor_values = ["D1", "D1", "D2", "D2"]  # each donor contributes BOTH levels
     problems = GR.check_design_estimability(
-        group_values, donor_values, comparison, "paired_or_repeated_within_donor")
+        group_values, donor_values, comparison, "paired_or_repeated_within_donor"
+    )
     assert problems == []
 
 
@@ -273,7 +344,8 @@ def test_design_estimability_rejects_a_design_fully_confounded_with_donor_when_p
     group_values = ["healthy", "healthy", "disease", "disease"]
     donor_values = ["D1", "D1", "D2", "D2"]  # D1 only healthy, D2 only disease
     problems = GR.check_design_estimability(
-        group_values, donor_values, comparison, "paired_or_repeated_within_donor")
+        group_values, donor_values, comparison, "paired_or_repeated_within_donor"
+    )
     assert problems
     assert "contribute to only ONE" in problems[0]
 
@@ -287,7 +359,8 @@ def test_design_estimability_accepts_the_same_data_when_independent_declared():
     group_values = ["healthy", "healthy", "disease", "disease"]
     donor_values = ["D1", "D1", "D2", "D2"]
     problems = GR.check_design_estimability(
-        group_values, donor_values, comparison, "independent_donors_unpaired")
+        group_values, donor_values, comparison, "independent_donors_unpaired"
+    )
     assert problems == []
 
 
@@ -300,7 +373,8 @@ def test_design_estimability_rejects_partial_pairing_even_with_one_crossing_dono
     group_values = ["healthy", "disease", "healthy", "disease", "disease"]
     donor_values = ["D1", "D1", "D2", "D3", "D3"]  # only D1 is paired
     problems = GR.check_design_estimability(
-        group_values, donor_values, comparison, "paired_or_repeated_within_donor")
+        group_values, donor_values, comparison, "paired_or_repeated_within_donor"
+    )
     assert problems
     assert "contribute to only ONE" in problems[0]
 
@@ -308,7 +382,8 @@ def test_design_estimability_rejects_partial_pairing_even_with_one_crossing_dono
 def test_design_estimability_rejects_an_unknown_design_type():
     comparison = _comparison()
     problems = GR.check_design_estimability(
-        ["healthy", "disease"], ["D1", "D2"], comparison, "something_else")
+        ["healthy", "disease"], ["D1", "D2"], comparison, "something_else"
+    )
     assert problems
     assert "not in" in problems[0]
 
@@ -322,9 +397,11 @@ def test_expression_de_run_rejects_an_unestimable_paired_design_end_to_end():
     sample_structure = _sample_structure(design_type="paired_or_repeated_within_donor")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
+        comparison=comparison,
+        sample_structure=sample_structure,
         group_values=["healthy", "healthy", "disease", "disease"],
-        donor_values=["D1", "D1", "D2", "D2"])
+        donor_values=["D1", "D1", "D2", "D2"],
+    )
     assert result.status == "failed"
     assert "contribute to only ONE" in result.reason
 
@@ -335,12 +412,14 @@ def test_expression_de_run_rejects_an_unestimable_paired_design_end_to_end():
 # mathematically inestimable (which is not generally true).
 # ===========================================================================
 
+
 def test_partial_pairing_rejection_message_states_unsupported_not_inestimable():
     comparison = _comparison()
     group_values = ["healthy", "disease", "healthy", "disease", "disease"]
     donor_values = ["D1", "D1", "D2", "D3", "D3"]  # only D1 is paired
     problems = GR.check_design_estimability(
-        group_values, donor_values, comparison, "paired_or_repeated_within_donor")
+        group_values, donor_values, comparison, "paired_or_repeated_within_donor"
+    )
     assert problems
     assert "UNSUPPORTED" in problems[0]
     assert "NOT necessarily mathematically inestimable" in problems[0]
@@ -356,6 +435,7 @@ def test_partial_pairing_can_still_be_full_rank_demonstrating_R2_is_a_scope_limi
     scope limit, not a mathematical necessity).
     """
     import numpy as np
+
     donors = ["D1", "D1", "D2", "D2", "D3", "D4"]
     conditions = ["healthy", "disease", "healthy", "disease", "healthy", "disease"]
     donor_levels = ["D1", "D2", "D3", "D4"]
@@ -371,7 +451,8 @@ def test_partial_pairing_can_still_be_full_rank_demonstrating_R2_is_a_scope_limi
 
     comparison = _comparison()
     problems = GR.check_design_estimability(
-        conditions, donors, comparison, "paired_or_repeated_within_donor")
+        conditions, donors, comparison, "paired_or_repeated_within_donor"
+    )
     assert problems  # still refused: this round only supports FULL pairing
     assert "UNSUPPORTED" in problems[0]
 
@@ -388,9 +469,11 @@ def test_mutation_kill_expression_de_estimability_gate(monkeypatch):
     sample_structure = _sample_structure(design_type="paired_or_repeated_within_donor")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
+        comparison=comparison,
+        sample_structure=sample_structure,
         group_values=["healthy", "healthy", "disease", "disease"],
-        donor_values=["D1", "D1", "D2", "D2"])
+        donor_values=["D1", "D1", "D2", "D2"],
+    )
     assert result.status == "not_run"  # with the mutant: the unestimable design is no longer caught
 
 
@@ -398,15 +481,16 @@ def test_mutation_kill_expression_de_estimability_gate(monkeypatch):
 # ModelMaskingRankingProvider
 # ===========================================================================
 
+
 def _masking_score(**overrides):
     base = dict(
         score_definition="state-attribution direction score (pending Cindy confirmation)",
         masking_operation="set gene g's expression value to 0 before tokenization",
         reference_or_token_semantics="literal 0 in expression space",
         perturbable_gene_set_definition="all genes in the model's input vocabulary "
-                                        "present in this dataset",
-        donor_or_animal_aggregation_rule="mean over cells within donor, then mean "
-                                         "over donors")
+        "present in this dataset",
+        donor_or_animal_aggregation_rule="mean over cells within donor, then mean " "over donors",
+    )
     base.update(overrides)
     return GR.MaskingScoreSpec(**base)
 
@@ -414,8 +498,11 @@ def _masking_score(**overrides):
 def test_model_masking_run_never_fabricates_a_complete_result():
     masking_score = _masking_score()
     provider = GR.ModelMaskingRankingProvider()
-    result = provider.run(masking_score=masking_score, model_identity_or_pending="model_undecided",
-                          perturbable_genes=("G1", "G2", "G3"))
+    result = provider.run(
+        masking_score=masking_score,
+        model_identity_or_pending="model_undecided",
+        perturbable_genes=("G1", "G2", "G3"),
+    )
     assert result.status == "not_run"
     assert result.ranking is None
     assert "ModelMaskingRankingProvider.run is a contract" in result.reason
@@ -427,6 +514,7 @@ def test_model_masking_has_no_cell_selection_parameter():
     of the prior handoff's cell-level-mask framing.
     """
     import inspect
+
     sig = inspect.signature(GR.ModelMaskingRankingProvider.run)
     param_names = set(sig.parameters) - {"self", "params"}
     assert not any("cell" in p.lower() for p in param_names)
@@ -435,8 +523,11 @@ def test_model_masking_has_no_cell_selection_parameter():
 def test_model_masking_rejects_an_empty_masking_score_field():
     masking_score = _masking_score(masking_operation="")
     provider = GR.ModelMaskingRankingProvider()
-    result = provider.run(masking_score=masking_score, model_identity_or_pending="model_undecided",
-                          perturbable_genes=("G1",))
+    result = provider.run(
+        masking_score=masking_score,
+        model_identity_or_pending="model_undecided",
+        perturbable_genes=("G1",),
+    )
     assert result.status == "failed"
     assert "masking_operation must be a non-empty string" in result.reason
 
@@ -444,8 +535,11 @@ def test_model_masking_rejects_an_empty_masking_score_field():
 def test_model_masking_rejects_empty_perturbable_genes():
     masking_score = _masking_score()
     provider = GR.ModelMaskingRankingProvider()
-    result = provider.run(masking_score=masking_score, model_identity_or_pending="model_undecided",
-                          perturbable_genes=())
+    result = provider.run(
+        masking_score=masking_score,
+        model_identity_or_pending="model_undecided",
+        perturbable_genes=(),
+    )
     assert result.status == "failed"
     assert "perturbable_genes is empty" in result.reason
 
@@ -453,8 +547,11 @@ def test_model_masking_rejects_empty_perturbable_genes():
 def test_model_masking_rejects_duplicate_perturbable_genes():
     masking_score = _masking_score()
     provider = GR.ModelMaskingRankingProvider()
-    result = provider.run(masking_score=masking_score, model_identity_or_pending="model_undecided",
-                          perturbable_genes=("G1", "G1"))
+    result = provider.run(
+        masking_score=masking_score,
+        model_identity_or_pending="model_undecided",
+        perturbable_genes=("G1", "G1"),
+    )
     assert result.status == "failed"
     assert "duplicate" in result.reason
 
@@ -466,8 +563,11 @@ def test_model_masking_rejects_a_non_string_perturbable_gene():
     """
     masking_score = _masking_score()
     provider = GR.ModelMaskingRankingProvider()
-    result = provider.run(masking_score=masking_score, model_identity_or_pending="model_undecided",
-                          perturbable_genes=("G1", 7))
+    result = provider.run(
+        masking_score=masking_score,
+        model_identity_or_pending="model_undecided",
+        perturbable_genes=("G1", 7),
+    )
     assert result.status == "failed"
     assert "perturbable_genes has 1 non-string/empty value" in result.reason
 
@@ -475,8 +575,11 @@ def test_model_masking_rejects_a_non_string_perturbable_gene():
 def test_model_masking_rejects_a_model_identity_that_is_not_the_sentinel_or_a_dict():
     masking_score = _masking_score()
     provider = GR.ModelMaskingRankingProvider()
-    result = provider.run(masking_score=masking_score, model_identity_or_pending="scprint2_small_v2",
-                          perturbable_genes=("G1",))
+    result = provider.run(
+        masking_score=masking_score,
+        model_identity_or_pending="scprint2_small_v2",
+        perturbable_genes=("G1",),
+    )
     assert result.status == "failed"
     assert "model_undecided" in result.reason
 
@@ -486,63 +589,100 @@ def test_model_masking_rejects_a_model_identity_that_is_not_the_sentinel_or_a_di
 # GeneRanking type, each traceable to its own evidence_type.
 # ===========================================================================
 
+
 def test_make_evidence_ranking_binds_expression_de_ranking():
-    ranking = GeneRanking(species="human", gene_id_namespace="gene_symbol",
-                          ranking_definition="expression_de: disease vs. healthy LFC",
-                          genes=("G1", "G2"), scores=(1.0, -1.0))
+    ranking = GeneRanking(
+        species="human",
+        gene_id_namespace="gene_symbol",
+        ranking_definition="expression_de: disease vs. healthy LFC",
+        genes=("G1", "G2"),
+        scores=(1.0, -1.0),
+    )
     bound = GR.make_evidence_ranking("expression_de", ranking)
     assert bound is ranking
 
 
 def test_make_evidence_ranking_rejects_a_ranking_not_naming_its_own_evidence_type():
-    ranking = GeneRanking(species="human", gene_id_namespace="gene_symbol",
-                          ranking_definition="some unrelated score",
-                          genes=("G1", "G2"), scores=(1.0, -1.0))
+    ranking = GeneRanking(
+        species="human",
+        gene_id_namespace="gene_symbol",
+        ranking_definition="some unrelated score",
+        genes=("G1", "G2"),
+        scores=(1.0, -1.0),
+    )
     with pytest.raises(ValueError, match="does not name"):
         GR.make_evidence_ranking("expression_de", ranking)
 
 
 def test_make_evidence_ranking_rejects_an_invalid_ranking():
-    ranking = GeneRanking(species="human", gene_id_namespace="gene_symbol",
-                          ranking_definition="model_masking: Delta(g) score",
-                          genes=("G1", "G1"), scores=(1.0, -1.0))  # duplicate gene ID
+    ranking = GeneRanking(
+        species="human",
+        gene_id_namespace="gene_symbol",
+        ranking_definition="model_masking: Delta(g) score",
+        genes=("G1", "G1"),
+        scores=(1.0, -1.0),
+    )  # duplicate gene ID
     with pytest.raises(ValueError, match="cannot bind an invalid ranking"):
         GR.make_evidence_ranking("model_masking", ranking)
 
 
 def test_make_evidence_ranking_rejects_an_unknown_evidence_type():
-    ranking = GeneRanking(species="human", gene_id_namespace="gene_symbol",
-                          ranking_definition="expression_de: x", genes=("G1",), scores=(1.0,))
+    ranking = GeneRanking(
+        species="human",
+        gene_id_namespace="gene_symbol",
+        ranking_definition="expression_de: x",
+        genes=("G1",),
+        scores=(1.0,),
+    )
     with pytest.raises(ValueError, match="not in"):
         GR.make_evidence_ranking("something_else", ranking)
 
 
 def test_expression_de_result_to_dict_is_json_serializable():
-    import json
     import dataclasses
+    import json
+
     comparison = _comparison()
     sample_structure = _sample_structure()
     result = GR.ExpressionDEResult(
-        status="complete", evidence_type="expression_de",
-        ranking=GeneRanking(species="human", gene_id_namespace="gene_symbol",
-                            ranking_definition="expression_de: x",
-                            genes=("G1",), scores=(1.0,)),
-        comparison=dataclasses.asdict(comparison), sample_structure=dataclasses.asdict(sample_structure),
-        estimator="placeholder", backend="placeholder_backend", backend_version="0.0")
+        status="complete",
+        evidence_type="expression_de",
+        ranking=GeneRanking(
+            species="human",
+            gene_id_namespace="gene_symbol",
+            ranking_definition="expression_de: x",
+            genes=("G1",),
+            scores=(1.0,),
+        ),
+        comparison=dataclasses.asdict(comparison),
+        sample_structure=dataclasses.asdict(sample_structure),
+        estimator="placeholder",
+        backend="placeholder_backend",
+        backend_version="0.0",
+    )
     json.dumps(result.to_dict())  # must not raise
 
 
 def test_model_masking_result_to_dict_is_json_serializable():
-    import json
     import dataclasses
+    import json
+
     masking_score = _masking_score()
     result = GR.ModelMaskingResult(
-        status="complete", evidence_type="model_masking",
-        ranking=GeneRanking(species="human", gene_id_namespace="gene_symbol",
-                            ranking_definition="model_masking: x",
-                            genes=("G1",), scores=(1.0,)),
-        masking_score=dataclasses.asdict(masking_score), model_identity="model_undecided",
-        backend="placeholder_backend", backend_version="0.0")
+        status="complete",
+        evidence_type="model_masking",
+        ranking=GeneRanking(
+            species="human",
+            gene_id_namespace="gene_symbol",
+            ranking_definition="model_masking: x",
+            genes=("G1",),
+            scores=(1.0,),
+        ),
+        masking_score=dataclasses.asdict(masking_score),
+        model_identity="model_undecided",
+        backend="placeholder_backend",
+        backend_version="0.0",
+    )
     json.dumps(result.to_dict())  # must not raise
 
 
@@ -552,6 +692,7 @@ def test_model_masking_result_to_dict_is_json_serializable():
 # comparison/masking-score CONFIGURATION.
 # ===========================================================================
 
+
 def test_model_masking_result_distinguishes_different_perturbable_gene_sets():
     """Per F4: two calls differing only in `perturbable_genes` must produce
     two DIFFERENT serialized records -- the prior round's own gap (neither
@@ -559,10 +700,16 @@ def test_model_masking_result_distinguishes_different_perturbable_gene_sets():
     """
     masking_score = _masking_score()
     provider = GR.ModelMaskingRankingProvider()
-    r1 = provider.run(masking_score=masking_score, model_identity_or_pending="model_undecided",
-                      perturbable_genes=("A",))
-    r2 = provider.run(masking_score=masking_score, model_identity_or_pending="model_undecided",
-                      perturbable_genes=("B",))
+    r1 = provider.run(
+        masking_score=masking_score,
+        model_identity_or_pending="model_undecided",
+        perturbable_genes=("A",),
+    )
+    r2 = provider.run(
+        masking_score=masking_score,
+        model_identity_or_pending="model_undecided",
+        perturbable_genes=("B",),
+    )
     assert r1.perturbable_genes == ("A",)
     assert r2.perturbable_genes == ("B",)
     assert r1.perturbable_genes_sha256 != r2.perturbable_genes_sha256
@@ -578,10 +725,16 @@ def test_mutation_kill_model_masking_perturbable_genes_identity(monkeypatch):
     monkeypatch.setattr(GR, "_gene_set_identity", lambda genes: ((), "constant"))
     masking_score = _masking_score()
     provider = GR.ModelMaskingRankingProvider()
-    r1 = provider.run(masking_score=masking_score, model_identity_or_pending="model_undecided",
-                      perturbable_genes=("A",))
-    r2 = provider.run(masking_score=masking_score, model_identity_or_pending="model_undecided",
-                      perturbable_genes=("B",))
+    r1 = provider.run(
+        masking_score=masking_score,
+        model_identity_or_pending="model_undecided",
+        perturbable_genes=("A",),
+    )
+    r2 = provider.run(
+        masking_score=masking_score,
+        model_identity_or_pending="model_undecided",
+        perturbable_genes=("B",),
+    )
     assert r1.to_dict() == r2.to_dict()  # with the mutant: the original F4 bug reproduces
 
 
@@ -589,10 +742,18 @@ def test_expression_de_result_distinguishes_different_group_value_inputs():
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
-    r1 = provider.run(comparison=comparison, sample_structure=sample_structure,
-                      group_values=["healthy", "disease"], donor_values=["D1", "D2"])
-    r2 = provider.run(comparison=comparison, sample_structure=sample_structure,
-                      group_values=["disease", "healthy"], donor_values=["D1", "D2"])
+    r1 = provider.run(
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+    )
+    r2 = provider.run(
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["disease", "healthy"],
+        donor_values=["D1", "D2"],
+    )
     assert r1.group_values_sha256 != r2.group_values_sha256
     assert r1.to_dict() != r2.to_dict()
 
@@ -613,10 +774,18 @@ def test_mutation_kill_expression_de_sample_label_identity(monkeypatch):
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
-    r1 = provider.run(comparison=comparison, sample_structure=sample_structure,
-                      group_values=["healthy", "disease"], donor_values=["D1", "D2"])
-    r2 = provider.run(comparison=comparison, sample_structure=sample_structure,
-                      group_values=["disease", "healthy"], donor_values=["D1", "D2"])
+    r1 = provider.run(
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+    )
+    r2 = provider.run(
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["disease", "healthy"],
+        donor_values=["D1", "D2"],
+    )
     assert r1.group_values_sha256 == r2.group_values_sha256 == "constant"
     assert r1.donor_values_sha256 == r2.donor_values_sha256 == "constant"
 
@@ -632,10 +801,18 @@ def test_mutation_kill_expression_de_input_mapping_identity(monkeypatch):
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
-    r1 = provider.run(comparison=comparison, sample_structure=sample_structure,
-                      group_values=["healthy", "disease"], donor_values=["D1", "D2"])
-    r2 = provider.run(comparison=comparison, sample_structure=sample_structure,
-                      group_values=["disease", "healthy"], donor_values=["D1", "D2"])
+    r1 = provider.run(
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+    )
+    r2 = provider.run(
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["disease", "healthy"],
+        donor_values=["D1", "D2"],
+    )
     # with the mutant: input_mapping is empty for BOTH records -- it no
     # longer carries any identity at all, reproducing R3's exact gap for
     # this specific field (even though other fields remain real here)
@@ -648,20 +825,32 @@ def test_mutation_kill_expression_de_input_mapping_identity(monkeypatch):
 # record, and a tampered mapping/hash must be rejected on read.
 # ===========================================================================
 
+
 def test_expression_de_result_records_an_ordered_input_mapping_with_sample_identity(tmp_path):
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
+        comparison=comparison,
+        sample_structure=sample_structure,
         group_values=["healthy", "healthy", "disease", "disease"],
-        donor_values=["D1", "D2", "D3", "D4"], sample_ids=["S1", "S2", "S3", "S4"])
+        donor_values=["D1", "D2", "D3", "D4"],
+        sample_ids=["S1", "S2", "S3", "S4"],
+    )
     assert result.sample_identity_available is True
     assert len(result.input_mapping) == 4
     assert result.input_mapping[0] == {
-        "row_index": 0, "group_value": "healthy", "donor_value": "D1", "sample_id": "S1"}
+        "row_index": 0,
+        "group_value": "healthy",
+        "donor_value": "D1",
+        "sample_id": "S1",
+    }
     assert result.input_mapping[3] == {
-        "row_index": 3, "group_value": "disease", "donor_value": "D4", "sample_id": "S4"}
+        "row_index": 3,
+        "group_value": "disease",
+        "donor_value": "D4",
+        "sample_id": "S4",
+    }
 
     out_dir = tmp_path / "de_result"
     GR.write_expression_de_result(str(out_dir), result)
@@ -682,8 +871,11 @@ def test_expression_de_result_without_sample_ids_never_fabricates_a_sample_id():
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=["D1", "D2"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+    )
     assert result.sample_identity_available is False
     assert all("sample_id" not in row for row in result.input_mapping)
     assert [row["row_index"] for row in result.input_mapping] == [0, 1]
@@ -694,9 +886,12 @@ def test_expression_de_run_rejects_duplicate_sample_ids():
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=["D1", "D2"],
-        sample_ids=["S1", "S1"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+        sample_ids=["S1", "S1"],
+    )
     assert result.status == "failed"
     assert "sample_ids contains duplicate" in result.reason
 
@@ -707,13 +902,17 @@ def test_read_expression_de_result_rejects_a_tampered_input_mapping(tmp_path):
     now-stale `input_mapping_sha256`) must be refused.
     """
     import json
+
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=["D1", "D2"],
-        sample_ids=["S1", "S2"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+        sample_ids=["S1", "S2"],
+    )
     out_dir = tmp_path / "de_result"
     GR.write_expression_de_result(str(out_dir), result)
     path = out_dir / "EXPRESSION_DE_RESULT.json"
@@ -727,13 +926,17 @@ def test_read_expression_de_result_rejects_a_tampered_input_mapping(tmp_path):
 
 def test_read_expression_de_result_rejects_a_tampered_hash_alone(tmp_path):
     import json
+
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=["D1", "D2"],
-        sample_ids=["S1", "S2"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+        sample_ids=["S1", "S2"],
+    )
     out_dir = tmp_path / "de_result"
     GR.write_expression_de_result(str(out_dir), result)
     path = out_dir / "EXPRESSION_DE_RESULT.json"
@@ -753,13 +956,17 @@ def test_mutation_kill_validate_expression_de_result_hash_recompute(monkeypatch,
     file is then silently accepted, reproducing R3's exact gap.
     """
     import json
+
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=["D1", "D2"],
-        sample_ids=["S1", "S2"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+        sample_ids=["S1", "S2"],
+    )
     out_dir = tmp_path / "de_result"
     GR.write_expression_de_result(str(out_dir), result)
     path = out_dir / "EXPRESSION_DE_RESULT.json"
@@ -783,9 +990,12 @@ def test_write_expression_de_result_refuses_a_nonfinite_param_value(tmp_path):
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=["D1", "D2"],
-        some_future_param=float("nan"))
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+        some_future_param=float("nan"),
+    )
     out_dir = tmp_path / "de_result"
     with pytest.raises(ValueError, match="refusing to write an invalid"):
         GR.write_expression_de_result(str(out_dir), result)
@@ -794,8 +1004,11 @@ def test_write_expression_de_result_refuses_a_nonfinite_param_value(tmp_path):
 def test_model_masking_result_write_read_round_trips(tmp_path):
     masking_score = _masking_score()
     provider = GR.ModelMaskingRankingProvider()
-    result = provider.run(masking_score=masking_score, model_identity_or_pending="model_undecided",
-                          perturbable_genes=("A", "B"))
+    result = provider.run(
+        masking_score=masking_score,
+        model_identity_or_pending="model_undecided",
+        perturbable_genes=("A", "B"),
+    )
     out_dir = tmp_path / "masking_result"
     GR.write_model_masking_result(str(out_dir), result)
     path = out_dir / "MODEL_MASKING_RESULT.json"
@@ -807,10 +1020,14 @@ def test_model_masking_result_write_read_round_trips(tmp_path):
 
 def test_read_model_masking_result_rejects_a_tampered_gene_set(tmp_path):
     import json
+
     masking_score = _masking_score()
     provider = GR.ModelMaskingRankingProvider()
-    result = provider.run(masking_score=masking_score, model_identity_or_pending="model_undecided",
-                          perturbable_genes=("A", "B"))
+    result = provider.run(
+        masking_score=masking_score,
+        model_identity_or_pending="model_undecided",
+        perturbable_genes=("A", "B"),
+    )
     out_dir = tmp_path / "masking_result"
     GR.write_model_masking_result(str(out_dir), result)
     path = out_dir / "MODEL_MASKING_RESULT.json"
@@ -829,19 +1046,24 @@ def test_read_model_masking_result_rejects_a_tampered_gene_set(tmp_path):
 # writable/readable with the raw invalid value preserved.
 # ===========================================================================
 
+
 def test_read_expression_de_result_rejects_an_empty_ranking_dict_claiming_complete(tmp_path):
     """Per F3: the prior round's reader only checked `ranking is not None`
     -- an EMPTY dict passed that check. `ranking={}` plus the stub's own
     `backend='not_implemented'` placeholder must both be refused.
     """
     import json
+
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=["D1", "D2"],
-        sample_ids=["S1", "S2"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+        sample_ids=["S1", "S2"],
+    )
     assert result.status == "not_run"
     out_dir = tmp_path / "de_result"
     GR.write_expression_de_result(str(out_dir), result)
@@ -857,22 +1079,30 @@ def test_read_expression_de_result_rejects_an_empty_ranking_dict_claiming_comple
 
 def test_read_expression_de_result_rejects_a_complete_record_with_placeholder_backend(tmp_path):
     import json
+
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=["D1", "D2"],
-        sample_ids=["S1", "S2"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+        sample_ids=["S1", "S2"],
+    )
     out_dir = tmp_path / "de_result"
     GR.write_expression_de_result(str(out_dir), result)
     path = out_dir / "EXPRESSION_DE_RESULT.json"
 
     payload = json.loads(path.read_text())
     payload["status"] = "complete"
-    payload["ranking"] = {"species": "human", "gene_id_namespace": "gene_symbol",
-                          "ranking_definition": "expression_de: x",
-                          "genes": ["G1"], "scores": [1.0]}
+    payload["ranking"] = {
+        "species": "human",
+        "gene_id_namespace": "gene_symbol",
+        "ranking_definition": "expression_de: x",
+        "genes": ["G1"],
+        "scores": [1.0],
+    }
     # backend is still the 'not_implemented' placeholder -- must be rejected
     # even though the ranking dict itself is now well-formed.
     path.write_text(json.dumps(payload))
@@ -882,13 +1112,17 @@ def test_read_expression_de_result_rejects_a_complete_record_with_placeholder_ba
 
 def test_read_expression_de_result_rejects_a_wrong_n_samples(tmp_path):
     import json
+
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=["D1", "D2"],
-        sample_ids=["S1", "S2"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+        sample_ids=["S1", "S2"],
+    )
     out_dir = tmp_path / "de_result"
     GR.write_expression_de_result(str(out_dir), result)
     path = out_dir / "EXPRESSION_DE_RESULT.json"
@@ -908,13 +1142,17 @@ def test_read_expression_de_result_rejects_a_tampered_design_type_on_a_not_run_r
     which are a diagnostic area only for 'failed').
     """
     import json
+
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=["D1", "D2"],
-        sample_ids=["S1", "S2"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+        sample_ids=["S1", "S2"],
+    )
     assert result.status == "not_run"
     out_dir = tmp_path / "de_result"
     GR.write_expression_de_result(str(out_dir), result)
@@ -938,9 +1176,12 @@ def test_expression_de_failed_record_with_none_donor_value_still_writes_and_read
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=[None, "D2"],
-        sample_ids=["S1", "S2"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=[None, "D2"],
+        sample_ids=["S1", "S2"],
+    )
     assert result.status == "failed"
     out_dir = tmp_path / "de_result"
     GR.write_expression_de_result(str(out_dir), result)  # must not raise
@@ -964,17 +1205,25 @@ def test_model_masking_run_with_invalid_masking_score_returns_failed_not_not_run
     """
     masking_score = _masking_score(score_definition=True)
     provider = GR.ModelMaskingRankingProvider()
-    result = provider.run(masking_score=masking_score, model_identity_or_pending="model_undecided",
-                          perturbable_genes=("G0",))
+    result = provider.run(
+        masking_score=masking_score,
+        model_identity_or_pending="model_undecided",
+        perturbable_genes=("G0",),
+    )
     assert result.status == "failed"
     assert "score_definition" in result.reason
 
 
-def test_model_masking_failed_record_with_invalid_score_definition_still_writes_and_reads_back(tmp_path):
+def test_model_masking_failed_record_with_invalid_score_definition_still_writes_and_reads_back(
+    tmp_path,
+):
     masking_score = _masking_score(score_definition=True)
     provider = GR.ModelMaskingRankingProvider()
-    result = provider.run(masking_score=masking_score, model_identity_or_pending="model_undecided",
-                          perturbable_genes=("G0",))
+    result = provider.run(
+        masking_score=masking_score,
+        model_identity_or_pending="model_undecided",
+        perturbable_genes=("G0",),
+    )
     assert result.status == "failed"
     out_dir = tmp_path / "masking_result"
     GR.write_model_masking_result(str(out_dir), result)  # must not raise
@@ -993,15 +1242,20 @@ def test_model_masking_failed_record_with_invalid_score_definition_still_writes_
 # relationship between `n_samples` and `input_mapping` instead.
 # ===========================================================================
 
+
 def test_read_expression_de_result_rejects_a_non_int_n_samples(tmp_path):
     import json
+
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=["D1", "D2"],
-        sample_ids=["S1", "S2"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+        sample_ids=["S1", "S2"],
+    )
     out_dir = tmp_path / "de_result"
     GR.write_expression_de_result(str(out_dir), result)
     path = out_dir / "EXPRESSION_DE_RESULT.json"
@@ -1028,8 +1282,11 @@ def test_expression_de_length_mismatch_failed_record_still_writes_and_reads_back
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=["D0"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D0"],
+    )
     assert result.status == "failed"
     assert "length mismatch" in result.reason
     assert result.input_mapping == ()
@@ -1055,8 +1312,11 @@ def test_model_masking_invalid_gene_failed_record_still_writes_and_reads_back(tm
     """
     masking_score = _masking_score()
     provider = GR.ModelMaskingRankingProvider()
-    result = provider.run(masking_score=masking_score, model_identity_or_pending="model_undecided",
-                          perturbable_genes=(None,))
+    result = provider.run(
+        masking_score=masking_score,
+        model_identity_or_pending="model_undecided",
+        perturbable_genes=(None,),
+    )
     assert result.status == "failed"
     assert "perturbable_genes" in result.reason
 
@@ -1070,13 +1330,17 @@ def test_model_masking_invalid_gene_failed_record_still_writes_and_reads_back(tm
 
 def test_read_expression_de_result_rejects_a_tampered_input_lengths(tmp_path):
     import json
+
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=["D1", "D2"],
-        sample_ids=["S1", "S2"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D1", "D2"],
+        sample_ids=["S1", "S2"],
+    )
     out_dir = tmp_path / "de_result"
     GR.write_expression_de_result(str(out_dir), result)
     path = out_dir / "EXPRESSION_DE_RESULT.json"
@@ -1094,12 +1358,16 @@ def test_read_expression_de_result_rejects_a_tampered_input_mapping_buildable(tm
     flag is recomputed from `input_lengths`, never trusted on its own.
     """
     import json
+
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=["D0"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D0"],
+    )
     assert result.status == "failed"
     out_dir = tmp_path / "de_result"
     GR.write_expression_de_result(str(out_dir), result)
@@ -1121,16 +1389,26 @@ def test_validate_expression_de_result_rejects_a_tampered_buildable_flag():
     in this module (`input_mapping_sha256`, `identity_sha256`, etc).
     """
     import dataclasses
+
     comparison = dataclasses.asdict(_comparison())
-    sample_structure = dataclasses.asdict(_sample_structure(design_type="independent_donors_unpaired"))
+    sample_structure = dataclasses.asdict(
+        _sample_structure(design_type="independent_donors_unpaired")
+    )
     payload = {
-        "schema": GR.EXPRESSION_DE_RESULT_SCHEMA, "evidence_type": "expression_de",
-        "status": "failed", "reason": "length mismatch", "ranking": None,
-        "comparison": comparison, "sample_structure": sample_structure,
-        "input_mapping": [], "input_mapping_sha256": GR._input_mapping_sha256(()),
-        "n_samples": 2, "input_lengths": {"group_values": 2, "donor_values": 1, "sample_ids": None},
+        "schema": GR.EXPRESSION_DE_RESULT_SCHEMA,
+        "evidence_type": "expression_de",
+        "status": "failed",
+        "reason": "length mismatch",
+        "ranking": None,
+        "comparison": comparison,
+        "sample_structure": sample_structure,
+        "input_mapping": [],
+        "input_mapping_sha256": GR._input_mapping_sha256(()),
+        "n_samples": 2,
+        "input_lengths": {"group_values": 2, "donor_values": 1, "sample_ids": None},
         "input_mapping_buildable": True,  # tampered: 2 != 1, this should be False
-        "backend": "not_implemented", "backend_version": "n/a",
+        "backend": "not_implemented",
+        "backend_version": "n/a",
     }
     problems = GR.validate_expression_de_result(payload)
     assert any("input_mapping_buildable" in p and "does not match" in p for p in problems)
@@ -1143,16 +1421,25 @@ def test_mutation_kill_validate_expression_de_result_ranking_shape_check(monkeyp
     pass with zero problems.
     """
     import dataclasses
+
     comparison = dataclasses.asdict(_comparison())
-    sample_structure = dataclasses.asdict(_sample_structure(design_type="independent_donors_unpaired"))
+    sample_structure = dataclasses.asdict(
+        _sample_structure(design_type="independent_donors_unpaired")
+    )
     payload = {
-        "schema": GR.EXPRESSION_DE_RESULT_SCHEMA, "evidence_type": "expression_de",
-        "status": "complete", "ranking": {}, "comparison": comparison,
-        "sample_structure": sample_structure, "input_mapping": [],
-        "input_mapping_sha256": GR._input_mapping_sha256(()), "n_samples": 0,
+        "schema": GR.EXPRESSION_DE_RESULT_SCHEMA,
+        "evidence_type": "expression_de",
+        "status": "complete",
+        "ranking": {},
+        "comparison": comparison,
+        "sample_structure": sample_structure,
+        "input_mapping": [],
+        "input_mapping_sha256": GR._input_mapping_sha256(()),
+        "n_samples": 0,
         "input_lengths": {"group_values": 0, "donor_values": 0, "sample_ids": None},
         "input_mapping_buildable": True,
-        "backend": "real_backend", "backend_version": "1",
+        "backend": "real_backend",
+        "backend_version": "1",
     }
     assert GR.validate_expression_de_result(payload)  # real guard: rejects
 
@@ -1166,6 +1453,7 @@ def test_mutation_kill_validate_expression_de_result_ranking_shape_check(monkeyp
 # cross-checked against `input_mapping`'s own shape.
 # ===========================================================================
 
+
 def test_read_expression_de_result_rejects_a_failed_record_promoted_to_not_run(tmp_path):
     """Mirrors the review's own `probe_status.py`: a genuinely `'failed'`
     length-mismatch record (2 `group_values`, 1 `donor_value`) is written
@@ -1175,12 +1463,16 @@ def test_read_expression_de_result_rejects_a_failed_record_promoted_to_not_run(t
     left untouched) must now be rejected, not silently accepted.
     """
     import json
+
     comparison = _comparison()
     sample_structure = _sample_structure(design_type="independent_donors_unpaired")
     provider = GR.ExpressionDERankingProvider()
     result = provider.run(
-        comparison=comparison, sample_structure=sample_structure,
-        group_values=["healthy", "disease"], donor_values=["D0"])
+        comparison=comparison,
+        sample_structure=sample_structure,
+        group_values=["healthy", "disease"],
+        donor_values=["D0"],
+    )
     assert result.status == "failed"
     out_dir = tmp_path / "de_result"
     GR.write_expression_de_result(str(out_dir), result)
@@ -1203,18 +1495,31 @@ def test_validate_expression_de_result_rejects_an_unbuildable_record_claiming_co
     ranking/backend), which this payload otherwise satisfies.
     """
     import dataclasses
+
     comparison = dataclasses.asdict(_comparison())
-    sample_structure = dataclasses.asdict(_sample_structure(design_type="independent_donors_unpaired"))
+    sample_structure = dataclasses.asdict(
+        _sample_structure(design_type="independent_donors_unpaired")
+    )
     payload = {
-        "schema": GR.EXPRESSION_DE_RESULT_SCHEMA, "evidence_type": "expression_de",
+        "schema": GR.EXPRESSION_DE_RESULT_SCHEMA,
+        "evidence_type": "expression_de",
         "status": "complete",
-        "ranking": {"species": "human", "gene_id_namespace": "gene_symbol",
-                   "ranking_definition": "expression_de: x", "genes": ["G1"], "scores": [1.0]},
-        "comparison": comparison, "sample_structure": sample_structure,
-        "input_mapping": [], "input_mapping_sha256": GR._input_mapping_sha256(()),
-        "n_samples": 2, "input_lengths": {"group_values": 2, "donor_values": 1, "sample_ids": None},
+        "ranking": {
+            "species": "human",
+            "gene_id_namespace": "gene_symbol",
+            "ranking_definition": "expression_de: x",
+            "genes": ["G1"],
+            "scores": [1.0],
+        },
+        "comparison": comparison,
+        "sample_structure": sample_structure,
+        "input_mapping": [],
+        "input_mapping_sha256": GR._input_mapping_sha256(()),
+        "n_samples": 2,
+        "input_lengths": {"group_values": 2, "donor_values": 1, "sample_ids": None},
         "input_mapping_buildable": False,
-        "backend": "real_backend", "backend_version": "1",
+        "backend": "real_backend",
+        "backend_version": "1",
     }
     problems = GR.validate_expression_de_result(payload)
     assert any("status must be 'failed'" in p for p in problems)
@@ -1227,16 +1532,26 @@ def test_mutation_kill_validate_expression_de_result_unbuildable_status(monkeypa
     (reconstructed by hand here) pass with zero problems.
     """
     import dataclasses
+
     comparison = dataclasses.asdict(_comparison())
-    sample_structure = dataclasses.asdict(_sample_structure(design_type="independent_donors_unpaired"))
+    sample_structure = dataclasses.asdict(
+        _sample_structure(design_type="independent_donors_unpaired")
+    )
     payload = {
-        "schema": GR.EXPRESSION_DE_RESULT_SCHEMA, "evidence_type": "expression_de",
-        "status": "not_run", "reason": "group_values (2) and donor_values (1) length mismatch",
-        "ranking": None, "comparison": comparison, "sample_structure": sample_structure,
-        "input_mapping": [], "input_mapping_sha256": GR._input_mapping_sha256(()),
-        "n_samples": 2, "input_lengths": {"group_values": 2, "donor_values": 1, "sample_ids": None},
+        "schema": GR.EXPRESSION_DE_RESULT_SCHEMA,
+        "evidence_type": "expression_de",
+        "status": "not_run",
+        "reason": "group_values (2) and donor_values (1) length mismatch",
+        "ranking": None,
+        "comparison": comparison,
+        "sample_structure": sample_structure,
+        "input_mapping": [],
+        "input_mapping_sha256": GR._input_mapping_sha256(()),
+        "n_samples": 2,
+        "input_lengths": {"group_values": 2, "donor_values": 1, "sample_ids": None},
         "input_mapping_buildable": False,
-        "backend": "not_implemented", "backend_version": "n/a",
+        "backend": "not_implemented",
+        "backend_version": "n/a",
     }
     assert GR.validate_expression_de_result(payload)  # real guard: rejects
 
@@ -1257,22 +1572,28 @@ def test_mutation_kill_validate_expression_de_result_unbuildable_status(monkeypa
 
 import dataclasses as _dc  # noqa: E402
 
-import numpy as np  # noqa: E402
-
 import de_design_providers as DD  # noqa: E402
+import numpy as np  # noqa: E402
 import pseudobulk_providers as PB  # noqa: E402
 from dataset_schema import NO_BATCH_SENTINEL  # noqa: E402
 
 
 def _rb_base_config(matrix_path, **overrides):
     config = {
-        "dataset_id": "test_real_backend", "species": "human",
-        "tissue_or_target_cell_type": "monocyte", "subject_id_column": "donor_id",
-        "sample_id_column": "sample_id", "biological_replicate_unit": "donor_id",
-        "technical_batch_column": NO_BATCH_SENTINEL, "expression_matrix_path": matrix_path,
-        "counts_semantics": "raw_counts", "counts_slot": "X",
-        "gene_id_namespace": "gene_symbol", "cell_id_column": "cell_barcode",
-        "qc_status": "provisional", "qc_version_ref": "none (provisional)",
+        "dataset_id": "test_real_backend",
+        "species": "human",
+        "tissue_or_target_cell_type": "monocyte",
+        "subject_id_column": "donor_id",
+        "sample_id_column": "sample_id",
+        "biological_replicate_unit": "donor_id",
+        "technical_batch_column": NO_BATCH_SENTINEL,
+        "expression_matrix_path": matrix_path,
+        "counts_semantics": "raw_counts",
+        "counts_slot": "X",
+        "gene_id_namespace": "gene_symbol",
+        "cell_id_column": "cell_barcode",
+        "qc_status": "provisional",
+        "qc_version_ref": "none (provisional)",
     }
     config.update(overrides)
     return config
@@ -1281,18 +1602,31 @@ def _rb_base_config(matrix_path, **overrides):
 #: Per review:20261015_142903 R3: the panel's gene names, in the
 #: SAME order as `_RB_X`'s columns -- fixed here (not re-derived from X's
 #: shape) so a reader can see which column is which gene without counting.
-_RB_GENE_NAMES = ("GENE_EFFECT_UP", "GENE_EFFECT_DOWN", "GENE_NULL",
-                  "GENE_BG1", "GENE_BG2", "GENE_BG3", "GENE_BG4")
+_RB_GENE_NAMES = (
+    "GENE_EFFECT_UP",
+    "GENE_EFFECT_DOWN",
+    "GENE_NULL",
+    "GENE_BG1",
+    "GENE_BG2",
+    "GENE_BG3",
+    "GENE_BG4",
+)
 
 
-def _rb_make_h5ad(tmp_path, *, X, cell_ids, sample_ids, donor_ids, conditions,
-                  name="real_backend.h5ad"):
+def _rb_make_h5ad(
+    tmp_path, *, X, cell_ids, sample_ids, donor_ids, conditions, name="real_backend.h5ad"
+):
     import anndata as ad
     import pandas as pd
-    obs = {"cell_barcode": cell_ids, "donor_id": donor_ids, "sample_id": sample_ids,
-          "condition": conditions}
+
+    obs = {
+        "cell_barcode": cell_ids,
+        "donor_id": donor_ids,
+        "sample_id": sample_ids,
+        "condition": conditions,
+    }
     obs_df = pd.DataFrame(obs, index=[f"idx{i}" for i in range(len(cell_ids))])
-    var = pd.DataFrame(index=list(_RB_GENE_NAMES[:X.shape[1]]))
+    var = pd.DataFrame(index=list(_RB_GENE_NAMES[: X.shape[1]]))
     a = ad.AnnData(X=np.asarray(X, dtype="float32"), obs=obs_df, var=var)
     path = tmp_path / name
     a.write_h5ad(path)
@@ -1323,15 +1657,18 @@ def _rb_make_h5ad(tmp_path, *, X, cell_ids, sample_ids, donor_ids, conditions,
 #: GENE_NULL, and |log2FC| < 0.02 for all four background genes. 6
 #: independent donors, 1 sample each (so pseudobulk counts == the cell's own
 #: raw X): D0-D2 healthy, D3-D5 disease.
-_RB_X = np.array([
-    #  EFFECT_UP  EFFECT_DOWN  NULL   BG1    BG2    BG3    BG4
-    [    50,          520,      98,   300,   290,   310,   295],   # D0 healthy
-    [    55,          500,     103,   310,   305,   295,   308],   # D1 healthy
-    [    52,          510,     101,   295,   310,   300,   302],   # D2 healthy
-    [   520,           50,      95,   305,   295,   308,   300],   # D3 disease
-    [   500,           55,     104,   290,   300,   312,   296],   # D4 disease
-    [   510,           52,      99,   315,   308,   296,   304],   # D5 disease
-], dtype="float32")
+_RB_X = np.array(
+    [
+        #  EFFECT_UP  EFFECT_DOWN  NULL   BG1    BG2    BG3    BG4
+        [50, 520, 98, 300, 290, 310, 295],  # D0 healthy
+        [55, 500, 103, 310, 305, 295, 308],  # D1 healthy
+        [52, 510, 101, 295, 310, 300, 302],  # D2 healthy
+        [520, 50, 95, 305, 295, 308, 300],  # D3 disease
+        [500, 55, 104, 290, 300, 312, 296],  # D4 disease
+        [510, 52, 99, 315, 308, 296, 304],  # D5 disease
+    ],
+    dtype="float32",
+)
 _RB_CELL_IDS = [f"CELL{i}" for i in range(6)]
 _RB_SAMPLE = [f"S{i}" for i in range(6)]
 _RB_DONOR = [f"D{i}" for i in range(6)]
@@ -1344,15 +1681,26 @@ def _rb_prepared_fixture(tmp_path):
     / `DEDesignPreparationProvider` -- never a hand-built dict standing in for
     either producer's output.
     """
-    h5ad = _rb_make_h5ad(tmp_path, X=_RB_X, cell_ids=_RB_CELL_IDS, sample_ids=_RB_SAMPLE,
-                         donor_ids=_RB_DONOR, conditions=_RB_CONDITION)
+    h5ad = _rb_make_h5ad(
+        tmp_path,
+        X=_RB_X,
+        cell_ids=_RB_CELL_IDS,
+        sample_ids=_RB_SAMPLE,
+        donor_ids=_RB_DONOR,
+        conditions=_RB_CONDITION,
+    )
     config = _rb_base_config(h5ad)
     config_path = str(tmp_path / "dataset_config.json")
     pb_provider = PB.PseudobulkAggregationProvider()
     pb_out = str(tmp_path / "pb_real_backend")
     pb_result = pb_provider.aggregate(
-        config, config_path, out_dir=pb_out, cell_ids_subset=tuple(_RB_CELL_IDS),
-        cell_type_or_state_label="monocyte", condition_column="condition")
+        config,
+        config_path,
+        out_dir=pb_out,
+        cell_ids_subset=tuple(_RB_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     assert pb_result.status == "complete", pb_result.reason
     pb_path = os.path.join(pb_out, "PSEUDOBULK_RESULT.json")
 
@@ -1361,8 +1709,11 @@ def _rb_prepared_fixture(tmp_path):
     de_provider = DD.DEDesignPreparationProvider()
     prep_out = str(tmp_path / "prep_real_backend")
     prepared = de_provider.prepare(
-        pseudobulk_result_path=pb_path, comparison=comparison,
-        sample_structure=sample_structure, out_dir=prep_out)
+        pseudobulk_result_path=pb_path,
+        comparison=comparison,
+        sample_structure=sample_structure,
+        out_dir=prep_out,
+    )
     assert prepared.status == "prepared", prepared.reason
 
     manifest = DD.read_prepared_de_design(os.path.join(prep_out, "PREPARED_DE_DESIGN.json"))
@@ -1374,7 +1725,8 @@ def test_run_pydeseq2_from_prepared_design_requires_status_prepared():
     provider = GR.ExpressionDERankingProvider()
     with pytest.raises(ValueError, match="status='prepared'"):
         provider.run_pydeseq2_from_prepared_design(
-            prepared_design={"status": "failed"}, counts=np.zeros((1, 1)))
+            prepared_design={"status": "failed"}, counts=np.zeros((1, 1))
+        )
 
 
 def test_run_pydeseq2_from_prepared_design_returns_not_run_without_pydeseq2(tmp_path):
@@ -1388,8 +1740,11 @@ def test_run_pydeseq2_from_prepared_design_returns_not_run_without_pydeseq2(tmp_
     result = provider.run_pydeseq2_from_prepared_design(prepared_design=manifest, counts=counts)
     try:
         import pydeseq2  # noqa: F401
-        pytest.skip("pydeseq2 IS installed in this environment; the ImportError "
-                   "path this test checks does not apply here")
+
+        pytest.skip(
+            "pydeseq2 IS installed in this environment; the ImportError "
+            "path this test checks does not apply here"
+        )
     except ImportError:
         pass
     assert result.status == "not_run", result.reason
@@ -1421,7 +1776,8 @@ def test_run_pydeseq2_from_prepared_design_rejects_a_counts_shape_mismatch(tmp_p
     wrong_shape_counts = np.hstack([counts, np.ones((counts.shape[0], 1))])
     provider = GR.ExpressionDERankingProvider()
     result = provider.run_pydeseq2_from_prepared_design(
-        prepared_design=manifest, counts=wrong_shape_counts)
+        prepared_design=manifest, counts=wrong_shape_counts
+    )
     assert result.status == "failed"
     assert "shape" in result.reason
 
@@ -1434,13 +1790,15 @@ def test_run_pydeseq2_from_prepared_design_rejects_a_counts_shape_mismatch(tmp_p
 # exercise the REAL production code path -- no spy -- and prove each is now
 # refused before pydeseq2 is even imported.
 
+
 def test_run_pydeseq2_from_prepared_design_rejects_same_shape_counts_content_tamper(tmp_path):
     manifest, counts = _rb_prepared_fixture(tmp_path)
     tampered_counts = counts.copy()
     tampered_counts[0, 0] += 1  # same shape, one value off by one
     provider = GR.ExpressionDERankingProvider()
     result = provider.run_pydeseq2_from_prepared_design(
-        prepared_design=manifest, counts=tampered_counts)
+        prepared_design=manifest, counts=tampered_counts
+    )
     assert result.status == "failed"
     assert "source-binding" in result.reason
     assert "pydeseq2" not in result.reason.lower()
@@ -1452,7 +1810,8 @@ def test_run_pydeseq2_from_prepared_design_rejects_fractional_counts(tmp_path):
     tampered_counts[0, 0] += 0.25  # same shape, non-integer-valued
     provider = GR.ExpressionDERankingProvider()
     result = provider.run_pydeseq2_from_prepared_design(
-        prepared_design=manifest, counts=tampered_counts)
+        prepared_design=manifest, counts=tampered_counts
+    )
     assert result.status == "failed"
     assert "non-integer" in str(result.reason)
     assert "pydeseq2" not in result.reason.lower()
@@ -1490,7 +1849,9 @@ def test_run_pydeseq2_from_prepared_design_rejects_an_all_zero_design_matrix(tmp
     assert "pydeseq2" not in result.reason.lower()
 
 
-def test_run_pydeseq2_from_prepared_design_passes_an_ndarray_contrast_not_a_list(tmp_path, monkeypatch):
+def test_run_pydeseq2_from_prepared_design_passes_an_ndarray_contrast_not_a_list(
+    tmp_path, monkeypatch
+):
     """Per R2: pydeseq2 v0.5.4's own DeseqStats constructor branches on the
     TYPE of `contrast` (ndarray -> numeric contrast; list -> 3-item
     categorical contrast spec, IndexError for a 2-column design). This
@@ -1503,6 +1864,7 @@ def test_run_pydeseq2_from_prepared_design_passes_an_ndarray_contrast_not_a_list
     control flow here, never third-party library behaviour).
     """
     import types
+
     manifest, counts = _rb_prepared_fixture(tmp_path)
     captured = {}
 
@@ -1540,7 +1902,8 @@ def test_run_pydeseq2_from_prepared_design_passes_an_ndarray_contrast_not_a_list
     assert captured["contrast_type"] is np.ndarray, (
         f"contrast was passed as {captured['contrast_type']!r}, not np.ndarray -- "
         "pydeseq2 v0.5.4 would treat a plain list as a 3-item categorical "
-        "contrast and raise IndexError for this 2-column design")
+        "contrast and raise IndexError for this 2-column design"
+    )
     assert result.status == "failed"
     assert "pydeseq2 raised during fit/stats" in result.reason
 
@@ -1673,7 +2036,8 @@ def test_run_pydeseq2_from_prepared_design_known_effect_and_null_ranks_correctly
     for g in ("GENE_NULL", "GENE_BG1", "GENE_BG2", "GENE_BG3", "GENE_BG4"):
         assert abs(scores[g]) < effect_magnitude / 2, (
             f"{g} scored {scores[g]!r}, too close to the known +-10x effect "
-            "magnitude for a gene with no intended group difference")
+            "magnitude for a gene with no intended group difference"
+        )
 
     assert written.params["shrinkage_method"] == "pydeseq2.DeseqStats.lfc_shrink"
     assert "raw_wald_stat" in written.params and "raw_lfc" in written.params

@@ -6,6 +6,7 @@ budgets, `--cells-per-group 0` producing a vacuous pass, tolerance-based
 layer-copy checks, missing stage_id/expression_source/manifest-field
 comparisons, and no CLI-entry-point test (only internal functions).
 """
+
 import os
 import subprocess
 import sys
@@ -21,20 +22,31 @@ sys.path.insert(0, str(CODE_DIR))
 sys.path.insert(0, str(TESTS_DIR))
 
 import validate_job1_output as vmod  # noqa: E402
-from validate_job1_output import (  # noqa: E402
-    metadata_checks, sampled_numeric_checks, _select_sample_rows, ValidationError,
-)
 from test_prepare_provisional_diagnostic_input import _build_fixture, _run_cli  # noqa: E402
+from validate_job1_output import (  # noqa: E402
+    ValidationError,
+    _select_sample_rows,
+    metadata_checks,
+    sampled_numeric_checks,
+)
 
 
 def _produce_real_output(tmp_path, n_per_donor=3):
     input_root = tmp_path / "input"
     out_h5ad = tmp_path / "out" / "prepared.h5ad"
     _build_fixture(input_root)
-    result = _run_cli([
-        "--input-root", str(input_root), "--out", str(out_h5ad),
-        "--n-per-donor", str(n_per_donor), "--seed", "0",
-    ])
+    result = _run_cli(
+        [
+            "--input-root",
+            str(input_root),
+            "--out",
+            str(out_h5ad),
+            "--n-per-donor",
+            str(n_per_donor),
+            "--seed",
+            "0",
+        ]
+    )
     assert result.returncode == 0, result.stdout + result.stderr
     manifest = out_h5ad.with_suffix(out_h5ad.suffix + ".selection_manifest.csv")
     genes_csv = input_root / "genes.csv"
@@ -185,8 +197,9 @@ def test_enforces_max_nnz_per_row_budget_before_reading(tmp_path, monkeypatch):
 
 def test_detects_stage_id_mismatch_against_expected_contract(tmp_path):
     h5ad_path, manifest_path, genes_csv = _produce_real_output(tmp_path)
-    meta = metadata_checks(h5ad_path, manifest_path, genes_csv,
-                            expected_stage_id="some_other_stage_id_entirely")
+    meta = metadata_checks(
+        h5ad_path, manifest_path, genes_csv, expected_stage_id="some_other_stage_id_entirely"
+    )
     assert meta["stage_id_matches_expected"] is False
 
 
@@ -195,6 +208,7 @@ def test_detects_manifest_field_mismatch_against_obs(tmp_path):
     harmonized_lineage row-by-row against obs."""
     h5ad_path, manifest_path, genes_csv = _produce_real_output(tmp_path)
     import pandas as pd
+
     manifest = pd.read_csv(manifest_path)
     before = manifest.loc[0, "cohort"]
     manifest.loc[0, "cohort"] = f"NOT_{before}"
@@ -215,10 +229,18 @@ def test_cli_entry_point_exits_nonzero_on_a_real_failure(tmp_path):
         ds[0], ds[1] = ds[1], ds[0]
 
     result = subprocess.run(
-        [sys.executable, str(CODE_DIR / "validate_job1_output.py"),
-         "--h5ad", str(h5ad_path), "--manifest", str(manifest_path),
-         "--genes-csv", str(genes_csv)],
-        capture_output=True, text=True,
+        [
+            sys.executable,
+            str(CODE_DIR / "validate_job1_output.py"),
+            "--h5ad",
+            str(h5ad_path),
+            "--manifest",
+            str(manifest_path),
+            "--genes-csv",
+            str(genes_csv),
+        ],
+        capture_output=True,
+        text=True,
     )
     assert result.returncode != 0
     assert "FAILED checks" in result.stderr
@@ -229,16 +251,27 @@ def test_cli_refuses_to_overwrite_existing_out_report(tmp_path):
     out_path = tmp_path / "report.json"
     out_path.write_text("already here")
     result = subprocess.run(
-        [sys.executable, str(CODE_DIR / "validate_job1_output.py"),
-         "--h5ad", str(h5ad_path), "--manifest", str(manifest_path),
-         "--genes-csv", str(genes_csv), "--out", str(out_path)],
-        capture_output=True, text=True,
+        [
+            sys.executable,
+            str(CODE_DIR / "validate_job1_output.py"),
+            "--h5ad",
+            str(h5ad_path),
+            "--manifest",
+            str(manifest_path),
+            "--genes-csv",
+            str(genes_csv),
+            "--out",
+            str(out_path),
+        ],
+        capture_output=True,
+        text=True,
     )
     assert result.returncode != 0
     assert "already exists" in (result.stdout + result.stderr)
 
 
 # ---- v3 (20261011_113512.md F4): deeper structural guarantees --------------
+
 
 def test_detects_x_shape_attr_disagreeing_with_obs_index_length(tmp_path):
     """v2's `_n_obs_from_metadata_only` trusted `X.attrs['shape']` alone;
@@ -308,10 +341,20 @@ def test_cli_out_creation_is_exclusive_not_check_then_write(tmp_path):
     os.close(fd)
 
     result = subprocess.run(
-        [sys.executable, str(CODE_DIR / "validate_job1_output.py"),
-         "--h5ad", str(h5ad_path), "--manifest", str(manifest_path),
-         "--genes-csv", str(genes_csv), "--out", str(out_path)],
-        capture_output=True, text=True,
+        [
+            sys.executable,
+            str(CODE_DIR / "validate_job1_output.py"),
+            "--h5ad",
+            str(h5ad_path),
+            "--manifest",
+            str(manifest_path),
+            "--genes-csv",
+            str(genes_csv),
+            "--out",
+            str(out_path),
+        ],
+        capture_output=True,
+        text=True,
     )
     assert result.returncode != 0
     assert "already exists" in (result.stdout + result.stderr)

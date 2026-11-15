@@ -13,10 +13,10 @@ import pytest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CODE = os.path.join(ROOT, "scripts", "32_rebuild_upfront_qc", "code")
-AUDIT = os.path.join(ROOT, "reports", "manuscript", "revision",
-                     "gate2_capture_audit_2026-09-24")
+AUDIT = os.path.join(ROOT, "reports", "manuscript", "revision", "gate2_capture_audit_2026-09-24")
 PREFLIGHT = os.path.join(AUDIT, "capture_preflight_GSM5102900_HC1.py")
 sys.path.insert(0, CODE)
+sys.path.insert(0, AUDIT)
 
 import gate2_parameter_ruling as RULING  # noqa: E402
 import gate2_stress_runner as R  # noqa: E402
@@ -35,14 +35,15 @@ def _calls(tree):
 
 
 CALLS = _calls(TREE)
-IMPORTED = {a.name for n in ast.walk(TREE) if isinstance(n, ast.ImportFrom)
-            for a in n.names}
+IMPORTED = {a.name for n in ast.walk(TREE) if isinstance(n, ast.ImportFrom) for a in n.names}
 
 
 # ---- 1. input identity is fail-closed ------------------------------------
 
+
 def test_every_input_has_a_full_64_character_expected_sha():
     import capture_preflight_GSM5102900_HC1 as P  # noqa: E402
+
     assert len(P.EXPECTED_SHA256) == 3
     for name, digest in P.EXPECTED_SHA256.items():
         assert len(digest) == 64, f"{name}: {len(digest)}-char digest is not a full sha256"
@@ -65,42 +66,47 @@ def _guarded_comparisons(fn):
             continue
         if not any(isinstance(o, ast.NotEq) for o in node.test.ops):
             continue
-        out.append((ast.unparse(node.test.left),
-                    ast.unparse(node.test.comparators[0])))
+        out.append((ast.unparse(node.test.left), ast.unparse(node.test.comparators[0])))
     return out
 
 
 def test_the_script_asserts_hashes_rather_than_only_recording_them():
     """A recomputed hash written into a manifest is an observation, not a check."""
-    fn = next(n for n in ast.walk(TREE)
-              if isinstance(n, ast.FunctionDef) and n.name == "assert_inputs")
+    fn = next(
+        n for n in ast.walk(TREE) if isinstance(n, ast.FunctionDef) and n.name == "assert_inputs"
+    )
     cmps = _guarded_comparisons(fn)
     rights = [r for _, r in cmps]
-    assert any("EXPECTED_SHA256" in r for r in rights), \
-        f"no guarded comparison against EXPECTED_SHA256; found {cmps}"
-    assert any("EXPECTED_BYTES" in r for r in rights), \
-        f"no guarded comparison against EXPECTED_BYTES; found {cmps}"
+    assert any(
+        "EXPECTED_SHA256" in r for r in rights
+    ), f"no guarded comparison against EXPECTED_SHA256; found {cmps}"
+    assert any(
+        "EXPECTED_BYTES" in r for r in rights
+    ), f"no guarded comparison against EXPECTED_BYTES; found {cmps}"
     all_rights = [r for _, r in _guarded_comparisons(TREE)]
-    assert any("EXPECTED_CONTAINER_SHA256" in r for r in all_rights), \
-        f"the container sha256 is not compared; found {all_rights}"
-    assert any("EXPECTED_CONTAINER_BYTES" in r for r in all_rights), \
-        f"the container byte size is not compared; found {all_rights}"
+    assert any(
+        "EXPECTED_CONTAINER_SHA256" in r for r in all_rights
+    ), f"the container sha256 is not compared; found {all_rights}"
+    assert any(
+        "EXPECTED_CONTAINER_BYTES" in r for r in all_rights
+    ), f"the container byte size is not compared; found {all_rights}"
 
 
 def test_inputs_are_asserted_before_the_matrix_is_read():
-    main = next(n for n in ast.walk(TREE)
-                if isinstance(n, ast.FunctionDef) and n.name == "main")
+    main = next(n for n in ast.walk(TREE) if isinstance(n, ast.FunctionDef) and n.name == "main")
     order = [n for n in ast.walk(main) if isinstance(n, ast.Call)]
     names = [getattr(n.func, "id", getattr(n.func, "attr", "")) for n in order]
     assert "assert_inputs" in names
-    assert names.index("assert_inputs") < names.index("mmread"), \
-        "the matrix is read before input identity is asserted"
+    assert names.index("assert_inputs") < names.index(
+        "mmread"
+    ), "the matrix is read before input identity is asserted"
 
 
 def test_the_container_identity_is_a_full_sha_not_path_plus_size():
     """The defect: `EXPECTED_CONTAINER_IDENTITY = '5027039977:'` with a comment
     promising the digest later, so only the size was ever compared."""
     import capture_preflight_GSM5102900_HC1 as P
+
     assert len(P.EXPECTED_CONTAINER_SHA256) == 64
     assert set(P.EXPECTED_CONTAINER_SHA256) <= set("0123456789abcdef")
     assert isinstance(P.EXPECTED_CONTAINER_BYTES, int)
@@ -109,12 +115,15 @@ def test_the_container_identity_is_a_full_sha_not_path_plus_size():
 
 # ---- 2. simulated matrix is normalised too -------------------------------
 
+
 def test_both_observed_and_simulated_are_normalised():
     """The defect: normalising only the observed matrix, leaving the simulated one
     on a different scale before stacking."""
-    norm_calls = [ast.unparse(n) for n in ast.walk(TREE)
-                  if isinstance(n, ast.Call)
-                  and getattr(n.func, "attr", "") == "normalize_total"]
+    norm_calls = [
+        ast.unparse(n)
+        for n in ast.walk(TREE)
+        if isinstance(n, ast.Call) and getattr(n.func, "attr", "") == "normalize_total"
+    ]
     targeted = [c for c in norm_calls if "target_sum" in c]
     assert len(targeted) == 2, f"expected 2 target_sum normalisations, got {targeted}"
     assert any("(a," in c or "(a)" in c for c in targeted), "observed not normalised"
@@ -122,6 +131,7 @@ def test_both_observed_and_simulated_are_normalised():
 
 
 # ---- 3. observed-fit PCA, not a joint fit --------------------------------
+
 
 def test_no_joint_svd_is_used():
     """scanpy fits TruncatedSVD on the OBSERVED matrix and transforms both. A joint
@@ -141,12 +151,14 @@ def test_no_joint_svd_is_used():
 
 def test_the_manifold_comes_from_scanpys_own_pipeline():
     assert "_scrublet" in SRC and "pipeline" in SRC
-    assert any(c in CALLS for c in ("pca", "truncated_svd")), \
-        "scanpy's own projection is not called"
+    assert any(
+        c in CALLS for c in ("pca", "truncated_svd")
+    ), "scanpy's own projection is not called"
     assert "observed-fit" in SRC
 
 
 # ---- 4. the graph boundary is stated, not faked ---------------------------
+
 
 def test_no_sklearn_nearest_neighbors_graph_is_built():
     """The previous draft built a graph with base k via sklearn and checksummed it as
@@ -167,6 +179,7 @@ def test_the_graph_checksum_is_null_with_a_stated_reason():
 
 # ---- 5. seed comes from the repository -----------------------------------
 
+
 def test_the_seed_is_derived_not_invented():
     assert "capture_seed" in IMPORTED, "capture_seed is not imported"
     assert "capture_seed(COHORT, CHANNEL)" in SRC
@@ -174,6 +187,7 @@ def test_the_seed_is_derived_not_invented():
 
 
 # ---- 6. the ruling is imported, not copied -------------------------------
+
 
 def test_the_eleven_values_are_not_duplicated_in_the_preflight():
     """The defect: copying all eleven VALUES into the script, so two lists can drift.
@@ -185,22 +199,26 @@ def test_the_eleven_values_are_not_duplicated_in_the_preflight():
     names = set(RULING.METHODOLOGY_PARAMETER_RULING)
     for n in ast.walk(TREE):
         if isinstance(n, ast.Dict):
-            keys = {k.value for k in n.keys
-                    if isinstance(k, ast.Constant) and isinstance(k.value, str)}
+            keys = {
+                k.value for k in n.keys if isinstance(k, ast.Constant) and isinstance(k.value, str)
+            }
             overlap = keys & names
             if len(overlap) >= 3:
                 raise AssertionError(
                     f"a dict literal re-binds {len(overlap)} ruling parameters "
-                    f"({sorted(overlap)[:4]}...): the ruling has been copied")
+                    f"({sorted(overlap)[:4]}...): the ruling has been copied"
+                )
 
 
 def test_the_ruling_version_is_checked():
     """Importing the checker is not calling it. Replacing the call with `pass` left
     the import in place and this test passed -- so the call itself is asserted."""
     assert "assert_ruling_version" in IMPORTED
-    called = [ast.unparse(n) for n in ast.walk(TREE)
-              if isinstance(n, ast.Call)
-              and getattr(n.func, "id", "") == "assert_ruling_version"]
+    called = [
+        ast.unparse(n)
+        for n in ast.walk(TREE)
+        if isinstance(n, ast.Call) and getattr(n.func, "id", "") == "assert_ruling_version"
+    ]
     assert called, "assert_ruling_version is imported but never called"
     assert any("EXPECT_RULING_VERSION" in c for c in called), called
     with pytest.raises(SystemExit, match="ruling version mismatch"):
@@ -227,13 +245,15 @@ def test_importing_the_ruling_does_not_unlock_the_runner():
 
 # ---- 7. no artificial prior loop -----------------------------------------
 
+
 def test_there_is_no_loop_over_the_prior_grid():
     """An unused `rho` loop shows only that the script reruns deterministically."""
     for n in ast.walk(TREE):
         if isinstance(n, ast.For):
             it = ast.unparse(n.iter)
-            assert "RESIDUAL_RATE_GRID" not in it and "PRIOR_GRID" not in it, \
-                "the preflight loops over the prior grid again"
+            assert (
+                "RESIDUAL_RATE_GRID" not in it and "PRIOR_GRID" not in it
+            ), "the preflight loops over the prior grid again"
 
 
 def test_prior_independence_is_claimed_structurally():
@@ -244,6 +264,7 @@ def test_prior_independence_is_claimed_structurally():
 
 # ---- 8. provenance and write safety --------------------------------------
 
+
 def test_the_manifest_is_written_atomically():
     assert "def write_atomic" in SRC
     assert "os.replace" in SRC and "fsync" in SRC
@@ -251,8 +272,7 @@ def test_the_manifest_is_written_atomically():
 
 
 def test_the_manifest_records_provenance_and_a_lifecycle():
-    for field in ("'status'", "dependency_identity", "'ruling'", "'seed'",
-                  "'inputs'", "versions"):
+    for field in ("'status'", "dependency_identity", "'ruling'", "'seed'", "'inputs'", "versions"):
         assert field in SRC, f"manifest lacks {field}"
     assert "'status': 'incomplete'" in SRC and "'status'] = 'complete'" in SRC
 
@@ -269,8 +289,15 @@ def test_no_outcome_column_is_read():
     (human_platelet_covid_severity_raw_counts.h5ad), so a substring scan flags a path
     that is never even opened here. What matters is whether an outcome column is
     used as a key, so string CONSTANTS are checked, with the known path excluded."""
-    outcome = {"Death", "covid_severity", "mild_vs_severe", "severity_score",
-               "progression_group", "three_group", "y"}
+    outcome = {
+        "Death",
+        "covid_severity",
+        "mild_vs_severe",
+        "severity_score",
+        "progression_group",
+        "three_group",
+        "y",
+    }
     for n in ast.walk(TREE):
         if isinstance(n, ast.Constant) and isinstance(n.value, str):
             v = n.value
@@ -289,11 +316,13 @@ def test_exactly_one_pre_simulation_raw_snapshot():
     for n in ast.walk(TREE):
         if isinstance(n, ast.Assign):
             for t in n.targets:
-                if (isinstance(t, ast.Subscript)
-                        and isinstance(t.value, ast.Attribute)
-                        and t.value.attr == "layers"
-                        and isinstance(t.slice, ast.Constant)
-                        and t.slice.value == "raw"):
+                if (
+                    isinstance(t, ast.Subscript)
+                    and isinstance(t.value, ast.Attribute)
+                    and t.value.attr == "layers"
+                    and isinstance(t.slice, ast.Constant)
+                    and t.slice.value == "raw"
+                ):
                     assigns.append(ast.unparse(n))
     assert len(assigns) == 1, f"expected exactly one raw snapshot, found {assigns}"
 
@@ -302,7 +331,6 @@ def test_the_raw_snapshot_precedes_normalisation():
     """It must be taken before normalize_total, or the simulation reads
     normalised counts."""
     lines = SRC.splitlines()
-    raw_at = next(i for i, l in enumerate(lines) if "layers['raw'] = " in l)
-    norm_at = next(i for i, l in enumerate(lines)
-                   if "sc.pp.normalize_total(a)" in l)
+    raw_at = next(i for i, line in enumerate(lines) if "layers['raw'] = " in line)
+    norm_at = next(i for i, line in enumerate(lines) if "sc.pp.normalize_total(a)" in line)
     assert raw_at < norm_at, "the raw snapshot is taken after normalisation"

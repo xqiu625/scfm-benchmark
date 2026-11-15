@@ -54,10 +54,12 @@ def test_composite_key_uniqueness_allows_donor_id_reuse_across_cohorts():
     """A bare global donor_id uniqueness check would reject this even though
     it is legitimate: two different cohorts, two different biological
     patients, coincidentally sharing a donor_id string."""
-    df = pd.DataFrame({
-        "cohort": ["Cohort A", "Cohort B"],
-        "donor_id": ["P001", "P001"],
-    })
+    df = pd.DataFrame(
+        {
+            "cohort": ["Cohort A", "Cohort B"],
+            "donor_id": ["P001", "P001"],
+        }
+    )
     dup_composite = df.duplicated(subset=["cohort", "donor_id"], keep=False)
     assert not dup_composite.any()
     reused = df.groupby("donor_id")["cohort"].nunique().loc[lambda s: s > 1]
@@ -65,9 +67,11 @@ def test_composite_key_uniqueness_allows_donor_id_reuse_across_cohorts():
 
 
 def test_composite_key_uniqueness_catches_a_real_duplicate_within_one_cohort():
-    df = pd.DataFrame({
-        "cohort": ["Cohort A", "Cohort A", "Cohort A"],
-        "donor_id": ["P001", "P002", "P001"],
-    })
+    df = pd.DataFrame(
+        {
+            "cohort": ["Cohort A", "Cohort A", "Cohort A"],
+            "donor_id": ["P001", "P002", "P001"],
+        }
+    )
     dup_composite = df.duplicated(subset=["cohort", "donor_id"], keep=False)
     assert dup_composite.sum() == 2

@@ -2,6 +2,7 @@
 serializer (write_atomic -> read_manifest), not a stand-in -- per DEVELOPMENT.md's
 "round trips must be strict" standing rule.
 """
+
 import os
 import sys
 
@@ -9,7 +10,9 @@ import pytest
 
 CODE = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    "scripts", "34_scfm_discovery_framework", "code",
+    "scripts",
+    "34_scfm_discovery_framework",
+    "code",
 )
 sys.path.insert(0, CODE)
 
@@ -19,24 +22,36 @@ import artifact_schema as A  # noqa: E402
 def test_build_manifest_rejects_invalid_stage_status():
     with pytest.raises(ValueError, match="stage_status"):
         A.build_manifest(
-            input_identity={}, source_code_revision_or_hash="x",
+            input_identity={},
+            source_code_revision_or_hash="x",
             model_identity_or_pending="model_undecided",
-            stage_status="definitely_done", expected_outputs=[], dependencies=[])
+            stage_status="definitely_done",
+            expected_outputs=[],
+            dependencies=[],
+        )
 
 
 def test_build_manifest_rejects_guessed_model_identity():
     with pytest.raises(ValueError, match="model_identity_or_pending"):
         A.build_manifest(
-            input_identity={}, source_code_revision_or_hash="x",
+            input_identity={},
+            source_code_revision_or_hash="x",
             model_identity_or_pending="probably_scprint2",
-            stage_status="planned", expected_outputs=[], dependencies=[])
+            stage_status="planned",
+            expected_outputs=[],
+            dependencies=[],
+        )
 
 
 def test_build_manifest_accepts_model_undecided():
     manifest = A.build_manifest(
-        input_identity={"dataset_id": "x"}, source_code_revision_or_hash="x",
+        input_identity={"dataset_id": "x"},
+        source_code_revision_or_hash="x",
         model_identity_or_pending="model_undecided",
-        stage_status="planned", expected_outputs=["foo.tsv"], dependencies=[])
+        stage_status="planned",
+        expected_outputs=["foo.tsv"],
+        dependencies=[],
+    )
     assert manifest["model_identity_or_pending"] == "model_undecided"
     assert manifest["stage_status"] == "planned"
 
@@ -46,8 +61,10 @@ def test_write_then_read_round_trips_exactly(tmp_path):
         input_identity={"dataset_id": "x", "dataset_config_sha256": "abc123"},
         source_code_revision_or_hash="deadbeef",
         model_identity_or_pending={"model_generation": "scPRINT-2"},
-        stage_status="planned", expected_outputs=["a.tsv", "b.tsv"],
-        dependencies=[{"file": "dataset_schema.py", "sha256": "f" * 64}])
+        stage_status="planned",
+        expected_outputs=["a.tsv", "b.tsv"],
+        dependencies=[{"file": "dataset_schema.py", "sha256": "f" * 64}],
+    )
     dest = tmp_path / "PLAN.json"
     A.write_atomic(str(dest), manifest)
     read_back = A.read_manifest(str(dest))
@@ -59,6 +76,7 @@ def test_write_then_read_round_trips_exactly(tmp_path):
 
 def test_read_manifest_rejects_wrong_schema_version(tmp_path):
     import json
+
     dest = tmp_path / "bad.json"
     dest.write_text(json.dumps({"schema": "not-the-real-schema/1"}))
     with pytest.raises(SystemExit, match="schema"):
@@ -80,8 +98,10 @@ def test_sha256_text_is_deterministic_and_order_sensitive():
 # the bytes directly (bypassing build_manifest/write_atomic entirely), the exact
 # attack the review used. ---
 
+
 def test_read_manifest_rejects_illegal_stage_status_even_if_schema_matches(tmp_path):
     import json
+
     path = tmp_path / "tampered.json"
     path.write_text(json.dumps({"schema": A.SCHEMA_VERSION, "stage_status": "invented"}))
     with pytest.raises(SystemExit, match="stage_status"):
@@ -90,6 +110,7 @@ def test_read_manifest_rejects_illegal_stage_status_even_if_schema_matches(tmp_p
 
 def test_read_manifest_rejects_missing_required_keys(tmp_path):
     import json
+
     path = tmp_path / "tampered.json"
     path.write_text(json.dumps({"schema": A.SCHEMA_VERSION, "stage_status": "planned"}))
     with pytest.raises(SystemExit, match="missing required key"):
@@ -98,11 +119,18 @@ def test_read_manifest_rejects_missing_required_keys(tmp_path):
 
 def test_read_manifest_rejects_empty_input_identity(tmp_path):
     import json
+
     path = tmp_path / "tampered.json"
-    payload = {"schema": A.SCHEMA_VERSION, "generated_utc": "x",
-               "input_identity": {}, "source_code_revision_or_hash": "x",
-               "model_identity_or_pending": "model_undecided",
-               "stage_status": "planned", "expected_outputs": [], "dependencies": []}
+    payload = {
+        "schema": A.SCHEMA_VERSION,
+        "generated_utc": "x",
+        "input_identity": {},
+        "source_code_revision_or_hash": "x",
+        "model_identity_or_pending": "model_undecided",
+        "stage_status": "planned",
+        "expected_outputs": [],
+        "dependencies": [],
+    }
     path.write_text(json.dumps(payload))
     with pytest.raises(SystemExit, match="input_identity"):
         A.read_manifest(str(path))
@@ -110,11 +138,18 @@ def test_read_manifest_rejects_empty_input_identity(tmp_path):
 
 def test_read_manifest_rejects_guessed_model_identity_in_tampered_file(tmp_path):
     import json
+
     path = tmp_path / "tampered.json"
-    payload = {"schema": A.SCHEMA_VERSION, "generated_utc": "x",
-               "input_identity": {"x": 1}, "source_code_revision_or_hash": "x",
-               "model_identity_or_pending": "probably_scprint2",
-               "stage_status": "planned", "expected_outputs": [], "dependencies": []}
+    payload = {
+        "schema": A.SCHEMA_VERSION,
+        "generated_utc": "x",
+        "input_identity": {"x": 1},
+        "source_code_revision_or_hash": "x",
+        "model_identity_or_pending": "probably_scprint2",
+        "stage_status": "planned",
+        "expected_outputs": [],
+        "dependencies": [],
+    }
     path.write_text(json.dumps(payload))
     with pytest.raises(SystemExit, match="model_identity_or_pending"):
         A.read_manifest(str(path))
@@ -127,9 +162,13 @@ def test_build_manifest_itself_rejects_the_same_tampered_shape():
     """
     with pytest.raises(ValueError, match="invalid manifest"):
         A.build_manifest(
-            input_identity={}, source_code_revision_or_hash="x",
+            input_identity={},
+            source_code_revision_or_hash="x",
             model_identity_or_pending="model_undecided",
-            stage_status="planned", expected_outputs=[], dependencies=[])
+            stage_status="planned",
+            expected_outputs=[],
+            dependencies=[],
+        )
 
 
 def test_write_atomic_rejects_nan_instead_of_silently_writing_it(tmp_path):
@@ -141,10 +180,14 @@ def test_write_atomic_rejects_nan_instead_of_silently_writing_it(tmp_path):
     """
     with pytest.raises(ValueError, match="non-finite"):
         A.build_manifest(
-            input_identity={"x": 1}, source_code_revision_or_hash="x",
+            input_identity={"x": 1},
+            source_code_revision_or_hash="x",
             model_identity_or_pending="model_undecided",
-            stage_status="planned", expected_outputs=[], dependencies=[],
-            extra={"a_nan_value": float("nan")})
+            stage_status="planned",
+            expected_outputs=[],
+            dependencies=[],
+            extra={"a_nan_value": float("nan")},
+        )
 
 
 def test_write_atomic_rejects_unsupported_object_instead_of_stringifying(tmp_path):
@@ -152,9 +195,13 @@ def test_write_atomic_rejects_unsupported_object_instead_of_stringifying(tmp_pat
     string "<object object at 0x...>" rather than raising.
     """
     manifest = A.build_manifest(
-        input_identity={"x": 1}, source_code_revision_or_hash="x",
+        input_identity={"x": 1},
+        source_code_revision_or_hash="x",
         model_identity_or_pending="model_undecided",
-        stage_status="planned", expected_outputs=[], dependencies=[])
+        stage_status="planned",
+        expected_outputs=[],
+        dependencies=[],
+    )
     manifest["extra"] = {"not_json_safe": object()}
     with pytest.raises(TypeError):
         A.write_atomic(str(tmp_path / "x.json"), manifest)
@@ -176,13 +223,22 @@ def test_mutation_kill_illegal_stage_status_check(monkeypatch):
     monkeypatch.setattr(A2, "validate_manifest", _mutant)
     import json
     import tempfile
+
     path = tempfile.mktemp(suffix=".json")
     with open(path, "w") as fh:
-        json.dump({"schema": A2.SCHEMA_VERSION, "generated_utc": "x",
-                  "input_identity": {"x": 1}, "source_code_revision_or_hash": "x",
-                  "model_identity_or_pending": "model_undecided",
-                  "stage_status": "invented", "expected_outputs": [],
-                  "dependencies": []}, fh)
+        json.dump(
+            {
+                "schema": A2.SCHEMA_VERSION,
+                "generated_utc": "x",
+                "input_identity": {"x": 1},
+                "source_code_revision_or_hash": "x",
+                "model_identity_or_pending": "model_undecided",
+                "stage_status": "invented",
+                "expected_outputs": [],
+                "dependencies": [],
+            },
+            fh,
+        )
     # With the mutant validator, read_manifest must NOT raise -- proving the
     # real validator (not a tautology) is what makes the real test above pass.
     manifest = A2.read_manifest(path)
@@ -196,17 +252,21 @@ def test_mutation_kill_illegal_stage_status_check(monkeypatch):
 # previously ACCEPTED by read_manifest. Each is reproduced by tampering a REAL
 # PLAN produced by build_manifest, not a hand-simplified object. ---
 
+
 def _real_plan():
     return A.build_manifest(
         input_identity={"dataset_id": "x", "dataset_config_sha256": "abc123"},
         source_code_revision_or_hash="git:deadbeef",
         model_identity_or_pending="model_undecided",
-        stage_status="planned", expected_outputs=["a.tsv"],
-        dependencies=[{"file": "cli.py", "sha256": "a" * 64}])
+        stage_status="planned",
+        expected_outputs=["a.tsv"],
+        dependencies=[{"file": "cli.py", "sha256": "a" * 64}],
+    )
 
 
 def test_read_manifest_rejects_bool_source_code_revision(tmp_path):
     import json
+
     plan = _real_plan()
     plan["source_code_revision_or_hash"] = True
     path = tmp_path / "tampered.json"
@@ -217,6 +277,7 @@ def test_read_manifest_rejects_bool_source_code_revision(tmp_path):
 
 def test_read_manifest_rejects_null_dependency_entry(tmp_path):
     import json
+
     plan = _real_plan()
     plan["dependencies"] = [None]
     path = tmp_path / "tampered.json"
@@ -227,6 +288,7 @@ def test_read_manifest_rejects_null_dependency_entry(tmp_path):
 
 def test_read_manifest_rejects_dependency_missing_sha256(tmp_path):
     import json
+
     plan = _real_plan()
     plan["dependencies"] = [{"file": "cli.py"}]
     path = tmp_path / "tampered.json"
@@ -242,6 +304,7 @@ def test_read_manifest_rejects_nan_in_raw_persisted_json(tmp_path):
     """
     plan = _real_plan()
     import json as _json
+
     text = _json.dumps(plan).replace('"abc123"', "NaN")
     path = tmp_path / "tampered.json"
     path.write_text(text)
@@ -256,9 +319,11 @@ def test_mutation_kill_nonfinite_constant_check():
     -bearing, not redundant with default json parsing.
     """
     import json
+
     plan = _real_plan()
     text = json.dumps(plan).replace('"abc123"', "NaN")
     import math
+
     # Default json.load accepts this (demonstrating the fault the override fixes).
     parsed = json.loads(text)
     assert math.isnan(parsed["input_identity"]["dataset_config_sha256"])
@@ -269,8 +334,10 @@ def test_mutation_kill_nonfinite_constant_check():
 # JSON constant tokens parse_constant intercepts -- it must still be caught,
 # recursively, anywhere in the manifest. ---
 
+
 def test_read_manifest_rejects_overflow_to_infinity_in_extra(tmp_path):
     import json
+
     plan = _real_plan()
     text = json.dumps(plan)
     tampered = text[:-1] + ', "extra": {"huge": 1e999}}'
@@ -282,6 +349,7 @@ def test_read_manifest_rejects_overflow_to_infinity_in_extra(tmp_path):
 
 def test_read_manifest_rejects_negative_overflow_to_infinity(tmp_path):
     import json
+
     plan = _real_plan()
     text = json.dumps(plan)
     tampered = text[:-1] + ', "extra": {"huge": -1e999}}'
@@ -297,6 +365,7 @@ def test_read_manifest_accepts_normal_finite_exponent_value(tmp_path):
     exponents in general.
     """
     import json
+
     plan = _real_plan()
     text = json.dumps(plan)
     tampered = text[:-1] + ', "extra": {"normal": 1.5e10}}'
@@ -313,10 +382,14 @@ def test_build_and_write_also_reject_nonfinite_nested_in_extra(tmp_path):
     """
     with pytest.raises(ValueError, match="non-finite"):
         A.build_manifest(
-            input_identity={"x": 1}, source_code_revision_or_hash="git:x",
-            model_identity_or_pending="model_undecided", stage_status="planned",
-            expected_outputs=[], dependencies=[],
-            extra={"nested": {"deep": [1.0, float("inf")]}})
+            input_identity={"x": 1},
+            source_code_revision_or_hash="git:x",
+            model_identity_or_pending="model_undecided",
+            stage_status="planned",
+            expected_outputs=[],
+            dependencies=[],
+            extra={"nested": {"deep": [1.0, float("inf")]}},
+        )
 
 
 def test_mutation_kill_nonfinite_recursive_check(monkeypatch):
@@ -324,8 +397,10 @@ def test_mutation_kill_nonfinite_recursive_check(monkeypatch):
     would then genuinely fail to detect the fault.
     """
     import artifact_schema as A2
+
     monkeypatch.setattr(A2, "find_nonfinite_floats", lambda obj, path="<root>": [])
     import json
+
     plan = _real_plan()
     text = json.dumps(plan)
     tampered = text[:-1] + ', "extra": {"huge": 1e999}}'

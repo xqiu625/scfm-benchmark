@@ -19,7 +19,6 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import pytest
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 
@@ -27,7 +26,7 @@ sys.path.insert(
     0,
     str(Path(__file__).parent.parent / "scripts/31_donor_level_revision/code"),
 )
-from repeated_cv import run_repeated_kfold, run_loco
+from repeated_cv import run_loco, run_repeated_kfold
 
 
 def _synthetic_grouped_data(seed=0, n_groups=30, cells_per_group=6, n_features=10):
@@ -64,11 +63,17 @@ def test_run_repeated_kfold_never_splits_a_group_across_train_and_test():
         return {"p": clf.predict_proba(X_test.to_numpy())[:, 1]}
 
     result = run_repeated_kfold(X_df, y, groups, fit_predict_fn, seeds=[0, 1, 2])
-    assert n_calls[0] == 3 * 5, f"expected 3 seeds x 5 folds = 15 real callback invocations, got {n_calls[0]}"
-    assert violations == [], f"group(s) split across train/test in the ACTUAL harness calls: {violations}"
+    assert (
+        n_calls[0] == 3 * 5
+    ), f"expected 3 seeds x 5 folds = 15 real callback invocations, got {n_calls[0]}"
+    assert (
+        violations == []
+    ), f"group(s) split across train/test in the ACTUAL harness calls: {violations}"
     assert set(result.keys()) == {0, 1, 2}
     for seed, preds in result.items():
-        assert not np.isnan(preds["p"]).any(), f"seed {seed}: every row must be held out exactly once"
+        assert not np.isnan(
+            preds["p"]
+        ).any(), f"seed {seed}: every row must be held out exactly once"
 
 
 def test_run_loco_holds_out_one_whole_cohort_per_fold():
@@ -92,7 +97,9 @@ def test_run_loco_holds_out_one_whole_cohort_per_fold():
 
     oof, held_out = run_loco(X_df, y, cohort, fit_predict_fn)
     assert n_calls[0] == 2, f"expected exactly 2 LOCO folds (CohortA, CohortB), got {n_calls[0]}"
-    assert violations == [], f"cohort split across train/test in the ACTUAL harness calls: {violations}"
+    assert (
+        violations == []
+    ), f"cohort split across train/test in the ACTUAL harness calls: {violations}"
     assert set(held_out) == {"CohortA", "CohortB"}
     assert not np.isnan(oof["p"]).any()
 
@@ -123,6 +130,7 @@ def _fixed_fold_perturbation_check(fit_fn_factory, seed=1):
                 held_out_idx["test"] = X_test.index.to_numpy().copy()
                 held_out_idx["train"] = X_train.index.to_numpy().copy()
             return {"p": np.zeros(len(X_test))}
+
         return fn
 
     run_repeated_kfold(X_df, y, groups, make_capturing_fn(fit_fn_factory), seeds=[seed])
@@ -132,9 +140,9 @@ def _fixed_fold_perturbation_check(fit_fn_factory, seed=1):
 
     X_mutated = X.copy()
     X_mutated[test_idx, :] += 1000.0  # perturb ONLY this fold's real held-out rows
-    assert np.array_equal(X_mutated[train_idx], X[train_idx]), (
-        "test setup error: train rows must be untouched by this perturbation"
-    )
+    assert np.array_equal(
+        X_mutated[train_idx], X[train_idx]
+    ), "test setup error: train rows must be untouched by this perturbation"
     X_mutated_df = pd.DataFrame(X_mutated)
 
     captured.clear()
@@ -153,16 +161,21 @@ def test_correctly_written_fit_predict_fn_is_unaffected_by_held_out_row_values()
     REAL held-out-only row perturbation (see `_fixed_fold_perturbation_check`
     docstring) -- a correct fit_predict_fn's captured fitted state must be
     EXACTLY unchanged when only held-out rows are perturbed."""
+
     def correct_fn(X_train, y_train, X_test):
         scaler = StandardScaler().fit(X_train.to_numpy())
         return scaler.mean_.copy()
 
     mean1, mean2 = _fixed_fold_perturbation_check(correct_fn)
-    np.testing.assert_array_equal(mean1, mean2, err_msg=(
-        "a correct train-only StandardScaler's fitted mean changed when ONLY "
-        "this fold's held-out rows were perturbed -- held-out data influenced "
-        "a quantity it must not have."
-    ))
+    np.testing.assert_array_equal(
+        mean1,
+        mean2,
+        err_msg=(
+            "a correct train-only StandardScaler's fitted mean changed when ONLY "
+            "this fold's held-out rows were perturbed -- held-out data influenced "
+            "a quantity it must not have."
+        ),
+    )
 
 
 def test_leakage_is_actually_detectable_if_fit_predict_fn_is_written_wrong():
@@ -171,6 +184,7 @@ def test_leakage_is_actually_detectable_if_fit_predict_fn_is_written_wrong():
     show a different fitted mean under the identical held-out-only
     perturbation -- proving the invariance check above would actually catch
     this exact leakage bug through the real harness, not pass vacuously."""
+
     def leaky_fn(X_train, y_train, X_test):
         X_all = np.vstack([X_train.to_numpy(), X_test.to_numpy()])  # LEAK
         return StandardScaler().fit(X_all).mean_.copy()
@@ -194,9 +208,7 @@ def test_harmony_correction_result_depends_only_on_its_own_call_not_prior_calls(
     different data. This is the structural reason the function has no
     .fit()/.transform() split and must be labeled transductive/exploratory,
     never a reusable correction model applicable to an unseen cohort."""
-    sys.path.insert(
-        0, str(Path(__file__).parent.parent / "scripts/33_batch_effect_audit/code")
-    )
+    sys.path.insert(0, str(Path(__file__).parent.parent / "scripts/33_batch_effect_audit/code"))
     from run_batch_diagnostics import run_harmony_correction
 
     rng = np.random.RandomState(0)
@@ -209,10 +221,14 @@ def test_harmony_correction_result_depends_only_on_its_own_call_not_prior_calls(
     _ = run_harmony_correction(X_b, batch_b, seed=0)  # different call, in between
     result_a2 = run_harmony_correction(X_a, batch_a, seed=0)
 
-    np.testing.assert_allclose(result_a1, result_a2, err_msg=(
-        "calling run_harmony_correction on unrelated data B between two "
-        "identical calls on A changed A's result -- this would mean fitted "
-        "state leaks across calls, contradicting the transductive-only, "
-        "no-persisted-model contract this function is documented to have."
-    ))
+    np.testing.assert_allclose(
+        result_a1,
+        result_a2,
+        err_msg=(
+            "calling run_harmony_correction on unrelated data B between two "
+            "identical calls on A changed A's result -- this would mean fitted "
+            "state leaks across calls, contradicting the transductive-only, "
+            "no-persisted-model contract this function is documented to have."
+        ),
+    )
     assert result_a1.shape == (60, X_a.shape[1]) or result_a1.shape[0] == 60

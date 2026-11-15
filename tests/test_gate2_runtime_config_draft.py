@@ -17,7 +17,6 @@ import gate2_runtime_config_draft as C  # noqa: E402
 import gate2_stress_design as D  # noqa: E402
 import gate2_stress_runner as R  # noqa: E402
 
-
 # ---- the production runner still refuses ---------------------------------
 
 
@@ -49,7 +48,7 @@ def test_all_parameters_are_approved_but_production_is_not_activated():
     assert set(cfg["ruled_parameters"]) == set(R.REQUIRED_PARAMETER_NAMES)
     assert cfg["production_configuration_activated"] is False
     for cohort in cfg["cohorts"].values():
-        assert not any('parameter(s) unruled' in b for b in cohort['runtime_eligible_blockers'])
+        assert not any("parameter(s) unruled" in b for b in cohort["runtime_eligible_blockers"])
 
 
 # ---- the ruling's own constraints ----------------------------------------
@@ -94,8 +93,13 @@ def test_rank_and_auc_invariance_are_labelled_implementation_checks():
 
 def test_the_per_capture_fixed_set_covers_the_neighbour_graph():
     fixed = C.config_draft()["fixed_per_capture_seed"]
-    for item in ("simulated_parent_pairs", "pca_representation", "neighbour_graph",
-                 "hvg_selection", "input_cell_order"):
+    for item in (
+        "simulated_parent_pairs",
+        "pca_representation",
+        "neighbour_graph",
+        "hvg_selection",
+        "input_cell_order",
+    ):
         assert item in fixed
 
 
@@ -137,8 +141,13 @@ def test_every_conditional_cohort_lists_stop_conditions():
 
 def test_the_common_conditions_are_all_present():
     cond = C.config_draft()["common_conditions"]
-    assert sorted(cond) == ["C1_input", "C2_unit", "C3_support",
-                            "C4_fixed_implementation", "C5_interpretation"]
+    assert sorted(cond) == [
+        "C1_input",
+        "C2_unit",
+        "C3_support",
+        "C4_fixed_implementation",
+        "C5_interpretation",
+    ]
     assert "never False, 0 or singlet" in cond["C4_fixed_implementation"]
 
 

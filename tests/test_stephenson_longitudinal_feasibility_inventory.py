@@ -1,4 +1,3 @@
-import json
 import os
 import sys
 
@@ -121,12 +120,14 @@ def test_build_inventory_against_real_roster_matches_known_counts():
     }
 
     worsening_pairs = {
-        k: v for k, v in summary["severity_transition_counts_first_to_last_visit"].items()
+        k: v
+        for k, v in summary["severity_transition_counts_first_to_last_visit"].items()
         if "Moderate->Critical" in k
     }
     assert worsening_pairs == {"Moderate->Critical": 1}
     care_worsening = {
-        k: v for k, v in summary["care_setting_transition_counts_first_to_last_visit"].items()
+        k: v
+        for k, v in summary["care_setting_transition_counts_first_to_last_visit"].items()
         if k == "non-ICU->ICU"
     }
     assert care_worsening == {"non-ICU->ICU": 1}
@@ -161,11 +162,11 @@ def test_build_inventory_does_not_report_a_direction_when_order_is_unresolved(tm
         "s1\tdonor::A\tInitial\tD0\t9\tModerate\tnot re-checked this round\n"
         "s2\tdonor::A\tResample\tnot_a_day\t9\tCritical\tnot re-checked this round\n"
     )
-    grouping_path.write_text(
-        "sample_id\tcare_setting_at_sampling\ns1\tnon-ICU\ns2\tICU\n"
-    )
+    grouping_path.write_text("sample_id\tcare_setting_at_sampling\ns1\tnon-ICU\ns2\tICU\n")
 
-    donor_rows_out, summary = INV.build_inventory(roster_path=str(roster_path), grouping_path=str(grouping_path))
+    donor_rows_out, summary = INV.build_inventory(
+        roster_path=str(roster_path), grouping_path=str(grouping_path)
+    )
 
     row = donor_rows_out[0]
     assert row["order_resolved"] is False
@@ -197,12 +198,9 @@ def test_mutation_kill_the_order_resolved_gate_on_first_to_last_fields(tmp_path)
         "s1\tdonor::A\tInitial\tD0\t9\tModerate\tnot re-checked this round\n"
         "s2\tdonor::A\tResample\tnot_a_day\t9\tCritical\tnot re-checked this round\n"
     )
-    grouping_path.write_text(
-        "sample_id\tcare_setting_at_sampling\ns1\tnon-ICU\ns2\tICU\n"
-    )
+    grouping_path.write_text("sample_id\tcare_setting_at_sampling\ns1\tnon-ICU\ns2\tICU\n")
 
     roster_rows = INV._load_tsv(str(roster_path))
-    grouping_by_sample = {r["sample_id"]: r for r in INV._load_tsv(str(grouping_path))}
     rows = roster_rows  # single donor, both rows
     ordered, order_resolved = INV._order_donor_visits(rows)
     assert order_resolved is False
@@ -235,8 +233,10 @@ def test_build_inventory_with_no_multi_visit_donors_writes_header_only_tsv(tmp_p
     out_tsv = tmp_path / "out.tsv"
     out_summary = tmp_path / "out_summary.json"
     summary = INV.main(
-        roster_path=str(roster_path), grouping_path=str(grouping_path),
-        out_tsv=str(out_tsv), out_summary=str(out_summary),
+        roster_path=str(roster_path),
+        grouping_path=str(grouping_path),
+        out_tsv=str(out_tsv),
+        out_summary=str(out_summary),
     )
 
     assert summary["n_multi_visit_donors"] == 0
@@ -263,8 +263,10 @@ def test_main_refuses_to_overwrite_an_existing_output_file(tmp_path):
 
     try:
         INV.main(
-            roster_path=str(roster_path), grouping_path=str(grouping_path),
-            out_tsv=str(out_tsv), out_summary=str(out_summary),
+            roster_path=str(roster_path),
+            grouping_path=str(grouping_path),
+            out_tsv=str(out_tsv),
+            out_summary=str(out_summary),
         )
         assert False, "expected SystemExit when out_tsv already exists"
     except SystemExit:
@@ -294,8 +296,10 @@ def test_mutation_kill_the_overwrite_guard(tmp_path, monkeypatch):
 
     monkeypatch.setattr(INV, "_require_output_does_not_already_exist", lambda *a, **k: None)
     INV.main(
-        roster_path=str(roster_path), grouping_path=str(grouping_path),
-        out_tsv=str(out_tsv), out_summary=str(out_summary),
+        roster_path=str(roster_path),
+        grouping_path=str(grouping_path),
+        out_tsv=str(out_tsv),
+        out_summary=str(out_summary),
     )
     assert out_tsv.read_text() != "DO NOT TOUCH"
 
@@ -316,8 +320,10 @@ def test_main_never_touches_the_committed_v1_output_files(tmp_path):
     )
     grouping_path.write_text("sample_id\tcare_setting_at_sampling\ns1\tnon-ICU\n")
     INV.main(
-        roster_path=str(roster_path), grouping_path=str(grouping_path),
-        out_tsv=str(tmp_path / "out.tsv"), out_summary=str(tmp_path / "out_summary.json"),
+        roster_path=str(roster_path),
+        grouping_path=str(grouping_path),
+        out_tsv=str(tmp_path / "out.tsv"),
+        out_summary=str(tmp_path / "out_summary.json"),
     )
 
     after = {p: INV._sha256_file(p) for p in (INV.OUT_TSV_V1, INV.OUT_SUMMARY_V1)}

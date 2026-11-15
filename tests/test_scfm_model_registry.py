@@ -2,12 +2,15 @@
 do not and cannot verify that a model actually trained on the species it claims;
 they verify the registry cannot silently assert verification it never did.
 """
+
 import os
 import sys
 
 CODE = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    "scripts", "34_scfm_discovery_framework", "code",
+    "scripts",
+    "34_scfm_discovery_framework",
+    "code",
 )
 sys.path.insert(0, CODE)
 
@@ -53,7 +56,8 @@ def test_uce_entry_hash_is_recorded_but_not_claimed_verified():
 
 def test_claiming_verification_without_a_hash_is_rejected():
     bad = R.ModelRegistryEntry(
-        model_family="X", model_generation="X-1",
+        model_family="X",
+        model_generation="X-1",
         official_repo_url="https://example.invalid",
         checkpoint_sha256=R.UNKNOWN,
         checkpoint_sha256_source="verified somehow",
@@ -65,7 +69,8 @@ def test_claiming_verification_without_a_hash_is_rejected():
 
 def test_empty_output_interfaces_is_rejected():
     bad = R.ModelRegistryEntry(
-        model_family="X", model_generation="X-1",
+        model_family="X",
+        model_generation="X-1",
         official_repo_url="https://example.invalid",
         output_interfaces=(),
     )
@@ -75,7 +80,8 @@ def test_empty_output_interfaces_is_rejected():
 
 def test_invalid_species_evidence_state_is_rejected():
     bad = R.ModelRegistryEntry(
-        model_family="X", model_generation="X-1",
+        model_family="X",
+        model_generation="X-1",
         official_repo_url="https://example.invalid",
         species_pretraining_evidence={"human": "definitely yes"},
         output_interfaces=("cell_embedding",),

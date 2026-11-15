@@ -5,6 +5,7 @@ aggregation ONLY, no DE statistic, no p-value, no `GeneRanking`. Every
 fixture here is a tiny, synthetic, local h5ad with HAND-COMPUTABLE sums --
 no network, no real data.
 """
+
 import os
 import sys
 
@@ -13,7 +14,9 @@ import pytest
 
 CODE = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    "scripts", "34_scfm_discovery_framework", "code",
+    "scripts",
+    "34_scfm_discovery_framework",
+    "code",
 )
 sys.path.insert(0, CODE)
 
@@ -23,13 +26,20 @@ from dataset_schema import NO_BATCH_SENTINEL  # noqa: E402
 
 def _base_config(matrix_path, **overrides):
     config = {
-        "dataset_id": "test_pseudobulk_pilot", "species": "human",
-        "tissue_or_target_cell_type": "monocyte", "subject_id_column": "donor_id",
-        "sample_id_column": "sample_id", "biological_replicate_unit": "donor_id",
-        "technical_batch_column": NO_BATCH_SENTINEL, "expression_matrix_path": matrix_path,
-        "counts_semantics": "raw_counts", "counts_slot": "X",
-        "gene_id_namespace": "gene_symbol", "cell_id_column": "cell_barcode",
-        "qc_status": "provisional", "qc_version_ref": "none (provisional)",
+        "dataset_id": "test_pseudobulk_pilot",
+        "species": "human",
+        "tissue_or_target_cell_type": "monocyte",
+        "subject_id_column": "donor_id",
+        "sample_id_column": "sample_id",
+        "biological_replicate_unit": "donor_id",
+        "technical_batch_column": NO_BATCH_SENTINEL,
+        "expression_matrix_path": matrix_path,
+        "counts_semantics": "raw_counts",
+        "counts_slot": "X",
+        "gene_id_namespace": "gene_symbol",
+        "cell_id_column": "cell_barcode",
+        "qc_status": "provisional",
+        "qc_version_ref": "none (provisional)",
     }
     config.update(overrides)
     return config
@@ -41,28 +51,49 @@ def _fake_config_path(tmp_path):
 
 #: Hand-computable PAIRED fixture: 2 donors, each contributing TWO samples
 #: (one healthy/v1, one disease/v2) -- D0: S0+S1, D1: S2+S3.
-_PAIRED_X = np.array([
-    [1, 2, 3, 4],    # CELL0 -> S0
-    [5, 6, 7, 8],    # CELL1 -> S0      S0 sum = [6, 8, 10, 12], lib=36
-    [1, 1, 1, 1],    # CELL2 -> S1
-    [2, 2, 2, 2],    # CELL3 -> S1      S1 sum = [3, 3, 3, 3],   lib=12
-    [0, 0, 1, 1],    # CELL4 -> S2
-    [0, 0, 1, 1],    # CELL5 -> S2      S2 sum = [0, 0, 2, 2],   lib=4
-    [10, 0, 0, 0],   # CELL6 -> S3
-    [0, 10, 0, 0],   # CELL7 -> S3      S3 sum = [10, 10, 0, 0], lib=20
-], dtype="float32")
+_PAIRED_X = np.array(
+    [
+        [1, 2, 3, 4],  # CELL0 -> S0
+        [5, 6, 7, 8],  # CELL1 -> S0      S0 sum = [6, 8, 10, 12], lib=36
+        [1, 1, 1, 1],  # CELL2 -> S1
+        [2, 2, 2, 2],  # CELL3 -> S1      S1 sum = [3, 3, 3, 3],   lib=12
+        [0, 0, 1, 1],  # CELL4 -> S2
+        [0, 0, 1, 1],  # CELL5 -> S2      S2 sum = [0, 0, 2, 2],   lib=4
+        [10, 0, 0, 0],  # CELL6 -> S3
+        [0, 10, 0, 0],  # CELL7 -> S3      S3 sum = [10, 10, 0, 0], lib=20
+    ],
+    dtype="float32",
+)
 _PAIRED_SAMPLE = ["S0", "S0", "S1", "S1", "S2", "S2", "S3", "S3"]
 _PAIRED_DONOR = ["D0", "D0", "D0", "D0", "D1", "D1", "D1", "D1"]
-_PAIRED_CONDITION = ["healthy", "healthy", "disease", "disease",
-                     "healthy", "healthy", "disease", "disease"]
+_PAIRED_CONDITION = [
+    "healthy",
+    "healthy",
+    "disease",
+    "disease",
+    "healthy",
+    "healthy",
+    "disease",
+    "disease",
+]
 _PAIRED_VISIT = ["v1", "v1", "v2", "v2", "v1", "v1", "v2", "v2"]
 _PAIRED_CELL_IDS = [f"CELL{i}" for i in range(8)]
 
 
-def _make_h5ad(tmp_path, *, X, cell_ids, sample_ids, donor_ids, conditions=None,
-              visits=None, name="pseudobulk.h5ad"):
+def _make_h5ad(
+    tmp_path,
+    *,
+    X,
+    cell_ids,
+    sample_ids,
+    donor_ids,
+    conditions=None,
+    visits=None,
+    name="pseudobulk.h5ad",
+):
     import anndata as ad
     import pandas as pd
+
     obs = {"cell_barcode": cell_ids, "donor_id": donor_ids, "sample_id": sample_ids}
     if conditions is not None:
         obs["condition"] = conditions
@@ -77,9 +108,15 @@ def _make_h5ad(tmp_path, *, X, cell_ids, sample_ids, donor_ids, conditions=None,
 
 
 def _paired_fixture(tmp_path, **config_overrides):
-    h5ad = _make_h5ad(tmp_path, X=_PAIRED_X, cell_ids=_PAIRED_CELL_IDS,
-                      sample_ids=_PAIRED_SAMPLE, donor_ids=_PAIRED_DONOR,
-                      conditions=_PAIRED_CONDITION, visits=_PAIRED_VISIT)
+    h5ad = _make_h5ad(
+        tmp_path,
+        X=_PAIRED_X,
+        cell_ids=_PAIRED_CELL_IDS,
+        sample_ids=_PAIRED_SAMPLE,
+        donor_ids=_PAIRED_DONOR,
+        conditions=_PAIRED_CONDITION,
+        visits=_PAIRED_VISIT,
+    )
     config = _base_config(h5ad, **config_overrides)
     return h5ad, config
 
@@ -89,13 +126,19 @@ def _paired_fixture(tmp_path, **config_overrides):
 # sample-vs-donor count distinction, no fabricated zero rows.
 # ===========================================================================
 
+
 def test_pseudobulk_aggregates_paired_structure_with_hand_computable_sums(tmp_path):
     h5ad, config = _paired_fixture(tmp_path)
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte",
-        condition_column="condition", visit_or_state_column="visit")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+        visit_or_state_column="visit",
+    )
 
     assert result.status == "complete", result.reason
     assert result.n_pseudobulk_samples == 4
@@ -132,16 +175,24 @@ def test_pseudobulk_unpaired_structure_reports_matching_sample_and_donor_counts(
     """
     cell_ids = ["CELLA", "CELLB", "CELLC", "CELLD"]
     X = np.array([[1, 1], [1, 1], [2, 2], [2, 2]], dtype="float32")
-    h5ad = _make_h5ad(tmp_path, X=X, cell_ids=cell_ids,
-                      sample_ids=["S4", "S4", "S5", "S5"],
-                      donor_ids=["D2", "D2", "D3", "D3"],
-                      conditions=["healthy", "healthy", "disease", "disease"])
+    h5ad = _make_h5ad(
+        tmp_path,
+        X=X,
+        cell_ids=cell_ids,
+        sample_ids=["S4", "S4", "S5", "S5"],
+        donor_ids=["D2", "D2", "D3", "D3"],
+        conditions=["healthy", "healthy", "disease", "disease"],
+    )
     config = _base_config(h5ad)
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=tuple(cell_ids), cell_type_or_state_label="monocyte",
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=tuple(cell_ids),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     assert result.status == "complete", result.reason
     assert result.n_pseudobulk_samples == result.n_distinct_donors == 2
 
@@ -150,9 +201,13 @@ def test_pseudobulk_same_interface_supports_mouse_species(tmp_path):
     h5ad, config = _paired_fixture(tmp_path, species="mouse", dataset_id="test_mouse_pilot")
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte",
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     assert result.status == "complete", result.reason
     assert result.dataset_identity["species"] == "mouse"
 
@@ -165,9 +220,13 @@ def test_pseudobulk_never_fabricates_a_zero_cell_sample_row(tmp_path):
     provider = PB.PseudobulkAggregationProvider()
     subset = tuple(c for c, s in zip(_PAIRED_CELL_IDS, _PAIRED_SAMPLE) if s != "S3")
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=subset, cell_type_or_state_label="monocyte",
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=subset,
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     assert result.status == "complete", result.reason
     sample_ids = {r["sample_id"] for r in result.sample_rows}
     assert sample_ids == {"S0", "S1", "S2"}
@@ -178,18 +237,28 @@ def test_pseudobulk_row_order_independent_of_cell_ids_subset_ordering(tmp_path):
     provider = PB.PseudobulkAggregationProvider()
     shuffled = tuple(reversed(_PAIRED_CELL_IDS))
     r1 = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "run1"),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte",
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "run1"),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     r2 = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "run2"),
-        cell_ids_subset=shuffled, cell_type_or_state_label="monocyte",
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "run2"),
+        cell_ids_subset=shuffled,
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     assert r1.status == r2.status == "complete"
-    c1 = PB.load_pseudobulk_counts(PB.read_pseudobulk_result(
-        str(tmp_path / "run1" / "PSEUDOBULK_RESULT.json")))
-    c2 = PB.load_pseudobulk_counts(PB.read_pseudobulk_result(
-        str(tmp_path / "run2" / "PSEUDOBULK_RESULT.json")))
+    c1 = PB.load_pseudobulk_counts(
+        PB.read_pseudobulk_result(str(tmp_path / "run1" / "PSEUDOBULK_RESULT.json"))
+    )
+    c2 = PB.load_pseudobulk_counts(
+        PB.read_pseudobulk_result(str(tmp_path / "run2" / "PSEUDOBULK_RESULT.json"))
+    )
     np.testing.assert_array_equal(c1, c2)
     assert [r["sample_id"] for r in r1.sample_rows] == [r["sample_id"] for r in r2.sample_rows]
 
@@ -198,12 +267,17 @@ def test_pseudobulk_row_order_independent_of_cell_ids_subset_ordering(tmp_path):
 # Structural/input refusals
 # ===========================================================================
 
+
 def test_pseudobulk_rejects_an_empty_cell_type_or_state_label(tmp_path):
     h5ad, config = _paired_fixture(tmp_path)
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="",
+    )
     assert result.status == "failed"
     assert "cell_type_or_state_label must be a non-empty string" in result.reason
 
@@ -212,8 +286,12 @@ def test_pseudobulk_rejects_an_empty_cell_ids_subset(tmp_path):
     h5ad, config = _paired_fixture(tmp_path)
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=(), cell_type_or_state_label="monocyte")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=(),
+        cell_type_or_state_label="monocyte",
+    )
     assert result.status == "failed"
     assert "cell_ids_subset is empty" in result.reason
 
@@ -222,8 +300,12 @@ def test_pseudobulk_rejects_duplicate_cell_ids_in_subset(tmp_path):
     h5ad, config = _paired_fixture(tmp_path)
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=("CELL0", "CELL0"), cell_type_or_state_label="monocyte")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=("CELL0", "CELL0"),
+        cell_type_or_state_label="monocyte",
+    )
     assert result.status == "failed"
     assert "duplicate" in result.reason
 
@@ -232,8 +314,12 @@ def test_pseudobulk_rejects_non_raw_counts_semantics(tmp_path):
     h5ad, config = _paired_fixture(tmp_path, counts_semantics="normalized_counts")
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+    )
     assert result.status == "failed"
     assert "requires 'raw_counts' explicitly" in result.reason
 
@@ -241,13 +327,23 @@ def test_pseudobulk_rejects_non_raw_counts_semantics(tmp_path):
 def test_pseudobulk_rejects_non_integer_counts(tmp_path):
     X = _PAIRED_X.copy()
     X[0, 0] = 1.5
-    h5ad = _make_h5ad(tmp_path, X=X, cell_ids=_PAIRED_CELL_IDS, sample_ids=_PAIRED_SAMPLE,
-                      donor_ids=_PAIRED_DONOR, conditions=_PAIRED_CONDITION)
+    h5ad = _make_h5ad(
+        tmp_path,
+        X=X,
+        cell_ids=_PAIRED_CELL_IDS,
+        sample_ids=_PAIRED_SAMPLE,
+        donor_ids=_PAIRED_DONOR,
+        conditions=_PAIRED_CONDITION,
+    )
     config = _base_config(h5ad)
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+    )
     assert result.status == "failed"
     assert "non-integer value(s)" in result.reason
 
@@ -255,13 +351,23 @@ def test_pseudobulk_rejects_non_integer_counts(tmp_path):
 def test_pseudobulk_rejects_negative_counts(tmp_path):
     X = _PAIRED_X.copy()
     X[0, 0] = -1.0
-    h5ad = _make_h5ad(tmp_path, X=X, cell_ids=_PAIRED_CELL_IDS, sample_ids=_PAIRED_SAMPLE,
-                      donor_ids=_PAIRED_DONOR, conditions=_PAIRED_CONDITION)
+    h5ad = _make_h5ad(
+        tmp_path,
+        X=X,
+        cell_ids=_PAIRED_CELL_IDS,
+        sample_ids=_PAIRED_SAMPLE,
+        donor_ids=_PAIRED_DONOR,
+        conditions=_PAIRED_CONDITION,
+    )
     config = _base_config(h5ad)
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+    )
     assert result.status == "failed"
     assert "negative value(s)" in result.reason
 
@@ -269,15 +375,24 @@ def test_pseudobulk_rejects_negative_counts(tmp_path):
 def test_pseudobulk_rejects_conflicting_donor_metadata_within_a_sample(tmp_path):
     donors = list(_PAIRED_DONOR)
     donors[1] = "D99"  # CELL1 shares sample_id S0 with CELL0, but a different donor
-    h5ad = _make_h5ad(tmp_path, X=_PAIRED_X, cell_ids=_PAIRED_CELL_IDS,
-                      sample_ids=_PAIRED_SAMPLE, donor_ids=donors,
-                      conditions=_PAIRED_CONDITION)
+    h5ad = _make_h5ad(
+        tmp_path,
+        X=_PAIRED_X,
+        cell_ids=_PAIRED_CELL_IDS,
+        sample_ids=_PAIRED_SAMPLE,
+        donor_ids=donors,
+        conditions=_PAIRED_CONDITION,
+    )
     config = _base_config(h5ad)
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte",
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     assert result.status == "failed"
     assert "conflicting" in result.reason and "donor_id" in result.reason
 
@@ -285,15 +400,24 @@ def test_pseudobulk_rejects_conflicting_donor_metadata_within_a_sample(tmp_path)
 def test_pseudobulk_rejects_conflicting_condition_metadata_within_a_sample(tmp_path):
     conditions = list(_PAIRED_CONDITION)
     conditions[1] = "disease"  # CELL1 shares sample_id S0 with CELL0, different condition
-    h5ad = _make_h5ad(tmp_path, X=_PAIRED_X, cell_ids=_PAIRED_CELL_IDS,
-                      sample_ids=_PAIRED_SAMPLE, donor_ids=_PAIRED_DONOR,
-                      conditions=conditions)
+    h5ad = _make_h5ad(
+        tmp_path,
+        X=_PAIRED_X,
+        cell_ids=_PAIRED_CELL_IDS,
+        sample_ids=_PAIRED_SAMPLE,
+        donor_ids=_PAIRED_DONOR,
+        conditions=conditions,
+    )
     config = _base_config(h5ad)
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte",
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     assert result.status == "failed"
     assert "conflicting" in result.reason and "condition" in result.reason
 
@@ -305,14 +429,19 @@ def test_pseudobulk_rejects_conflicting_condition_metadata_within_a_sample(tmp_p
 # crash the conflict check's sorted() call.
 # ===========================================================================
 
+
 def test_pseudobulk_rejects_a_non_string_cell_type_or_state_label_without_orphan_npz(tmp_path):
     h5ad, config = _paired_fixture(tmp_path)
     provider = PB.PseudobulkAggregationProvider()
     out_dir = tmp_path / "pb_out"
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(out_dir),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label=True,
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(out_dir),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label=True,
+        condition_column="condition",
+    )
     assert result.status == "failed"
     assert "cell_type_or_state_label must be a non-empty string" in result.reason
     # A readable failed manifest must exist, and NO orphan npz.
@@ -330,16 +459,25 @@ def test_pseudobulk_rejects_an_all_missing_condition_value_in_one_sample(tmp_pat
     conditions = list(_PAIRED_CONDITION)
     conditions[0] = None
     conditions[1] = None  # BOTH of S0's cells now missing their condition
-    h5ad = _make_h5ad(tmp_path, X=_PAIRED_X, cell_ids=_PAIRED_CELL_IDS,
-                      sample_ids=_PAIRED_SAMPLE, donor_ids=_PAIRED_DONOR,
-                      conditions=conditions)
+    h5ad = _make_h5ad(
+        tmp_path,
+        X=_PAIRED_X,
+        cell_ids=_PAIRED_CELL_IDS,
+        sample_ids=_PAIRED_SAMPLE,
+        donor_ids=_PAIRED_DONOR,
+        conditions=conditions,
+    )
     config = _base_config(h5ad)
     provider = PB.PseudobulkAggregationProvider()
     out_dir = tmp_path / "pb_out"
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(out_dir),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte",
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(out_dir),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     assert result.status == "failed"
     assert "missing/non-string value" in result.reason
     assert not (out_dir / "pseudobulk_counts.npz").exists()
@@ -352,16 +490,25 @@ def test_pseudobulk_rejects_a_mixed_missing_and_present_condition_without_crashi
     """
     conditions = list(_PAIRED_CONDITION)
     conditions[0] = None  # only CELL0; CELL1 (same sample S0) still 'healthy'
-    h5ad = _make_h5ad(tmp_path, X=_PAIRED_X, cell_ids=_PAIRED_CELL_IDS,
-                      sample_ids=_PAIRED_SAMPLE, donor_ids=_PAIRED_DONOR,
-                      conditions=conditions)
+    h5ad = _make_h5ad(
+        tmp_path,
+        X=_PAIRED_X,
+        cell_ids=_PAIRED_CELL_IDS,
+        sample_ids=_PAIRED_SAMPLE,
+        donor_ids=_PAIRED_DONOR,
+        conditions=conditions,
+    )
     config = _base_config(h5ad)
     provider = PB.PseudobulkAggregationProvider()
     out_dir = tmp_path / "pb_out"
     result = provider.aggregate(  # must not raise
-        config, _fake_config_path(tmp_path), out_dir=str(out_dir),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte",
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(out_dir),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     assert result.status == "failed"
     assert "missing/non-string value" in result.reason
     manifest = PB.read_pseudobulk_result(str(out_dir / "PSEUDOBULK_RESULT.json"))
@@ -372,14 +519,20 @@ def test_pseudobulk_rejects_a_non_string_condition_column_argument(tmp_path):
     h5ad, config = _paired_fixture(tmp_path)
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte",
-        condition_column=True)
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+        condition_column=True,
+    )
     assert result.status == "failed"
     assert "condition_column must be None or a non-empty string" in result.reason
 
 
-def test_mutation_kill_pseudobulk_write_pre_validation_catches_bad_label_before_npz(monkeypatch, tmp_path):
+def test_mutation_kill_pseudobulk_write_pre_validation_catches_bad_label_before_npz(
+    monkeypatch, tmp_path
+):
     """Proves `_write_pseudobulk_result`'s pre-npz validation is itself a
     real guard: disabling `_validate_pseudobulk_result_core` entirely (as
     if the writer never checked anything before writing the npz) and
@@ -390,19 +543,26 @@ def test_mutation_kill_pseudobulk_write_pre_validation_catches_bad_label_before_
     OWN pre-write guard as a second, independent line of defense.
     """
     import dataclasses
+
     h5ad, config = _paired_fixture(tmp_path)
     provider = PB.PseudobulkAggregationProvider()
     out_dir = tmp_path / "pb_out"
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(out_dir),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte",
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(out_dir),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     assert result.status == "complete", result.reason
     counts = PB.load_pseudobulk_counts(
-        PB.read_pseudobulk_result(str(out_dir / "PSEUDOBULK_RESULT.json")))
+        PB.read_pseudobulk_result(str(out_dir / "PSEUDOBULK_RESULT.json"))
+    )
 
-    broken = dataclasses.replace(result, cell_type_or_state_label=True,
-                                 aggregation_path="", aggregation_sha256="")
+    broken = dataclasses.replace(
+        result, cell_type_or_state_label=True, aggregation_path="", aggregation_sha256=""
+    )
     out_dir2 = tmp_path / "pb_out2"
     os.makedirs(out_dir2)
     with pytest.raises(ValueError, match="refusing to write an invalid"):
@@ -410,7 +570,9 @@ def test_mutation_kill_pseudobulk_write_pre_validation_catches_bad_label_before_
     assert not (out_dir2 / "pseudobulk_counts.npz").exists()  # no orphan npz
 
     monkeypatch.setattr(PB, "_validate_pseudobulk_result_core", lambda payload: [])
-    PB._write_pseudobulk_result(str(out_dir2), broken, counts=counts)  # with the mutant: an npz IS written
+    PB._write_pseudobulk_result(
+        str(out_dir2), broken, counts=counts
+    )  # with the mutant: an npz IS written
     assert (out_dir2 / "pseudobulk_counts.npz").exists()
 
 
@@ -418,14 +580,20 @@ def test_mutation_kill_pseudobulk_write_pre_validation_catches_bad_label_before_
 # Strict write/read contract -- tamper rejection
 # ===========================================================================
 
+
 def test_read_pseudobulk_result_rejects_a_tampered_conservation_claim(tmp_path):
     import json
+
     h5ad, config = _paired_fixture(tmp_path)
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte",
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     assert result.status == "complete", result.reason
     path = tmp_path / "pb_out" / "PSEUDOBULK_RESULT.json"
 
@@ -438,12 +606,17 @@ def test_read_pseudobulk_result_rejects_a_tampered_conservation_claim(tmp_path):
 
 def test_read_pseudobulk_result_rejects_a_tampered_sample_row_count(tmp_path):
     import json
+
     h5ad, config = _paired_fixture(tmp_path)
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte",
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     assert result.status == "complete", result.reason
     path = tmp_path / "pb_out" / "PSEUDOBULK_RESULT.json"
 
@@ -458,9 +631,13 @@ def test_load_pseudobulk_counts_rejects_a_tampered_npz_file(tmp_path):
     h5ad, config = _paired_fixture(tmp_path)
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte",
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     assert result.status == "complete", result.reason
     manifest = PB.read_pseudobulk_result(str(tmp_path / "pb_out" / "PSEUDOBULK_RESULT.json"))
     # overwrite the npz with different content after the manifest was written
@@ -476,15 +653,22 @@ def test_load_pseudobulk_counts_rejects_a_tampered_npz_file(tmp_path):
 # Reproduces the review's own five independent probe cases.
 # ===========================================================================
 
+
 def _complete_manifest_dict(tmp_path):
     import json
+
     h5ad, config = _paired_fixture(tmp_path)
     provider = PB.PseudobulkAggregationProvider()
     out_dir = tmp_path / "pb_out"
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(out_dir),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte",
-        condition_column="condition", visit_or_state_column="visit")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(out_dir),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+        visit_or_state_column="visit",
+    )
     assert result.status == "complete", result.reason
     path = out_dir / "PSEUDOBULK_RESULT.json"
     return json.loads(path.read_text()), out_dir
@@ -492,6 +676,7 @@ def _complete_manifest_dict(tmp_path):
 
 def test_read_pseudobulk_result_rejects_reversed_sample_rows(tmp_path):
     import json
+
     manifest, out_dir = _complete_manifest_dict(tmp_path)
     manifest["sample_rows"] = list(reversed(manifest["sample_rows"]))
     tampered = out_dir / "tampered.json"
@@ -502,6 +687,7 @@ def test_read_pseudobulk_result_rejects_reversed_sample_rows(tmp_path):
 
 def test_read_pseudobulk_result_rejects_reversed_gene_ids(tmp_path):
     import json
+
     manifest, out_dir = _complete_manifest_dict(tmp_path)
     manifest["gene_ids"] = list(reversed(manifest["gene_ids"]))
     tampered = out_dir / "tampered.json"
@@ -512,6 +698,7 @@ def test_read_pseudobulk_result_rejects_reversed_gene_ids(tmp_path):
 
 def test_read_pseudobulk_result_rejects_a_wrong_distinct_donor_count(tmp_path):
     import json
+
     manifest, out_dir = _complete_manifest_dict(tmp_path)
     manifest["n_distinct_donors"] = 999
     tampered = out_dir / "tampered.json"
@@ -522,6 +709,7 @@ def test_read_pseudobulk_result_rejects_a_wrong_distinct_donor_count(tmp_path):
 
 def test_read_pseudobulk_result_rejects_a_wrong_library_size(tmp_path):
     import json
+
     manifest, out_dir = _complete_manifest_dict(tmp_path)
     manifest["sample_rows"][0]["library_size"] = 999.0
     tampered = out_dir / "tampered.json"
@@ -532,10 +720,12 @@ def test_read_pseudobulk_result_rejects_a_wrong_library_size(tmp_path):
 
 def test_read_pseudobulk_result_rejects_a_flipped_condition_value(tmp_path):
     import json
+
     manifest, out_dir = _complete_manifest_dict(tmp_path)
     original = manifest["sample_rows"][0]["condition_value"]
     manifest["sample_rows"][0]["condition_value"] = (
-        "disease" if original != "disease" else "healthy")
+        "disease" if original != "disease" else "healthy"
+    )
     tampered = out_dir / "tampered.json"
     tampered.write_text(json.dumps(manifest))
     with pytest.raises(SystemExit, match="failed validation"):
@@ -545,8 +735,12 @@ def test_read_pseudobulk_result_rejects_a_flipped_condition_value(tmp_path):
 def test_dataset_identity_carries_content_hashes_not_just_a_config_hash(tmp_path):
     manifest, _ = _complete_manifest_dict(tmp_path)
     ds = manifest["dataset_identity"]
-    for key in ("selected_raw_counts_sha256", "selected_cell_metadata_sha256",
-               "gene_ids_sha256", "dataset_config_sha256"):
+    for key in (
+        "selected_raw_counts_sha256",
+        "selected_cell_metadata_sha256",
+        "gene_ids_sha256",
+        "dataset_config_sha256",
+    ):
         assert isinstance(ds[key], str) and ds[key]
     # Two independently-named hash fields -- a config hash is NOT a stand-in
     # for a content hash of the actual expression matrix block that was read.
@@ -561,6 +755,7 @@ def test_mutation_kill_pseudobulk_identity_sha256_recompute(monkeypatch, tmp_pat
     file is then silently accepted.
     """
     import json
+
     manifest, out_dir = _complete_manifest_dict(tmp_path)
     manifest["sample_rows"] = list(reversed(manifest["sample_rows"]))
     tampered = out_dir / "tampered.json"
@@ -569,7 +764,9 @@ def test_mutation_kill_pseudobulk_identity_sha256_recompute(monkeypatch, tmp_pat
     with pytest.raises(SystemExit, match="failed validation"):
         PB.read_pseudobulk_result(str(tampered))  # real guard: rejects
 
-    monkeypatch.setattr(PB, "_pseudobulk_identity_sha256", lambda *a, **k: manifest["identity_sha256"])
+    monkeypatch.setattr(
+        PB, "_pseudobulk_identity_sha256", lambda *a, **k: manifest["identity_sha256"]
+    )
     reread = PB.read_pseudobulk_result(str(tampered))  # with the mutant: silently accepted
     assert reread["sample_rows"] == manifest["sample_rows"]
 
@@ -592,9 +789,14 @@ def test_mutation_kill_load_pseudobulk_counts_library_size_cross_check(tmp_path)
     swapped_manifest = dict(manifest)
     swapped_manifest["sample_rows"] = swapped_rows
     swapped_manifest["identity_sha256"] = PB._pseudobulk_identity_sha256(
-        manifest["gene_ids"], manifest["gene_total_counts"], swapped_rows,
-        manifest["n_pseudobulk_samples"], manifest["n_distinct_donors"],
-        manifest["total_counts_selected_cells"], manifest["total_counts_aggregated"])
+        manifest["gene_ids"],
+        manifest["gene_total_counts"],
+        swapped_rows,
+        manifest["n_pseudobulk_samples"],
+        manifest["n_distinct_donors"],
+        manifest["total_counts_selected_cells"],
+        manifest["total_counts_aggregated"],
+    )
     # The npz file itself (and its hash) are UNCHANGED -- only the JSON
     # labels were reordered, and self-consistently rehashed.
     with pytest.raises(SystemExit, match="do not match the manifest's sample_rows order"):
@@ -609,6 +811,7 @@ def test_mutation_kill_load_pseudobulk_counts_library_size_cross_check(tmp_path)
 # identity, not only to totals recomputed from `counts`.
 # ===========================================================================
 
+
 def _equal_marginals_fixture(tmp_path):
     """The review's own `[[1, 9], [9, 1]]` fixture: S0/S1 have IDENTICAL
     library sizes (10 each) and G0/G1 have IDENTICAL column totals (10
@@ -617,10 +820,17 @@ def _equal_marginals_fixture(tmp_path):
     """
     import anndata as ad
     import pandas as pd
+
     X = np.array([[1, 9], [9, 1]], dtype="float32")
-    obs = pd.DataFrame(dict(
-        cell_barcode=["C0", "C1"], sample_id=["S0", "S1"], donor_id=["D0", "D1"],
-        condition=["healthy", "disease"]), index=["idx0", "idx1"])
+    obs = pd.DataFrame(
+        dict(
+            cell_barcode=["C0", "C1"],
+            sample_id=["S0", "S1"],
+            donor_id=["D0", "D1"],
+            condition=["healthy", "disease"],
+        ),
+        index=["idx0", "idx1"],
+    )
     var = pd.DataFrame(index=["G0", "G1"])
     path = tmp_path / "equal_marginals.h5ad"
     ad.AnnData(X=X, obs=obs, var=var).write_h5ad(path)
@@ -628,11 +838,16 @@ def _equal_marginals_fixture(tmp_path):
     provider = PB.PseudobulkAggregationProvider()
     out_dir = tmp_path / "pb_out"
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(out_dir),
-        cell_ids_subset=("C0", "C1"), cell_type_or_state_label="synthetic",
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(out_dir),
+        cell_ids_subset=("C0", "C1"),
+        cell_type_or_state_label="synthetic",
+        condition_column="condition",
+    )
     assert result.status == "complete", result.reason
     import json
+
     manifest = json.loads((out_dir / "PSEUDOBULK_RESULT.json").read_text())
     return manifest, out_dir
 
@@ -645,9 +860,14 @@ def _rehash(manifest: dict) -> dict:
     """
     manifest = dict(manifest)
     manifest["identity_sha256"] = PB._pseudobulk_identity_sha256(
-        manifest["gene_ids"], manifest["gene_total_counts"], manifest["sample_rows"],
-        manifest["n_pseudobulk_samples"], manifest["n_distinct_donors"],
-        manifest["total_counts_selected_cells"], manifest["total_counts_aggregated"])
+        manifest["gene_ids"],
+        manifest["gene_total_counts"],
+        manifest["sample_rows"],
+        manifest["n_pseudobulk_samples"],
+        manifest["n_distinct_donors"],
+        manifest["total_counts_selected_cells"],
+        manifest["total_counts_aggregated"],
+    )
     return manifest
 
 
@@ -677,8 +897,7 @@ def test_load_pseudobulk_counts_rejects_an_equal_marginals_condition_flip(tmp_pa
     flipped = dict(manifest)
     flipped["sample_rows"] = [dict(r) for r in manifest["sample_rows"]]
     original = flipped["sample_rows"][0]["condition_value"]
-    flipped["sample_rows"][0]["condition_value"] = (
-        "disease" if original != "disease" else "healthy")
+    flipped["sample_rows"][0]["condition_value"] = "disease" if original != "disease" else "healthy"
     flipped = _rehash(flipped)
     # Row order/gene order/totals are all untouched -- only the condition
     # label changed, self-consistently rehashed.
@@ -723,6 +942,7 @@ def test_read_pseudobulk_result_rejects_a_non_int_n_pseudobulk_samples(tmp_path)
     tampered = dict(manifest)
     tampered["n_pseudobulk_samples"] = "two"
     import json
+
     path = out_dir / "tampered_n_samples.json"
     path.write_text(json.dumps(tampered))
     with pytest.raises(SystemExit, match="n_pseudobulk_samples must be an int"):
@@ -739,6 +959,7 @@ def test_read_pseudobulk_result_rejects_a_non_int_n_distinct_donors(tmp_path):
     tampered = dict(manifest)
     tampered["n_distinct_donors"] = None
     import json
+
     path = out_dir / "tampered_n_donors.json"
     path.write_text(json.dumps(tampered))
     with pytest.raises(SystemExit, match="n_distinct_donors must be an int"):
@@ -749,6 +970,7 @@ def test_read_pseudobulk_result_rejects_a_non_int_n_distinct_donors(tmp_path):
 # Mutation-kill: each factored guard function is proven to be load-bearing,
 # not merely present and ignored (DEVELOPMENT.md rules 2 and 6).
 # ===========================================================================
+
 
 def test_mutation_kill_pseudobulk_raw_counts_validity_guard(monkeypatch):
     """Positive unit check plus a real reproduction: disabling the guard
@@ -764,30 +986,48 @@ def test_mutation_kill_pseudobulk_raw_counts_validity_guard_end_to_end(monkeypat
     monkeypatch.setattr(PB, "_raw_counts_validity_problem", lambda raw: None)
     X = _PAIRED_X.copy()
     X[0, 0] = 1.5
-    h5ad = _make_h5ad(tmp_path, X=X, cell_ids=_PAIRED_CELL_IDS, sample_ids=_PAIRED_SAMPLE,
-                      donor_ids=_PAIRED_DONOR, conditions=_PAIRED_CONDITION)
+    h5ad = _make_h5ad(
+        tmp_path,
+        X=X,
+        cell_ids=_PAIRED_CELL_IDS,
+        sample_ids=_PAIRED_SAMPLE,
+        donor_ids=_PAIRED_DONOR,
+        conditions=_PAIRED_CONDITION,
+    )
     config = _base_config(h5ad)
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+    )
     assert result.status == "complete"  # with the mutant: non-integer counts no longer caught
 
 
 def test_mutation_kill_pseudobulk_sample_metadata_conflict_guard_end_to_end(monkeypatch, tmp_path):
-    monkeypatch.setattr(PB, "_sample_metadata_conflict_problem",
-                        lambda *a, **k: None)
+    monkeypatch.setattr(PB, "_sample_metadata_conflict_problem", lambda *a, **k: None)
     donors = list(_PAIRED_DONOR)
     donors[1] = "D99"
-    h5ad = _make_h5ad(tmp_path, X=_PAIRED_X, cell_ids=_PAIRED_CELL_IDS,
-                      sample_ids=_PAIRED_SAMPLE, donor_ids=donors,
-                      conditions=_PAIRED_CONDITION)
+    h5ad = _make_h5ad(
+        tmp_path,
+        X=_PAIRED_X,
+        cell_ids=_PAIRED_CELL_IDS,
+        sample_ids=_PAIRED_SAMPLE,
+        donor_ids=donors,
+        conditions=_PAIRED_CONDITION,
+    )
     config = _base_config(h5ad)
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte",
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     assert result.status == "complete"  # with the mutant: conflicting donor IDs no longer caught
 
 
@@ -802,29 +1042,49 @@ def test_mutation_kill_pseudobulk_counts_conservation_guard(monkeypatch, tmp_pat
     assert PB._counts_conservation_problem(10.0, 10.0) is None
     assert "conservation" in PB._counts_conservation_problem(10.0, 5.0)
 
-    monkeypatch.setattr(PB, "_counts_conservation_problem",
-                        lambda sel, agg: "forced conservation failure")
+    monkeypatch.setattr(
+        PB, "_counts_conservation_problem", lambda sel, agg: "forced conservation failure"
+    )
     h5ad, config = _paired_fixture(tmp_path)
     provider = PB.PseudobulkAggregationProvider()
     result = provider.aggregate(
-        config, _fake_config_path(tmp_path), out_dir=str(tmp_path / "pb_out"),
-        cell_ids_subset=tuple(_PAIRED_CELL_IDS), cell_type_or_state_label="monocyte",
-        condition_column="condition")
+        config,
+        _fake_config_path(tmp_path),
+        out_dir=str(tmp_path / "pb_out"),
+        cell_ids_subset=tuple(_PAIRED_CELL_IDS),
+        cell_type_or_state_label="monocyte",
+        condition_column="condition",
+    )
     assert result.status == "failed"
     assert result.reason == "forced conservation failure"
 
 
 def test_pseudobulk_result_to_dict_is_json_serializable():
     import json
+
     result = PB.PseudobulkResult(
-        status="complete", cell_type_or_state_label="monocyte",
+        status="complete",
+        cell_type_or_state_label="monocyte",
         gene_ids=("G1", "G2"),
-        sample_rows=({"sample_id": "S0", "donor_or_animal_id": "D0",
-                      "condition_value": "healthy", "visit_or_state_value": "",
-                      "n_cells": 2, "library_size": 4.0, "cell_ids": ["C0", "C1"]},),
-        n_pseudobulk_samples=1, n_distinct_donors=1,
-        total_counts_selected_cells=4.0, total_counts_aggregated=4.0,
-        dataset_identity={"dataset_id": "x"}, backend="raw_count_sum_pseudobulk",
-        backend_version="1", source_code_revision_or_hash="abc",
-        dependency_versions={"python": "3.10"})
+        sample_rows=(
+            {
+                "sample_id": "S0",
+                "donor_or_animal_id": "D0",
+                "condition_value": "healthy",
+                "visit_or_state_value": "",
+                "n_cells": 2,
+                "library_size": 4.0,
+                "cell_ids": ["C0", "C1"],
+            },
+        ),
+        n_pseudobulk_samples=1,
+        n_distinct_donors=1,
+        total_counts_selected_cells=4.0,
+        total_counts_aggregated=4.0,
+        dataset_identity={"dataset_id": "x"},
+        backend="raw_count_sum_pseudobulk",
+        backend_version="1",
+        source_code_revision_or_hash="abc",
+        dependency_versions={"python": "3.10"},
+    )
     json.dumps(result.to_dict())  # must not raise

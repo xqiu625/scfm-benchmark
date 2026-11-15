@@ -37,7 +37,8 @@ def test_rejects_a_tsv_whose_hash_does_not_match_the_frozen_value(tmp_path, monk
     # Flip one character in an UNRELATED donor's row (not sdrf::C-8821's own
     # rows) -- e.g. the first row's candidate_main_group.
     tampered_tsv_text = original_tsv_text.replace(
-        "reference_mild_moderate", "comparison_severe_critical_icu_at_sampling", 1)
+        "reference_mild_moderate", "comparison_severe_critical_icu_at_sampling", 1
+    )
     assert tampered_tsv_text != original_tsv_text
     tampered_tsv_path = tmp_path / "tampered.tsv"
     tampered_tsv_path.write_text(tampered_tsv_text)
@@ -61,7 +62,8 @@ def test_rejects_a_summary_whose_hash_does_not_match_the_frozen_value(tmp_path, 
         original_summary = json.load(f)
     tampered_summary = dict(original_summary)
     tampered_summary["donor_level_group_counts_any_visit"] = dict(
-        tampered_summary["donor_level_group_counts_any_visit"])
+        tampered_summary["donor_level_group_counts_any_visit"]
+    )
     tampered_summary["donor_level_group_counts_any_visit"]["reference_mild_moderate"] = 999
     tampered_summary_path = tmp_path / "tampered_summary.json"
     tampered_summary_path.write_text(json.dumps(tampered_summary))
@@ -123,9 +125,12 @@ def test_kept_and_excluded_samples_are_verified_against_their_real_rows(tmp_path
     monkeypatch.setattr(RESOLVE, "KEPT_SAMPLE_ID", RESOLVE.EXCLUDED_SAMPLE_ID)
     with open(RESOLVE.IN_TSV, newline="") as f:
         import csv
+
         rows = list(csv.DictReader(f, delimiter="\t"))
     try:
         RESOLVE._require_resolved_rows(rows)
-        assert False, "expected SystemExit when KEPT_SAMPLE_ID is not actually in the comparison group"
+        assert (
+            False
+        ), "expected SystemExit when KEPT_SAMPLE_ID is not actually in the comparison group"
     except SystemExit as e:
         assert "comparison" in str(e).lower()

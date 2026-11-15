@@ -11,13 +11,11 @@ cross-pool merging.
 import sys
 from pathlib import Path
 
-import pytest
-
 sys.path.insert(
     0,
     str(Path(__file__).parent.parent / "scripts/33_batch_effect_audit/code"),
 )
-from build_batch_metadata_inventory import build_alias_crosswalk, _normalize_liu
+from build_batch_metadata_inventory import _normalize_liu, build_alias_crosswalk
 from resolve_stephenson_grouping import union_find_components
 
 
@@ -50,7 +48,6 @@ def test_crosswalk_flags_collision_instead_of_silently_picking_one():
     each resampled, '_T0' suffix). v2's dict comprehension would have kept
     only one, depending on set iteration order; v3 must flag it as
     AMBIGUOUS_NOT_RESOLVED and must not merge them."""
-    canon = {"HGR0000042", "HGR0000042X"}  # won't collide by construction below
     # Construct a genuine normalized-key collision directly:
     assert _normalize_liu("HGR0000042_T0") == _normalize_liu("HGR0000042_T1") == "HGR0000042"
     canon_colliding = {"HGR0000042"}
@@ -67,7 +64,10 @@ def test_crosswalk_two_different_canonical_patients_colliding_is_also_ambiguous(
     """The other direction of the same hazard: two different BIOLOGICAL
     patients whose canonical IDs normalize to the same key must not be
     silently treated as the same person."""
-    canon_colliding = {"HGR0000042_T0", "HGR0000042_T1"}  # pretend these are 2 distinct canonical IDs
+    canon_colliding = {
+        "HGR0000042_T0",
+        "HGR0000042_T1",
+    }  # pretend these are 2 distinct canonical IDs
     inv_colliding = {"HGR0000042"}
     cw = build_alias_crosswalk("Liu 2021", canon_colliding, inv_colliding)
     assert len(cw) == 1
@@ -104,8 +104,12 @@ def test_union_find_merges_transitively_across_pools():
     """CV0902 appears in both BGCV01 and BGCV02 in the real data -- a donor
     shared between two pools must merge BOTH pools into one component."""
     edges = [
-        ("A", "B"), ("A", "C"), ("A", "D"),       # pool 1: A,B,C,D
-        ("E", "B"), ("E", "F"), ("E", "G"),        # pool 2: B,E,F,G -- B bridges pool 1 and 2
+        ("A", "B"),
+        ("A", "C"),
+        ("A", "D"),  # pool 1: A,B,C,D
+        ("E", "B"),
+        ("E", "F"),
+        ("E", "G"),  # pool 2: B,E,F,G -- B bridges pool 1 and 2
     ]
     nodes = {"A", "B", "C", "D", "E", "F", "G"}
     components = union_find_components(edges, nodes)
@@ -114,7 +118,7 @@ def test_union_find_merges_transitively_across_pools():
 
 def test_union_find_keeps_disjoint_pools_separate():
     edges = [("A", "B"), ("A", "C")]  # one pool
-    nodes = {"A", "B", "C", "D"}       # D is unconnected
+    nodes = {"A", "B", "C", "D"}  # D is unconnected
     components = union_find_components(edges, nodes)
     assert components["A"] == components["B"] == components["C"]
     assert components["D"] != components["A"]

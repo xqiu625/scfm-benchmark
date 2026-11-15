@@ -21,12 +21,14 @@ def _write_fixture_h5ad(path, sample_codes, sample_cats, subtype_codes, subtype_
     with h5py.File(path, "w") as f:
         obs = f.create_group("obs")
         sg = obs.create_group("Sample_ID")
-        sg.create_dataset("categories", data=np.array(sample_cats, dtype=object),
-                           dtype=h5py.string_dtype())
+        sg.create_dataset(
+            "categories", data=np.array(sample_cats, dtype=object), dtype=h5py.string_dtype()
+        )
         sg.create_dataset("codes", data=np.array(sample_codes, dtype="int8"))
         tg = obs.create_group("orig_celltype")
-        tg.create_dataset("categories", data=np.array(subtype_cats, dtype=object),
-                           dtype=h5py.string_dtype())
+        tg.create_dataset(
+            "categories", data=np.array(subtype_cats, dtype=object), dtype=h5py.string_dtype()
+        )
         tg.create_dataset("codes", data=np.array(subtype_codes, dtype="int8"))
 
 
@@ -42,7 +44,9 @@ def test_read_sample_subtype_counts_tallies_a_small_fixture(tmp_path):
         subtype_cats=["A", "B"],
     )
 
-    counts, n_cells_total, sample_cats, subtype_cats = CNT.read_sample_subtype_counts(str(h5ad_path))
+    counts, n_cells_total, sample_cats, subtype_cats = CNT.read_sample_subtype_counts(
+        str(h5ad_path)
+    )
 
     assert n_cells_total == 5
     assert counts["s0"] == {"A": 2, "B": 1}
@@ -85,8 +89,12 @@ def test_mutation_kill_the_code_validation_guard_lets_minus_one_wrap_to_last_cat
     with h5py.File(h5ad_path, "r") as f:
         sample_group = f["obs"]["Sample_ID"]
         subtype_group = f["obs"]["orig_celltype"]
-        sample_cats = [c.decode() if isinstance(c, bytes) else c for c in sample_group["categories"][:]]
-        subtype_cats = [c.decode() if isinstance(c, bytes) else c for c in subtype_group["categories"][:]]
+        sample_cats = [
+            c.decode() if isinstance(c, bytes) else c for c in sample_group["categories"][:]
+        ]
+        subtype_cats = [
+            c.decode() if isinstance(c, bytes) else c for c in subtype_group["categories"][:]
+        ]
         sample_codes = sample_group["codes"][:]
         subtype_codes = subtype_group["codes"][:]
 
@@ -189,7 +197,11 @@ def test_main_writes_expected_tsv_and_summary(tmp_path):
 def test_main_refuses_to_overwrite_an_existing_output_file(tmp_path):
     h5ad_path = tmp_path / "fixture.h5ad"
     _write_fixture_h5ad(
-        h5ad_path, sample_codes=[0], sample_cats=["s0"], subtype_codes=[0], subtype_cats=["A"],
+        h5ad_path,
+        sample_codes=[0],
+        sample_cats=["s0"],
+        subtype_codes=[0],
+        subtype_cats=["A"],
     )
     out_tsv = tmp_path / "out.tsv"
     out_summary = tmp_path / "out_summary.json"
@@ -208,7 +220,11 @@ def test_main_refuses_to_overwrite_an_existing_output_file(tmp_path):
 def test_mutation_kill_the_overwrite_guard(tmp_path, monkeypatch):
     h5ad_path = tmp_path / "fixture.h5ad"
     _write_fixture_h5ad(
-        h5ad_path, sample_codes=[0], sample_cats=["s0"], subtype_codes=[0], subtype_cats=["A"],
+        h5ad_path,
+        sample_codes=[0],
+        sample_cats=["s0"],
+        subtype_codes=[0],
+        subtype_cats=["A"],
     )
     out_tsv = tmp_path / "out.tsv"
     out_summary = tmp_path / "out_summary.json"

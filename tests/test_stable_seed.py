@@ -35,12 +35,21 @@ def test_stable_across_fresh_python_processes_with_different_pythonhashseed():
     script = (
         "import sys; sys.path.insert(0, %r); "
         "from stable_seed import derive_seed; "
-        "print(derive_seed(0, 'patient', 'P001'))" % str(Path(__file__).parent.parent / "scripts/00_shared/code")
+        "print(derive_seed(0, 'patient', 'P001'))"
+        % str(Path(__file__).parent.parent / "scripts/00_shared/code")
     )
-    out1 = subprocess.run([sys.executable, "-c", script], capture_output=True, text=True,
-                            env={"PYTHONHASHSEED": "1", "PATH": __import__("os").environ.get("PATH", "")})
-    out2 = subprocess.run([sys.executable, "-c", script], capture_output=True, text=True,
-                            env={"PYTHONHASHSEED": "42", "PATH": __import__("os").environ.get("PATH", "")})
+    out1 = subprocess.run(
+        [sys.executable, "-c", script],
+        capture_output=True,
+        text=True,
+        env={"PYTHONHASHSEED": "1", "PATH": __import__("os").environ.get("PATH", "")},
+    )
+    out2 = subprocess.run(
+        [sys.executable, "-c", script],
+        capture_output=True,
+        text=True,
+        env={"PYTHONHASHSEED": "42", "PATH": __import__("os").environ.get("PATH", "")},
+    )
     assert out1.returncode == 0, out1.stderr
     assert out2.returncode == 0, out2.stderr
     assert out1.stdout.strip() == out2.stdout.strip(), (
@@ -54,10 +63,18 @@ def test_builtin_hash_is_the_bug_being_fixed():
     containing a str) really does change across PYTHONHASHSEED values in
     this environment -- i.e. this test suite's premise is real, not assumed."""
     script = "print(hash((0, 'patient', 'P001')) % (2**32 - 1))"
-    out1 = subprocess.run([sys.executable, "-c", script], capture_output=True, text=True,
-                            env={"PYTHONHASHSEED": "1", "PATH": __import__("os").environ.get("PATH", "")})
-    out2 = subprocess.run([sys.executable, "-c", script], capture_output=True, text=True,
-                            env={"PYTHONHASHSEED": "42", "PATH": __import__("os").environ.get("PATH", "")})
+    out1 = subprocess.run(
+        [sys.executable, "-c", script],
+        capture_output=True,
+        text=True,
+        env={"PYTHONHASHSEED": "1", "PATH": __import__("os").environ.get("PATH", "")},
+    )
+    out2 = subprocess.run(
+        [sys.executable, "-c", script],
+        capture_output=True,
+        text=True,
+        env={"PYTHONHASHSEED": "42", "PATH": __import__("os").environ.get("PATH", "")},
+    )
     assert out1.stdout.strip() != out2.stdout.strip(), (
         "expected Python's built-in hash() on a str-containing tuple to differ "
         "across PYTHONHASHSEED values -- if it no longer does in this Python "
