@@ -1,0 +1,81 @@
+{
+  "stage": "17_domain_adapted_fm",
+  "status": "success",
+  "metadata_complete": true,
+  "description": "Geneformer LoRA domain-adaptation vs zero-shot on the platelet mortality task, under 5-fold patient-level StratifiedGroupKFold CV (no train/test patient overlap).",
+  "slurm_jobs": [
+    "23853347-23866507"
+  ],
+  "run_dates": [
+    "2026-05-06"
+  ],
+  "generating_code": [
+    "scripts/finetuning/geneformer_peft_finetune.py",
+    "scripts/finetuning/submit_geneformer_finetune_mortality.sh"
+  ],
+  "parameters": {
+    "backbone": "Geneformer-V1-10M",
+    "peft": "LoRA",
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.1,
+    "epochs": 25,
+    "learning_rate": 0.0008,
+    "cv": "5-fold StratifiedGroupKFold (patient-level, 339 patients)"
+  },
+  "claims": [
+    {
+      "id": "C003",
+      "table": "tab:domainadapt",
+      "value": "Geneformer LoRA mean test AUC 0.705 +/- 0.135",
+      "evidence": "results/geneformer_peft/results_mortality_lora.json"
+    }
+  ],
+  "primary_outputs": [
+    "geneformer_peft/results_mortality_lora.json"
+  ],
+  "superseded_outputs": {
+    "7model_benchmark_20260309_222122.csv": "legacy continued-pretraining/overlap run (Geneformer_adapted binary LR=0.879); NOT the patient-level-CV LoRA result \u2014 does not back C003.",
+    "7model_benchmark_20260311_103812.csv": "legacy continued-pretraining/overlap run (Geneformer_adapted binary LR=0.879); NOT the patient-level-CV LoRA result \u2014 does not back C003."
+  },
+  "inputs": [
+    {
+      "path": "data/processed/covid_sepsis_mortality.h5ad",
+      "exists": false,
+      "size_bytes": null,
+      "note": "gitignored / on HPCC (data/ not committed)"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/7model_benchmark_20260309_222122.csv",
+      "size_bytes": 5994,
+      "sha256": "d54bd7c1ccfcbe40c8fe36739120401e3fa6abf069390a9aa446a22c927ea6bd"
+    },
+    {
+      "path": "results/7model_benchmark_20260311_103812.csv",
+      "size_bytes": 7119,
+      "sha256": "2f4c6b37109e90f13c0798593a12aedf7e42b64d16ca91f03f3aba96824d241f"
+    },
+    {
+      "path": "results/geneformer_peft/results_mortality_lora.json",
+      "size_bytes": 1097,
+      "sha256": "6cba967a11b7db597aca245cd84803b2ede23c36860b2639c23cdad4fbc3f83b"
+    }
+  ],
+  "n_outputs": 3,
+  "in_repo_outputs": true,
+  "no_results_reason": null,
+  "git_commit": "2f56a829ff085fbb57787e32d3f4238a75a7a93c",
+  "runtime_seconds": null,
+  "package_versions": null,
+  "config": "configs/hpcc.yaml",
+  "environment_ref": "environment.yml",
+  "provenance": {
+    "reconstructed_post_hoc": true,
+    "generated_at": "2026-06-07T19:32:28+00:00",
+    "generated_by": "scripts/99_audit/code/emit_manifests.py",
+    "verified_in": "docs/claim-traceability.md (2026-06-06 traceability audit)",
+    "note": "Manifest reconstructed during the 2026-06-06/07 audit (item A001). Outputs were produced on the HPCC before the repo restructure; sizes + sha256 + git_commit are verifiable, but run-time wall-clock and package versions were not captured in-repo and are recorded as null rather than back-filled. When metadata_complete=false, slurm_jobs/parameters/claims were not curated for this stage \u2014 the output inventory + hashes + git pin are still authoritative."
+  }
+}

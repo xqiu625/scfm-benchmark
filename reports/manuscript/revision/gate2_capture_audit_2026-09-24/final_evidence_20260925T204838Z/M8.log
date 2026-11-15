@@ -1,0 +1,24 @@
+$ /rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python -m pytest tests/test_gate2_scoring_wrapper.py::test_distances_are_recorded_but_not_claimed_invariant -q -p no:cacheprovider
+============================= test session starts ==============================
+platform linux -- Python 3.10.18, pytest-9.1.1, pluggy-1.6.0
+rootdir: /bigdata/godziklab/shared/Xinru/302006/worktrees/codex_gate2_final_20260925T204838Z
+configfile: pyproject.toml
+plugins: anyio-4.12.1
+collected 1 item
+
+tests/test_gate2_scoring_wrapper.py F                                    [100%]
+
+=================================== FAILURES ===================================
+____________ test_distances_are_recorded_but_not_claimed_invariant _____________
+tests/test_gate2_scoring_wrapper.py:328: in test_distances_are_recorded_but_not_claimed_invariant
+    assert problems == [], problems
+E   AssertionError: ['the neighbour graph topology differed across priors: 1 distinct index checksums']
+E   assert ['the neighbo...ex checksums'] == []
+E     
+E     Left contains one more item: 'the neighbour graph topology differed across priors: 1 distinct index checksums'
+E     Use -v to get more diff
+=========================== short test summary info ============================
+FAILED tests/test_gate2_scoring_wrapper.py::test_distances_are_recorded_but_not_claimed_invariant
+============================== 1 failed in 0.18s ===============================
+
+EXIT_CODE=1

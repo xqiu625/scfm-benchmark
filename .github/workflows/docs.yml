@@ -1,0 +1,32 @@
+name: docs
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - docs/site/**
+      - mkdocs.yml
+      - .github/workflows/docs.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install mkdocs-material
+        run: pip install "mkdocs-material>=9.5"
+
+      - name: Build and deploy to gh-pages
+        run: mkdocs gh-deploy --force --clean

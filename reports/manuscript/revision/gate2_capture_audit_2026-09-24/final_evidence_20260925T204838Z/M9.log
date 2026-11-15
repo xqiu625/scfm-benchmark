@@ -1,0 +1,22 @@
+$ /rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python -m pytest tests/test_gate2_scoring_config.py::test_the_permit_commit_gate_is_satisfiable_at_all -q -p no:cacheprovider
+============================= test session starts ==============================
+platform linux -- Python 3.10.18, pytest-9.1.1, pluggy-1.6.0
+rootdir: /bigdata/godziklab/shared/Xinru/302006/worktrees/codex_gate2_final_20260925T204838Z
+configfile: pyproject.toml
+plugins: anyio-4.12.1
+collected 1 item
+
+tests/test_gate2_scoring_config.py F                                     [100%]
+
+=================================== FAILURES ===================================
+______________ test_the_permit_commit_gate_is_satisfiable_at_all _______________
+tests/test_gate2_scoring_config.py:146: in test_the_permit_commit_gate_is_satisfiable_at_all
+    assert C._assert_implementation_commit(commit_a)
+scripts/32_rebuild_upfront_qc/code/gate2_scoring_config_GSM5102900_HC1.py:250: in _assert_implementation_commit
+    raise Gate2RunnerError(
+E   gate2_stress_runner.Gate2RunnerError: permit implementation_commit b71af40aa75d58f1cb7ceadaeae933bc18675849 is not an ancestor of deployed HEAD a3f9538e976b19ea44d8fa44b16475446351e19c. A permit is for a reviewed implementation that this deployment actually descends from.
+=========================== short test summary info ============================
+FAILED tests/test_gate2_scoring_config.py::test_the_permit_commit_gate_is_satisfiable_at_all
+============================== 1 failed in 0.27s ===============================
+
+EXIT_CODE=1

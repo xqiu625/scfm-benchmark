@@ -1,0 +1,29 @@
+{
+  "donor_level_group_counts_any_visit": {
+    "comparison_severe_critical_icu_at_sampling": 25,
+    "excluded_other_severity": 9,
+    "reference_mild_moderate": 53
+  },
+  "donors_with_mixed_group_across_visits": [
+    {
+      "groups_across_visits": [
+        "comparison_severe_critical_icu_at_sampling",
+        "reference_mild_moderate"
+      ],
+      "true_donor_group": "sdrf::C-8821"
+    }
+  ],
+  "n_distinct_true_donor_groups": 86,
+  "n_donors_with_mixed_group_across_visits": 1,
+  "n_samples": 102,
+  "note": "donor_level_group_counts_any_visit counts a donor once per distinct candidate group they have ANY sample in -- it is NOT a final per-donor analysis N, because repeated-visit handling (which single visit represents a donor) is still pending_owner. See docs/decisions.md 2026-10-15 entries and MONOCYTE_PILOT_PREREG_v1.md Sec.6 for that open question.",
+  "sample_level_group_counts": {
+    "comparison_severe_critical_icu_at_sampling": 32,
+    "excluded_other_severity": 12,
+    "reference_mild_moderate": 58
+  },
+  "source_files": {
+    "real_fields_csv": "/bigdata/godziklab/shared/Xinru/302006/06_LOGS/gate2_capture_scoring/claude_icu_grouping_20261015/scripts/34_scfm_discovery_framework/results/stephenson_sample_level_real_fields.csv",
+    "roster_tsv": "/bigdata/godziklab/shared/Xinru/302006/06_LOGS/gate2_capture_scoring/claude_icu_grouping_20261015/scripts/34_scfm_discovery_framework/results/stephenson_donor_identity_roster_v1.tsv"
+  }
+}

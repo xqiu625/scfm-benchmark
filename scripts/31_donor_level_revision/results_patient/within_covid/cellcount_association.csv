@@ -1,0 +1,6 @@
+fm,spearman_rho,spearman_p,auc_low_count,n_low,n_fatal_low,auc_mid_count,n_mid,n_fatal_mid,auc_high_count,n_high,n_fatal_high
+STATE,0.2097,9.16e-04,0.7829,84,7,0.8219,82,9,0.7364,81,11
+UCE,0.16,1.18e-02,0.6957,84,7,0.7549,82,9,0.661,81,11
+Geneformer,0.1887,2.91e-03,0.7607,84,7,0.7244,84,9,0.6056,79,11
+scPRINT-2,0.2256,3.52e-04,0.7069,84,7,0.7111,84,9,0.5575,79,11
+scGPT,0.2467,8.90e-05,0.7477,84,7,0.7443,82,9,0.6701,81,11

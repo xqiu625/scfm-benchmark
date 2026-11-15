@@ -1,0 +1,2 @@
+statistic,observed_range,permutation_P,nperm,rng_seed,auc_STATE,auc_UCE,auc_Geneformer,auc_scPRINT-2,auc_scGPT
+max-min AUC over 5 FMs,0.1302,0.0112,10000,20260908,0.7946,0.6765,0.8067,0.7561,0.7392

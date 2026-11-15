@@ -1,0 +1,58 @@
+site_name: scfm-benchmark
+site_description: Donor-aware evaluation of frozen single-cell representations.
+site_url: https://xqiu625.github.io/scfm-benchmark/
+repo_url: https://github.com/xqiu625/scfm-benchmark
+repo_name: xqiu625/scfm-benchmark
+edit_uri: edit/main/docs/site/
+
+docs_dir: docs/site
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - content.code.annotate
+    - search.highlight
+    - search.suggest
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+nav:
+  - Home: index.md
+  - CLI reference: cli.md
+  - Historical diagnostic design: diagnostic-suite.md
+  - Historical results (superseded): results.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search

@@ -1,0 +1,24 @@
+{
+  "model": "geneformer",
+  "obsm_key": "X_geneformer",
+  "n_cells_total": 43803,
+  "n_aligned_to_raw": 43803,
+  "n_subsampled_for_spearman": 10000,
+  "embedding_dim": 1152,
+  "n_genes": 13066,
+  "train_auc": 0.8550721535115429,
+  "top_dims": [
+    24,
+    297,
+    1053,
+    592,
+    1122
+  ],
+  "top_dim_coefs": [
+    0.35988032704186035,
+    -0.318732545325728,
+    -0.3067620934912539,
+    0.3054760940889318,
+    0.2999905313125068
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "approved_scanpy_versions": [
+    "1.11.3"
+  ],
+  "capture": "GSM5102900_HC1",
+  "channel_id": "GSM5102900",
+  "cohort": "qiu",
+  "dependency_identity": {
+    "preprocessing_contract_version": "gate2-preprocessing/1",
+    "scanpy_identity_source": "module.__version__",
+    "scanpy_version": "1.11.3"
+  },
+  "elapsed_seconds": 119.6,
+  "feasibility": {
+    "feasible": true,
+    "limit": 1576,
+    "n_prin_comps": 30,
+    "rule": "n_prin_comps < min(N_eff, G_HVG)"
+  },
+  "generated_utc": "2026-09-25T05:57:54Z",
+  "input_summary": {
+    "n_cells_effective": 7666,
+    "n_simulated": 15332,
+    "n_usable_features_hvg": 1576,
+    "shape_as_loaded": [
+      7666,
+      33538
+    ]
+  },
+  "inputs": {
+    "GSM5102900_HC1_barcodes.tsv.gz": {
+      "asserted": true,
+      "bytes": 39604,
+      "path": "/bigdata/godziklab/shared/Xinru/302006/01_DATA/raw/GSE167363_qiu/extracted/GSM5102900_HC1_barcodes.tsv.gz",
+      "sha256": "e6dbf9f587d9a6cf3ecff31cbf4d53b09c6faf9837c82d5c1c0a26227f377a02"
+    },
+    "GSM5102900_HC1_features.tsv.gz": {
+      "asserted": true,
+      "bytes": 304728,
+      "path": "/bigdata/godziklab/shared/Xinru/302006/01_DATA/raw/GSE167363_qiu/extracted/GSM5102900_HC1_features.tsv.gz",
+      "sha256": "c7408e82af270ca6308a8aa7ea659795a15ab76f2e3a85bd5db4cd3d53244199"
+    },
+    "GSM5102900_HC1_matrix.mtx.gz": {
+      "asserted": true,
+      "bytes": 38785404,
+      "path": "/bigdata/godziklab/shared/Xinru/302006/01_DATA/raw/GSE167363_qiu/extracted/GSM5102900_HC1_matrix.mtx.gz",
+      "sha256": "4ea259bfc4de02cc9799df563779fce7c9bd4c889532d3ff1178e2caf545b9f8"
+    },
+    "container": {
+      "asserted": true,
+      "bytes": 5027039977,
+      "path": "/bigdata/godziklab/shared/Xinru/302006/01_DATA/raw/human_platelet_covid_severity_raw_counts.h5ad",
+      "sha256": "1a0f37902cd33f410a71428ea45b3d1573fddec393ce27f07a93074d0ed536ba"
+    }
+  },
+  "k_adj": {
+    "rule": "round(n_neighbors * (1 + n_sim/n_obs)), scanpy 1.11.3",
+    "value": 132
+  },
+  "manifold": {
+    "all_finite": true,
+    "built_by": "scanpy.preprocessing._scrublet.pipeline (observed-fit)",
+    "observed_sha256": "69bb2a4fd08df337538ed233dbd1007e7048b4921c3aa57d8e1516dbd9f4b779",
+    "observed_shape": [
+      7666,
+      30
+    ],
+    "rank_supports_n_prin_comps": true,
+    "simulated_sha256": "82a05deed36686696fa42c6b00a929c9627caa422db2b1a24f4bade5dbb305da",
+    "simulated_shape": [
+      15332,
+      30
+    ]
+  },
+  "outcome_columns_read": [],
+  "parameters": {
+    "get_doublet_neighbor_parents": false,
+    "knn_dist_metric": "euclidean",
+    "log_transform": false,
+    "mean_center": true,
+    "n_neighbors": 44,
+    "n_prin_comps": 30,
+    "normalize_variance": true,
+    "sim_doublet_ratio": 2.0,
+    "stdev_doublet_rate": 0.0,
+    "synthetic_doublet_umi_subsampling": 1.0,
+    "use_approx_neighbors": false
+  },
+  "preflight": "gate2_capture_preflight/2",
+  "prior_grid": [
+    0.005,
+    0.01,
+    0.02,
+    0.04,
+    0.08,
+    0.12,
+    0.16,
+    0.2
+  ],
+  "prior_independence": {
+    "evidence": "structural: no step up to the manifold takes the prior as input, so the eight priors share one manifold by construction. A loop over an unused rho would show only deterministic reruns.",
+    "expected_doublet_rate_consumed_by": "calculate_doublet_scores only",
+    "graph_checksum": null,
+    "graph_checksum_reason": "the kNN graph is built inside calculate_doublet_scores, which computes scores; it cannot be checksummed without crossing the score-free boundary",
+    "manifold_built_once": true
+  },
+  "prior_label": "assumed_algorithmic_stress_setting",
+  "produced_scores_calls_or_rates": false,
+  "production_parameter_ruling_written": false,
+  "provenance": {
+    "commit": "9aab7befba0bd2a59ea1224aff95d261237611c6",
+    "file_sha256": {
+      "gate2_parameter_ruling": "ed749e3f43a9b295158cef729112252d684ce63fc61f3aa0289179a10693da67",
+      "gate2_stress_design": "523d3beefdcf82d02b23e2b823a05b6e7d5b03c401ee1a94989409cb07199c96",
+      "gate2_stress_runner": "3633ef346f64a019d67f2b032effe6e5f99a637e53ad6ba9c1e01257129c01e0",
+      "preflight_script": "c6a86652546e6c17fc46b21e4cf93b17fd3cc00e0896c7fec2a8c4c2278fa61c",
+      "wrapper": "31de0447e2889f88244c9ff70ac470f4c10433e43ccb66e19f288c14bdab302f"
+    },
+    "repo": "/bigdata/godziklab/shared/Xinru/302006/worktrees/9aab7befba0bd2a59ea1224aff95d261237611c6",
+    "working_tree_clean": true
+  },
+  "ruling": {
+    "imported_not_copied": true,
+    "module": "scripts/32_rebuild_upfront_qc/code/gate2_parameter_ruling.py",
+    "reference": "reports/manuscript/revision/methodology_review_2026-09-24/GATE2_PARAMETER_RULING.md",
+    "version": "gate2-parameter-ruling/1"
+  },
+  "seed": {
+    "derivation": "capture_seed(cohort, channel_id)",
+    "value": 10137777
+  },
+  "simulated_matrix_checksum": "e6858c2fbaff89900dfd6d9c8ab0ea5722d91637eb402901c3ff7fefe40ec263",
+  "status": "complete",
+  "versions": {
+    "anndata": "0.11.4",
+    "numpy": "2.2.6",
+    "python": "3.10.18",
+    "scanpy": "1.11.3",
+    "scipy": "1.15.3",
+    "sklearn": "1.7.1"
+  }
+}

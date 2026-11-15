@@ -1,0 +1,40 @@
+% R5 — calibration and robustness axes (draft 2026-09-07)
+\subsection{Calibration favors STATE, and random forest probabilities are better calibrated than logistic-regression scores}
+\label{ssec:r5_calibration}
+
+Discrimination is not the only property that decides whether a risk estimate
+can be acted on: the emitted probability must also mean what it says. We
+computed patient-level calibration on the within-COVID out-of-fold predictions
+(Figure~\ref{fig:calibration}). Among logistic-regression classifiers,
+\model{STATE} was the best calibrated (Brier 0.118, expected calibration error
+0.168), ahead of \model{Geneformer} (0.119, 0.190) and \model{scPRINT-2}
+(0.121, 0.181), with \model{UCE} (0.162, 0.243) and \model{scGPT} (0.165,
+0.257) the least calibrated. Random-forest probabilities were better
+calibrated than logistic-regression scores for every model (ECE 0.054--0.080
+versus 0.168--0.257), reflecting the conservatism of tree-averaged
+probabilities, so where calibrated risk estimates matter for deployment we
+recommend random forest on the leading embedding (\model{STATE}-RF: Brier
+0.095, ECE 0.079) over any logistic-regression variant.
+
+Two further secondary axes complete the multi-axis profile. First,
+\model{UCE} was the most resistant to embedding-dimension dropout: its AUC did
+not degrade under 70\% dimension zeroing, indicating a highly distributed
+representation (Supplementary Figure~\ref{fig:supp_dropout}; computed on the
+legacy analysis pool, an earlier cohort assembly predating the canonical
+240-patient cohort, Section~\ref{ssec:limitations}). Second,
+leave-one-cohort-out evaluation on the analysis cohort measured
+generalization to cohorts that contain fatal cases, an outcome-selected
+estimand: folds are computable only when the held-out cohort contains both
+classes, so survivor-only cohorts contribute to training throughout and are
+never scored out-of-fold (Supplementary Figure~\ref{fig:supp_lobo}).
+Because the five computable folds range from 13 to 90 patients and from 1 to
+9 fatal events, we report the AUC over concatenated held-out predictions
+(206 patients, 25 fatal events) rather than a mean of per-fold AUCs: the top
+three models sit within 0.005 AUC of each other (\model{STATE} 0.753,
+\model{scPRINT-2} 0.751, \model{Geneformer} 0.748), ahead of \model{UCE}
+(0.681) and \model{scGPT} (0.638). Per-fold AUCs and the per-cohort counts
+are given in Supplementary Table~\ref{tab:lobo_folds}. By fold-to-fold spread,
+\model{scGPT} was the most cohort-consistent ($\sigma = 0.123$) and
+\model{UCE} the least ($\sigma = 0.152$). No single model leads on every
+axis; the choice among them is deployment-specific
+(Section~\ref{ssec:discussion_guidance}).

@@ -1,0 +1,9 @@
+cohort,n_donors,n_singleton_cv_groups,n_multi_donor_cv_groups,largest_cv_group,largest_cv_group_size,largest_cv_group_event_classes,largest_cv_group_spans_fatal_and_survived
+COMBAT 2022,124,0,1,COMBAT 2022::S00065,124,fatal;survived,True
+Chongqing sepsis 2025,133,133,0,Chongqing sepsis 2025::Abd-PS04,1,survived,False
+Cillo 2021,40,22,8,Cillo 2021::COVID_20,3,fatal;survived,True
+Liu 2021,33,0,3,Liu 2021::HGR0000074,14,fatal;survived,True
+Qiu 2021,7,7,0,Qiu 2021::Tissue donor 1,1,NA_undefined,False
+Ren 2021,196,196,0,Ren 2021::P-HC001,1,NA_undefined,False
+Stephenson 2021,130,130,0,Stephenson 2021::AP1,1,NA_undefined,False
+Wilk 2021 JEM,25,25,0,Wilk 2021 JEM::28205-0562,1,survived,False

@@ -1,0 +1,11 @@
+patient_id,n_draws,sample_id,Data_NO,Disease,covid_severity,y,severity_consistent,disease_consistent
+004,3,004_TA,302005data01,COVID-19,moderate,0,False,True
+004,3,004_TA2,302005data01,COVID-19,severe,0,False,True
+004,3,004_TB,302005data01,COVID-19,recovered,0,False,True
+005,3,005_TA,302005data01,COVID-19,moderate,0,False,True
+005,3,005_TA2,302005data01,COVID-19,severe,0,False,True
+005,3,005_TB,302005data01,COVID-19,recovered,0,False,True
+012,4,012_TA,302005data01,COVID-19,severe,0,False,True
+012,4,012_TB,302005data01,COVID-19,severe,0,False,True
+012,4,012_TC,302005data01,COVID-19,recovered,0,False,True
+012,4,012_TE,302005data01,COVID-19,recovered,0,False,True

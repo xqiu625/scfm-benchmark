@@ -1,0 +1,24 @@
+{
+  "model": "state",
+  "obsm_key": "X_state",
+  "n_cells_total": 44603,
+  "n_aligned_to_raw": 44603,
+  "n_subsampled_for_spearman": 10000,
+  "embedding_dim": 2058,
+  "n_genes": 13066,
+  "train_auc": 0.9319641401302914,
+  "top_dims": [
+    195,
+    1354,
+    53,
+    1640,
+    1564
+  ],
+  "top_dim_coefs": [
+    -1.2126480582841332,
+    -1.1139145366416292,
+    -1.1057320228360732,
+    1.1038520136359589,
+    1.080299599794265
+  ]
+}

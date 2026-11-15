@@ -1,0 +1,3 @@
+variant,raw_auc,oof_auc,loss
+unscaled_round12_15_harness,0.7423,0.6569,0.0854
+standardized_round16_fix,0.7423,0.7241,0.0182

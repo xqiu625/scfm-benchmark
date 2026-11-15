@@ -1,0 +1,20 @@
+$ /rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python -m pytest tests/test_gate2_scoring_config.py::test_an_implementation_edited_after_the_reviewed_commit_is_refused -q -p no:cacheprovider
+============================= test session starts ==============================
+platform linux -- Python 3.10.18, pytest-9.1.1, pluggy-1.6.0
+rootdir: /bigdata/godziklab/shared/Xinru/302006/worktrees/codex_gate2_final_20260925T204838Z
+configfile: pyproject.toml
+plugins: anyio-4.12.1
+collected 1 item
+
+tests/test_gate2_scoring_config.py F                                     [100%]
+
+=================================== FAILURES ===================================
+______ test_an_implementation_edited_after_the_reviewed_commit_is_refused ______
+tests/test_gate2_scoring_config.py:154: in test_an_implementation_edited_after_the_reviewed_commit_is_refused
+    with pytest.raises(R.Gate2RunnerError, match="implementation changed between"):
+E   Failed: DID NOT RAISE Gate2RunnerError
+=========================== short test summary info ============================
+FAILED tests/test_gate2_scoring_config.py::test_an_implementation_edited_after_the_reviewed_commit_is_refused
+============================== 1 failed in 0.30s ===============================
+
+EXIT_CODE=1

@@ -1,0 +1,41 @@
+{
+  "stage": "05_sample_efficiency",
+  "status": "success",
+  "metadata_complete": false,
+  "description": "05 - Sample Efficiency (auto-derived from README; metadata not curated)",
+  "slurm_jobs": [],
+  "run_dates": [],
+  "generating_code": [],
+  "parameters": {},
+  "claims": [],
+  "primary_outputs": [],
+  "superseded_outputs": {},
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "results/subsampling_robustness.csv",
+      "size_bytes": 7409,
+      "sha256": "0d9ebb13806a48bae7c9865ceb70b4c99babe1a2c1282abd666373c320630fb6"
+    },
+    {
+      "path": "results/subsampling_robustness.json",
+      "size_bytes": 19843,
+      "sha256": "aa68ace941ef03c669373971d08a1b56da122a4971389b1d8d807a5a6968401f"
+    }
+  ],
+  "n_outputs": 2,
+  "in_repo_outputs": true,
+  "no_results_reason": null,
+  "git_commit": "2f56a829ff085fbb57787e32d3f4238a75a7a93c",
+  "runtime_seconds": null,
+  "package_versions": null,
+  "config": "configs/hpcc.yaml",
+  "environment_ref": "environment.yml",
+  "provenance": {
+    "reconstructed_post_hoc": true,
+    "generated_at": "2026-06-07T19:32:27+00:00",
+    "generated_by": "scripts/99_audit/code/emit_manifests.py",
+    "verified_in": "docs/claim-traceability.md (2026-06-06 traceability audit)",
+    "note": "Manifest reconstructed during the 2026-06-06/07 audit (item A001). Outputs were produced on the HPCC before the repo restructure; sizes + sha256 + git_commit are verifiable, but run-time wall-clock and package versions were not captured in-repo and are recorded as null rather than back-filled. When metadata_complete=false, slurm_jobs/parameters/claims were not curated for this stage \u2014 the output inventory + hashes + git pin are still authoritative."
+  }
+}

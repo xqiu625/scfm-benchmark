@@ -1,0 +1,15 @@
+$ /rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python -m pytest tests/test_gate2_scoring_config.py tests/test_gate2_scoring_wrapper.py -q -p no:cacheprovider
+============================= test session starts ==============================
+platform linux -- Python 3.10.18, pytest-9.1.1, pluggy-1.6.0
+rootdir: /bigdata/godziklab/shared/Xinru/302006/worktrees/codex_gate2_final_20260925T204838Z
+configfile: pyproject.toml
+plugins: anyio-4.12.1
+collected 73 items
+
+tests/test_gate2_scoring_config.py ..................................... [ 50%]
+..........                                                               [ 64%]
+tests/test_gate2_scoring_wrapper.py ..........................           [100%]
+
+======================== 73 passed in 87.83s (0:01:27) =========================
+
+EXIT_CODE=0

@@ -1,0 +1,48 @@
+% R4 — in-distribution positive control on monocytes (draft 2026-09-07)
+\subsection{The in-distribution positive control returns no separation either}
+\label{ssec:r4_monocyte}
+
+A reviewer could dismiss the platelet results as an artifact of evaluating too
+far outside the models' intended use. We therefore reran the identical pipeline
+on a cell type the models were trained on: monocytes from the same source
+cohorts (Ren and Stephenson COVID-19; five Qiu sepsis patients; 148
+patients\footnote{One Ren survivor patient (S-S072) is not represented in
+the monocyte cell set, so the monocyte cohort contains 148 rather than 149
+patients and the disease-matched COVID-only subset 143 rather than 144;
+fatal counts are unaffected.}, 19 fatal; Section~\ref{ssec:methods_baselines}). Monocytes are among the most
+abundant immune cells in the atlases these models were pretrained on, so this
+arm isolates cell-type familiarity as the single changed variable.
+
+The positive control returned no separation at all
+(Table~\ref{tab:monocyte} and Figure~\ref{fig:indist_vs_ood}). Under
+patient-level paired bootstrap, no foundation model significantly outperformed
+the PCA-200 baseline on monocytes (\model{STATE} $+0.043$, 95\% CI [$-0.026$,
+0.120], $p = 0.23$; \model{Geneformer} $+0.022$, $p = 0.57$; \model{scPRINT-2}
+$+0.018$, $p = 0.68$; \model{UCE} $+0.012$, $p = 0.80$; \model{scGPT} $+0.005$,
+$p = 0.94$). Even on a cell type these models were trained on, the from-scratch
+baseline is statistically sufficient. One directional pattern is worth
+noting: \model{UCE}'s monocyte-versus-platelet difference is the closest to
+zero of any method in both cohort pools ($-0.005$ COVID-only, $-0.014$
+all-cohort, versus drops of $0.043$--$0.119$ for the other five methods) ---
+the least affected by cell type, though it beats the baseline on neither.
+
+One inversion requires careful reading. Every method, including the baseline,
+scored lower on monocytes than on platelets (baseline $-0.072$; confirmed on
+the disease-matched COVID-only subset, 143 patients, 17 fatal). Because the
+from-scratch baseline drops by as much as the foundation models, the inversion
+is a property of the task and cohort, not of pretraining: patient-level
+mortality from monocytes is simply a harder measurement in these cohorts. That
+platelet transcriptomes carry more mortality signal than monocyte
+transcriptomes in COVID-19 is consistent with the mechanistic literature
+placing platelet-driven immunothrombosis proximal to fatal disease
+\citep{manne2020platelet,barrett2021platelets}. The positive control therefore narrows the out-of-distribution
+objection in an unexpected direction. Even on a cell type the models were
+trained on, the from-scratch baseline is statistically sufficient, and with
+the within-COVID primary contrast also returning null under the
+winner-corrected test (Section~\ref{ssec:r1_within_covid}), the pipeline
+resolved no pretraining advantage over the baseline in any cell of the
+design. The platelet results can therefore not be attributed to evaluating
+too far outside the models' intended use: the same comparison is null
+in-distribution. Equally, the control cannot certify that this pipeline
+resolves foundation-model advantages anywhere, and we report it with that
+qualification (Section~\ref{ssec:limitations}).

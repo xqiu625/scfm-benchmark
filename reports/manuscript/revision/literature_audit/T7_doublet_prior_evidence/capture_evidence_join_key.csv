@@ -1,0 +1,747 @@
+cohort,gate2_channel_id,evidence_capture_id,evidence_repo_sample_id,join_column,mapping_method,evidence_granularity,capture_specific,mapping_status,mapping_note
+chongqing,GSM8571082,Abd-PS04,GSM8571082,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571083,Abd-PS05,GSM8571083,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571084,Abd-PS07,GSM8571084,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571085,Abd-PS13,GSM8571085,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571086,Abd-PS18,GSM8571086,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571087,Abd-PS19,GSM8571087,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571088,Abd-PS20,GSM8571088,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571089,Abd-PS23,GSM8571089,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571090,Abd-PS27,GSM8571090,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571091,Abd-S101,GSM8571091,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571092,Abd-S102,GSM8571092,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571093,Abd-S103,GSM8571093,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571094,Abd-S11,GSM8571094,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571095,Abd-S111,GSM8571095,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571096,Abd-S12,GSM8571096,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571097,Abd-S120,GSM8571097,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571098,Abd-S123,GSM8571098,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571099,Abd-S13,GSM8571099,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571100,Abd-S156,GSM8571100,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571101,Abd-S23,GSM8571101,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571102,Abd-S39,GSM8571102,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571103,Abd-S42,GSM8571103,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571104,Abd-S45,GSM8571104,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571105,Abd-S47,GSM8571105,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571106,Abd-S49,GSM8571106,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571107,Abd-S51,GSM8571107,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571108,Abd-S53,GSM8571108,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571109,Abd-S54,GSM8571109,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571110,Abd-S55,GSM8571110,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571111,Abd-S57,GSM8571111,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571112,Abd-S58,GSM8571112,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571113,Abd-S59,GSM8571113,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571114,Abd-S66,GSM8571114,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571115,Abd-S67,GSM8571115,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571116,Abd-S72,GSM8571116,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571117,Abd-S73,GSM8571117,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571118,Abd-S75,GSM8571118,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571119,Abd-S79,GSM8571119,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571120,Abd-S80,GSM8571120,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571121,Abd-S8,GSM8571121,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571122,Abd-S81,GSM8571122,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571123,Abd-S83,GSM8571123,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571124,Res-S87,GSM8571124,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571125,Abd-S9,GSM8571125,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571126,Abd-S91,GSM8571126,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571127,Abd-S98,GSM8571127,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571128,CNS-S189,GSM8571128,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571129,CNS-S50,GSM8571129,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571130,CNS-S61,GSM8571130,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571131,HC01,GSM8571131,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571132,HC05,GSM8571132,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571133,HC07,GSM8571133,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571134,HC09,GSM8571134,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571135,HC12,GSM8571135,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571136,HC13,GSM8571136,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571137,HC16,GSM8571137,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571138,IC08,GSM8571138,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571139,IC09,GSM8571139,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571140,IC10,GSM8571140,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571141,IC15,GSM8571141,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571142,IC16,GSM8571142,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571143,IC19,GSM8571143,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571144,IC22,GSM8571144,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571145,IC23,GSM8571145,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571154,Res-S19,GSM8571154,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571155,Res-S26,GSM8571155,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571156,Res-S70,GSM8571156,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571157,Res-PS02,GSM8571157,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571158,Res-PS03,GSM8571158,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571159,Res-PS12,GSM8571159,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571160,Res-PS16,GSM8571160,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571161,Res-PS21,GSM8571161,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571162,Res-PS22,GSM8571162,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571163,Res-PS25,GSM8571163,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571164,Res-PS26,GSM8571164,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571165,Res-S10,GSM8571165,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571166,Res-S100,GSM8571166,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571167,Res-S110,GSM8571167,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571168,Res-S118,GSM8571168,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571169,Res-S125,GSM8571169,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571170,Res-S127,GSM8571170,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571171,Res-S136,GSM8571171,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571172,Res-S139,GSM8571172,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571173,Res-S144,GSM8571173,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571174,Res-S145,GSM8571174,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571175,Res-S146,GSM8571175,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571176,Res-S149,GSM8571176,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571177,Res-S15,GSM8571177,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571178,Res-S150,GSM8571178,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571179,Res-S164,GSM8571179,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571180,Res-S166,GSM8571180,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571181,Res-S167,GSM8571181,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571182,Res-S168,GSM8571182,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571183,Res-S170,GSM8571183,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571184,Res-S174,GSM8571184,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571185,Res-S176,GSM8571185,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571186,Res-S177,GSM8571186,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571187,Res-S18,GSM8571187,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571188,Res-S183,GSM8571188,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571189,Res-S184,GSM8571189,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571190,Res-S21,GSM8571190,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571191,Res-S22,GSM8571191,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571192,Res-S3,GSM8571192,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571193,Res-S32,GSM8571193,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571194,Res-S40,GSM8571194,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571195,Res-S41,GSM8571195,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571196,Res-S56,GSM8571196,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571197,Res-S77,GSM8571197,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571199,Skin-S140,GSM8571199,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571200,Skin-S142,GSM8571200,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571201,Skin-S38,GSM8571201,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571202,Skin-S43,GSM8571202,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571203,Skin-S46,GSM8571203,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571204,Skin-S52,GSM8571204,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571205,Skin-S74,GSM8571205,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571206,Uri-S112,GSM8571206,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571207,Uri-S116,GSM8571207,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571208,Uri-S134,GSM8571208,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571209,Uri-S147,GSM8571209,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571210,Uri-S157,GSM8571210,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571211,Uri-S20,GSM8571211,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571212,Uri-S85,GSM8571212,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571213,Uri-S88,GSM8571213,repo_sample_id,capture_level_join,capture,true,mapped,
+chongqing,GSM8571214,Uri-S93,GSM8571214,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465121,ARDS_1_day_1_day_5_PBMC_GEX,GSM5465121,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465122,ARDS_2_day_5_day_10_PBMC_GEX,GSM5465122,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465123,ARDS_3_day_5_day_10_PBMC_GEX,GSM5465123,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465124,ARDS_4_day_1_day_5_PBMC_GEX,GSM5465124,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465125,COVID_1_day_1_day_5_PBMC_GEX,GSM5465125,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465126,COVID_10_day_5_day_10_PBMC_GEX,GSM5465126,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465127,COVID_11_day_1_day_5_PBMC_GEX,GSM5465127,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465128,COVID_11_day_10_COVID_12_day_1_PBMC_GEX,GSM5465128,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465129,COVID_12_day_5_day_10_PBMC_GEX,GSM5465129,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465130,COVID_13_day_1_day_5_PBMC_GEX,GSM5465130,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465131,COVID_13_day_10_COVID_14_day_1_PBMC_GEX,GSM5465131,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465132,COVID_14_day_5_day_10_PBMC_GEX,GSM5465132,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465133,COVID_15_day_1_day_5_PBMC_GEX,GSM5465133,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465134,COVID_15_day_10_COVID_16_day_1_PBMC_GEX,GSM5465134,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465135,COVID_16_day_5_day_10_PBMC_GEX,GSM5465135,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465136,COVID_17_day_1_day_5_PBMC_GEX,GSM5465136,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465140,COVID_19_day_1_PBMC_GEX,GSM5465140,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465141,COVID_19_day_10_PBMC_GEX,GSM5465141,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465142,COVID_20_day_5_COVID_19_day_5_PBMC_GEX,GSM5465142,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465143,COVID_2_day_1_day_5_PBMC_GEX,GSM5465143,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465144,COVID_2_day_10_ARDS_2_day_1_PBMC_GEX,GSM5465144,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465145,COVID_23_day_1_COVID_20_day_1_PBMC_GEX,GSM5465145,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465147,COVID_21_day_10_PBMC_GEX,GSM5465147,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465148,COVID_22_day_1_PBMC_GEX,GSM5465148,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465149,COVID_22_day_10_PBMC_GEX,GSM5465149,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465150,COVID_22_day_5_PBMC_GEX,GSM5465150,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465152,COVID_3_day_1_COVID_4_day_1_PBMC_GEX,GSM5465152,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465155,COVID_4_day_5_COVID_10_day_1_PBMC_GEX,GSM5465155,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465156,COVID_5_day_1_day_5_PBMC_GEX,GSM5465156,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465157,COVID_6_day_1_day_5_PBMC_GEX,GSM5465157,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465158,COVID_6_day_10_COVID_18_day_1_PBMC_GEX,GSM5465158,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465159,COVID_7_day_1_day_5_PBMC_GEX,GSM5465159,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465161,COVID_8_day_1_COVID_9_day_1_PBMC_GEX,GSM5465161,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465162,COVID_8_day_5_PBMC_GEX,GSM5465162,repo_sample_id,capture_level_join,capture,true,mapped,
+cillo,GSM5465163,Healthy_1_Healthy_2_PBMC_GEX,GSM5465163,repo_sample_id,capture_level_join,capture,true,mapped,
+combat,A1,A1,A1,capture_id,capture_level_join,capture,true,mapped,
+combat,A2,A2,A2,capture_id,capture_level_join,capture,true,mapped,
+combat,A3,A3,A3,capture_id,capture_level_join,capture,true,mapped,
+combat,A4,A4,A4,capture_id,capture_level_join,capture,true,mapped,
+combat,A5,A5,A5,capture_id,capture_level_join,capture,true,mapped,
+combat,A6,A6,A6,capture_id,capture_level_join,capture,true,mapped,
+combat,A7,A7,A7,capture_id,capture_level_join,capture,true,mapped,
+combat,B1,B1,B1,capture_id,capture_level_join,capture,true,mapped,
+combat,B2,B2,B2,capture_id,capture_level_join,capture,true,mapped,
+combat,B3,B3,B3,capture_id,capture_level_join,capture,true,mapped,
+combat,B4,B4,B4,capture_id,capture_level_join,capture,true,mapped,
+combat,B5,B5,B5,capture_id,capture_level_join,capture,true,mapped,
+combat,B6,B6,B6,capture_id,capture_level_join,capture,true,mapped,
+combat,B7,B7,B7,capture_id,capture_level_join,capture,true,mapped,
+combat,C1,C1,C1,capture_id,capture_level_join,capture,true,mapped,
+combat,C2,C2,C2,capture_id,capture_level_join,capture,true,mapped,
+combat,C3,C3,C3,capture_id,capture_level_join,capture,true,mapped,
+combat,C4,C4,C4,capture_id,capture_level_join,capture,true,mapped,
+combat,C5,C5,C5,capture_id,capture_level_join,capture,true,mapped,
+combat,C6,C6,C6,capture_id,capture_level_join,capture,true,mapped,
+combat,C7,C7,C7,capture_id,capture_level_join,capture,true,mapped,
+combat,D1,D1,D1,capture_id,capture_level_join,capture,true,mapped,
+combat,D2,D2,D2,capture_id,capture_level_join,capture,true,mapped,
+combat,D3,D3,D3,capture_id,capture_level_join,capture,true,mapped,
+combat,D4,D4,D4,capture_id,capture_level_join,capture,true,mapped,
+combat,D5,D5,D5,capture_id,capture_level_join,capture,true,mapped,
+combat,D6,D6,D6,capture_id,capture_level_join,capture,true,mapped,
+combat,D7,D7,D7,capture_id,capture_level_join,capture,true,mapped,
+combat,E1,E1,E1,capture_id,capture_level_join,capture,true,mapped,
+combat,E2,E2,E2,capture_id,capture_level_join,capture,true,mapped,
+combat,E3,E3,E3,capture_id,capture_level_join,capture,true,mapped,
+combat,E4,E4,E4,capture_id,capture_level_join,capture,true,mapped,
+combat,E5,E5,E5,capture_id,capture_level_join,capture,true,mapped,
+combat,E6,E6,E6,capture_id,capture_level_join,capture,true,mapped,
+combat,E7,E7,E7,capture_id,capture_level_join,capture,true,mapped,
+combat,F1,F1,F1,capture_id,capture_level_join,capture,true,mapped,
+combat,F2,F2,F2,capture_id,capture_level_join,capture,true,mapped,
+combat,F3,F3,F3,capture_id,capture_level_join,capture,true,mapped,
+combat,F4,F4,F4,capture_id,capture_level_join,capture,true,mapped,
+combat,F5,F5,F5,capture_id,capture_level_join,capture,true,mapped,
+combat,F6,F6,F6,capture_id,capture_level_join,capture,true,mapped,
+combat,F7,F7,F7,capture_id,capture_level_join,capture,true,mapped,
+combat,G1,G1,G1,capture_id,capture_level_join,capture,true,mapped,
+combat,G2,G2,G2,capture_id,capture_level_join,capture,true,mapped,
+combat,G3,G3,G3,capture_id,capture_level_join,capture,true,mapped,
+combat,G4,G4,G4,capture_id,capture_level_join,capture,true,mapped,
+combat,G5,G5,G5,capture_id,capture_level_join,capture,true,mapped,
+combat,G6,G6,G6,capture_id,capture_level_join,capture,true,mapped,
+combat,G7,G7,G7,capture_id,capture_level_join,capture,true,mapped,
+combat,H1,H1,H1,capture_id,capture_level_join,capture,true,mapped,
+combat,H2,H2,H2,capture_id,capture_level_join,capture,true,mapped,
+combat,H3,H3,H3,capture_id,capture_level_join,capture,true,mapped,
+combat,H4,H4,H4,capture_id,capture_level_join,capture,true,mapped,
+combat,H5,H5,H5,capture_id,capture_level_join,capture,true,mapped,
+combat,H6,H6,H6,capture_id,capture_level_join,capture,true,mapped,
+combat,H7,H7,H7,capture_id,capture_level_join,capture,true,mapped,
+combat,J1,J1,J1,capture_id,capture_level_join,capture,true,mapped,
+combat,J2,J2,J2,capture_id,capture_level_join,capture,true,mapped,
+combat,J3,J3,J3,capture_id,capture_level_join,capture,true,mapped,
+combat,J4,J4,J4,capture_id,capture_level_join,capture,true,mapped,
+combat,J5,J5,J5,capture_id,capture_level_join,capture,true,mapped,
+combat,J6,J6,J6,capture_id,capture_level_join,capture,true,mapped,
+combat,J7,J7,J7,capture_id,capture_level_join,capture,true,mapped,
+combat,K1,K1,K1,capture_id,capture_level_join,capture,true,mapped,
+combat,K2,K2,K2,capture_id,capture_level_join,capture,true,mapped,
+combat,K3,K3,K3,capture_id,capture_level_join,capture,true,mapped,
+combat,K4,K4,K4,capture_id,capture_level_join,capture,true,mapped,
+combat,K5,K5,K5,capture_id,capture_level_join,capture,true,mapped,
+combat,K6,K6,K6,capture_id,capture_level_join,capture,true,mapped,
+combat,K7,K7,K7,capture_id,capture_level_join,capture,true,mapped,
+liu,B1_10xlane1,B1_10xlane1,GSM4929081,capture_id,capture_level_join,capture,true,mapped,
+liu,B1_10xlane2,B1_10xlane2,GSM4929082,capture_id,capture_level_join,capture,true,mapped,
+liu,B1_10xlane3,B1_10xlane3,GSM4929083,capture_id,capture_level_join,capture,true,mapped,
+liu,B1_10xlane4,B1_10xlane4,GSM4929084,capture_id,capture_level_join,capture,true,mapped,
+liu,B1_10xlane5,B1_10xlane5,GSM4929085,capture_id,capture_level_join,capture,true,mapped,
+liu,B1_10xlane7,B1_10xlane7,GSM4929087,capture_id,capture_level_join,capture,true,mapped,
+liu,B1_10xlane8,B1_10xlane8,GSM4929088,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane01,B2_10xlane01,GSM4929137,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane02,B2_10xlane02,GSM4929138,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane03,B2_10xlane03,GSM4929139,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane04,B2_10xlane04,GSM4929140,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane05,B2_10xlane05,GSM4929141,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane06,B2_10xlane06,GSM4929142,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane07,B2_10xlane07,GSM4929143,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane08,B2_10xlane08,GSM4929144,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane09,B2_10xlane09,GSM4929145,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane10,B2_10xlane10,GSM4929146,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane11,B2_10xlane11,GSM4929147,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane12,B2_10xlane12,GSM4929148,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane13,B2_10xlane13,GSM4929149,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane14,B2_10xlane14,GSM4929150,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane15,B2_10xlane15,GSM4929151,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane16,B2_10xlane16,GSM4929152,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane17,B2_10xlane17,GSM4929153,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane18,B2_10xlane18,GSM4929154,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane19,B2_10xlane19,GSM4929155,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane20,B2_10xlane20,GSM4929156,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane21,B2_10xlane21,GSM4929157,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane22,B2_10xlane22,GSM4929158,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane23,B2_10xlane23,GSM4929159,capture_id,capture_level_join,capture,true,mapped,
+liu,B2_10xlane24,B2_10xlane24,GSM4929160,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane01,B3_10xlane01,GSM4929209,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane02,B3_10xlane02,GSM4929210,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane03,B3_10xlane03,GSM4929211,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane04,B3_10xlane04,GSM4929212,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane05,B3_10xlane05,GSM4929213,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane06,B3_10xlane06,GSM4929214,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane07,B3_10xlane07,GSM4929215,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane08,B3_10xlane08,GSM4929216,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane09,B3_10xlane09,GSM4929217,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane10,B3_10xlane10,GSM4929218,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane11,B3_10xlane11,GSM4929219,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane12,B3_10xlane12,GSM4929220,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane13,B3_10xlane13,GSM4929221,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane14,B3_10xlane14,GSM4929222,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane15,B3_10xlane15,GSM4929223,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane16,B3_10xlane16,GSM4929224,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane17,B3_10xlane17,GSM4929225,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane18,B3_10xlane18,GSM4929226,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane19,B3_10xlane19,GSM4929227,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane20,B3_10xlane20,GSM4929228,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane21,B3_10xlane21,GSM4929229,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane22,B3_10xlane22,GSM4929230,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane23,B3_10xlane23,GSM4929231,capture_id,capture_level_join,capture,true,mapped,
+liu,B3_10xlane24,B3_10xlane24,GSM4929232,capture_id,capture_level_join,capture,true,mapped,
+qiu,GSM5102900,HC1,GSM5102900,repo_sample_id,capture_level_join,capture,true,mapped,
+qiu,GSM5102901,HC2,GSM5102901,repo_sample_id,capture_level_join,capture,true,mapped,
+qiu,GSM5102902,P25_T0,GSM5102902,repo_sample_id,capture_level_join,capture,true,mapped,
+qiu,GSM5102903,P25_T6,GSM5102903,repo_sample_id,capture_level_join,capture,true,mapped,
+qiu,GSM5102904,P50_T0,GSM5102904,repo_sample_id,capture_level_join,capture,true,mapped,
+qiu,GSM5102905,P50_T6,GSM5102905,repo_sample_id,capture_level_join,capture,true,mapped,
+qiu,GSM5511351,NSES_T0,GSM5511351,repo_sample_id,capture_level_join,capture,true,mapped,
+qiu,GSM5511352,NSES_T6,GSM5511352,repo_sample_id,capture_level_join,capture,true,mapped,
+qiu,GSM5511353,S2_T0,GSM5511353,repo_sample_id,capture_level_join,capture,true,mapped,
+qiu,GSM5511354,S2_T6,GSM5511354,repo_sample_id,capture_level_join,capture,true,mapped,
+qiu,GSM5511355,S3_T0,GSM5511355,repo_sample_id,capture_level_join,capture,true,mapped,
+qiu,GSM5511356,S3_T6,GSM5511356,repo_sample_id,capture_level_join,capture,true,mapped,
+ren,S-HC001,S-HC001,S-HC001,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC002,S-HC002,S-HC002,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC003,S-HC003,S-HC003,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC004,S-HC004,S-HC004,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC005,S-HC005,S-HC005,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC006,S-HC006,S-HC006,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC007,S-HC007,S-HC007,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC008,S-HC008,S-HC008,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC009,S-HC009,S-HC009,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC010,S-HC010,S-HC010,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC011,S-HC011,S-HC011,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC012,S-HC012,S-HC012,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC013,S-HC013,S-HC013,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC014,S-HC014,S-HC014,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC015,S-HC015,S-HC015,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC016,S-HC016,S-HC016,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC017,S-HC017,S-HC017,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC018-1,S-HC018-1,S-HC018-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC018-2,S-HC018-2,S-HC018-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC019-1,S-HC019-1,S-HC019-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC019-2,S-HC019-2,S-HC019-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC020-1,S-HC020-1,S-HC020-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC020-2,S-HC020-2,S-HC020-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC021,S-HC021,S-HC021,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC022,S-HC022,S-HC022,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC023,S-HC023,S-HC023,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC024,S-HC024,S-HC024,capture_id,capture_level_join,capture,true,mapped,
+ren,S-HC025,S-HC025,S-HC025,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M001,S-M001,S-M001,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M002-1,S-M002-1,S-M002-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M002-2,S-M002-2,S-M002-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M003-1,S-M003-1,S-M003-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M003-2,S-M003-2,S-M003-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M003-3,S-M003-3,S-M003-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M004-1,S-M004-1,S-M004-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M004-2,S-M004-2,S-M004-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M004-3,S-M004-3,S-M004-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M004-4,S-M004-4,S-M004-4,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M004-5,S-M004-5,S-M004-5,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M004-6,S-M004-6,S-M004-6,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M005,S-M005,S-M005,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M006,S-M006,S-M006,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M007-1,S-M007-1,S-M007-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M007-2,S-M007-2,S-M007-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M007-3,S-M007-3,S-M007-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M007-4,S-M007-4,S-M007-4,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M007-5,S-M007-5,S-M007-5,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M007-6,S-M007-6,S-M007-6,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M008-1,S-M008-1,S-M008-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M008-2,S-M008-2,S-M008-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M009-1,S-M009-1,S-M009-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M009-2,S-M009-2,S-M009-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M009-3,S-M009-3,S-M009-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M009-4,S-M009-4,S-M009-4,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M009-5,S-M009-5,S-M009-5,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M009-6,S-M009-6,S-M009-6,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M010-1,S-M010-1,S-M010-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M010-2,S-M010-2,S-M010-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M010-3,S-M010-3,S-M010-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M010-4,S-M010-4,S-M010-4,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M010-5,S-M010-5,S-M010-5,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M010-6,S-M010-6,S-M010-6,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M011,S-M011,S-M011,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M012,S-M012,S-M012,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M013,S-M013,S-M013,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M014,S-M014,S-M014,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M015,S-M015,S-M015,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M016,S-M016,S-M016,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M017,S-M017,S-M017,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M018,S-M018,S-M018,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M019,S-M019,S-M019,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M020,S-M020,S-M020,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M021,S-M021,S-M021,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M022,S-M022,S-M022,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M023,S-M023,S-M023,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M024,S-M024,S-M024,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M025,S-M025,S-M025,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M026-1,S-M026-1,S-M026-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M026-2,S-M026-2,S-M026-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M026-3,S-M026-3,S-M026-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M027,S-M027,S-M027,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M028,S-M028,S-M028,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M029,S-M029,S-M029,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M030,S-M030,S-M030,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M031-1,S-M031-1,S-M031-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M031-2,S-M031-2,S-M031-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M032,S-M032,S-M032,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M033,S-M033,S-M033,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M034,S-M034,S-M034,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M035-1,S-M035-1,S-M035-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M035-2,S-M035-2,S-M035-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M036-1,S-M036-1,S-M036-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M036-2,S-M036-2,S-M036-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M037,S-M037,S-M037,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M038,S-M038,S-M038,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M039-1,S-M039-1,S-M039-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M039-2,S-M039-2,S-M039-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M040-1,S-M040-1,S-M040-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M040-2,S-M040-2,S-M040-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M041-1,S-M041-1,S-M041-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M041-2,S-M041-2,S-M041-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M042-1,S-M042-1,S-M042-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M042-2,S-M042-2,S-M042-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M043-1,S-M043-1,S-M043-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M043-2,S-M043-2,S-M043-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M044-1,S-M044-1,S-M044-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M044-2,S-M044-2,S-M044-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M045,S-M045,S-M045,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M046,S-M046,S-M046,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M047,S-M047,S-M047,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M048,S-M048,S-M048,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M049,S-M049,S-M049,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M050,S-M050,S-M050,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M051,S-M051,S-M051,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M052,S-M052,S-M052,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M053,S-M053,S-M053,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M054,S-M054,S-M054,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M055,S-M055,S-M055,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M056,S-M056,S-M056,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M057,S-M057,S-M057,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M058-1,S-M058-1,S-M058-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M058-2,S-M058-2,S-M058-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M059-1,S-M059-1,S-M059-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M059-2,S-M059-2,S-M059-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M060-1,S-M060-1,S-M060-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M060-2,S-M060-2,S-M060-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M061-1,S-M061-1,S-M061-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M061-2,S-M061-2,S-M061-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M062-1,S-M062-1,S-M062-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M062-2,S-M062-2,S-M062-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M063-1,S-M063-1,S-M063-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M063-2,S-M063-2,S-M063-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M064,S-M064,S-M064,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M065,S-M065,S-M065,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M066,S-M066,S-M066,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M067,S-M067,S-M067,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M068,S-M068,S-M068,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M069,S-M069,S-M069,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M070,S-M070,S-M070,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M071,S-M071,S-M071,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M072,S-M072,S-M072,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M073,S-M073,S-M073,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M074-1,S-M074-1,S-M074-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M074-2,S-M074-2,S-M074-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M075,S-M075,S-M075,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M076-1,S-M076-1,S-M076-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M076-2,S-M076-2,S-M076-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M077,S-M077,S-M077,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M078,S-M078,S-M078,capture_id,capture_level_join,capture,true,mapped,
+ren,S-M079,S-M079,S-M079,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S001-1,S-S001-1,S-S001-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S001-2,S-S001-2,S-S001-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S001-3,S-S001-3,S-S001-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S002,S-S002,S-S002,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S003,S-S003,S-S003,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S004-1,S-S004-1,S-S004-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S004-2,S-S004-2,S-S004-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S004-3,S-S004-3,S-S004-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S005-1,S-S005-1,S-S005-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S005-2,S-S005-2,S-S005-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S006,S-S006,S-S006,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S007-1,S-S007-1,S-S007-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S007-2,S-S007-2,S-S007-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S008,S-S008,S-S008,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S009,S-S009,S-S009,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S010-1,S-S010-1,S-S010-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S010-2,S-S010-2,S-S010-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S011-1,S-S011-1,S-S011-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S011-2,S-S011-2,S-S011-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S012-1,S-S012-1,S-S012-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S012-2,S-S012-2,S-S012-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S012-3,S-S012-3,S-S012-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S013,S-S013,S-S013,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S014,S-S014,S-S014,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S015,S-S015,S-S015,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S016,S-S016,S-S016,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S017,S-S017,S-S017,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S018,S-S018,S-S018,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S019,S-S019,S-S019,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S020,S-S020,S-S020,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S021-1,S-S021-1,S-S021-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S021-2,S-S021-2,S-S021-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S021-3,S-S021-3,S-S021-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S021-4,S-S021-4,S-S021-4,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S021-5,S-S021-5,S-S021-5,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S022-1,S-S022-1,S-S022-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S022-2,S-S022-2,S-S022-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S022-3,S-S022-3,S-S022-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S022-4,S-S022-4,S-S022-4,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S022-5,S-S022-5,S-S022-5,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S023,S-S023,S-S023,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S024,S-S024,S-S024,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S025,S-S025,S-S025,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S026,S-S026,S-S026,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S027,S-S027,S-S027,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S028,S-S028,S-S028,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S029,S-S029,S-S029,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S030,S-S030,S-S030,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S031,S-S031,S-S031,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S032-1,S-S032-1,S-S032-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S032-2,S-S032-2,S-S032-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S032-3,S-S032-3,S-S032-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S033,S-S033,S-S033,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S034,S-S034,S-S034,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S035-1,S-S035-1,S-S035-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S035-2,S-S035-2,S-S035-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S035-3,S-S035-3,S-S035-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S035-4,S-S035-4,S-S035-4,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S036-1,S-S036-1,S-S036-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S036-2,S-S036-2,S-S036-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S036-3,S-S036-3,S-S036-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S037,S-S037,S-S037,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S038,S-S038,S-S038,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S039,S-S039,S-S039,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S040,S-S040,S-S040,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S041,S-S041,S-S041,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S042,S-S042,S-S042,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S043,S-S043,S-S043,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S044,S-S044,S-S044,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S045,S-S045,S-S045,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S046,S-S046,S-S046,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S047,S-S047,S-S047,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S048,S-S048,S-S048,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S049,S-S049,S-S049,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S050,S-S050,S-S050,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S051,S-S051,S-S051,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S052,S-S052,S-S052,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S053,S-S053,S-S053,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S054,S-S054,S-S054,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S055,S-S055,S-S055,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S056,S-S056,S-S056,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S057,S-S057,S-S057,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S058,S-S058,S-S058,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S059,S-S059,S-S059,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S060,S-S060,S-S060,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S061,S-S061,S-S061,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S062,S-S062,S-S062,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S063,S-S063,S-S063,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S064,S-S064,S-S064,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S065,S-S065,S-S065,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S066,S-S066,S-S066,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S067,S-S067,S-S067,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S068,S-S068,S-S068,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S069-1,S-S069-1,S-S069-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S069-2,S-S069-2,S-S069-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S069-3,S-S069-3,S-S069-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S070-1,S-S070-1,S-S070-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S070-2,S-S070-2,S-S070-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S070-3,S-S070-3,S-S070-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S071-1,S-S071-1,S-S071-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S071-2,S-S071-2,S-S071-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S072-1,S-S072-1,S-S072-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S072-2,S-S072-2,S-S072-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S072-3,S-S072-3,S-S072-3,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S073-1,S-S073-1,S-S073-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S073-2,S-S073-2,S-S073-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S074-1,S-S074-1,S-S074-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S074-2,S-S074-2,S-S074-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S075-1,S-S075-1,S-S075-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S075-2,S-S075-2,S-S075-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S076-1,S-S076-1,S-S076-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S076-2,S-S076-2,S-S076-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S077,S-S077,S-S077,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S078,S-S078,S-S078,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S079,S-S079,S-S079,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S080,S-S080,S-S080,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S081,S-S081,S-S081,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S082,S-S082,S-S082,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S083,S-S083,S-S083,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S084,S-S084,S-S084,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S085-1,S-S085-1,S-S085-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S085-2,S-S085-2,S-S085-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S086-1,S-S086-1,S-S086-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S086-2,S-S086-2,S-S086-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S087-1,S-S087-1,S-S087-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S087-2,S-S087-2,S-S087-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S088-1,S-S088-1,S-S088-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S088-2,S-S088-2,S-S088-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S089-1,S-S089-1,S-S089-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S089-2,S-S089-2,S-S089-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S090-1,S-S090-1,S-S090-1,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S090-2,S-S090-2,S-S090-2,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S091,S-S091,S-S091,capture_id,capture_level_join,capture,true,mapped,
+ren,S-S092,S-S092,S-S092,capture_id,capture_level_join,capture,true,mapped,
+stephenson,AP1,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,AP10,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,AP11,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,AP12,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,AP2,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,AP3,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,AP4,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,AP5,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,AP6,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,AP8,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,AP9,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV01_CV0025,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV01_CV0144,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV01_CV0902,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV01_CV0904,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV02_CV0052,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV02_CV0059,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV02_CV0068,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV02_CV0902,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV03_CV0074,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV03_CV0084,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV03_CV0176,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV03_CV0200,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV04_CV0100,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV04_CV0164,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV04_CV0262,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV04_CV0911,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV05_CV0120,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV05_CV0128,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV05_CV0284,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV05_CV0929,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV06_CV0037,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV06_CV0178,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV06_CV0201,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV06_CV0234,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV07_CV0094,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV07_CV0104,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV07_CV0134,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV07_CV0137,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV08_CV0073,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV08_CV0155,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV08_CV0201,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV08_CV0915,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV09_CV0062,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV09_CV0171,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV09_CV0279,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV09_CV0917,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV10_CV0160,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV10_CV0198,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV10_CV0231,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV10_CV0939,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV11_CV0050,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV11_CV0058,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV11_CV0180,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV11_CV0257,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV12_CV0062,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV12_CV0068,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV12_CV0178,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV12_CV0926,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV13_CV0073,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV13_CV0171,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV13_CV0326,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV13_CV0934,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV14_CV0050,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV14_CV0137,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV14_CV0284,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV14_CV0940,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV15_CV0176,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV15_CV0231,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV15_CV0257,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,BGCV15_CV0944,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919176,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919177,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919178,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919179,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919226,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919227,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919228,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919229,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919230,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919231,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919232,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919233,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919276,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919277,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919278,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919279,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919280,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919281,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919282,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919283,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919326,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919327,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919328,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919329,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919330,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919331,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919332,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH8919333,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143270,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143271,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143272,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143273,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143274,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143275,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143276,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143277,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143320,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143321,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143322,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143323,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143324,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143325,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143326,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143327,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143370,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143371,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143372,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143373,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143420,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143421,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143422,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143423,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143424,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143425,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143426,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9143427,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9179821,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9179822,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9179823,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9179824,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9179825,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9179826,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9179827,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,MH9179828,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,newcastle004v2,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,newcastle20,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,newcastle21,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,newcastle21v2,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,newcastle49,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,newcastle59,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,newcastle65,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+stephenson,newcastle74,,,,none,none,false,unmapped_to_gem_well,"the deposit resolves to 98 sequence pools; GEM wells are not identifiable, so no loading figure can be attached to a capture"
+wilk,GSM5285683_562,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285684_563,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285685_564_A,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285686_564_B,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285687_565,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285688_566,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285690_568_PBMC,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285692_569_PBMC,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285693_570_PBMC,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285697_ED_080_PBMC,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285699_ED_082_PBMC,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285701_ED_084_PBMC,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285702_ED_085_PBMC,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285705_ED_139_PBMC,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285715_Imm_006_PBMC,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285717_Imm_037_PBMC,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285718_Imm_056,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285719_Imm_057,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285720_Imm_058,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285721_Imm_059,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285722_Imm_060,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285723_Imm_061,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"
+wilk,GSM5285725_Imm_077_PBMC,,,,cohort_protocol_inheritance,cohort_protocol,false,inherited,"15,000 cells per Seq-Well array, uniform across the cohort, stated in the paper and in GEO -- a protocol figure that genuinely applies to every capture, NOT a per-capture measurement"

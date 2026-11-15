@@ -1,0 +1,22 @@
+$ /rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python -m pytest tests/test_gate2_scoring_config.py::test_a_commit_predating_the_implementation_is_refused -q -p no:cacheprovider
+============================= test session starts ==============================
+platform linux -- Python 3.10.18, pytest-9.1.1, pluggy-1.6.0
+rootdir: /bigdata/godziklab/shared/Xinru/302006/worktrees/codex_gate2_final_20260925T204838Z
+configfile: pyproject.toml
+plugins: anyio-4.12.1
+collected 1 item
+
+tests/test_gate2_scoring_config.py F                                     [100%]
+
+=================================== FAILURES ===================================
+____________ test_a_commit_predating_the_implementation_is_refused _____________
+tests/test_gate2_scoring_config.py:229: in test_a_commit_predating_the_implementation_is_refused
+    with pytest.raises(R.Gate2RunnerError, match="predates the implementation"):
+E   AssertionError: Regex pattern did not match.
+E     Expected regex: 'predates the implementation'
+E     Actual message: "implementation changed between the reviewed commit 4ea7300e29d72ac35efbff173e01d4d6bd6b770f and deployed HEAD 906074d4554a9eeb8ec0d7241a8a9c58f5b7635e: ['scripts/32_rebuild_upfront_qc/code/gate2_score_capture_GSM5102900_HC1.py', 'scripts/32_rebuild_upfront_qc/code/gate2_scoring_config_GSM5102900_HC1.py', 'scripts/32_rebuild_upfront_qc/code/gate2_parameter_ruling.py', 'scripts/32_rebuild_upfront_qc/code/gate2_stress_design.py', 'scripts/32_rebuild_upfront_qc/code/gate2_stress_runner.py', 'scripts/32_rebuild_upfront_qc/code/gate2_diagnostics.py', 'reports/manuscript/revision/gate2_capture_audit_2026-09-24/run_capture_scoring.sh']. A permit does not carry over to edited code, even when the edit arrived in a later commit."
+=========================== short test summary info ============================
+FAILED tests/test_gate2_scoring_config.py::test_a_commit_predating_the_implementation_is_refused
+============================== 1 failed in 0.25s ===============================
+
+EXIT_CODE=1

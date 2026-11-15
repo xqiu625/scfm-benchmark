@@ -1,0 +1,70 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>scfm-benchmark | donor-level evaluation</title>
+<style>body{font:16px/1.6 system-ui,sans-serif;max-width:960px;margin:40px auto;padding:0 24px;color:#18313b}
+h1{line-height:1.2}.notice{padding:16px;background:#fff0cb;border-left:4px solid #9b6400}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}th,td{padding:10px;border-bottom:1px solid #ccd9de;text-align:right}
+th:first-child,td:first-child{text-align:left}svg{width:100%;height:auto}a{color:#176480}code{background:#edf2f4;padding:2px 5px}</style>
+<h1>Frozen embeddings, auditable donor-level evaluation</h1><p class="notice">SYNTHETIC DEMO — generated data, not biological results or model rankings.</p>
+<p>40 donors · 3 repeats · binary labels 0/1</p>
+<h2>Mean pooled out-of-fold donor AUROC</h2>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 260" role="img" aria-label="Mean donor AUROC on a zero to one scale"><style>text{font:14px system-ui,sans-serif;fill:#18313b}</style><rect width="740" height="260" fill="white"/><text x="8" y="24">Synthetic demo only — not foundation-model results</text><line x1="440" x2="440" y1="55" y2="235" stroke="#7d8a90" stroke-dasharray="4"/><text x="235" y="54">0</text><text x="430" y="54">0.5</text><text x="635" y="54">1</text><text x="8" y="86"><title>prior</title>prior</text><rect x="240" y="70" width="200.0" height="22" fill="#296b87"/><text x="655" y="86">0.500</text><text x="8" y="126"><title>toy_expression_pca</title>toy_expression_pca</text><rect x="240" y="110" width="235.0" height="22" fill="#296b87"/><text x="655" y="126">0.588</text><text x="8" y="166"><title>toy_noise</title>toy_noise</text><rect x="240" y="150" width="143.0" height="22" fill="#296b87"/><text x="655" y="166">0.357</text><text x="8" y="206"><title>toy_signal</title>toy_signal</text><rect x="240" y="190" width="300.0" height="22" fill="#296b87"/><text x="655" y="206">0.750</text></svg>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>auc_mean</th>
+      <th>auc_sd</th>
+      <th>ap_mean</th>
+      <th>brier_mean</th>
+    </tr>
+    <tr>
+      <th>model</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>prior</th>
+      <td>0.5000</td>
+      <td>0.0000</td>
+      <td>0.5000</td>
+      <td>0.2500</td>
+    </tr>
+    <tr>
+      <th>toy_expression_pca</th>
+      <td>0.5875</td>
+      <td>0.0000</td>
+      <td>0.5708</td>
+      <td>0.2505</td>
+    </tr>
+    <tr>
+      <th>toy_noise</th>
+      <td>0.3575</td>
+      <td>0.0000</td>
+      <td>0.4423</td>
+      <td>0.2649</td>
+    </tr>
+    <tr>
+      <th>toy_signal</th>
+      <td>0.7500</td>
+      <td>0.0000</td>
+      <td>0.7038</td>
+      <td>0.2085</td>
+    </tr>
+  </tbody>
+</table>
+<p>SD describes variation across the specified repeats; it is not a confidence interval.
+AUROC/AP: higher is better. Brier score: lower is better. The prior baseline uses training-cell class prevalence.</p>
+<h2>Evaluation contract</h2><ul>
+<li>Cells align by cell ID. Donors have one label and one dependency group.</li>
+<li>Splits use donor rows and keep entire dependency groups together; every representation uses identical folds.</li>
+<li>Scaling, optional PCA and logistic regression fit training cells only. Training weights each cell equally.</li>
+<li>Held-out cell probabilities are averaged within donor; metrics weight each donor equally.</li>
+<li>This probes fixed input representations. It cannot rule out leakage during upstream pretraining, fine-tuning or feature selection.</li></ul>
+<h2>Inspect the evidence</h2><p><a href="donor_predictions.csv">Donor predictions</a> ·
+<a href="metrics.csv">Per-repeat metrics</a> · <a href="folds.csv">Donor folds</a> ·
+<a href="run.json">Parameters, versions and hashes</a></p></html>

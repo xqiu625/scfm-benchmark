@@ -1,0 +1,89 @@
+{
+  "review_date": "2026-09-24",
+  "review_mode": "static official tagged-source verification, no real Scanpy execution",
+  "packet_receipt": "Parameter packet and cohort eligibility draft appeared during the review; both read in full and corrected before final adjudication.",
+  "files": [
+    {
+      "source_url": "https://raw.githubusercontent.com/scverse/scanpy/1.11.3/src/scanpy/preprocessing/_scrublet/__init__.py",
+      "sha256": "6831287b65ccda9012dc1a00d4e81c8bb45df7174e9729817c7b9ad96ad140d6",
+      "bytes": 21891,
+      "locations": {
+        "signature": "42-64",
+        "preprocessing_forwarding": "192-251",
+        "resolved_k": "404-405",
+        "scoring_and_return": "409-495"
+      }
+    },
+    {
+      "source_url": "https://raw.githubusercontent.com/scverse/scanpy/1.11.3/src/scanpy/preprocessing/_scrublet/core.py",
+      "sha256": "b137bddd1055652b2f5a5e7778debc6e0fc4983c530b11744540abb18dd93670",
+      "bytes": 17305,
+      "locations": {
+        "simulation": "187-237",
+        "neighbors_score_errors": "312-400",
+        "threshold_calls": "404-490"
+      }
+    },
+    {
+      "source_url": "https://raw.githubusercontent.com/scverse/scanpy/1.11.3/src/scanpy/preprocessing/_scrublet/pipeline.py",
+      "sha256": "c0df058b1585661b86e8acce7c4b32ed5b1498f82afe445938a3a8caac3fa28f",
+      "bytes": 2753,
+      "locations": {
+        "observed_scaling": "19-45",
+        "pca": "68-87"
+      }
+    }
+  ],
+  "public_wrapper_defaults_for_11": {
+    "sim_doublet_ratio": 2.0,
+    "synthetic_doublet_umi_subsampling": 1.0,
+    "log_transform": false,
+    "n_prin_comps": 30,
+    "n_neighbors": null,
+    "stdev_doublet_rate": 0.02,
+    "knn_dist_metric": "euclidean",
+    "normalize_variance": true,
+    "mean_center": true,
+    "use_approx_neighbors": null,
+    "get_doublet_neighbor_parents": false
+  },
+  "approved_values": {
+    "sim_doublet_ratio": 2.0,
+    "synthetic_doublet_umi_subsampling": 1.0,
+    "log_transform": false,
+    "n_prin_comps": 30,
+    "n_neighbors": null,
+    "stdev_doublet_rate": 0.0,
+    "knn_dist_metric": "euclidean",
+    "normalize_variance": true,
+    "mean_center": true,
+    "use_approx_neighbors": false,
+    "get_doublet_neighbor_parents": false
+  },
+  "config_audit_status": "NOT_READY",
+  "pilot_authorized": false,
+  "stage31_dimension_audit_authorized": false,
+  "reviewed_supporting_documents": [
+    {
+      "path": "reports/manuscript/revision/gate2_parameter_adjudication_2026-09-24/PACKET.md",
+      "sha256_after_review_edits": "9b39e12e7b482978f666f9b55449b434379eea33e237727097425d0de5d4ca5f"
+    },
+    {
+      "path": "reports/manuscript/revision/gate2_cohort_eligibility_2026-09-24/ELIGIBILITY_DRAFT.md",
+      "sha256_after_review_edits": "3bd73c910d125daa2a0bab2534fa0f2bee772832f239c009059a3f0e16f3e4b0"
+    }
+  ],
+  "local_validation": {
+    "targeted_tests_passed": 35,
+    "test_log": "parameter_ruling_tests.txt",
+    "real_scanpy_executed": false,
+    "broader_suite_attempt": {
+      "passed": 53,
+      "failed_due_to_missing_anndata": 52,
+      "deselected": 10
+    },
+    "shared_conftest_unavailable_dependency": "pandas",
+    "draft_n_unresolved_parameters": 0,
+    "draft_any_unit_runtime_eligible": false
+  }
+}

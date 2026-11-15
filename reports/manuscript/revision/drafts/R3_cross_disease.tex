@@ -1,0 +1,57 @@
+% R3 — cross-disease transfer and the adaptation curve (synced to P0 round-17 state, 2026-09-09)
+\subsection{Cross-disease transfer is unresolvable in one direction and rank-indeterminate in the other}
+\label{ssec:r3_cross_disease}
+
+We then tested whether representations learned in one disease carry to the
+other, training on COVID-19 and testing on sepsis and vice versa under the
+primary severe-as-survived label definition, with patient-level scoring and
+patient-clustered bootstrap intervals (Section~\ref{ssec:methods_transfer}).
+Forward transfer (COVID$\rightarrow$sepsis; 91 sepsis patients, 17 fatal) is
+uninformative by construction: Section~\ref{ssec:r2_within_sepsis} establishes
+that mortality is not learnable in this pool even with in-domain training, so
+a transfer measurement into it re-measures that null rather than transfer
+ability. Point estimates spanned 0.644 (\model{Geneformer}) to 0.684
+(\model{UCE}), with bootstrap confidence intervals overlapping throughout
+(Table~\ref{tab:transfer} and Figure~\ref{fig:transfer}). Reverse transfer
+(sepsis$\rightarrow$COVID; 96 sepsis training patients, 240 COVID-19 test
+patients, 25 fatal) tests the direction where signal exists and gave higher
+point estimates throughout: \model{STATE} 0.721 (95\% CI [0.621, 0.809]) and
+\model{Geneformer} 0.712 (95\% CI [0.612, 0.814]) with logistic regression
+(0.711 and 0.636 with random forest), followed by \model{UCE} (0.693/0.607),
+\model{scGPT} (0.642/0.622), and \model{scPRINT-2} (0.619/0.517) (logistic
+regression/random forest), with all bootstrap intervals overlapping. No
+reverse-direction ranking can be defended either: the severe-excluded
+sensitivity analysis reverses the top two models (\model{Geneformer} 0.775,
+\model{STATE} 0.765), and adding only five training patients moves
+\model{UCE} by $+0.086$ AUC between the 91- and 96-patient training pools
+(Table~\ref{tab:transfer}). Transfer estimates are therefore
+not identifiable at this scale, which is itself the strongest evidence the
+experiment provides. The forward/reverse asymmetry is a property of the two
+target tasks, one learnable and one not, not of transfer direction.
+
+To ask whether transfer can be recovered with target-disease supervision, we
+measured the adaptation curve: COVID-trained classifiers received increasing
+numbers of sepsis training cells and were scored on a held-out 32-patient
+sepsis test set, a one-third stratified holdout of the 96-patient labeled
+sepsis pool (Section~\ref{ssec:methods_transfer}). Even with all
+target-disease training data, all five foundation models and the PCA-200
+baseline remained between 0.40 and 0.62 patient-level AUC (zero-shot values
+lower still), with no foundation model separating from the baseline at any
+training size (Figure~\ref{fig:adaptation_curve}). We report this as
+unresolvable rather than null: at roughly 3 fatal events in 32 test patients,
+the 95\% interval around any patient-level AUC spans about 0.7, so the
+observed range is consistent with a single value plus noise, and no
+rescue-or-not conclusion is identifiable at this test-set size. Two
+comparability notes accompany this result. First, cross-disease
+transfer on the 5-patient GSE167363 sepsis test set (2 fatal) produced
+substantially higher point estimates (up to 1.00 patient-level AUC); given
+the test-set size, we report those values
+only as a labeled small-sample reference (Supplementary Note~\ref{sn:gse167363_testset}). Second, two additional
+models evaluated under a different test split (TranscriptFormer and STACK) are
+excluded from this comparison for the same reason and are noted in the same
+supplementary record.
+
+Together, the transfer experiments provide no evidence for a transferable
+inflammatory-mortality representation on this underrepresented cell type:
+forward transfer is uninformative, reverse transfer is rank-indeterminate,
+and the adaptation curve is below the resolution of its test set.

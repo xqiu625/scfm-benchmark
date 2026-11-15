@@ -1,0 +1,4 @@
+Task,Embedding,Method,Zero_Shot_AUC,LoRA_Classifier_AUC,Improvement,Std,Date
+binary,Geneformer,LoRA_Classifier,0.813,0.8456,+0.033,0.0026,2026-01-26
+3class,Geneformer,LoRA_Classifier,0.826,0.8492,+0.023,0.0026,2026-01-26
+6class,Geneformer,LoRA_Classifier,0.821,0.8530,+0.032,0.0026,2026-01-26

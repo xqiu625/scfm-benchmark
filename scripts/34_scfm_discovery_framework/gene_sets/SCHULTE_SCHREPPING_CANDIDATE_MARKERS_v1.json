@@ -1,0 +1,104 @@
+{
+  "_provenance": {
+    "source_document": "codex_output/evidence/mono_20261017_151151_signatures/mono_signatures_source.md",
+    "source_document_sha256": "e55ed44f61172ea2378f7a5267c5ed0351cc29db0a630fcfb5ddad129cb86dff",
+    "underlying_papers": [
+      "Schulte-Schrepping et al. 2020 Cell (PMC7405822) -- Table S4 cluster marker tables (Mendeley Data hwxhw2sxys/1, cross-checked against cell.com mmc4.xlsx per the source document's G5)",
+      "Stephenson et al. 2021 Nat Med (PMC8121667) -- Results text only (no supplementary DEG/marker table exists for monocytes; see the source document's G1/G2)"
+    ],
+    "extracted": "2026-10-17",
+    "frozen_by_claude": "2026-10-17, this file generated programmatically from the hash-verified source document above -- gene lists were parsed out of its markdown tables by a script, not retyped by hand, to avoid transcription error. Each list's gene column is the source document's already-HGNC-normalized 'gene' column (not the 'verbatim' Excel-dedup-suffixed column); the normalization itself is independently re-checked against the live HGNC REST API (rest.genenames.org) for every symbol that required de-suffixing -- see signature_symbol_mapping_v1.tsv in this directory for the per-symbol evidence.",
+    "status": "CANDIDATE REFERENCE MATERIAL ONLY. Not reviewed or selected by Cindy as a positive control, DE weight, or scientific contrast for this project. Per codex_output/mono_20261017_151151.md Sec.5, uploading/extracting this material does not itself constitute scientific endorsement of the underlying papers' conclusions.",
+    "critical_distinctions": [
+      "A 'PAPER_CLUSTER_MARKER' set below is an observed differential-expression marker list for ONE specific cluster in ONE specific cohort of the Schulte-Schrepping dataset (their own Seurat/scran marker test, cells vs. other clusters in the SAME dataset) -- it is NOT a measurement of this project's own ICU Severe/Critical vs Mild/Moderate contrast, and avg_logFC/p_val_adj values describe THEIR comparison, not ours.",
+      "A 'RESEARCHER_DERIVED_UNION' set below is an aggregation Claude built by unioning entries across multiple cluster-marker tables in the source document -- the original papers never computed this exact combined set as a single named signature.",
+      "p_val_adj=0 in the source tables is preserved as reported; per the source document's own note this reflects numerical underflow in the original analysis output, not a true mathematical zero, and must not be read as independent-donor-replicated significance (these are cell-level tests within a dataset, not donor-level replication).",
+      "The ISG_COHORT1_CLUSTER2 set below carries an explicit single-donor caveat from the Schulte-Schrepping main text and should be downweighted or combined with the other ISG marker sets, not used alone."
+    ]
+  },
+
+  "HLA_II_UNION_ORIGINAL_11_RESEARCHER_DERIVED_v1": {
+    "description": "Union (deduplicated) of all HLA class II marker genes appearing across the Schulte-Schrepping Table S4 monocyte-subcluster marker tables (Cohort 1 FigS3A + Cohort 2 Fig4A.S3E), exactly as the source document's §1b reports. Includes HLA-DRB6, which HGNC lists as a PSEUDOGENE (see signature_symbol_mapping_v1.tsv) -- kept here only for source fidelity to the original paper-derived union.",
+    "n_symbols": 11,
+    "geneSymbols": ["HLA-DMA", "HLA-DMB", "HLA-DPA1", "HLA-DPB1", "HLA-DQA1", "HLA-DQA2", "HLA-DQB1", "HLA-DRA", "HLA-DRB1", "HLA-DRB5", "HLA-DRB6"],
+    "set_type": "RESEARCHER_DERIVED_UNION",
+    "direction_in_source_papers": "Schulte-Schrepping main text: HLA-II high marks a mild-associated, 'HLA-DRhi CD83hi-activated inflammatory monocyte' cluster; HLA-II low/absent marks 3 severe-associated clusters (protein-level HLA-DRlo). Stephenson et al. 2021 reports NO HLA class II finding at all for monocytes (see source doc G1) -- do not attribute this direction to Stephenson."
+  },
+
+  "HLA_II_FUNCTIONAL_CANDIDATE_10_RESEARCHER_DERIVED_v1": {
+    "description": "Same union as above with HLA-DRB6 removed, because HGNC (HGNC:4954, checked 2026-10-17) classifies it as a pseudogene, not a protein-coding gene. This is a researcher-derived candidate for analyses that specifically require protein-coding HLA-II genes; it does NOT replace or supersede the 11-gene original-union asset above, which stays as the source-faithful record.",
+    "n_symbols": 10,
+    "geneSymbols": ["HLA-DMA", "HLA-DMB", "HLA-DPA1", "HLA-DPB1", "HLA-DQA1", "HLA-DQA2", "HLA-DQB1", "HLA-DRA", "HLA-DRB1", "HLA-DRB5"],
+    "set_type": "RESEARCHER_DERIVED_UNION",
+    "excluded_from_original": ["HLA-DRB6"],
+    "exclusion_reason": "HGNC:4954, locus_type=pseudogene (checked via https://rest.genenames.org/fetch/symbol/HLA-DRB6, 2026-10-17)."
+  },
+
+  "NONCLASSICAL_MONOCYTE_CD16_C1Q_UNION_PAPER_CLUSTER_MARKER_v1": {
+    "description": "Union of the non-classical (CD16+) monocyte cluster's own marker genes from Schulte-Schrepping Table S4, Cohort 1 FigS3A cluster 4 AND Cohort 2 Fig4A.S3E cluster 4 (both independently identified by the authors as the FCGR3A+/CD14-low non-classical cluster).",
+    "n_symbols": 7,
+    "geneSymbols": ["C1QA", "C1QB", "C1QC", "CDKN1C", "CX3CR1", "FCGR3A", "MS4A7"],
+    "set_type": "PAPER_CLUSTER_MARKER",
+    "cohorts_clusters": ["Cohort 1 FigS3A cluster 4", "Cohort 2 Fig4A.S3E cluster 4"],
+    "note": "Stephenson et al. 2021 main text independently reports C1QA/B/C+ CD16+ monocytes expressing FCGR3A (PMC8121667 Results) -- a separate, text-only line of evidence from a DIFFERENT cohort, not a shared table; see the source document §4b for the exact quotes."
+  },
+
+  "SEVERE_HLA_DRLO_S100AHI_COHORT2_CLUSTER0_PAPER_CLUSTER_MARKER_v1": {
+    "description": "Top-15 (by avg_logFC) marker genes for Schulte-Schrepping Cohort 2 monocyte cluster 0, which the authors designate HLA-DRlo S100Ahi and report as severe-COVID-19-associated.",
+    "n_symbols": 15,
+    "geneSymbols": ["S100A12", "CXCL8", "ALOX5AP", "IRS2", "PROK2", "PLBD1", "PLAUR", "LTA4H", "HP", "EMB", "PADI4", "FOSB", "BASP1", "EREG", "CYP1B1"],
+    "set_type": "PAPER_CLUSTER_MARKER",
+    "cohort_cluster": "Cohort 2 Fig4A.S3E cluster 0"
+  },
+
+  "SEVERE_HLA_DRLO_S100AHI_COHORT1_CLUSTER3_PAPER_CLUSTER_MARKER_v1": {
+    "description": "Marker genes for Schulte-Schrepping Cohort 1 monocyte cluster 3 (HLA-DRlo S100Ahi, the authors' own description, 'strongly associated with severe COVID-19').",
+    "n_symbols": 12,
+    "geneSymbols": ["S100A12", "CLU", "CXCL8", "MAFB", "RNASE2", "RFLNB", "PLBD1", "RGCC", "RETN", "HP", "VIM", "AREG"],
+    "set_type": "PAPER_CLUSTER_MARKER",
+    "cohort_cluster": "Cohort 1 FigS3A cluster 3"
+  },
+
+  "SEVERE_HLA_DRLO_CD163HI_COHORT2_CLUSTER2_PAPER_CLUSTER_MARKER_v1": {
+    "description": "Non-ISG top marker genes for Schulte-Schrepping Cohort 2 monocyte cluster 2 (HLA-DRlo CD163hi, severe-associated). This cluster ALSO carries a strong ISG signal -- see ISG_COHORT2_CLUSTER2_PAPER_CLUSTER_MARKER_v1 below; the two sets describe the SAME cluster from two different marker-table excerpts and are not meant to be read as mutually exclusive biology.",
+    "n_symbols": 6,
+    "geneSymbols": ["CD163", "CLU", "PLAC8", "RETN", "RNASE2", "SELL"],
+    "set_type": "PAPER_CLUSTER_MARKER",
+    "cohort_cluster": "Cohort 2 Fig4A.S3E cluster 2",
+    "verbatim_to_normalized": {"RNASE21": "RNASE2", "CLU1": "CLU", "SELL1": "SELL"}
+  },
+
+  "ISG_COHORT2_CLUSTER2_PAPER_CLUSTER_MARKER_v1": {
+    "description": "ISG marker genes for the SAME Cohort 2 cluster 2 (HLA-DRlo CD163hi, severe-associated) as the set above -- the authors' own point: 'the HLA-DRlo CD163hi severe cluster is not IFN-negative.'",
+    "n_symbols": 19,
+    "geneSymbols": ["IFI27", "IFI44", "IFI44L", "IFI6", "IFIT1", "IFIT2", "IFIT3", "IFITM3", "IRF7", "ISG15", "LY6E", "MX1", "MX2", "OAS1", "OAS2", "OAS3", "RSAD2", "SIGLEC1", "XAF1"],
+    "set_type": "PAPER_CLUSTER_MARKER",
+    "cohort_cluster": "Cohort 2 Fig4A.S3E cluster 2"
+  },
+
+  "ISG_COHORT1_CLUSTER2_SINGLE_DONOR_CAVEAT_PAPER_CLUSTER_MARKER_v1": {
+    "description": "Marker genes for Schulte-Schrepping Cohort 1 monocyte cluster 2 (a strong ISG/interferon-stimulated-gene cluster). CAVEAT, quoted directly from the paper's own main text: 'this cluster was found to originate from a single donor with mild COVID-19.' Do not use this set alone as a positive control; downweight or combine with ISG_COHORT2_CLUSTER2 and/or the author-frozen IFN_genes set in STEPHENSON_AUTHOR_MYELOID_SIGNATURES_v1.json.",
+    "n_symbols": 41,
+    "geneSymbols": ["ADAR", "APOBEC3A", "BST2", "CXCL10", "DDX58", "DDX60", "EPSTI1", "GBP1", "GBP2", "GBP4", "GBP5", "HERC5", "HERC6", "IFI27", "IFI44", "IFI44L", "IFI6", "IFIT1", "IFIT2", "IFIT3", "IFIT5", "IFITM1", "IFITM2", "IFITM3", "IRF7", "ISG15", "ISG20", "LY6E", "MX1", "MX2", "OAS1", "OAS2", "OAS3", "OASL", "PARP14", "RSAD2", "SIGLEC1", "TNFSF10", "TRIM22", "USP18", "XAF1"],
+    "set_type": "PAPER_CLUSTER_MARKER",
+    "cohort_cluster": "Cohort 1 FigS3A cluster 2",
+    "single_donor_caveat": true
+  },
+
+  "MILD_HLA_DRHI_CD83HI_COHORT2_CLUSTER1_PAPER_CLUSTER_MARKER_v1": {
+    "description": "Marker genes (HLA-II + CD83) for Schulte-Schrepping Cohort 2 monocyte cluster 1, the authors' 'HLA-DRhi CD83hi-activated inflammatory monocytes,' found across all mild COVID-19 cases including late timepoints.",
+    "n_symbols": 9,
+    "geneSymbols": ["CD83", "HLA-DMA", "HLA-DMB", "HLA-DPA1", "HLA-DPB1", "HLA-DQB1", "HLA-DRA", "HLA-DRB1", "HLA-DRB6"],
+    "set_type": "PAPER_CLUSTER_MARKER",
+    "cohort_cluster": "Cohort 2 Fig4A.S3E cluster 1",
+    "note": "Includes HLA-DRB6 (pseudogene, see HLA-II sets above) because it is a real reported marker VALUE for this cluster in the source table -- removing it here would misrepresent what the cluster-marker test actually found, unlike the researcher-derived HLA-II union sets above where a protein-coding-only variant is offered separately."
+  },
+
+  "S100_ALARMINS_UNION_PAPER_CLUSTER_MARKER_v1": {
+    "description": "S100A8/S100A9 are whole-PBMC-dataset myeloid cluster markers (Table S4 Fig2A.S2A / Fig2D.S2B, NOT monocyte-subcluster-specific); S100A12 is the monocyte-subcluster-level marker (Table S4 FigS3A cluster 3 and Fig4A.S3E cluster 0). They are grouped here as the 'S100 alarmin' family referenced in the source document's §3, NOT because all three were found significant at the same clustering resolution -- see the source document's own gap note: S100A8/A9 did not reach significance in the monocyte-subcluster marker tables, which does not mean they are not expressed, only that they were not listed there.",
+    "n_symbols": 3,
+    "geneSymbols": ["S100A12", "S100A8", "S100A9"],
+    "set_type": "PAPER_CLUSTER_MARKER",
+    "resolution_mixed_warning": true
+  }
+}

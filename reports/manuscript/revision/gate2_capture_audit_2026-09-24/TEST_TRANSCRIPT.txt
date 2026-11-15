@@ -1,0 +1,30 @@
+### environment
+  worktree HEAD : 43050ead3488e8f67c8f4bdc9d8a0ce8eb2c6c96
+  tracked diff  : 1 modified tracked files
+  python 3.10.18
+  scanpy 1.11.3 | anndata 0.11.4 | numpy 2.2.6 | scipy 1.15.3 | sklearn 1.7.1 | pytest 9.1.1
+  file sha256:
+    c6a86652546e6c17fc46b21e4cf93b17fd3cc00e0896c7fec2a8c4c2278fa61c  reports/manuscript/revision/gate2_capture_audit_2026-09-24/capture_preflight_GSM5102900_HC1.py
+    29ae0b8d5906726e13ca76a35e3d1a39219594c08a88cdca817fed642bf8a87f  reports/manuscript/revision/gate2_capture_audit_2026-09-24/run_capture_preflight.sh
+    ed749e3f43a9b295158cef729112252d684ce63fc61f3aa0289179a10693da67  scripts/32_rebuild_upfront_qc/code/gate2_parameter_ruling.py
+    76134faafdd3b22b0a3b61df46f898f409a01700ce5da25f0b279a063f5983a1  tests/test_gate2_capture_preflight.py
+
+### command
+  PYTHONPATH=reports/manuscript/revision/gate2_capture_audit_2026-09-24 \
+  python -m pytest tests/test_gate2_capture_preflight.py tests/test_gate2_stress_runner.py \
+         tests/test_gate2_stress_design.py tests/test_gate2_runtime_config_draft.py \
+         -q -p no:cacheprovider -m 'not scanpy_integration'
+
+configfile: pyproject.toml
+plugins: anyio-4.12.1
+collected 215 items / 10 deselected / 205 selected
+
+tests/test_gate2_capture_preflight.py .......................            [ 11%]
+tests/test_gate2_stress_runner.py ...................................... [ 29%]
+...............................................                          [ 52%]
+tests/test_gate2_stress_design.py ...................................... [ 71%]
+.......................................                                  [ 90%]
+tests/test_gate2_runtime_config_draft.py ....................            [100%]
+
+====================== 205 passed, 10 deselected in 5.06s ======================
+### pytest exit code: 0

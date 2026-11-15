@@ -1,0 +1,202 @@
+cohort,file,n_barcodes,shape,feature_types,cellranger_version,chemistry
+Liu,GSM4929081_B1_10xlane1_RNA_filtered_feature_bc_matrix.h5,30000,"[32940, 30000]","{'Antibody Capture': 202, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929082_B1_10xlane2_RNA_filtered_feature_bc_matrix.h5,30000,"[32940, 30000]","{'Antibody Capture': 202, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929083_B1_10xlane3_RNA_filtered_feature_bc_matrix.h5,30000,"[32940, 30000]","{'Antibody Capture': 202, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929084_B1_10xlane4_RNA_filtered_feature_bc_matrix.h5,30000,"[32940, 30000]","{'Antibody Capture': 202, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929085_B1_10xlane5_RNA_filtered_feature_bc_matrix.h5,30000,"[32940, 30000]","{'Antibody Capture': 202, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929086_B1_10xlane6_RNA_filtered_feature_bc_matrix.h5,30000,"[32940, 30000]","{'Antibody Capture': 202, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929087_B1_10xlane7_RNA_filtered_feature_bc_matrix.h5,30000,"[32940, 30000]","{'Antibody Capture': 202, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929088_B1_10xlane8_RNA_filtered_feature_bc_matrix.h5,30000,"[32940, 30000]","{'Antibody Capture': 202, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929137_B2_10xlane01_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929138_B2_10xlane02_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929139_B2_10xlane03_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929140_B2_10xlane04_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929141_B2_10xlane05_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929142_B2_10xlane06_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929143_B2_10xlane07_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929144_B2_10xlane08_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929145_B2_10xlane09_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929146_B2_10xlane10_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929147_B2_10xlane11_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929148_B2_10xlane12_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929149_B2_10xlane13_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929150_B2_10xlane14_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929151_B2_10xlane15_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929152_B2_10xlane16_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929153_B2_10xlane17_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929154_B2_10xlane18_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929155_B2_10xlane19_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929156_B2_10xlane20_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929157_B2_10xlane21_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929158_B2_10xlane22_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929159_B2_10xlane23_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929160_B2_10xlane24_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929209_B3_10xlane01_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929210_B3_10xlane02_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929211_B3_10xlane03_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929212_B3_10xlane04_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929213_B3_10xlane05_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929214_B3_10xlane06_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929215_B3_10xlane07_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929216_B3_10xlane08_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929217_B3_10xlane09_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929218_B3_10xlane10_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929219_B3_10xlane11_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929220_B3_10xlane12_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929221_B3_10xlane13_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929222_B3_10xlane14_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929223_B3_10xlane15_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929224_B3_10xlane16_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929225_B3_10xlane17_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929226_B3_10xlane18_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929227_B3_10xlane19_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929228_B3_10xlane20_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929229_B3_10xlane21_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929230_B3_10xlane22_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929231_B3_10xlane23_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+Liu,GSM4929232_B3_10xlane24_RNA_filtered_feature_bc_matrix.h5,30000,"[32941, 30000]","{'Antibody Capture': 203, 'Gene Expression': 32738}",,Single Cell 5' R2-only
+GSE167363,GSM5102900_HC1_barcodes.tsv.gz,7666,,,,
+GSE167363,GSM5102901_HC2_barcodes.tsv.gz,8345,,,,
+GSE167363,GSM5102902_P25_T0_barcodes.tsv.gz,4106,,,,
+GSE167363,GSM5102903_P25_T6_barcodes.tsv.gz,4622,,,,
+GSE167363,GSM5102904_P50_T0_barcodes.tsv.gz,3248,,,,
+GSE167363,GSM5102905_P50_T6_barcodes.tsv.gz,4566,,,,
+GSE167363,GSM5511351_NSES_T0_barcodes.tsv.gz,4286,,,,
+GSE167363,GSM5511352_NSES_T6_barcodes.tsv.gz,6257,,,,
+GSE167363,GSM5511353_S2_T0_barcodes.tsv.gz,6963,,,,
+GSE167363,GSM5511354_S2_T6_barcodes.tsv.gz,5682,,,,
+GSE167363,GSM5511355_S3_T0_barcodes.tsv.gz,2853,,,,
+GSE167363,GSM5511356_S3_T6_barcodes.tsv.gz,5650,,,,
+GSE279452,GSM8571082_Abd-PS04.barcodes.tsv.gz,5668,,,,
+GSE279452,GSM8571083_Abd-PS05.barcodes.tsv.gz,7068,,,,
+GSE279452,GSM8571084_Abd-PS07.barcodes.tsv.gz,4862,,,,
+GSE279452,GSM8571085_Abd-PS13.barcodes.tsv.gz,8250,,,,
+GSE279452,GSM8571086_Abd-PS18.barcodes.tsv.gz,7635,,,,
+GSE279452,GSM8571087_Abd-PS19.barcodes.tsv.gz,8089,,,,
+GSE279452,GSM8571088_Abd-PS20.barcodes.tsv.gz,7456,,,,
+GSE279452,GSM8571089_Abd-PS23.barcodes.tsv.gz,4382,,,,
+GSE279452,GSM8571090_Abd-PS27.barcodes.tsv.gz,13203,,,,
+GSE279452,GSM8571091_Abd-S101.barcodes.tsv.gz,7638,,,,
+GSE279452,GSM8571092_Abd-S102.barcodes.tsv.gz,9630,,,,
+GSE279452,GSM8571093_Abd-S103.barcodes.tsv.gz,9836,,,,
+GSE279452,GSM8571094_Abd-S11.barcodes.tsv.gz,7875,,,,
+GSE279452,GSM8571095_Abd-S111.barcodes.tsv.gz,8539,,,,
+GSE279452,GSM8571096_Abd-S12.barcodes.tsv.gz,7432,,,,
+GSE279452,GSM8571097_Abd-S120.barcodes.tsv.gz,5878,,,,
+GSE279452,GSM8571098_Abd-S123.barcodes.tsv.gz,6591,,,,
+GSE279452,GSM8571099_Abd-S13.barcodes.tsv.gz,4893,,,,
+GSE279452,GSM8571100_Abd-S156.barcodes.tsv.gz,8194,,,,
+GSE279452,GSM8571101_Abd-S23.barcodes.tsv.gz,6527,,,,
+GSE279452,GSM8571102_Abd-S39.barcodes.tsv.gz,5092,,,,
+GSE279452,GSM8571103_Abd-S42.barcodes.tsv.gz,6765,,,,
+GSE279452,GSM8571104_Abd-S45.barcodes.tsv.gz,8611,,,,
+GSE279452,GSM8571105_Abd-S47.barcodes.tsv.gz,8122,,,,
+GSE279452,GSM8571106_Abd-S49.barcodes.tsv.gz,7953,,,,
+GSE279452,GSM8571107_Abd-S51.barcodes.tsv.gz,7710,,,,
+GSE279452,GSM8571108_Abd-S53.barcodes.tsv.gz,5948,,,,
+GSE279452,GSM8571109_Abd-S54.barcodes.tsv.gz,7845,,,,
+GSE279452,GSM8571110_Abd-S55.barcodes.tsv.gz,6031,,,,
+GSE279452,GSM8571111_Abd-S57.barcodes.tsv.gz,14322,,,,
+GSE279452,GSM8571112_Abd-S58.barcodes.tsv.gz,7969,,,,
+GSE279452,GSM8571113_Abd-S59.barcodes.tsv.gz,6577,,,,
+GSE279452,GSM8571114_Abd-S66.barcodes.tsv.gz,8197,,,,
+GSE279452,GSM8571115_Abd-S67.barcodes.tsv.gz,7762,,,,
+GSE279452,GSM8571116_Abd-S72.barcodes.tsv.gz,7299,,,,
+GSE279452,GSM8571117_Abd-S73.barcodes.tsv.gz,5320,,,,
+GSE279452,GSM8571118_Abd-S75.barcodes.tsv.gz,7971,,,,
+GSE279452,GSM8571119_Abd-S79.barcodes.tsv.gz,8112,,,,
+GSE279452,GSM8571120_Abd-S80.barcodes.tsv.gz,8587,,,,
+GSE279452,GSM8571121_Abd-S8.barcodes.tsv.gz,5986,,,,
+GSE279452,GSM8571122_Abd-S81.barcodes.tsv.gz,7851,,,,
+GSE279452,GSM8571123_Abd-S83.barcodes.tsv.gz,6289,,,,
+GSE279452,GSM8571124_Res-S87.barcodes.tsv.gz,4573,,,,
+GSE279452,GSM8571125_Abd-S9.barcodes.tsv.gz,7379,,,,
+GSE279452,GSM8571126_Abd-S91.barcodes.tsv.gz,9081,,,,
+GSE279452,GSM8571127_Abd-S98.barcodes.tsv.gz,5148,,,,
+GSE279452,GSM8571128_CNS-S189.barcodes.tsv.gz,5796,,,,
+GSE279452,GSM8571129_CNS-S50.barcodes.tsv.gz,7616,,,,
+GSE279452,GSM8571130_CNS-S61.barcodes.tsv.gz,6131,,,,
+GSE279452,GSM8571131_HC01.barcodes.tsv.gz,10388,,,,
+GSE279452,GSM8571132_HC05.barcodes.tsv.gz,11718,,,,
+GSE279452,GSM8571133_HC07.barcodes.tsv.gz,10252,,,,
+GSE279452,GSM8571134_HC09.barcodes.tsv.gz,4893,,,,
+GSE279452,GSM8571135_HC12.barcodes.tsv.gz,3745,,,,
+GSE279452,GSM8571136_HC13.barcodes.tsv.gz,10160,,,,
+GSE279452,GSM8571137_HC16.barcodes.tsv.gz,9646,,,,
+GSE279452,GSM8571138_IC08.barcodes.tsv.gz,6824,,,,
+GSE279452,GSM8571139_IC09.barcodes.tsv.gz,7201,,,,
+GSE279452,GSM8571140_IC10.barcodes.tsv.gz,7583,,,,
+GSE279452,GSM8571141_IC15.barcodes.tsv.gz,15654,,,,
+GSE279452,GSM8571142_IC16.barcodes.tsv.gz,5765,,,,
+GSE279452,GSM8571143_IC19.barcodes.tsv.gz,7322,,,,
+GSE279452,GSM8571144_IC22.barcodes.tsv.gz,2192,,,,
+GSE279452,GSM8571145_IC23.barcodes.tsv.gz,13850,,,,
+GSE279452,GSM8571146_PHC01.barcodes.tsv.gz,8509,,,,
+GSE279452,GSM8571147_PHC02.barcodes.tsv.gz,6670,,,,
+GSE279452,GSM8571148_PHC03.barcodes.tsv.gz,9645,,,,
+GSE279452,GSM8571149_PHC05.barcodes.tsv.gz,11018,,,,
+GSE279452,GSM8571150_PIC01.barcodes.tsv.gz,8373,,,,
+GSE279452,GSM8571151_PIC02.barcodes.tsv.gz,6722,,,,
+GSE279452,GSM8571152_PIC04.barcodes.tsv.gz,11553,,,,
+GSE279452,GSM8571153_PIC05.barcodes.tsv.gz,7504,,,,
+GSE279452,GSM8571154_Res-S19.barcodes.tsv.gz,9018,,,,
+GSE279452,GSM8571155_Res-S26.barcodes.tsv.gz,6133,,,,
+GSE279452,GSM8571156_Res-S70.barcodes.tsv.gz,7290,,,,
+GSE279452,GSM8571157_Res-PS02.barcodes.tsv.gz,6522,,,,
+GSE279452,GSM8571158_Res-PS03.barcodes.tsv.gz,6147,,,,
+GSE279452,GSM8571159_Res-PS12.barcodes.tsv.gz,7279,,,,
+GSE279452,GSM8571160_Res-PS16.barcodes.tsv.gz,7497,,,,
+GSE279452,GSM8571161_Res-PS21.barcodes.tsv.gz,6492,,,,
+GSE279452,GSM8571162_Res-PS22.barcodes.tsv.gz,7639,,,,
+GSE279452,GSM8571163_Res-PS25.barcodes.tsv.gz,6616,,,,
+GSE279452,GSM8571164_Res-PS26.barcodes.tsv.gz,6324,,,,
+GSE279452,GSM8571165_Res-S10.barcodes.tsv.gz,8746,,,,
+GSE279452,GSM8571166_Res-S100.barcodes.tsv.gz,5751,,,,
+GSE279452,GSM8571167_Res-S110.barcodes.tsv.gz,11397,,,,
+GSE279452,GSM8571168_Res-S118.barcodes.tsv.gz,6713,,,,
+GSE279452,GSM8571169_Res-S125.barcodes.tsv.gz,4135,,,,
+GSE279452,GSM8571170_Res-S127.barcodes.tsv.gz,2910,,,,
+GSE279452,GSM8571171_Res-S136.barcodes.tsv.gz,2919,,,,
+GSE279452,GSM8571172_Res-S139.barcodes.tsv.gz,2686,,,,
+GSE279452,GSM8571173_Res-S144.barcodes.tsv.gz,4460,,,,
+GSE279452,GSM8571174_Res-S145.barcodes.tsv.gz,5869,,,,
+GSE279452,GSM8571175_Res-S146.barcodes.tsv.gz,7347,,,,
+GSE279452,GSM8571176_Res-S149.barcodes.tsv.gz,7589,,,,
+GSE279452,GSM8571177_Res-S15.barcodes.tsv.gz,8691,,,,
+GSE279452,GSM8571178_Res-S150.barcodes.tsv.gz,3370,,,,
+GSE279452,GSM8571179_Res-S164.barcodes.tsv.gz,6370,,,,
+GSE279452,GSM8571180_Res-S166.barcodes.tsv.gz,6352,,,,
+GSE279452,GSM8571181_Res-S167.barcodes.tsv.gz,7568,,,,
+GSE279452,GSM8571182_Res-S168.barcodes.tsv.gz,7417,,,,
+GSE279452,GSM8571183_Res-S170.barcodes.tsv.gz,9340,,,,
+GSE279452,GSM8571184_Res-S174.barcodes.tsv.gz,5870,,,,
+GSE279452,GSM8571185_Res-S176.barcodes.tsv.gz,8230,,,,
+GSE279452,GSM8571186_Res-S177.barcodes.tsv.gz,5416,,,,
+GSE279452,GSM8571187_Res-S18.barcodes.tsv.gz,5970,,,,
+GSE279452,GSM8571188_Res-S183.barcodes.tsv.gz,10362,,,,
+GSE279452,GSM8571189_Res-S184.barcodes.tsv.gz,8079,,,,
+GSE279452,GSM8571190_Res-S21.barcodes.tsv.gz,5658,,,,
+GSE279452,GSM8571191_Res-S22.barcodes.tsv.gz,7814,,,,
+GSE279452,GSM8571192_Res-S3.barcodes.tsv.gz,5787,,,,
+GSE279452,GSM8571193_Res-S32.barcodes.tsv.gz,6340,,,,
+GSE279452,GSM8571194_Res-S40.barcodes.tsv.gz,7232,,,,
+GSE279452,GSM8571195_Res-S41.barcodes.tsv.gz,7641,,,,
+GSE279452,GSM8571196_Res-S56.barcodes.tsv.gz,9998,,,,
+GSE279452,GSM8571197_Res-S77.barcodes.tsv.gz,7865,,,,
+GSE279452,GSM8571198_Skin-152.barcodes.tsv.gz,6598,,,,
+GSE279452,GSM8571199_Skin-S140.barcodes.tsv.gz,8893,,,,
+GSE279452,GSM8571200_Skin-S142.barcodes.tsv.gz,6134,,,,
+GSE279452,GSM8571201_Skin-S38.barcodes.tsv.gz,9996,,,,
+GSE279452,GSM8571202_Skin-S43.barcodes.tsv.gz,7714,,,,
+GSE279452,GSM8571203_Skin-S46.barcodes.tsv.gz,8197,,,,
+GSE279452,GSM8571204_Skin-S52.barcodes.tsv.gz,8720,,,,
+GSE279452,GSM8571205_Skin-S74.barcodes.tsv.gz,4760,,,,
+GSE279452,GSM8571206_Uri-S112.barcodes.tsv.gz,5494,,,,
+GSE279452,GSM8571207_Uri-S116.barcodes.tsv.gz,7564,,,,
+GSE279452,GSM8571208_Uri-S134.barcodes.tsv.gz,9215,,,,
+GSE279452,GSM8571209_Uri-S147.barcodes.tsv.gz,7679,,,,
+GSE279452,GSM8571210_Uri-S157.barcodes.tsv.gz,6599,,,,
+GSE279452,GSM8571211_Uri-S20.barcodes.tsv.gz,4888,,,,
+GSE279452,GSM8571212_Uri-S85.barcodes.tsv.gz,5343,,,,
+GSE279452,GSM8571213_Uri-S88.barcodes.tsv.gz,6242,,,,
+GSE279452,GSM8571214_Uri-S93.barcodes.tsv.gz,8334,,,,

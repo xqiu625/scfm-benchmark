@@ -1,0 +1,11 @@
+sample_id,cohort,action,v1_patient_id,v2_patient_id,n_cells,y_before,y_after
+GSM4995436,Combes,Task-4 label fix (covid_severity corrected),GSM4995436,GSM4995436,,[1],0.0
+GSM4995442,Combes,Task-4 label fix (covid_severity corrected),GSM4995442,GSM4995442,,[1],0.0
+GSM4995425,Combes,"DROPPED (pooled library, multi-patient)",GSM4995425,,392.0,,
+GSM4995426,Combes,"DROPPED (pooled library, multi-patient)",GSM4995426,,711.0,,
+GSM4995430,Combes,"DROPPED (pooled library, multi-patient)",GSM4995430,,1494.0,,
+C1 A,Wilk,"MERGED (repeat draw, same patient)",C1 A,C1,15.0,,
+C1 B,Wilk,"MERGED (repeat draw, same patient)",C1 B,C1,10.0,,
+nCoV_10,Lee,"MERGED (repeat draw, same patient, matched age+sex)",nCoV_10,nCoV_9,30.0,,
+nCoV_4,Lee,"MERGED (repeat draw, same patient, matched age+sex)",nCoV_4,nCoV_3,5.0,,
+nCoV_8,Lee,"MERGED (repeat draw, same patient, matched age+sex)",nCoV_8,nCoV_7,159.0,,

@@ -1,0 +1,41 @@
+{
+  "stage": "10_clinical_metrics",
+  "status": "success",
+  "metadata_complete": false,
+  "description": "10 - Clinical Metrics (auto-derived from README; metadata not curated)",
+  "slurm_jobs": [],
+  "run_dates": [],
+  "generating_code": [],
+  "parameters": {},
+  "claims": [],
+  "primary_outputs": [],
+  "superseded_outputs": {},
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "results/clinical_metrics.csv",
+      "size_bytes": 2684,
+      "sha256": "1b911e3ed9e4816369fc3d2cccfd63588cc047bce639ba7f1c6fea276fb1c82f"
+    },
+    {
+      "path": "results/clinical_metrics.json",
+      "size_bytes": 12281,
+      "sha256": "f56f2e3578de96136725dec54b9a8702fe200362162306443c0b9a61d8e9689c"
+    }
+  ],
+  "n_outputs": 2,
+  "in_repo_outputs": true,
+  "no_results_reason": null,
+  "git_commit": "2f56a829ff085fbb57787e32d3f4238a75a7a93c",
+  "runtime_seconds": null,
+  "package_versions": null,
+  "config": "configs/hpcc.yaml",
+  "environment_ref": "environment.yml",
+  "provenance": {
+    "reconstructed_post_hoc": true,
+    "generated_at": "2026-06-07T19:32:27+00:00",
+    "generated_by": "scripts/99_audit/code/emit_manifests.py",
+    "verified_in": "docs/claim-traceability.md (2026-06-06 traceability audit)",
+    "note": "Manifest reconstructed during the 2026-06-06/07 audit (item A001). Outputs were produced on the HPCC before the repo restructure; sizes + sha256 + git_commit are verifiable, but run-time wall-clock and package versions were not captured in-repo and are recorded as null rather than back-filled. When metadata_complete=false, slurm_jobs/parameters/claims were not curated for this stage \u2014 the output inventory + hashes + git pin are still authoritative."
+  }
+}

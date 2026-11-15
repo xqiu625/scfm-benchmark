@@ -1,0 +1,106 @@
+model,dim,rank,library,n_terms,top_term,top_nes,output_csv
+geneformer,1053,3,KEGG_2021_Human,303,Ribosome,-2.1946014235972697,gsea_geneformer_dim1053_rank3_KEGG_2021_Human.csv
+geneformer,1053,3,Reactome_2022,1253,Eukaryotic Translation Elongation R-HSA-156842,-2.6299520457439134,gsea_geneformer_dim1053_rank3_Reactome_2022.csv
+geneformer,1053,3,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),-2.525699543997864,gsea_geneformer_dim1053_rank3_GO_Biological_Process_2023.csv
+geneformer,1122,5,KEGG_2021_Human,303,Ribosome,2.640388387011545,gsea_geneformer_dim1122_rank5_KEGG_2021_Human.csv
+geneformer,1122,5,Reactome_2022,1253,Eukaryotic Translation Elongation R-HSA-156842,3.033090562555915,gsea_geneformer_dim1122_rank5_Reactome_2022.csv
+geneformer,1122,5,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),2.968653661030391,gsea_geneformer_dim1122_rank5_GO_Biological_Process_2023.csv
+geneformer,24,1,KEGG_2021_Human,303,Ribosome,2.523321304471667,gsea_geneformer_dim24_rank1_KEGG_2021_Human.csv
+geneformer,24,1,Reactome_2022,1253,Eukaryotic Translation Elongation R-HSA-156842,2.8417591055152207,gsea_geneformer_dim24_rank1_Reactome_2022.csv
+geneformer,24,1,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),2.7756738956108347,gsea_geneformer_dim24_rank1_GO_Biological_Process_2023.csv
+geneformer,297,2,KEGG_2021_Human,303,Ribosome,-2.886067118323651,gsea_geneformer_dim297_rank2_KEGG_2021_Human.csv
+geneformer,297,2,Reactome_2022,1253,SRP-dependent Cotranslational Protein Targeting To Membrane R-HSA-1799339,-2.8876554542316133,gsea_geneformer_dim297_rank2_Reactome_2022.csv
+geneformer,297,2,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),-2.8607239200533914,gsea_geneformer_dim297_rank2_GO_Biological_Process_2023.csv
+geneformer,592,4,KEGG_2021_Human,303,Platelet activation,-1.875282308366699,gsea_geneformer_dim592_rank4_KEGG_2021_Human.csv
+geneformer,592,4,Reactome_2022,1253,Activation Of SMO R-HSA-5635838,-1.8563974936999215,gsea_geneformer_dim592_rank4_Reactome_2022.csv
+geneformer,592,4,GO_Biological_Process_2023,2963,Cardiac Cell Development (GO:0055006),1.9151548086663919,gsea_geneformer_dim592_rank4_GO_Biological_Process_2023.csv
+scgpt,200,4,KEGG_2021_Human,303,Ribosome,-2.644055616871502,gsea_scgpt_dim200_rank4_KEGG_2021_Human.csv
+scgpt,200,4,Reactome_2022,1253,SRP-dependent Cotranslational Protein Targeting To Membrane R-HSA-1799339,-2.8135472659641074,gsea_scgpt_dim200_rank4_Reactome_2022.csv
+scgpt,200,4,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),-2.826034808148478,gsea_scgpt_dim200_rank4_GO_Biological_Process_2023.csv
+scgpt,213,2,KEGG_2021_Human,303,Ribosome,2.296849115633559,gsea_scgpt_dim213_rank2_KEGG_2021_Human.csv
+scgpt,213,2,Reactome_2022,1253,Peptide Chain Elongation R-HSA-156902,2.483265139099501,gsea_scgpt_dim213_rank2_Reactome_2022.csv
+scgpt,213,2,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),2.4909670707896763,gsea_scgpt_dim213_rank2_GO_Biological_Process_2023.csv
+scgpt,253,3,KEGG_2021_Human,303,Dilated cardiomyopathy,-3.202162031536987,gsea_scgpt_dim253_rank3_KEGG_2021_Human.csv
+scgpt,253,3,Reactome_2022,1253,Platelet Degranulation R-HSA-114608,-3.7943074220884605,gsea_scgpt_dim253_rank3_Reactome_2022.csv
+scgpt,253,3,GO_Biological_Process_2023,2963,Platelet Aggregation (GO:0070527),-3.5109651332376637,gsea_scgpt_dim253_rank3_GO_Biological_Process_2023.csv
+scgpt,335,5,KEGG_2021_Human,303,Ribosome,2.6447629825654158,gsea_scgpt_dim335_rank5_KEGG_2021_Human.csv
+scgpt,335,5,Reactome_2022,1253,ECM Proteoglycans R-HSA-3000178,-3.8082733560883226,gsea_scgpt_dim335_rank5_Reactome_2022.csv
+scgpt,335,5,GO_Biological_Process_2023,2963,Homotypic Cell-Cell Adhesion (GO:0034109),-3.8237431341238612,gsea_scgpt_dim335_rank5_GO_Biological_Process_2023.csv
+scgpt,430,1,KEGG_2021_Human,303,Platelet activation,1.7621391338721302,gsea_scgpt_dim430_rank1_KEGG_2021_Human.csv
+scgpt,430,1,Reactome_2022,1253,Viral mRNA Translation R-HSA-192823,-4.565572833608669,gsea_scgpt_dim430_rank1_Reactome_2022.csv
+scgpt,430,1,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),-4.04809010949815,gsea_scgpt_dim430_rank1_GO_Biological_Process_2023.csv
+scprint2,166,1,KEGG_2021_Human,303,Platelet activation,-3.0591610970274994,gsea_scprint2_dim166_rank1_KEGG_2021_Human.csv
+scprint2,166,1,Reactome_2022,1253,Platelet Aggregation (Plug Formation) R-HSA-76009,-3.008178904454515,gsea_scprint2_dim166_rank1_Reactome_2022.csv
+scprint2,166,1,GO_Biological_Process_2023,2963,Homotypic Cell-Cell Adhesion (GO:0034109),-3.3944674573933007,gsea_scprint2_dim166_rank1_GO_Biological_Process_2023.csv
+scprint2,169,2,KEGG_2021_Human,303,Ribosome,-3.297233889156713,gsea_scprint2_dim169_rank2_KEGG_2021_Human.csv
+scprint2,169,2,Reactome_2022,1253,Eukaryotic Translation Elongation R-HSA-156842,-3.602651734985379,gsea_scprint2_dim169_rank2_Reactome_2022.csv
+scprint2,169,2,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),-3.559296488809402,gsea_scprint2_dim169_rank2_GO_Biological_Process_2023.csv
+scprint2,192,5,KEGG_2021_Human,303,Hypertrophic cardiomyopathy,-3.550626904558181,gsea_scprint2_dim192_rank5_KEGG_2021_Human.csv
+scprint2,192,5,Reactome_2022,1253,Platelet Degranulation R-HSA-114608,-4.127137212652521,gsea_scprint2_dim192_rank5_Reactome_2022.csv
+scprint2,192,5,GO_Biological_Process_2023,2963,Platelet Aggregation (GO:0070527),-3.6457149483071927,gsea_scprint2_dim192_rank5_GO_Biological_Process_2023.csv
+scprint2,228,4,KEGG_2021_Human,303,Ribosome,1.9995482887841494,gsea_scprint2_dim228_rank4_KEGG_2021_Human.csv
+scprint2,228,4,Reactome_2022,1253,Eukaryotic Translation Elongation R-HSA-156842,2.3880688330248847,gsea_scprint2_dim228_rank4_Reactome_2022.csv
+scprint2,228,4,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),2.2882335717671256,gsea_scprint2_dim228_rank4_GO_Biological_Process_2023.csv
+scprint2,365,3,KEGG_2021_Human,303,Platelet activation,-1.7945941700049297,gsea_scprint2_dim365_rank3_KEGG_2021_Human.csv
+scprint2,365,3,Reactome_2022,1253,EPHB-mediated Forward Signaling R-HSA-3928662,-1.7659052808732179,gsea_scprint2_dim365_rank3_Reactome_2022.csv
+scprint2,365,3,GO_Biological_Process_2023,2963,Negative Regulation Of Blood Coagulation (GO:0030195),-1.832894245809529,gsea_scprint2_dim365_rank3_GO_Biological_Process_2023.csv
+stack,1244,5,KEGG_2021_Human,303,Ribosome,-3.164919539837919,gsea_stack_dim1244_rank5_KEGG_2021_Human.csv
+stack,1244,5,Reactome_2022,1253,Eukaryotic Translation Elongation R-HSA-156842,-3.2742285119618058,gsea_stack_dim1244_rank5_Reactome_2022.csv
+stack,1244,5,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),-3.137906363999726,gsea_stack_dim1244_rank5_GO_Biological_Process_2023.csv
+stack,179,2,KEGG_2021_Human,303,Ribosome,2.596055542661774,gsea_stack_dim179_rank2_KEGG_2021_Human.csv
+stack,179,2,Reactome_2022,1253,Eukaryotic Translation Elongation R-HSA-156842,2.9000953551158313,gsea_stack_dim179_rank2_Reactome_2022.csv
+stack,179,2,GO_Biological_Process_2023,2963,Regulation Of Platelet Aggregation (GO:0090330),-2.9879012319123524,gsea_stack_dim179_rank2_GO_Biological_Process_2023.csv
+stack,193,4,KEGG_2021_Human,303,Proteasome,2.044719112890152,gsea_stack_dim193_rank4_KEGG_2021_Human.csv
+stack,193,4,Reactome_2022,1253,Defective B3GALTL Causes PpS R-HSA-5083635,-2.195185372458376,gsea_stack_dim193_rank4_Reactome_2022.csv
+stack,193,4,GO_Biological_Process_2023,2963,Cellular Response To Low-Density Lipoprotein Particle Stimulus (GO:0071404),-3.218550146501507,gsea_stack_dim193_rank4_GO_Biological_Process_2023.csv
+stack,553,3,KEGG_2021_Human,303,Dilated cardiomyopathy,-3.1223498056386534,gsea_stack_dim553_rank3_KEGG_2021_Human.csv
+stack,553,3,Reactome_2022,1253,Smooth Muscle Contraction R-HSA-445355,-3.1210416579925955,gsea_stack_dim553_rank3_Reactome_2022.csv
+stack,553,3,GO_Biological_Process_2023,2963,Homotypic Cell-Cell Adhesion (GO:0034109),-3.9848002138435974,gsea_stack_dim553_rank3_GO_Biological_Process_2023.csv
+stack,947,1,KEGG_2021_Human,303,Ribosome,2.8595200418936453,gsea_stack_dim947_rank1_KEGG_2021_Human.csv
+stack,947,1,Reactome_2022,1253,Platelet Degranulation R-HSA-114608,-4.816680353792825,gsea_stack_dim947_rank1_Reactome_2022.csv
+stack,947,1,GO_Biological_Process_2023,2963,Platelet Aggregation (GO:0070527),-3.555202085061201,gsea_stack_dim947_rank1_GO_Biological_Process_2023.csv
+state,1354,2,KEGG_2021_Human,303,Ribosome,2.6748516737342,gsea_state_dim1354_rank2_KEGG_2021_Human.csv
+state,1354,2,Reactome_2022,1253,Eukaryotic Translation Elongation R-HSA-156842,3.2121702447467984,gsea_state_dim1354_rank2_Reactome_2022.csv
+state,1354,2,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),3.077889513953082,gsea_state_dim1354_rank2_GO_Biological_Process_2023.csv
+state,1564,5,KEGG_2021_Human,303,Ribosome,-3.0634442172414014,gsea_state_dim1564_rank5_KEGG_2021_Human.csv
+state,1564,5,Reactome_2022,1253,L13a-mediated Translational Silencing Of Ceruloplasmin Expression R-HSA-156827,-3.214938056032343,gsea_state_dim1564_rank5_Reactome_2022.csv
+state,1564,5,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),-3.171406604027682,gsea_state_dim1564_rank5_GO_Biological_Process_2023.csv
+state,1640,4,KEGG_2021_Human,303,Platelet activation,3.050520779716849,gsea_state_dim1640_rank4_KEGG_2021_Human.csv
+state,1640,4,Reactome_2022,1253,Platelet Degranulation R-HSA-114608,3.6175589628425042,gsea_state_dim1640_rank4_Reactome_2022.csv
+state,1640,4,GO_Biological_Process_2023,2963,Platelet Aggregation (GO:0070527),3.6005176103679033,gsea_state_dim1640_rank4_GO_Biological_Process_2023.csv
+state,195,1,KEGG_2021_Human,303,Transcriptional misregulation in cancer,2.1721723718577812,gsea_state_dim195_rank1_KEGG_2021_Human.csv
+state,195,1,Reactome_2022,1253,Platelet Degranulation R-HSA-114608,-2.398145828792969,gsea_state_dim195_rank1_Reactome_2022.csv
+state,195,1,GO_Biological_Process_2023,2963,Phospholipid Dephosphorylation (GO:0046839),2.1911293833278367,gsea_state_dim195_rank1_GO_Biological_Process_2023.csv
+state,53,3,KEGG_2021_Human,303,Platelet activation,3.4187954881387603,gsea_state_dim53_rank3_KEGG_2021_Human.csv
+state,53,3,Reactome_2022,1253,"Platelet Activation, Signaling And Aggregation R-HSA-76002",3.6131060832160435,gsea_state_dim53_rank3_Reactome_2022.csv
+state,53,3,GO_Biological_Process_2023,2963,Homotypic Cell-Cell Adhesion (GO:0034109),3.459361230730327,gsea_state_dim53_rank3_GO_Biological_Process_2023.csv
+transcriptformer,1474,5,KEGG_2021_Human,303,Ribosome,-2.55105136001921,gsea_transcriptformer_dim1474_rank5_KEGG_2021_Human.csv
+transcriptformer,1474,5,Reactome_2022,1253,Eukaryotic Translation Elongation R-HSA-156842,-3.042727290844766,gsea_transcriptformer_dim1474_rank5_Reactome_2022.csv
+transcriptformer,1474,5,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),-2.9603008929991543,gsea_transcriptformer_dim1474_rank5_GO_Biological_Process_2023.csv
+transcriptformer,1522,2,KEGG_2021_Human,303,Ribosome,2.7464422436024387,gsea_transcriptformer_dim1522_rank2_KEGG_2021_Human.csv
+transcriptformer,1522,2,Reactome_2022,1253,Eukaryotic Translation Elongation R-HSA-156842,3.216887165134314,gsea_transcriptformer_dim1522_rank2_Reactome_2022.csv
+transcriptformer,1522,2,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),3.144687607448476,gsea_transcriptformer_dim1522_rank2_GO_Biological_Process_2023.csv
+transcriptformer,1639,1,KEGG_2021_Human,303,Ribosome,2.451168801420317,gsea_transcriptformer_dim1639_rank1_KEGG_2021_Human.csv
+transcriptformer,1639,1,Reactome_2022,1253,Peptide Chain Elongation R-HSA-156902,2.9645152813909914,gsea_transcriptformer_dim1639_rank1_Reactome_2022.csv
+transcriptformer,1639,1,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),2.893105729577721,gsea_transcriptformer_dim1639_rank1_GO_Biological_Process_2023.csv
+transcriptformer,43,4,KEGG_2021_Human,303,Ribosome,-2.520282571212592,gsea_transcriptformer_dim43_rank4_KEGG_2021_Human.csv
+transcriptformer,43,4,Reactome_2022,1253,Eukaryotic Translation Elongation R-HSA-156842,-2.999188264688596,gsea_transcriptformer_dim43_rank4_Reactome_2022.csv
+transcriptformer,43,4,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),-2.8955722062821447,gsea_transcriptformer_dim43_rank4_GO_Biological_Process_2023.csv
+transcriptformer,657,3,KEGG_2021_Human,303,Ribosome,2.5249661713867684,gsea_transcriptformer_dim657_rank3_KEGG_2021_Human.csv
+transcriptformer,657,3,Reactome_2022,1253,Eukaryotic Translation Elongation R-HSA-156842,3.0131249625412138,gsea_transcriptformer_dim657_rank3_Reactome_2022.csv
+transcriptformer,657,3,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),2.9025756154174243,gsea_transcriptformer_dim657_rank3_GO_Biological_Process_2023.csv
+uce,1210,2,KEGG_2021_Human,303,Dilated cardiomyopathy,-3.1669835670572946,gsea_uce_dim1210_rank2_KEGG_2021_Human.csv
+uce,1210,2,Reactome_2022,1253,Response To Elevated Platelet Cytosolic Ca2+ R-HSA-76005,-4.2146999851548905,gsea_uce_dim1210_rank2_Reactome_2022.csv
+uce,1210,2,GO_Biological_Process_2023,2963,Homotypic Cell-Cell Adhesion (GO:0034109),-3.328214254565755,gsea_uce_dim1210_rank2_GO_Biological_Process_2023.csv
+uce,50,5,KEGG_2021_Human,303,Ribosome,2.398914673252891,gsea_uce_dim50_rank5_KEGG_2021_Human.csv
+uce,50,5,Reactome_2022,1253,Eukaryotic Translation Elongation R-HSA-156842,2.8156198925492526,gsea_uce_dim50_rank5_Reactome_2022.csv
+uce,50,5,GO_Biological_Process_2023,2963,Homotypic Cell-Cell Adhesion (GO:0034109),-2.837022866627226,gsea_uce_dim50_rank5_GO_Biological_Process_2023.csv
+uce,580,1,KEGG_2021_Human,303,Dilated cardiomyopathy,-2.8900515118820747,gsea_uce_dim580_rank1_KEGG_2021_Human.csv
+uce,580,1,Reactome_2022,1253,ECM Proteoglycans R-HSA-3000178,-2.9119181653608477,gsea_uce_dim580_rank1_Reactome_2022.csv
+uce,580,1,GO_Biological_Process_2023,2963,Glycolytic Process (GO:0006096),-2.91562883718477,gsea_uce_dim580_rank1_GO_Biological_Process_2023.csv
+uce,721,4,KEGG_2021_Human,303,Ribosome,2.609683382023217,gsea_uce_dim721_rank4_KEGG_2021_Human.csv
+uce,721,4,Reactome_2022,1253,Platelet Degranulation R-HSA-114608,-3.934359705507321,gsea_uce_dim721_rank4_Reactome_2022.csv
+uce,721,4,GO_Biological_Process_2023,2963,Homotypic Cell-Cell Adhesion (GO:0034109),-3.205546165109982,gsea_uce_dim721_rank4_GO_Biological_Process_2023.csv
+uce,788,3,KEGG_2021_Human,303,Ribosome,2.7588622374004252,gsea_uce_dim788_rank3_KEGG_2021_Human.csv
+uce,788,3,Reactome_2022,1253,Eukaryotic Translation Elongation R-HSA-156842,3.2792490703047523,gsea_uce_dim788_rank3_Reactome_2022.csv
+uce,788,3,GO_Biological_Process_2023,2963,Cytoplasmic Translation (GO:0002181),3.2086431686635786,gsea_uce_dim788_rank3_GO_Biological_Process_2023.csv

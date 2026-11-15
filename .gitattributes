@@ -1,0 +1,30 @@
+# Two named files, one check each.
+#
+# The capture transcripts are committed exactly as the remote end emitted them.
+# The SSH banner lines they carry -- present because the capture is deliberately
+# UNFILTERED, after an earlier version piped them out through `grep -v` while
+# calling the result "raw stdout+stderr" -- arrive with CRLF endings, and git
+# counts that CR as trailing whitespace. Stripping it would re-introduce exactly
+# the filtering that removing the grep was meant to end.
+#
+# So: disable only the trailing-space check, only on this file. Every other
+# whitespace error in it, and every check on every other file, is still
+# reported. Verified by removing the rule and re-running
+# `git diff --check origin/main..HEAD`, which then flags 36 lines across the two
+# files. (The comment said 3 for a while after the second transcript was added
+# -- a provenance note describing the state before the change it sat next to.)
+#
+# The rule was removed once, correctly, when --parsable2 eliminated sacct's
+# column padding and left nothing to exempt. It is back because un-filtering the
+# stream reintroduced the problem from a different source. A rule returns when
+# its justification returns.
+#
+# Note for anyone re-checking this: a Python `open(f).read()` scan will NOT see
+# the CR -- text mode applies universal-newline translation and rewrites CRLF to
+# LF before you ever compare. That is why a hand-rolled check reported 0 lines
+# while git reported 3.
+# Listed one file at a time, not by glob. A glob would silently cover every
+# future capture; an explicit line forces the exemption to be a decision each
+# time a new transcript is committed.
+scripts/31_donor_level_revision/run_evidence/2026-09-22_scheduler_check.txt whitespace=-trailing-space
+scripts/31_donor_level_revision/run_evidence/2026-09-22_test_run.txt whitespace=-trailing-space

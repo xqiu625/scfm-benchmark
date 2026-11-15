@@ -1,0 +1,32 @@
+true_donor_group	symptomatic_or_asymptomatic	sample_id	visit_resample_flag	collection_day	own_severity	care_setting_at_sampling	status_on_day_collection_raw_icu_evidence	n_monocyte_cells_this_sample_total	n_C1_CD16_mono_cells_raw	n_CD14_mono_cells_raw	n_CD16_mono_cells_raw	n_CD83_CD14_mono_cells_raw	n_Mono_prolif_cells_raw
+sdrf::C-8821	symptomatic	MH9179821	Initial	D0	Moderate	non-ICU	Ward_O2	539	25	469	34	10	1
+sdrf::C-8821	symptomatic	newcastle004v2	Resample	D12	Critical	ICU	ITU_intubated	2592	25	818	130	1614	5
+sdrf::C-8884	symptomatic	newcastle21	Initial	D0	Critical	ICU	ITU_intubated	610	15	363	24	207	1
+sdrf::C-8884	symptomatic	newcastle21v2	Resample	D9	Critical	ICU	ITU_intubated	2411	52	843	327	1189	0
+sdrf::C-8896	symptomatic	MH8919327	Initial	D0	Severe	ICU	ITU_NIV	1669	45	1448	5	147	24
+sdrf::C-8896	symptomatic	MH8919328	Resample	D13	Critical	ICU	ITU_intubated	4214	228	1323	1671	987	5
+sdrf::C-8896	symptomatic	MH9143273	Resample	D7	Critical	ICU	ITU_intubated	1185	1	858	4	288	34
+sdrf::CV0050	symptomatic	BGCV11_CV0050	Initial	D0	Mild	non-ICU	Ward_noO2	22	0	4	1	17	0
+sdrf::CV0050	symptomatic	BGCV14_CV0050	Resample	D28	Mild	non-ICU	Ward_noO2	57	0	0	2	55	0
+sdrf::CV0062	symptomatic	BGCV09_CV0062	Initial	D0	Mild	non-ICU	Ward_noO2	55	0	1	0	54	0
+sdrf::CV0062	symptomatic	BGCV12_CV0062	Resample	D28	Mild	non-ICU	Ward_noO2	44	0	0	1	43	0
+sdrf::CV0068	asymptomatic	BGCV02_CV0068	Initial	D0	Asymptomatic	non-ICU	Staff screening	87	0	11	1	75	0
+sdrf::CV0068	asymptomatic	BGCV12_CV0068	Resample	D28	Asymptomatic	non-ICU	Staff screening	52	0	3	0	49	0
+sdrf::CV0073	symptomatic	BGCV08_CV0073	Initial	D0	Mild	non-ICU	Ward_noO2	53	0	0	3	50	0
+sdrf::CV0073	symptomatic	BGCV13_CV0073	Resample	D28	Mild	non-ICU	Ward_noO2	86	0	2	2	82	0
+sdrf::CV0137	symptomatic	BGCV07_CV0137	Initial	D0	Moderate	non-ICU	Ward_O2	29	0	7	0	22	0
+sdrf::CV0137	symptomatic	BGCV14_CV0137	Resample	D28	Moderate	non-ICU	Ward_O2	464	0	10	28	426	0
+sdrf::CV0171	asymptomatic	BGCV09_CV0171	Initial	D0	Asymptomatic	non-ICU	Staff screening	133	0	8	1	124	0
+sdrf::CV0171	asymptomatic	BGCV13_CV0171	Resample	D28	Asymptomatic	non-ICU	Staff screening	65	0	1	0	64	0
+sdrf::CV0176	symptomatic	BGCV03_CV0176	Initial	D0	Severe	ICU	ITU_O2	83	0	2	2	79	0
+sdrf::CV0176	symptomatic	BGCV15_CV0176	Resample	D28	Severe	ICU	ITU_O2	12	0	0	1	11	0
+sdrf::CV0178	symptomatic	BGCV06_CV0178	Initial	D0	Severe	ICU	ITU_O2	32	0	13	0	19	0
+sdrf::CV0178	symptomatic	BGCV12_CV0178	Resample	D28	Severe	ICU	ITU_O2	281	0	3	3	275	0
+sdrf::CV0201	symptomatic	BGCV08_CV0201	Initial	D0	Critical	ICU	ITU_intubated	44	0	1	0	43	0
+sdrf::CV0201	symptomatic	BGCV06_CV0201	Resample	D28	Critical	ICU	ITU_intubated	10	0	0	0	10	0
+sdrf::CV0231	asymptomatic	BGCV10_CV0231	Initial	D0	Asymptomatic	non-ICU	Staff screening	71	0	7	0	64	0
+sdrf::CV0231	asymptomatic	BGCV15_CV0231	Resample	D28	Asymptomatic	non-ICU	Staff screening	15	0	0	1	14	0
+sdrf::CV0257	symptomatic	BGCV11_CV0257	Initial	D0	Moderate	non-ICU	Ward_O2	37	0	1	0	36	0
+sdrf::CV0257	symptomatic	BGCV15_CV0257	Resample	D28	Moderate	non-ICU	Ward_O2	6	0	0	1	5	0
+sdrf::CV0284	symptomatic	BGCV05_CV0284	Initial	D0	Critical	ICU	ITU_intubated	86	0	6	0	80	0
+sdrf::CV0284	symptomatic	BGCV14_CV0284	Resample	D28	Critical	ICU	ITU_intubated	480	3	44	76	356	1

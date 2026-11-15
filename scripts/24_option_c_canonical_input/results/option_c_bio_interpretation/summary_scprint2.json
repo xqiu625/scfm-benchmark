@@ -1,0 +1,24 @@
+{
+  "model": "scprint2",
+  "obsm_key": "X_scprint2",
+  "n_cells_total": 43803,
+  "n_aligned_to_raw": 43803,
+  "n_subsampled_for_spearman": 10000,
+  "embedding_dim": 424,
+  "n_genes": 13066,
+  "train_auc": 0.875476800494454,
+  "top_dims": [
+    166,
+    169,
+    365,
+    228,
+    192
+  ],
+  "top_dim_coefs": [
+    1.394787829589313,
+    1.1766651396489203,
+    -1.1394226999309158,
+    -0.9888640634636738,
+    -0.8129428535071891
+  ]
+}

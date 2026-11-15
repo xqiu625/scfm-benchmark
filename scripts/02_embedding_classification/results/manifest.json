@@ -1,0 +1,91 @@
+{
+  "stage": "02_embedding_classification",
+  "status": "success",
+  "metadata_complete": false,
+  "description": "02 - Fine-tuned Benchmark (auto-derived from README; metadata not curated)",
+  "slurm_jobs": [],
+  "run_dates": [],
+  "generating_code": [],
+  "parameters": {},
+  "claims": [],
+  "primary_outputs": [],
+  "superseded_outputs": {},
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "results/benchmark_Geneformer.csv",
+      "size_bytes": 433,
+      "sha256": "4b71ab8e53b6036cb7249da11a1f218a3f491f1f6fa09dedad27f2f2e763d300"
+    },
+    {
+      "path": "results/benchmark_Geneformer_LoRA.csv",
+      "size_bytes": 293,
+      "sha256": "cfc29284df782393a2bf3b612817454794de47b36fb5fb60139fe5148f078107"
+    },
+    {
+      "path": "results/benchmark_STATE.csv",
+      "size_bytes": 421,
+      "sha256": "24fe3c72edf16442ff7a25c14a8f5378222820fb8a63c7d5b4447e88b5ce698e"
+    },
+    {
+      "path": "results/benchmark_TranscriptFormer.csv",
+      "size_bytes": 446,
+      "sha256": "d068b7c77d6f4ff03fbb6c60a32d85d4f3ce3abfd5990930bca7587675c9b334"
+    },
+    {
+      "path": "results/benchmark_UCE.csv",
+      "size_bytes": 415,
+      "sha256": "8f0ec90fc705738548376917ad9b2d0e640e488dfbc4ee9f6755a376c5542f51"
+    },
+    {
+      "path": "results/benchmark_all_models_LoRA_Classifier.csv",
+      "size_bytes": 1200,
+      "sha256": "b78cb4ec33f42f8b5cd61172b7661346246197ffeafd8fd14e2a5309ff520006"
+    },
+    {
+      "path": "results/benchmark_embedding_classifier_3class.csv",
+      "size_bytes": 562,
+      "sha256": "d6a00b3a428e9b13db0581c2f30bfd96f139ac8ebb956b0bb16911f958def805"
+    },
+    {
+      "path": "results/benchmark_embedding_classifier_6class.csv",
+      "size_bytes": 555,
+      "sha256": "70739c1910a496a17bcc7d3c099f7a068a355a0e1515c4b2423011f65d96fe95"
+    },
+    {
+      "path": "results/benchmark_embedding_classifier_binary.csv",
+      "size_bytes": 559,
+      "sha256": "007baea68e3d776339303ae0aaa14c37168ad4c4cd818a13c1795ecbac75821d"
+    },
+    {
+      "path": "results/benchmark_scGPT.csv",
+      "size_bytes": 420,
+      "sha256": "a6d0a209186c95ee520661d06594807d7aed5c184f076d5ca7c0ddeff53e64bc"
+    },
+    {
+      "path": "results/embedding_classifier_summary.md",
+      "size_bytes": 4922,
+      "sha256": "85b3fe056b90d52c135bb37cb27f352bb7b32ef4eb5f92c6fbfbf26c6198bcdb"
+    },
+    {
+      "path": "results/lora_classifier_summary.md",
+      "size_bytes": 4251,
+      "sha256": "7a303909bbe56ee49b198a5827b95963b0917929b759f55d4a3ce2e1a16cf9f3"
+    }
+  ],
+  "n_outputs": 12,
+  "in_repo_outputs": true,
+  "no_results_reason": null,
+  "git_commit": "2f56a829ff085fbb57787e32d3f4238a75a7a93c",
+  "runtime_seconds": null,
+  "package_versions": null,
+  "config": "configs/hpcc.yaml",
+  "environment_ref": "environment.yml",
+  "provenance": {
+    "reconstructed_post_hoc": true,
+    "generated_at": "2026-06-07T19:32:27+00:00",
+    "generated_by": "scripts/99_audit/code/emit_manifests.py",
+    "verified_in": "docs/claim-traceability.md (2026-06-06 traceability audit)",
+    "note": "Manifest reconstructed during the 2026-06-06/07 audit (item A001). Outputs were produced on the HPCC before the repo restructure; sizes + sha256 + git_commit are verifiable, but run-time wall-clock and package versions were not captured in-repo and are recorded as null rather than back-filled. When metadata_complete=false, slurm_jobs/parameters/claims were not curated for this stage \u2014 the output inventory + hashes + git pin are still authoritative."
+  }
+}

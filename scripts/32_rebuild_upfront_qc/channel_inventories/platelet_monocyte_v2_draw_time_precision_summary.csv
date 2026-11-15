@@ -1,0 +1,12 @@
+cohort,draw_time_precision,cell_id
+COMBAT 2022,exact_day,282704
+Chongqing sepsis 2025,single_draw_no_variation,202288
+Cillo 2021,exact_day,28995
+Cillo 2021,unresolved_no_day_token,526
+Liu 2021,partial_suffix,138657
+Liu 2021,unresolved_mixed_pool,22754
+Qiu 2021,exact_draw_label,22276
+Ren 2021,category,315591
+Stephenson 2021,exact_day,152173
+Wilk 2021 JEM,exact_day,757
+Wilk 2021 JEM,unresolved_no_day_token,70160

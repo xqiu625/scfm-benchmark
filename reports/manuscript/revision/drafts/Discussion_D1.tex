@@ -1,0 +1,71 @@
+% Discussion D1 — which property of a foundation model predicts patient-state representation? (synced to P0 round-17 state, 2026-09-09)
+\subsection{Which model property tracks patient-state representation?}
+\label{ssec:discussion_property}
+
+Architecture family is not identifiable in these data: although the
+within-family spread among bidirectional transformer encoders (from
+\model{Geneformer} 0.786 to \model{UCE} 0.661) exceeds the gap to the only
+generative model, every between-family contrast is small against the roughly
+0.10-AUC resolution of a 25-event benchmark, and the strongest between-family
+gaps (\model{STATE}$-$\model{scGPT} $+0.055$;
+\model{Geneformer}$-$\model{scGPT} $+0.068$; exact DeLong $p = 0.014$ and
+$0.008$, in agreement with the paired bootstrap;
+Supplementary Note~\ref{sn:se_check}) sit exactly at that resolution's
+edge. We therefore do not claim architecture-level attribution.
+
+The one confirmatory separation, the two leaders versus \model{UCE}
+(range-statistic $P = 0.011$; Supplementary Note~\ref{sn:range_test}), is a
+statement about the losing model before it is a statement about the winning
+ones. \model{UCE} is the only method that never significantly outscored the
+count-plus-disease null model ($p = 0.157$;
+Supplementary Note~\ref{sn:method_vs_null}), so the content of the gap is
+that \model{UCE} is unsuited to this task, not that the leaders carry a
+pretraining advantage, a claim the primary test rejects
+(Section~\ref{ssec:r1_within_covid}). The natural attribution hypothesis for
+such a gap, blood and immune representation in the pretraining corpus, was
+measured directly and is falsified on both ends
+(Supplementary Note~\ref{sn:corpus_platelet}). The three models whose
+platelet content can be numerically bounded against public corpus records
+(\model{scPRINT-2} 0.120--0.125\%, \model{scGPT} 0.125\%, \model{UCE}
+0.120\%) share essentially identical fractions yet span 0.079 patient-level
+AUC, 63\% of the entire between-model spread. Of the two leaders,
+\model{STATE}'s corpus status is itself bounded and is the lowest documented
+of all --- about two-thirds of its corpus (the scBaseCount and Tahoe
+components) is platelet-free at both the annotation and quality-control
+layers, and the remainder shares the Census bound, capping its platelet
+content below 0.05\% (Table~\ref{tab:models}) --- while \model{Geneformer}
+is the one model with no cell-type-level corpus composition in any published
+material. A leader at a documented near-zero and a laggard at 0.120\%
+produce the same ordering as one leader with a documented corpus and one
+without: wherever corpus platelet content can actually be checked, it does
+not track performance.
+
+Three further facts bound any property claim. First, corpus metrics must be
+read in one unit, and none exists across all five models: the fraction of
+pretraining cells from blood and bone marrow is documented as dataset counts
+for \model{Geneformer} (49 of 561 source datasets, under a 25\%-per-tissue
+cap), as a sample fraction for \model{UCE} (6.6\%), and not at all for the
+rest (Supplementary Table~\ref{tab:corpus_fractions}). Second,
+\model{scPRINT-2} contradicts any simple identity-objective story: its
+objective includes explicit cell-label prediction, the attribute assigned to
+the losing model, yet it ranks third, above the baseline on point estimates;
+and the from-scratch PCA-200 baseline, with no pretraining at all, lands
+mid-table and is statistically inseparable from two of the five models.
+Third, the ordering does not persist on the in-distribution monocyte control:
+\model{scGPT} moves from fourth on platelets to second on monocytes
+(Section~\ref{ssec:r4_monocyte}), so no corpus-level constant can explain the
+ranking on both cell types.
+
+We therefore state the property question as a set of benchmark-testable
+hypotheses, one of which now carries a recorded falsification. Supplementary
+Table~\ref{tab:property_multiplicity} enumerates the candidate attributes we
+checked (corpus blood/marrow fraction, corpus disease-condition fraction,
+objective loss target, tokenization, corpus size, parameter count, embedding
+dimension, vocabulary size, species coverage, and release year) and reports
+how many separate the observed ranking equally well; the corpus-composition
+hypothesis above remains in the set as an untested candidate, now known to be
+falsified where it is measurable and untestable where it would matter.
+Resolving any such property at the 0.03--0.05 AUC scale where attribution
+lives requires on the order of $10^3$ patients at this event rate; the
+present benchmark is designed so that any new model or new candidate property
+can be inserted and tested under the identical protocol.

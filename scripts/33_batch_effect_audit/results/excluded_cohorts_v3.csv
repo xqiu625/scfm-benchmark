@@ -1,0 +1,3 @@
+cohort,accession,donor_id,capture_id,capture_unit_type,is_multi_donor_capture,n_cells_capture,count_unit,platform,lineage_note,outcome_raw_from_source,draw_time_raw,pool_id,source_file,evidence_note
+Schulte-Schrepping 2020,,,,,,,,,,,,,,"EXCLUDED from benchmark scope, Cindy 2026-09-19 (docs/decisions.md) -- not audited by this script"
+Bernardes 2020,,,,,,,,,,,,,,"EXCLUDED from benchmark scope, Cindy 2026-09-19 (docs/decisions.md) -- not audited by this script"

@@ -1,0 +1,9 @@
+cohort,coverage_status,n_canonical_donors,n_capture_file_donors,n_matched_exact,n_matched_by_alias_normalization,n_ambiguous_alias_groups,n_only_in_canonical,n_only_in_capture_file,only_in_canonical_sample,only_in_capture_file_sample,note
+Qiu 2021,assessed,7,7,7,0,0,0,0,,,
+Cillo 2021,assessed,40,29,28,0,0,12,1,ALIR_5097_10_PBMC_TEST;ALIR_5310_10;Healthy_10_PBMC;Healthy_1_PBMC;Healthy_2_PBMC;Healthy_3_PBMC;Healthy_4_PBMC;Healthy_5_PBMC;Healthy_6_PBMC;Healthy_7_PBMC;Healthy_8_PBMC;Healthy_9_PBMC,ARDS_5,
+Chongqing sepsis 2025,assessed,133,133,124,8,0,1,1,Skin-S152,Skin-152,
+Stephenson 2021,assessed,130,130,130,0,0,0,0,,,
+Liu 2021,assessed,33,50,14,19,0,0,17,,AA220014;AA220534;AA220907;CHI014;CHI014_B2;CHI014_B3;HDML_PBMC;HDVO_PBMC;IM000040;SHD1_NA;SHD2_NA;SHD3_NA;SHD4_NA;SHD5_NA;SHD6_NA;SHD7_NA;SHD8_NA,
+Wilk 2021 JEM,assessed,25,23,23,0,0,2,0,55650-0132d0;55650-0132d7,,
+Ren 2021,assessed,196,196,196,0,0,0,0,,,
+COMBAT 2022,not_assessable,124,0,,,,,,,,"capture-level file carries no donor identity column at all (e.g. COMBAT channel-level aggregates) -- this is an absence of evidence; counts are null (not zero), since zero would read as a measured recovery failure."

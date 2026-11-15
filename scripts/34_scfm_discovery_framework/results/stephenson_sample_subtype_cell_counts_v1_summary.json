@@ -1,0 +1,35 @@
+{
+  "fields_NOT_read": [
+    "X",
+    "layers",
+    "obsm",
+    "obsp",
+    "var",
+    "varm",
+    "varp",
+    "uns",
+    "Data_NO",
+    "disease",
+    "patient_id",
+    "source_study",
+    "y",
+    "_index"
+  ],
+  "fields_read_from_obs": [
+    "Sample_ID",
+    "orig_celltype"
+  ],
+  "n_cells_total_this_object": 128503,
+  "n_samples": 102,
+  "provenance_caveat": "This is the per-cohort RAW object's own obs['orig_celltype'] (curated_atlas_label, the authors' published full_clustering annotation) -- not a scFM-discovered state, and not QC-filtered for this project (qc_status: provisional, same caveat as monocyte_pilot_feasibility_v3.tsv's Stephenson row). A sample's count for a given subtype in THIS object is a real, confirmed number for THIS specific file/version -- it is not the same claim as 'this is the final QC-admitted cell count for this analysis', and a sample absent from this object entirely (none observed here) would be a mapping gap, reported as such, never silently folded into a subtype's zero count.",
+  "source_h5ad": "/bigdata/godziklab/shared/Xinru/302006/02_EMBEDDINGS/option_c_monocyte/stephenson_monocyte_raw.h5ad",
+  "source_h5ad_bytes_read_for_hash": "full file, one sequential pass",
+  "source_h5ad_sha256": "11eb7450ff5c2a87158add9b906521cac43db56b71561d75308788089f0f4f4b",
+  "subtypes": [
+    "C1_CD16_mono",
+    "CD14_mono",
+    "CD16_mono",
+    "CD83_CD14_mono",
+    "Mono_prolif"
+  ]
+}

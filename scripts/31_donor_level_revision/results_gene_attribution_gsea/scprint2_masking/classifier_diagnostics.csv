@@ -1,0 +1,2 @@
+model,cell_auc,patient_auc,n_cells,n_patients,top_k_genes,embedding_dim
+scprint2_masking,0.8566732331210616,0.9627906976744185,10737,240,256,424

@@ -1,0 +1,2 @@
+auc_consensus_5fm_mean,auc_pca200,delta_consensus_minus_pca,best_single_fm,auc_best_single_fm,delta_consensus_minus_best_fm,n_patients,n_fatal
+0.7678,0.7423,0.0255,Geneformer,0.8067,-0.0389,240,25

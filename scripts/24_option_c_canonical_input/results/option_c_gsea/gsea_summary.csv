@@ -1,0 +1,16 @@
+model,dim,rank,library,n_terms,top_term,top_nes,output_csv
+scgpt,200,4,KEGG_2021_Human,16,Salmonella infection,-2.4938916820253,gsea_scgpt_dim200_rank4_KEGG_2021_Human.csv
+scgpt,200,4,Reactome_2022,29,Innate Immune System R-HSA-168249,-2.8372552609949953,gsea_scgpt_dim200_rank4_Reactome_2022.csv
+scgpt,200,4,GO_Biological_Process_2023,23,Positive Regulation Of DNA-templated Transcription (GO:0045893),2.086571599656862,gsea_scgpt_dim200_rank4_GO_Biological_Process_2023.csv
+scgpt,213,2,KEGG_2021_Human,18,Salmonella infection,2.329809387886841,gsea_scgpt_dim213_rank2_KEGG_2021_Human.csv
+scgpt,213,2,Reactome_2022,40,Immune System R-HSA-168256,2.070724557044217,gsea_scgpt_dim213_rank2_Reactome_2022.csv
+scgpt,213,2,GO_Biological_Process_2023,21,Homotypic Cell-Cell Adhesion (GO:0034109),1.5736766783612786,gsea_scgpt_dim213_rank2_GO_Biological_Process_2023.csv
+scgpt,253,3,KEGG_2021_Human,16,Ribosome,4.255099918190038,gsea_scgpt_dim253_rank3_KEGG_2021_Human.csv
+scgpt,253,3,Reactome_2022,60,Metabolism Of RNA R-HSA-8953854,4.582632652406578,gsea_scgpt_dim253_rank3_Reactome_2022.csv
+scgpt,253,3,GO_Biological_Process_2023,38,Gene Expression (GO:0010467),4.356088743019677,gsea_scgpt_dim253_rank3_GO_Biological_Process_2023.csv
+scgpt,335,5,KEGG_2021_Human,6,Coronavirus disease,5.0591478982094955,gsea_scgpt_dim335_rank5_KEGG_2021_Human.csv
+scgpt,335,5,Reactome_2022,59,Eukaryotic Translation Elongation R-HSA-156842,4.623218922161854,gsea_scgpt_dim335_rank5_Reactome_2022.csv
+scgpt,335,5,GO_Biological_Process_2023,40,Macromolecule Biosynthetic Process (GO:0009059),4.893168249630195,gsea_scgpt_dim335_rank5_GO_Biological_Process_2023.csv
+scgpt,430,1,KEGG_2021_Human,7,Platelet activation,1.7900993052559233,gsea_scgpt_dim430_rank1_KEGG_2021_Human.csv
+scgpt,430,1,Reactome_2022,30,Cell Cycle R-HSA-1640170,1.8811950005857725,gsea_scgpt_dim430_rank1_Reactome_2022.csv
+scgpt,430,1,GO_Biological_Process_2023,23,Platelet Aggregation (GO:0070527),1.255804550674763,gsea_scgpt_dim430_rank1_GO_Biological_Process_2023.csv

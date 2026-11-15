@@ -1,0 +1,112 @@
+{
+  "covid_to_sepsis": {},
+  "sepsis_to_covid": {},
+  "within_covid": {
+    "STATE": {
+      "accuracy": 0.8112319598410375,
+      "balanced_accuracy": 0.7974069669897094,
+      "auc": 0.8907011831120234,
+      "n_train": 38246,
+      "n_test": 9562,
+      "classes": [
+        "non_severe",
+        "severe"
+      ],
+      "confusion_matrix": [
+        [
+          2721,
+          973
+        ],
+        [
+          832,
+          5036
+        ]
+      ]
+    },
+    "UCE": {
+      "accuracy": 0.7962769295126543,
+      "balanced_accuracy": 0.7821632862147907,
+      "auc": 0.8763731067421182,
+      "n_train": 38246,
+      "n_test": 9562,
+      "classes": [
+        "non_severe",
+        "severe"
+      ],
+      "confusion_matrix": [
+        [
+          2660,
+          1034
+        ],
+        [
+          914,
+          4954
+        ]
+      ]
+    },
+    "scGPT": {
+      "accuracy": 0.7252666806107508,
+      "balanced_accuracy": 0.6949211381672744,
+      "auc": 0.7689462342256959,
+      "n_train": 38246,
+      "n_test": 9562,
+      "classes": [
+        "non_severe",
+        "severe"
+      ],
+      "confusion_matrix": [
+        [
+          2074,
+          1620
+        ],
+        [
+          1007,
+          4861
+        ]
+      ]
+    },
+    "Geneformer": {
+      "accuracy": 0.7528221512247071,
+      "balanced_accuracy": 0.7283832001565457,
+      "auc": 0.825595145005023,
+      "n_train": 37559,
+      "n_test": 9390,
+      "classes": [
+        "non_severe",
+        "severe"
+      ],
+      "confusion_matrix": [
+        [
+          2235,
+          1331
+        ],
+        [
+          990,
+          4834
+        ]
+      ]
+    },
+    "TranscriptFormer": {
+      "accuracy": 0.7671991480298189,
+      "balanced_accuracy": 0.7477468636943538,
+      "auc": 0.8429116584130956,
+      "n_train": 37559,
+      "n_test": 9390,
+      "classes": [
+        "non_severe",
+        "severe"
+      ],
+      "confusion_matrix": [
+        [
+          2378,
+          1188
+        ],
+        [
+          998,
+          4826
+        ]
+      ]
+    }
+  },
+  "within_sepsis": {}
+}

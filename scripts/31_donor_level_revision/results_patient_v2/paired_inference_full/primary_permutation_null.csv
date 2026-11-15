@@ -1,0 +1,7 @@
+row_type,model,delta_auc_obs,permutation_P,nperm,rng_seed,note
+per_model,STATE,0.0523,,,,
+per_model,UCE,-0.0659,,,,
+per_model,Geneformer,0.0644,,,,
+per_model,scPRINT-2,0.0138,,,,
+per_model,scGPT,-0.0032,,,,
+summary,max_over_5_FMs,0.0644,0.18098,10000.0,20260908.0,"scoring-step null: labels shuffled on frozen OOF scores, no retraining"

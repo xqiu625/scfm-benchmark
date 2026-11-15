@@ -1,0 +1,25 @@
+# configs/defaults.yaml
+# Environment-agnostic defaults. Override per environment in hpcc.yaml / local.yaml.
+# Loaded first; environment configs are merged on top.
+
+random_seed: 42
+
+preprocessing:
+  min_cells: 10
+  min_genes: 200
+  normalize_total: 10000
+  log1p: true
+
+split:
+  test_size: 0.2
+  cv_folds: 5
+  group_key: donor_id        # patient-level CV — never split a donor across folds
+  stratify_key: label
+
+bootstrap:
+  n_iter: 200                 # matches 29_adaptation_curve bootstrap variant
+
+outputs:
+  overwrite: false
+  save_manifest: true
+  versioned: true            # write results under dated run folders for models/predictions

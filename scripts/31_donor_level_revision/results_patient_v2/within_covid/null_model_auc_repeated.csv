@@ -1,0 +1,5 @@
+feature_set,variant,n_donors,n_fatal_donors,n_seeds,auc_repeat_mean,auc_repeat_sd
+log_cell_count,cell-expanded,240,25,10,0.5544,0.0458
+log_cell_count,donor-level,240,25,10,0.5542,0.0115
+log_cell_count+disease,cell-expanded,240,25,10,0.5544,0.0458
+log_cell_count+disease,donor-level,240,25,10,0.5542,0.0115

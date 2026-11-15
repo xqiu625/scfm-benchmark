@@ -1,0 +1,369 @@
+geneset,Term,n_models_sig,models,NES_in_sig_models
+hallmark,Apical Junction,1,UCE,1.585
+hallmark,Bile Acid Metabolism,1,scGPT,1.457
+hallmark,Estrogen Response Early,1,scGPT,-1.319
+hallmark,Estrogen Response Late,1,scGPT,-1.316
+hallmark,Mitotic Spindle,1,UCE,1.490
+hallmark,Myc Targets V1,1,scGPT,1.387
+hallmark,Myc Targets V2,1,UCE,-1.346
+hallmark,Myogenesis,1,UCE,1.280
+hallmark,Pperoxisome,1,scGPT,1.482
+hallmark,Reactive Oxygen Species Pathway,1,scGPT,1.523
+hallmark,Spermatogenesis,1,scGPT,-1.394
+kegg,AGE-RAGE signaling pathway in diabetic complications,1,UCE,-1.591
+kegg,AMPK signaling pathway,1,scGPT,1.408
+kegg,African trypanosomiasis,1,Geneformer,-1.742
+kegg,Alzheimer disease,1,scGPT,1.833
+kegg,Amyotrophic lateral sclerosis,1,scGPT,1.982
+kegg,Apoptosis,1,Geneformer,-1.593
+kegg,Arrhythmogenic right ventricular cardiomyopathy,1,Geneformer,-1.634
+kegg,Autophagy,1,scGPT,1.463
+kegg,Biosynthesis of unsaturated fatty acids,1,scGPT,1.587
+kegg,C-type lectin receptor signaling pathway,1,UCE,-1.480
+kegg,Cardiac muscle contraction,1,scGPT,1.427
+kegg,Cell adhesion molecules,1,scGPT,-1.762
+kegg,Chagas disease,1,UCE,-1.389
+kegg,Collecting duct acid secretion,1,scGPT,1.911
+kegg,Complement and coagulation cascades,1,UCE,2.098
+kegg,Cysteine and methionine metabolism,1,scGPT,1.509
+kegg,Cytosolic DNA-sensing pathway,1,UCE,-1.483
+kegg,Diabetic cardiomyopathy,1,scGPT,1.741
+kegg,Dilated cardiomyopathy,1,Geneformer,-1.713
+kegg,Drug metabolism,1,UCE,1.793
+kegg,ECM-receptor interaction,1,UCE,2.124
+kegg,Endocytosis,1,scGPT,1.412
+kegg,ErbB signaling pathway,1,UCE,1.608
+kegg,Fluid shear stress and atherosclerosis,1,Geneformer,-1.647
+kegg,Gap junction,1,STATE,-1.883
+kegg,Gastric acid secretion,1,Geneformer,-1.886
+kegg,Glutathione metabolism,1,scGPT,1.659
+kegg,Glycosphingolipid biosynthesis,1,scGPT,1.380
+kegg,Hematopoietic cell lineage,1,scGPT,-1.554
+kegg,Hepatitis B,1,UCE,-1.390
+kegg,Hepatitis C,1,UCE,-1.424
+kegg,Herpes simplex virus 1 infection,1,UCE,-1.493
+kegg,Human papillomavirus infection,1,scGPT,1.479
+kegg,Huntington disease,1,scGPT,2.071
+kegg,Inflammatory bowel disease,1,UCE,-1.843
+kegg,Influenza A,1,UCE,-1.872
+kegg,Intestinal immune network for IgA production,1,UCE,-1.524
+kegg,Legionellosis,1,UCE,-1.409
+kegg,Leishmaniasis,1,UCE,-1.607
+kegg,Leukocyte transendothelial migration,1,Geneformer,-1.535
+kegg,Lipid and atherosclerosis,1,UCE,-1.553
+kegg,MAPK signaling pathway,1,scGPT,-1.741
+kegg,Measles,1,UCE,-1.643
+kegg,Metabolism of xenobiotics by cytochrome P450,1,UCE,1.874
+kegg,N-Glycan biosynthesis,1,STATE,1.855
+kegg,NF-kappa B signaling pathway,1,UCE,-1.674
+kegg,NOD-like receptor signaling pathway,1,UCE,-1.894
+kegg,Non-alcoholic fatty liver disease,1,scGPT,1.439
+kegg,Nucleotide excision repair,1,scGPT,1.384
+kegg,Olfactory transduction,1,scGPT,-2.213
+kegg,Osteoclast differentiation,1,UCE,-1.490
+kegg,Oxytocin signaling pathway,1,Geneformer,-1.608
+kegg,Parkinson disease,1,scGPT,1.863
+kegg,Pathways of neurodegeneration,1,scGPT,1.846
+kegg,Pertussis,1,UCE,-1.432
+kegg,Platelet activation,1,Geneformer,-1.627
+kegg,Primary immunodeficiency,1,UCE,-1.601
+kegg,Prion disease,1,scGPT,1.620
+kegg,Proteasome,1,scGPT,2.186
+kegg,Proteoglycans in cancer,1,UCE,1.768
+kegg,Purine metabolism,1,UCE,1.848
+kegg,RIG-I-like receptor signaling pathway,1,UCE,-1.672
+kegg,Retrograde endocannabinoid signaling,1,scGPT,1.553
+kegg,Rheumatoid arthritis,1,UCE,-2.052
+kegg,Ribosome,1,UCE,-1.725
+kegg,Ribosome biogenesis in eukaryotes,1,scGPT,1.383
+kegg,SNARE interactions in vesicular transport,1,STATE,-2.045
+kegg,Salmonella infection,1,UCE,-1.520
+kegg,Sphingolipid metabolism,1,UCE,1.400
+kegg,Spinocerebellar ataxia,1,scGPT,1.979
+kegg,Staphylococcus aureus infection,1,Geneformer,1.753
+kegg,Starch and sucrose metabolism,1,UCE,1.634
+kegg,Synaptic vesicle cycle,1,scGPT,1.740
+kegg,T cell receptor signaling pathway,1,UCE,-1.739
+kegg,Thermogenesis,1,scGPT,1.766
+kegg,Thyroid hormone signaling pathway,1,Geneformer,-1.566
+kegg,Tight junction,1,Geneformer,-1.593
+kegg,Toll-like receptor signaling pathway,1,UCE,-1.758
+kegg,Transcriptional misregulation in cancer,1,scGPT,-1.620
+kegg,Ubiquitin mediated proteolysis,1,scGPT,1.764
+kegg,Various types of N-glycan biosynthesis,1,STATE,1.730
+kegg,Viral myocarditis,1,UCE,-1.424
+kegg,Yersinia infection,1,UCE,-1.510
+kegg,mTOR signaling pathway,1,scGPT,1.576
+kegg,p53 signaling pathway,1,Geneformer,-1.530
+reactome,ABC Transporter Disorders R-HSA-5619084,1,scGPT,2.102
+reactome,ABC-family Proteins Mediated Transport R-HSA-382556,1,scGPT,2.127
+reactome,ADORA2B Mediated Anti-Inflammatory Cytokine Production R-HSA-9660821,1,scGPT,-1.555
+reactome,APC/C-mediated Degradation Of Cell Cycle Proteins R-HSA-174143,1,scGPT,1.930
+reactome,APC/C:Cdc20 Mediated Degradation Of Mitotic Proteins R-HSA-176409,1,scGPT,2.090
+reactome,APC/C:Cdc20 Mediated Degradation Of Securin R-HSA-174154,1,scGPT,2.104
+reactome,APC/C:Cdh1 Mediated Degradation Of Cdc20 And APC/C:Cdh1 Targets In Late Mitosis/Early G1 R-HSA-174178,1,scGPT,2.075
+reactome,APC:Cdc20 Mediated Degradation Of Cell Cycle Proteins Before Cycle Checkpoint Satisfied R-HSA-179419,1,scGPT,2.090
+reactome,AUF1 (hnRNP D0) Binds And Destabilizes mRNA R-HSA-450408,1,scGPT,2.133
+reactome,Aberrant Regulation Of Mitotic G1/S Transition In Cancer Due To RB1 Defects R-HSA-9659787,1,STATE,2.013
+reactome,Activation Of APC/C And APC/C:Cdc20 Mediated Degradation Of Mitotic Proteins R-HSA-176814,1,scGPT,2.090
+reactome,Activation Of BH3-only Proteins R-HSA-114452,1,UCE,-1.693
+reactome,Activation Of NF-kappaB In B Cells R-HSA-1169091,1,scGPT,2.096
+reactome,Amino Acids Regulate mTORC1 R-HSA-9639288,1,scGPT,1.764
+reactome,Antigen Activates B Cell Receptor Leading To Second Messenger Generation R-HSA-983695,1,UCE,1.649
+reactome,Antigen Processing: Ubiquitination And Proteasome Degradation R-HSA-983168,1,scGPT,1.727
+reactome,Antigen processing-Cross Presentation R-HSA-1236975,1,scGPT,1.887
+reactome,Apoptosis R-HSA-109581,1,scGPT,1.400
+reactome,Assembly Of Pre-Replicative Complex R-HSA-68867,1,scGPT,2.151
+reactome,Association Of TriC/CCT With Target Proteins During Biosynthesis R-HSA-390471,1,scGPT,1.544
+reactome,Asymmetric Localization Of PCP Proteins R-HSA-4608870,1,scGPT,2.179
+reactome,Attenuation Phase R-HSA-3371568,1,UCE,1.573
+reactome,Autodegradation Of Cdh1 By Cdh1:APC/C R-HSA-174084,1,scGPT,2.147
+reactome,Autodegradation Of E3 Ubiquitin Ligase COP1 R-HSA-349425,1,scGPT,2.080
+reactome,Autophagy R-HSA-9612973,1,scGPT,1.773
+reactome,Beta-catenin Independent WNT Signaling R-HSA-3858494,1,scGPT,1.927
+reactome,Biological Oxidations R-HSA-211859,1,UCE,1.845
+reactome,C-type Lectin Receptors (CLRs) R-HSA-5621481,1,scGPT,1.648
+reactome,CDK-mediated Phosphorylation And Removal Of Cdc6 R-HSA-69017,1,scGPT,2.084
+reactome,CLEC7A (Dectin-1) Signaling R-HSA-5607764,1,scGPT,1.701
+reactome,COPI-dependent Golgi-to-ER Retrograde Traffic R-HSA-6811434,1,scGPT,1.799
+reactome,COPI-independent Golgi-to-ER Retrograde Traffic R-HSA-6811436,1,scGPT,1.761
+reactome,COPII-mediated Vesicle Transport R-HSA-204005,1,scGPT,1.647
+reactome,Cap-dependent Translation Initiation R-HSA-72737,1,scGPT,-1.633
+reactome,Cargo Concentration In ER R-HSA-5694530,1,scGPT,1.448
+reactome,Cdc20:Phospho-APC/C Mediated Degradation Of Cyclin A R-HSA-174184,1,scGPT,2.090
+reactome,Cell Cycle Checkpoints R-HSA-69620,1,scGPT,1.775
+reactome,Cell Cycle R-HSA-1640170,1,scGPT,1.489
+reactome,"Cell Cycle, Mitotic R-HSA-69278",1,scGPT,1.462
+reactome,Cell Recruitment (Pro-Inflammatory Response) R-HSA-9664424,1,UCE,-1.713
+reactome,Cellular Response To Chemical Stress R-HSA-9711123,1,scGPT,1.852
+reactome,Cellular Response To Heat Stress R-HSA-3371556,1,UCE,1.610
+reactome,Cellular Response To Hypoxia R-HSA-1234174,1,scGPT,2.141
+reactome,Cellular Response To Starvation R-HSA-9711097,1,scGPT,-1.519
+reactome,Cellular Senescence R-HSA-2559583,1,UCE,-1.647
+reactome,Chromatin Modifying Enzymes R-HSA-3247509,1,scGPT,1.495
+reactome,Class I MHC Mediated Antigen Processing And Presentation R-HSA-983169,1,scGPT,1.681
+reactome,Complement Cascade R-HSA-166658,1,UCE,1.931
+reactome,Complex I Biogenesis R-HSA-6799198,1,scGPT,1.925
+reactome,Cristae Formation R-HSA-8949613,1,scGPT,1.388
+reactome,Cross-presentation Of Soluble Exogenous Antigens (Endosomes) R-HSA-1236978,1,scGPT,2.251
+reactome,Cyclin A:Cdk2-associated Events At S Phase Entry R-HSA-69656,1,scGPT,1.899
+reactome,Cyclin E Associated Events During G1/S Transition R-HSA-69202,1,scGPT,1.900
+reactome,DAP12 Interactions R-HSA-2172127,1,UCE,1.711
+reactome,DAP12 Signaling R-HSA-2424491,1,UCE,1.711
+reactome,DNA Double-Strand Break Repair R-HSA-5693532,1,scGPT,1.449
+reactome,DNA Repair R-HSA-73894,1,scGPT,1.447
+reactome,DNA Replication Pre-Initiation R-HSA-69002,1,scGPT,2.062
+reactome,DNA Replication R-HSA-69306,1,scGPT,1.983
+reactome,Dectin-1 Mediated Noncanonical NF-kB Signaling R-HSA-5607761,1,scGPT,2.019
+reactome,Defective CFTR Causes Cystic Fibrosis R-HSA-5678895,1,scGPT,2.124
+reactome,Degradation Of AXIN R-HSA-4641257,1,scGPT,2.131
+reactome,Degradation Of Beta-Catenin By Destruction Complex R-HSA-195253,1,scGPT,1.958
+reactome,Degradation Of DVL R-HSA-4641258,1,scGPT,2.104
+reactome,Degradation Of Extracellular Matrix R-HSA-1474228,1,scGPT,1.421
+reactome,Degradation Of GLI1 By Proteasome R-HSA-5610780,1,scGPT,2.099
+reactome,Degradation Of GLI2 By Proteasome R-HSA-5610783,1,scGPT,2.132
+reactome,Deposition Of New CENPA-containing Nucleosomes At Centromere R-HSA-606279,1,UCE,-1.584
+reactome,Deubiquitination R-HSA-5688426,1,scGPT,1.885
+reactome,Diseases Of Glycosylation R-HSA-3781865,1,UCE,1.973
+reactome,Diseases Of Metabolism R-HSA-5668914,1,UCE,2.067
+reactome,Diseases Of Signal Transduction By Growth Factor Receptors And Second Messengers R-HSA-5663202,1,scGPT,1.484
+reactome,Disorders Of Transmembrane Transporters R-HSA-5619115,1,scGPT,1.893
+reactome,Downstream Signaling Events Of B Cell Receptor (BCR) R-HSA-1168372,1,scGPT,1.991
+reactome,Downstream TCR Signaling R-HSA-202424,1,scGPT,1.737
+reactome,ECM Proteoglycans R-HSA-3000178,1,UCE,1.792
+reactome,EPH-Ephrin Signaling R-HSA-2682334,1,scGPT,1.479
+reactome,EPH-ephrin Mediated Repulsion Of Cells R-HSA-3928665,1,scGPT,1.809
+reactome,EPHB-mediated Forward Signaling R-HSA-3928662,1,UCE,1.775
+reactome,ER-Phagosome Pathway R-HSA-1236974,1,scGPT,2.007
+reactome,Early SARS-CoV-2 Infection Events R-HSA-9772572,1,UCE,1.641
+reactome,Eukaryotic Translation Elongation R-HSA-156842,1,scGPT,-2.462
+reactome,Eukaryotic Translation Termination R-HSA-72764,1,scGPT,-2.307
+reactome,Extracellular Matrix Organization R-HSA-1474244,1,UCE,2.129
+reactome,FBXL7 Down-Regulates AURKA During Mitotic Entry And In Early Mitosis R-HSA-8854050,1,scGPT,2.121
+reactome,FCERI Mediated Ca+2 Mobilization R-HSA-2871809,1,UCE,1.675
+reactome,FCERI Mediated NF-kB Activation R-HSA-2871837,1,scGPT,2.027
+reactome,FCGR3A-mediated Phagocytosis R-HSA-9664422,1,UCE,1.663
+reactome,Fatty acyl-CoA Biosynthesis R-HSA-75105,1,scGPT,1.504
+reactome,Fc Epsilon Receptor (FCERI) Signaling R-HSA-2454202,1,scGPT,1.736
+reactome,Fcgamma Receptor (FCGR) Dependent Phagocytosis R-HSA-2029480,1,UCE,2.061
+reactome,Formation Of A Pool Of Free 40S Subunits R-HSA-72689,1,scGPT,-2.124
+reactome,Formation Of Fibrin Clot (Clotting Cascade) R-HSA-140877,1,UCE,1.600
+reactome,"Formation Of Ternary Complex, And Subsequently, 43S Complex R-HSA-72695",1,scGPT,-1.536
+reactome,G Alpha (S) Signaling Events R-HSA-418555,1,scGPT,-1.491
+reactome,G Alpha (Z) Signaling Events R-HSA-418597,1,scGPT,-2.054
+reactome,G1/S DNA Damage Checkpoints R-HSA-69615,1,scGPT,2.034
+reactome,G1/S Transition R-HSA-69206,1,scGPT,1.760
+reactome,G2/M Checkpoints R-HSA-69481,1,scGPT,1.832
+reactome,G2/M Transition R-HSA-69275,1,scGPT,1.614
+reactome,GLI3 Is Processed To GLI3R By Proteasome R-HSA-5610785,1,scGPT,2.132
+reactome,GSK3B And BTRC:CUL1-mediated-degradation Of NFE2L2 R-HSA-9762114,1,scGPT,2.168
+reactome,GTP Hydrolysis And Joining Of 60S Ribosomal Subunit R-HSA-72706,1,scGPT,-1.973
+reactome,Generation Of Second Messenger Molecules R-HSA-202433,1,scGPT,-1.790
+reactome,Gluconeogenesis R-HSA-70263,1,scGPT,1.796
+reactome,Glucose Metabolism R-HSA-70326,1,scGPT,1.709
+reactome,"Glutamate Binding, Activation Of AMPA Receptors And Synaptic Plasticity R-HSA-399721",1,scGPT,1.376
+reactome,Glutathione Conjugation R-HSA-156590,1,UCE,1.673
+reactome,Glycolysis R-HSA-70171,1,scGPT,1.671
+reactome,Golgi-to-ER Retrograde Transport R-HSA-8856688,1,scGPT,2.027
+reactome,HDMs Demethylate Histones R-HSA-3214842,1,scGPT,1.441
+reactome,HIV Infection R-HSA-162906,1,scGPT,1.866
+reactome,HSF1 Activation R-HSA-3371511,1,UCE,1.611
+reactome,HSF1-dependent Transactivation R-HSA-3371571,1,UCE,1.631
+reactome,HSP90 Chaperone Cycle For Steroid Hormone Receptors (SHR) In Presence Of Ligand R-HSA-3371497,1,UCE,1.880
+reactome,Hedgehog Ligand Biogenesis R-HSA-5358346,1,scGPT,2.243
+reactome,Hedgehog Off State R-HSA-5610787,1,scGPT,2.032
+reactome,Hedgehog On State R-HSA-5632684,1,scGPT,2.047
+reactome,Hh Mutants Abrogate Ligand Secretion R-HSA-5387390,1,scGPT,2.185
+reactome,Hh Mutants Are Degraded By ERAD R-HSA-5362768,1,scGPT,2.185
+reactome,Host Interactions Of HIV Factors R-HSA-162909,1,scGPT,1.928
+reactome,Influenza Viral RNA Transcription And Replication R-HSA-168273,1,scGPT,-1.501
+reactome,Insulin Receptor Recycling R-HSA-77387,1,scGPT,1.764
+reactome,Interactions Of Rev With Host Cellular Proteins R-HSA-177243,1,scGPT,1.379
+reactome,Interactions Of Vpr With Host Cellular Proteins R-HSA-176033,1,scGPT,1.372
+reactome,Interferon Gamma Signaling R-HSA-877300,1,UCE,-1.901
+reactome,Interferon Signaling R-HSA-913531,1,UCE,-1.926
+reactome,Interleukin-1 Family Signaling R-HSA-446652,1,scGPT,2.019
+reactome,Interleukin-1 Signaling R-HSA-9020702,1,scGPT,2.038
+reactome,Interleukin-10 Signaling R-HSA-6783783,1,scGPT,-1.678
+reactome,Interleukin-20 Family Signaling R-HSA-8854691,1,scGPT,1.386
+reactome,Intra-Golgi And Retrograde Golgi-to-ER Traffic R-HSA-6811442,1,scGPT,1.918
+reactome,Intrinsic Pathway Of Fibrin Clot Formation R-HSA-140837,1,UCE,1.559
+reactome,Iron Uptake And Transport R-HSA-917937,1,scGPT,1.711
+reactome,KEAP1-NFE2L2 Pathway R-HSA-9755511,1,scGPT,2.029
+reactome,L13a-mediated Translational Silencing Of Ceruloplasmin Expression R-HSA-156827,1,scGPT,-1.986
+reactome,Late Endosomal Microautophagy R-HSA-9615710,1,scGPT,1.573
+reactome,Late Phase Of HIV Life Cycle R-HSA-162599,1,scGPT,1.378
+reactome,M Phase R-HSA-68886,1,scGPT,1.741
+reactome,MAPK1/MAPK3 Signaling R-HSA-5684996,1,scGPT,1.428
+reactome,MAPK6/MAPK4 Signaling R-HSA-5687128,1,scGPT,1.798
+reactome,MET Promotes Cell Motility R-HSA-8875878,1,UCE,1.759
+reactome,MHC Class II Antigen Presentation R-HSA-2132295,1,scGPT,1.801
+reactome,Macroautophagy R-HSA-1632852,1,scGPT,1.695
+reactome,Major Pathway Of rRNA Processing In Nucleolus And Cytosol R-HSA-6791226,1,scGPT,-1.954
+reactome,Membrane Trafficking R-HSA-199991,1,scGPT,1.610
+reactome,Metabolism Of Amino Acids And Derivatives R-HSA-71291,1,scGPT,1.388
+reactome,Metabolism Of Lipids R-HSA-556833,1,scGPT,1.438
+reactome,Metabolism Of Nucleotides R-HSA-15869,1,UCE,1.954
+reactome,Metabolism Of Polyamines R-HSA-351202,1,scGPT,2.199
+reactome,Metabolism Of Steroids R-HSA-8957322,1,scGPT,1.591
+reactome,Metabolism Of Vitamins And Cofactors R-HSA-196854,1,scGPT,1.730
+reactome,Metabolism Of Water-Soluble Vitamins And Cofactors R-HSA-196849,1,scGPT,1.886
+reactome,Miscellaneous Transport And Binding Events R-HSA-5223345,1,scGPT,1.582
+reactome,Mitochondrial Fatty Acid Beta-Oxidation R-HSA-77289,1,UCE,1.843
+reactome,Mitotic Anaphase R-HSA-68882,1,scGPT,1.892
+reactome,Mitotic G1 Phase And G1/S Transition R-HSA-453279,1,scGPT,1.585
+reactome,Mitotic G2-G2/M Phases R-HSA-453274,1,scGPT,1.608
+reactome,Mitotic Metaphase And Anaphase R-HSA-2555396,1,scGPT,1.892
+reactome,Mitotic Spindle Checkpoint R-HSA-69618,1,scGPT,1.389
+reactome,N-glycan Trimming In ER And Calnexin/Calreticulin Cycle R-HSA-532668,1,scGPT,1.567
+reactome,NIK To Noncanonical NF-kB Signaling R-HSA-5676590,1,scGPT,2.029
+reactome,NOD1/2 Signaling Pathway R-HSA-168638,1,UCE,-1.688
+reactome,Neddylation R-HSA-8951664,1,scGPT,1.664
+reactome,Negative Regulation Of NOTCH4 Signaling R-HSA-9604323,1,scGPT,2.099
+reactome,Nicotinate Metabolism R-HSA-196807,1,scGPT,1.477
+reactome,Non-integrin membrane-ECM Interactions R-HSA-3000171,1,UCE,1.894
+reactome,Nonsense Mediated Decay (NMD) Enhanced By Exon Junction Complex (EJC) R-HSA-975957,1,scGPT,-1.921
+reactome,Nonsense Mediated Decay (NMD) Independent Of Exon Junction Complex (EJC) R-HSA-975956,1,scGPT,-2.310
+reactome,Nuclear Events Mediated By NFE2L2 R-HSA-9759194,1,scGPT,2.194
+reactome,Nucleotide Catabolism R-HSA-8956319,1,UCE,1.829
+reactome,Orc1 Removal From Chromatin R-HSA-68949,1,scGPT,2.065
+reactome,Oxygen-dependent Proline Hydroxylation Of Hypoxia-inducible Factor Alpha R-HSA-1234176,1,scGPT,2.166
+reactome,PCP/CE Pathway R-HSA-4086400,1,scGPT,2.188
+reactome,PTEN Regulation R-HSA-6807070,1,scGPT,1.658
+reactome,Peptide Chain Elongation R-HSA-156902,1,scGPT,-2.443
+reactome,Peroxisomal Protein Import R-HSA-9033241,1,UCE,1.679
+reactome,Phase II - Conjugation Of Compounds R-HSA-156580,1,UCE,1.702
+reactome,"Plasma Lipoprotein Assembly, Remodeling, And Clearance R-HSA-174824",1,scGPT,1.497
+reactome,Plasma Lipoprotein Clearance R-HSA-8964043,1,scGPT,1.419
+reactome,Platelet Degranulation R-HSA-114608,1,UCE,1.888
+reactome,Postmitotic Nuclear Pore Complex (NPC) Reformation R-HSA-9615933,1,scGPT,1.431
+reactome,Protein Ubiquitination R-HSA-8852135,1,scGPT,1.550
+reactome,RAB GEFs Exchange GTP For GDP On RABs R-HSA-8876198,1,scGPT,1.520
+reactome,RAF/MAP Kinase Cascade R-HSA-5673001,1,scGPT,1.409
+reactome,RHO GTPases Activate PAKs R-HSA-5627123,1,UCE,1.732
+reactome,RHO GTPases Activate WASPs And WAVEs R-HSA-5663213,1,scGPT,1.443
+reactome,RHOD GTPase Cycle R-HSA-9013405,1,scGPT,1.413
+reactome,RHOG GTPase Cycle R-HSA-9013408,1,scGPT,1.483
+reactome,RMTs Methylate Histone Arginines R-HSA-3214858,1,scGPT,1.711
+reactome,RNA Pol II CTD Phosphorylation And Interaction With CE R-HSA-77075,1,scGPT,1.381
+reactome,ROS And RNS Production In Phagocytes R-HSA-1222556,1,scGPT,1.492
+reactome,RUNX1 Interacts With Co-Factors Whose Precise Effect On RUNX1 Targets Is Not Known R-HSA-8939243,1,scGPT,1.397
+reactome,RUNX1 Regulates Transcription Of Genes Involved In Differentiation Of HSCs R-HSA-8939236,1,scGPT,1.992
+reactome,Rab Regulation Of Trafficking R-HSA-9007101,1,scGPT,1.416
+reactome,Recycling Pathway Of L1 R-HSA-437239,1,scGPT,1.490
+reactome,Regulation Of APC/C Activators Between G1/S And Early Anaphase R-HSA-176408,1,scGPT,2.044
+reactome,Regulation Of Actin Dynamics For Phagocytic Cup Formation R-HSA-2029482,1,UCE,1.818
+reactome,Regulation Of Activated PAK-2p34 By Proteasome Mediated Degradation R-HSA-211733,1,scGPT,2.157
+reactome,Regulation Of Apoptosis R-HSA-169911,1,scGPT,2.145
+reactome,Regulation Of Cholesterol Biosynthesis By SREBP (SREBF) R-HSA-1655829,1,scGPT,1.448
+reactome,Regulation Of Complement Cascade R-HSA-977606,1,UCE,1.876
+reactome,Regulation Of IFNA/IFNB Signaling R-HSA-912694,1,scGPT,1.524
+reactome,Regulation Of Ornithine Decarboxylase (ODC) R-HSA-350562,1,scGPT,2.203
+reactome,Regulation Of PTEN Gene Transcription R-HSA-8943724,1,UCE,-1.799
+reactome,Regulation Of PTEN Stability And Activity R-HSA-8948751,1,scGPT,2.022
+reactome,Regulation Of RAS By GAPs R-HSA-5658442,1,scGPT,2.113
+reactome,Regulation Of RUNX2 Expression And Activity R-HSA-8939902,1,scGPT,2.243
+reactome,Regulation Of RUNX3 Expression And Activity R-HSA-8941858,1,scGPT,2.181
+reactome,Regulation Of mRNA Stability By Proteins That Bind AU-rich Elements R-HSA-450531,1,scGPT,1.911
+reactome,Respiratory Electron Transport R-HSA-611105,1,scGPT,1.762
+reactome,"Respiratory Electron Transport, ATP Synthesis By Chemiosmotic Coupling, Heat Production By Uncoupling Proteins R-HSA-163200",1,scGPT,1.722
+reactome,Response To Elevated Platelet Cytosolic Ca2+ R-HSA-76005,1,UCE,1.853
+reactome,Retrograde Neurotrophin Signaling R-HSA-177504,1,scGPT,1.545
+reactome,Retrograde Transport At Trans-Golgi-Network R-HSA-6811440,1,scGPT,1.590
+reactome,Rev-mediated Nuclear Export Of HIV RNA R-HSA-165054,1,scGPT,1.371
+reactome,Ribosomal Scanning And Start Codon Recognition R-HSA-72702,1,scGPT,-1.481
+reactome,Role Of GTSE1 In G2/M Progression After G2 Checkpoint R-HSA-8852276,1,scGPT,2.085
+reactome,Role Of Phospholipids In Phagocytosis R-HSA-2029485,1,UCE,1.944
+reactome,S Phase R-HSA-69242,1,scGPT,1.764
+reactome,SCF(Skp2)-mediated Degradation Of P27/P21 R-HSA-187577,1,scGPT,2.136
+reactome,SCF-beta-TrCP Mediated Degradation Of Emi1 R-HSA-174113,1,scGPT,2.118
+reactome,SRP-dependent Cotranslational Protein Targeting To Membrane R-HSA-1799339,1,scGPT,-1.546
+reactome,Selective Autophagy R-HSA-9663891,1,scGPT,1.397
+reactome,Selenoamino Acid Metabolism R-HSA-2408522,1,scGPT,-2.118
+reactome,Selenocysteine Synthesis R-HSA-2408557,1,scGPT,-2.326
+reactome,Senescence-Associated Secretory Phenotype (SASP) R-HSA-2559582,1,UCE,-1.619
+reactome,Separation Of Sister Chromatids R-HSA-2467813,1,scGPT,1.955
+reactome,Signaling By B Cell Receptor (BCR) R-HSA-983705,1,scGPT,1.774
+reactome,Signaling By EGFR In Cancer R-HSA-1643713,1,STATE,1.850
+reactome,Signaling By FGFR In Disease R-HSA-1226099,1,scGPT,1.491
+reactome,Signaling By Hedgehog R-HSA-5358351,1,scGPT,2.031
+reactome,Signaling By Insulin Receptor R-HSA-74752,1,scGPT,1.505
+reactome,Signaling By NOTCH R-HSA-157118,1,scGPT,1.493
+reactome,Signaling By NOTCH4 R-HSA-9013694,1,scGPT,1.987
+reactome,Signaling By NTRK1 (TRKA) R-HSA-187037,1,UCE,-1.690
+reactome,Signaling By VEGF R-HSA-194138,1,UCE,1.706
+reactome,Signaling By WNT R-HSA-195721,1,scGPT,1.559
+reactome,Stabilization Of P53 R-HSA-69541,1,scGPT,2.133
+reactome,Switching Of Origins To A Post-Replicative State R-HSA-69052,1,scGPT,2.024
+reactome,Syndecan Interactions R-HSA-3000170,1,UCE,1.777
+reactome,Synthesis Of Active Ubiquitin: Roles Of E1 And E2 Enzymes R-HSA-8866652,1,scGPT,1.380
+reactome,Synthesis Of DNA R-HSA-69239,1,scGPT,1.984
+reactome,TCF Dependent Signaling In Response To WNT R-HSA-201681,1,scGPT,1.620
+reactome,TCR Signaling R-HSA-202403,1,scGPT,1.581
+reactome,TNFR2 Non-Canonical NF-kB Pathway R-HSA-5668541,1,scGPT,1.952
+reactome,TP53 Regulates Transcription Of Additional Cell Cycle Genes With Uncertain Roles In P53 Pathway R-HSA-6804115,1,scGPT,-1.638
+reactome,Telomere Maintenance R-HSA-157579,1,scGPT,1.388
+reactome,Transcriptional Regulation By RUNX1 R-HSA-8878171,1,scGPT,1.616
+reactome,Transcriptional Regulation By RUNX2 R-HSA-8878166,1,scGPT,2.090
+reactome,Transcriptional Regulation By RUNX3 R-HSA-8878159,1,scGPT,1.928
+reactome,Transcriptional Regulation By Small RNAs R-HSA-5578749,1,scGPT,1.401
+reactome,Transferrin Endocytosis And Recycling R-HSA-917977,1,scGPT,1.764
+reactome,Translation Initiation Complex Formation R-HSA-72649,1,scGPT,-1.498
+reactome,Translation Of Structural Proteins R-HSA-9683701,1,scGPT,1.618
+reactome,Transport Of Small Molecules R-HSA-382551,1,scGPT,1.762
+reactome,UCH Proteinases R-HSA-5689603,1,scGPT,2.219
+reactome,Ub-specific Processing Proteases R-HSA-5689880,1,scGPT,1.946
+reactome,Ubiquitin Mediated Degradation Of Phosphorylated Cdc25A R-HSA-69601,1,scGPT,2.147
+reactome,Ubiquitin-dependent Degradation Of Cyclin D R-HSA-75815,1,scGPT,2.231
+reactome,VEGFA-VEGFR2 Pathway R-HSA-4420097,1,UCE,1.700
+reactome,Vesicle-mediated Transport R-HSA-5653656,1,scGPT,1.527
+reactome,Vif-mediated Degradation Of APOBEC3G R-HSA-180585,1,scGPT,2.169
+reactome,Viral Messenger RNA Synthesis R-HSA-168325,1,scGPT,1.441
+reactome,Viral mRNA Translation R-HSA-192823,1,scGPT,-2.254
+reactome,Vpu Mediated Degradation Of CD4 R-HSA-180534,1,scGPT,2.034
+reactome,WNT5A-dependent Internalization Of FZD4 R-HSA-5099900,1,scGPT,1.590
+reactome,mTORC1-mediated Signaling R-HSA-166208,1,scGPT,1.430
+reactome,p53-Dependent G1 DNA Damage Response R-HSA-69563,1,scGPT,2.034
+reactome,rRNA Processing In Nucleus And Cytosol R-HSA-8868773,1,scGPT,-1.752
+reactome,rRNA Processing R-HSA-72312,1,scGPT,-1.662
+reactome,trans-Golgi Network Vesicle Budding R-HSA-199992,1,scGPT,1.378

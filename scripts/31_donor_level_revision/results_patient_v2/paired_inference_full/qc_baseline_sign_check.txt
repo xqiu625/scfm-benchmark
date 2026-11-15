@@ -1,0 +1,3 @@
+QC+cells+cohort baseline (L2 C=0.3, patient-level, within-COVID n=240/25 fatal):
+AUC = 0.6270 (as-fit)
+Note: this baseline (with cohort covariates) differs from Job K's original QC-only-no-cohort model (0.376/0.624 sign-flip).

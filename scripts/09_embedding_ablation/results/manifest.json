@@ -1,0 +1,41 @@
+{
+  "stage": "09_embedding_ablation",
+  "status": "success",
+  "metadata_complete": false,
+  "description": "09 - Embedding Ablation (auto-derived from README; metadata not curated)",
+  "slurm_jobs": [],
+  "run_dates": [],
+  "generating_code": [],
+  "parameters": {},
+  "claims": [],
+  "primary_outputs": [],
+  "superseded_outputs": {},
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "results/embedding_ablations.csv",
+      "size_bytes": 12674,
+      "sha256": "437814cdf8d552e32b878f61e5d97a667004ebad2399271f6e7515ecdd9bf0ec"
+    },
+    {
+      "path": "results/embedding_ablations.json",
+      "size_bytes": 37123,
+      "sha256": "dec500044da7071d11f091cf64069778e9a6169ea71fd9d007f97f8222fe4ce4"
+    }
+  ],
+  "n_outputs": 2,
+  "in_repo_outputs": true,
+  "no_results_reason": null,
+  "git_commit": "2f56a829ff085fbb57787e32d3f4238a75a7a93c",
+  "runtime_seconds": null,
+  "package_versions": null,
+  "config": "configs/hpcc.yaml",
+  "environment_ref": "environment.yml",
+  "provenance": {
+    "reconstructed_post_hoc": true,
+    "generated_at": "2026-06-07T19:32:27+00:00",
+    "generated_by": "scripts/99_audit/code/emit_manifests.py",
+    "verified_in": "docs/claim-traceability.md (2026-06-06 traceability audit)",
+    "note": "Manifest reconstructed during the 2026-06-06/07 audit (item A001). Outputs were produced on the HPCC before the repo restructure; sizes + sha256 + git_commit are verifiable, but run-time wall-clock and package versions were not captured in-repo and are recorded as null rather than back-filled. When metadata_complete=false, slurm_jobs/parameters/claims were not curated for this stage \u2014 the output inventory + hashes + git pin are still authoritative."
+  }
+}

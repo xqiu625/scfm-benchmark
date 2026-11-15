@@ -1,0 +1,72 @@
+# Exclude from Docker build context — saves ~150 MB and avoids stale-data confusion
+
+# Git + IDE
+.git/
+.github/
+.vscode/
+.idea/
+.claude/
+.codex/
+AGENTS.md
+CLAUDE.md
+claude-code_output/
+claude_output/
+codex_output/
+
+# Caches
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+*.egg-info/
+build/
+dist/
+
+# OS / editor cruft
+.DS_Store
+*~
+*.swp
+
+# Large historical artifacts (not needed for runtime)
+archive/
+legacy/
+docs/reports/
+figures/
+scripts/*/figures/
+scripts/*/results/
+scripts/*/logs/
+reports/manuscript/figures/
+
+# HPCC-only data (mounted at runtime, not baked in)
+data/
+01_DATA/
+02_EMBEDDINGS/
+05_RESULTS/
+06_LOGS/
+07_CONTAINERS/
+03_MODELS/
+*.h5ad
+*.ckpt
+*.safetensors
+
+# Manuscript build outputs
+reports/manuscript/*.pdf
+reports/manuscript/*.aux
+reports/manuscript/*.log
+reports/manuscript/*.out
+reports/manuscript/*.bbl
+reports/manuscript/*.blg
+reports/manuscript/*.fdb_latexmk
+reports/manuscript/*.fls
+reports/manuscript/*.synctex.gz
+reports/manuscript/*.toc
+reports/manuscript/*.tex.bak.*
+
+# Local env / overrides
+.env
+.envrc
+*.local

@@ -1,0 +1,179 @@
+% R6 — unified masking-based gene attribution + cross-model GSEA comparison
+% (masking thread completed 2026-09-11: 5 models, full-cohort runs, GSEA,
+% joint-occlusion dose control; all numbers verified against
+% scripts/31_donor_level_revision/results_gene_attribution_gsea/)
+\subsection{The five models prioritize different biological programs for the same prediction, and pathway-level signal is decoupled from predictive performance}
+\label{ssec:r6_attribution_gsea}
+
+The analyses above ask how well each model predicts. Here we ask a different
+question: when the models' representations are mapped back to genes, do they
+use the \emph{same biology} to predict mortality? We built a unified
+masking-based (leave-one-gene-out) attribution pipeline
+(Section~\ref{ssec:methods_masking}; Figure~\ref{fig:masking_design}): for
+every cell, the same top-256
+expressed candidate genes were selected from the intersection of the models'
+vocabularies; each gene was occluded in turn through the model's native
+attention mechanism, and the change in the mortality-classifier score,
+$\Delta(g, \text{cell}) = s_\text{full} - s_\text{masked}(g)$, was averaged
+across all 10{,}737 cells into a per-gene mortality attribution for each
+model. The classifier is a single in-sample logistic regression per model
+($C = 0.3$) that defines each model's mortality direction; its AUC is an
+internal direction-quality diagnostic, not an out-of-fold performance
+estimate, and is not comparable to the cross-validated AUCs of
+Section~\ref{ssec:r1_within_covid}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/v2/Figure_masking_design.png}
+\caption{\textbf{Unified masking-based gene attribution across the five
+foundation models.} Every model receives the same cells and, per cell, the
+same top-256 expressed candidate genes from the intersection of the five
+model vocabularies, and an intact-cell mortality-classifier score is
+established before any gene is removed (Stages 1--2). Each candidate gene is
+then occluded in turn and the change in score,
+$\Delta(g, \text{cell}) = s_\text{full} - s_\text{masked}(g)$, is recorded
+(Stage 3). Occlusion uses each architecture's native attention mechanism ---
+attention-mask flag for \model{Geneformer}, physical sequence deletion for
+\model{STATE} (the only model whose mask flag does not reach attention),
+padding-mask flag for \model{scGPT} and \model{UCE}, and an
+inverted-polarity mask flag for \model{scPRINT-2} --- so the measured
+quantity is identical across architectures (Stage 4). Per-gene deltas are
+averaged across the 10{,}737 cells into a ranked list per model (Stage 5)
+and taken to prerank GSEA for the cross-model pathway comparison (Stage 6).}
+\label{fig:masking_design}
+\end{figure}
+
+\textbf{The five models agree on the task but not on the genes.} Each
+model's classifier recovered the mortality direction from its own
+256-gene-restricted embeddings (patient-level in-sample AUC 0.760--0.990;
+Table~\ref{tab:attribution_diagnostics}), yet the per-gene attributions were
+only weakly concordant across models: pairwise Spearman rank correlations of
+the full ranked lists ranged from $-0.03$ to $0.40$ on the 3{,}917 genes
+ranked by all five models. \model{Geneformer}'s top genes were dominated by
+ribosomal proteins (RPLP2, RPL24, RPL18A) with TIMP1; \model{scGPT}'s by
+glycolytic and metabolic enzymes (ALDOA, G6PD, PKM, SHMT2); \model{UCE}'s by
+myeloid and tissue-remodeling genes (AXL, C1QA, PLCG2, IL1R2);
+\model{STATE}'s by TIMP1, RSU1, TNFSF13B and PFN1; \model{scPRINT-2}'s by
+housekeeping genes with no coherent theme. Full 5-way sign agreement is more
+common than the pairwise correlations alone suggest: 531 of the 3{,}917
+commonly-ranked genes (365 positive, 166 negative) carry the same sign in
+all five models, exceeding the $\sim$272 expected under the models'
+independent marginal sign rates. AMFR, SHMT2 and ARID5B are among the
+positively-agreeing genes (AMFR and ARID5B ranking 9th--17th in
+\model{STATE} and \model{UCE}, SHMT2 5th in \model{scGPT} and 14th in
+\model{STATE}), and CCL5 is negatively attributed in all five (ODC1 in
+four, the fifth indistinguishable from zero) --- but several prominent
+platelet genes carry opposite signs across models: PPBP is among the most
+negative genes for \model{Geneformer} and \model{scGPT} yet mildly positive
+for \model{STATE} and \model{UCE}, and TMSB4X is positive for
+\model{Geneformer} and \model{scGPT} but the fifth-most negative gene for
+\model{STATE} (Figure~\ref{fig:attribution_gsea}A;
+Supplementary Note~\ref{sn:attribution_gsea}).
+
+\textbf{Pathway-level signal is model-specific, not shared.} Prerank GSEA
+(Hallmark, KEGG, Reactome; FDR $q < 0.25$) on each model's ranked list found
+\emph{no pathway significant in four or more of the five models}. The shared
+structure that does exist is pairwise or three-way, and frequently
+sign-discordant (Figure~\ref{fig:attribution_gsea}B): oxidative
+phosphorylation is the one program enriched positively in three models
+(\model{Geneformer}, \model{scGPT}, \model{UCE}); interferon-alpha and
+interferon-gamma responses are positively enriched in \model{Geneformer}
+\emph{and} \model{scGPT} but negatively in \model{UCE}; the
+TNF-$\alpha$/NF-$\kappa$B and allograft-rejection programs are
+significantly \emph{negative} in \model{scGPT} and \model{UCE} and trend
+the same (negative) direction, non-significantly, in \model{Geneformer}
+($NES=-1.46$ and $-1.22$); and immunoregulatory signaling is the true
+sign-flip among the three --- significantly \emph{positive} in
+\model{Geneformer} (Reactome, Immunoregulatory Interactions Between A
+Lymphoid And A Non-Lymphoid Cell, $NES=2.09$) yet significantly negative in
+\model{scGPT} and \model{UCE}. \model{UCE} additionally
+carries its own axis --- extracellular-matrix organization and
+complement/coagulation --- not shared with any other model. \model{scGPT}
+and \model{UCE} produced broad pathway profiles (28--63 and 23--70
+significant terms respectively in Hallmark/KEGG, and 257 and 82 in
+Reactome), \model{Geneformer} and \model{STATE} narrow ones (2--23 and
+2--7), and \model{scPRINT-2} none at all (0 of 48 Hallmark, 0 of 252 KEGG,
+0 of 864 Reactome terms).
+
+\textbf{Predictive performance and pathway signal are decoupled.}
+\model{scPRINT-2}'s mortality classifier is the second-best of the five
+(patient-level in-sample AUC 0.963) yet has zero significant pathways, while
+\model{UCE}'s is the weakest (0.760) yet has one of the broadest pathway
+signatures (Table~\ref{tab:attribution_diagnostics}). We adjudicated
+\model{scPRINT-2}'s null directly. Its single-gene attributions have a
+noise-to-signal ratio of 9.4 (median within-gene SD over across-gene SD,
+versus 0.4--1.6 for the other models), raising the possibility of redundant
+or compensatory gene encoding masking a real program. A joint-occlusion
+dose control rules this out: jointly masking the top-10, top-30, or top-128
+attributed genes (up to half of each cell's candidate sentence) moved the
+score by no more than masking matched random gene sets (paired tests,
+$n = 10{,}736$ cells, $P = 0.21$--$0.93$ across tiers and polarities), while
+the naive additive prediction from the single-gene attributions was 55--750
+times larger. The classifier's mortality direction in \model{scPRINT-2} is
+therefore decoupled from gene identity at every occlusion granularity
+tested; whether this reflects genuinely diffuse biology or a limitation of
+gene-token occlusion for this architecture cannot be resolved with the
+present method and would require an independent attribution method as a
+cross-check.
+
+\textbf{Caveats.} Three scope notes apply to this section. First, the
+candidate gene universe differed across models by construction: it was the
+vocabulary intersection of the models built up to each run (11{,}984 genes
+for \model{Geneformer} and \model{STATE}, 11{,}977 after intersecting
+\model{scGPT}'s vocabulary, and progressively smaller once \model{UCE}'s and
+\model{scPRINT-2}'s vocabularies were intersected); all cross-model
+comparisons here are therefore computed post hoc on the 3{,}917 genes ranked
+by all five models, and pathway coverage differences partly reflect these
+universe differences. Second, \model{UCE}'s released inference path passes a
+float (not boolean) padding mask to its transformer, which PyTorch treats as
+an additive attention bias rather than an exclusion; occlusion is only
+defined for \model{UCE} after a one-line boolean cast, which we applied
+uniformly to full and occluded inputs --- its attributions thus describe a
+minimally corrected variant of the released model. Third, cross-model
+comparisons are rank-based only: each classifier's logit scale is its own,
+so attribution magnitudes are not comparable across models.
+
+% ---- Table (inline; numbers verified 2026-09-11 against
+% results_gene_attribution_gsea/<model>_masking/classifier_diagnostics.csv,
+% *_ranked.csv, and the three *_gsea_*.csv per model) ----
+\begin{table}[htbp]
+\centering
+\caption{Masking-based gene attribution: per-model classifier diagnostics
+(in-sample, 256-gene-restricted embeddings, canonical within-COVID cohort of
+240 patients / 25 fatal, 10{,}737 cells) and GSEA breadth (FDR $q < 0.25$).
+Noise/signal = median within-gene attribution SD divided by the across-gene
+SD of mean attributions. AUCs are internal direction-quality diagnostics,
+not out-of-fold performance estimates.}
+\label{tab:attribution_diagnostics}
+\small
+\begin{tabular}{lcccccc}
+\hline
+Model & Cell AUC & Patient AUC & Ranked genes & Noise/signal & Sig. terms (H/K/R) \\
+\hline
+\model{Geneformer} & 0.893 & 0.990 & 5{,}038 & 0.78 & 6 / 23 / 2 \\
+\model{STATE} & 0.844 & 0.933 & 5{,}000 & 0.39 & 5 / 7 / 2 \\
+\model{scGPT} & 0.802 & 0.933 & 4{,}987 & 1.62 & 28 / 63 / 257 \\
+\model{UCE} & 0.680 & 0.760 & 4{,}850 & 0.44 & 23 / 70 / 82 \\
+\model{scPRINT-2} & 0.857 & 0.963 & 4{,}850 & 9.43 & 0 / 0 / 0 \\
+\hline
+\end{tabular}
+\end{table}
+
+% ---- Figure block (PDF at reports/manuscript/figures/v2/Figure_gene_attribution_gsea.pdf;
+% numbering provisional, assigned at P2 assembly) ----
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/v2/Figure_gene_attribution_gsea.pdf}
+\caption{\textbf{Masking-based gene attribution and pathway emphasis across
+five foundation models.} \textbf{(A)} Union of each model's top-7
+mortality-attributed genes; color is the gene's rank within that model's own
+ranked list (darker = more important), and $+$/$-$ marks the attribution
+sign. \textbf{(B)} GSEA NES for pathways significant (FDR $q < 0.25$) in at
+least two models, plus the strongest model-specific term of each model that
+has one (below the divider); dots mark significance. No pathway is significant in four or more
+models; \model{scPRINT-2}'s empty column is its complete GSEA null,
+adjudicated by the joint-occlusion dose control as occlusion insensitivity
+of the architecture (redundant encoding excluded). Comparisons are
+rank-based only.}
+\label{fig:attribution_gsea}
+\end{figure}

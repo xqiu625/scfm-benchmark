@@ -1,0 +1,29 @@
+{
+  "_provenance": {
+    "source": "scCOVID-19/COVIDPBMC, myeloid/myeloid_signature_scoring_publish.ipynb, cell 7",
+    "source_url": "https://github.com/scCOVID-19/COVIDPBMC/blob/9f51fe9a9ffb45bf3fbd4c302fe6e3f8979f5deb/myeloid/myeloid_signature_scoring_publish.ipynb",
+    "pinned_commit": "9f51fe9a9ffb45bf3fbd4c302fe6e3f8979f5deb",
+    "notebook_file_sha256": "6f5b470f044b22b1ff8cd89f2d18707400c0b3f4b0b33dd2931f7ee5c9089211",
+    "extraction_method": "raw.githubusercontent.com fetch of the pinned-commit notebook, parsed as JSON, cell 7's source executed in an isolated namespace to recover the three literal Python list assignments exactly as written -- not retyped by hand, not re-queried from a live GO/MSigDB API",
+    "extracted": "2026-10-15",
+    "note_on_identity": "These are the EXACT gene symbols the Stephenson et al. 2021 Nature Medicine authors hardcoded and scored via sc.tl.score_genes for Fig. 2f / Supplementary Table 7 -- a frozen snapshot checked into their own notebook, not today's live MSigDB membership for the same-named gene sets. This asset is DISTINCT from gene_sets/HALLMARK_INTERFERON_ALPHA_RESPONSE_msigdb.json: only 24 of IFN_genes' 99 symbols overlap the 97-symbol Hallmark set (see gene_sets/README.md and results/stephenson_author_code_investigation_v1.md Sec.1). Freezing this asset does NOT itself select it as this project's positive-control gene set -- that remains Cindy's decision, per codex_output/20261015_142903.md Sec.5 item 4."
+  },
+  "IFN_genes": {
+    "author_variable_name": "IFN_genes",
+    "comment_cited_msigdb_card": "https://www.gsea-msigdb.org/gsea/msigdb/cards/GO_RESPONSE_TO_TYPE_I_INTERFERON",
+    "n_symbols": 99,
+    "geneSymbols": ["ABCE1", "ADAR", "BST2", "CACTIN", "CDC37", "CNOT7", "DCST1", "EGR1", "FADD", "GBP2", "HLA-A", "HLA-B", "HLA-C", "HLA-E", "HLA-F", "HLA-G", "HLA-H", "HSP90AB1", "IFI27", "IFI35", "IFI6", "IFIT1", "IFIT2", "IFIT3", "IFITM1", "IFITM2", "IFITM3", "IFNA1", "IFNA10", "IFNA13", "IFNA14", "IFNA16", "IFNA17", "IFNA2", "IFNA21", "IFNA4", "IFNA5", "IFNA6", "IFNA7", "IFNA8", "IFNAR1", "IFNAR2", "IFNB1", "IKBKE", "IP6K2", "IRAK1", "IRF1", "IRF2", "IRF3", "IRF4", "IRF5", "IRF6", "IRF7", "IRF8", "IRF9", "ISG15", "ISG20", "JAK1", "LSM14A", "MAVS", "METTL3", "MIR21", "MMP12", "MUL1", "MX1", "MX2", "MYD88", "NLRC5", "OAS1", "OAS2", "OAS3", "OASL", "PSMB8", "PTPN1", "PTPN11", "PTPN2", "PTPN6", "RNASEL", "RSAD2", "SAMHD1", "SETD2", "SHFL", "SHMT2", "SP100", "STAT1", "STAT2", "TBK1", "TREX1", "TRIM56", "TRIM6", "TTLL12", "TYK2", "UBE2K", "USP18", "WNT5A", "XAF1", "YTHDF2", "YTHDF3", "ZBP1"]
+  },
+  "TNF_genes": {
+    "author_variable_name": "TNF_genes",
+    "comment_cited_msigdb_card": "https://www.gsea-msigdb.org/gsea/msigdb/cards/HALLMARK_TNFA_SIGNALING_VIA_NFKB.html",
+    "n_symbols": 200,
+    "geneSymbols": ["ABCA1", "ACKR3", "AREG", "ATF3", "ATP2B1", "B4GALT1", "B4GALT5", "BCL2A1", "BCL3", "BCL6", "BHLHE40", "BIRC2", "BIRC3", "BMP2", "BTG1", "BTG2", "BTG3", "CCL2", "CCL20", "CCL4", "CCL5", "CCN1", "CCND1", "CCNL1", "CCRL2", "CD44", "CD69", "CD80", "CD83", "CDKN1A", "CEBPB", "CEBPD", "CFLAR", "CLCF1", "CSF1", "CSF2", "CXCL1", "CXCL10", "CXCL11", "CXCL2", "CXCL3", "CXCL6", "DDX58", "DENND5A", "DNAJB4", "DRAM1", "DUSP1", "DUSP2", "DUSP4", "DUSP5", "EDN1", "EFNA1", "EGR1", "EGR2", "EGR3", "EHD1", "EIF1", "ETS2", "F2RL1", "F3", "FJX1", "FOS", "FOSB", "FOSL1", "FOSL2", "FUT4", "G0S2", "GADD45A", "GADD45B", "GCH1", "GEM", "GFPT2", "GPR183", "HBEGF", "HES1", "ICAM1", "ICOSLG", "ID2", "IER2", "IER3", "IER5", "IFIH1", "IFIT2", "IFNGR2", "IL12B", "IL15RA", "IL18", "IL1A", "IL1B", "IL23A", "IL6", "IL6ST", "IL7R", "INHBA", "IRF1", "IRS2", "JAG1", "JUN", "JUNB", "KDM6B", "KLF10", "KLF2", "KLF4", "KLF6", "KLF9", "KYNU", "LAMB3", "LDLR", "LIF", "LITAF", "MAFF", "MAP2K3", "MAP3K8", "MARCKS", "MCL1", "MSC", "MXD1", "MYC", "NAMPT", "NFAT5", "NFE2L2", "NFIL3", "NFKB1", "NFKB2", "NFKBIA", "NFKBIE", "NINJ1", "NR4A1", "NR4A2", "NR4A3", "OLR1", "PANX1", "PDE4B", "PDLIM5", "PER1", "PFKFB3", "PHLDA1", "PHLDA2", "PLAU", "PLAUR", "PLEK", "PLK2", "PLPP3", "PMEPA1", "PNRC1", "PPP1R15A", "PTGER4", "PTGS2", "PTPRE", "PTX3", "RCAN1", "REL", "RELA", "RELB", "RHOB", "RIPK2", "RNF19B", "SAT1", "SDC4", "SERPINB2", "SERPINB8", "SERPINE1", "SGK1", "SIK1", "SLC16A6", "SLC2A3", "SLC2A6", "SMAD3", "SNN", "SOCS3", "SOD2", "SPHK1", "SPSB1", "SQSTM1", "STAT5A", "TANK", "TAP1", "TGIF1", "TIPARP", "TLR2", "TNC", "TNF", "TNFAIP2", "TNFAIP3", "TNFAIP6", "TNFAIP8", "TNFRSF9", "TNFSF9", "TNIP1", "TNIP2", "TRAF1", "TRIB1", "TRIP10", "TSC22D1", "TUBB2A", "VEGFA", "YRDC", "ZBTB10", "ZC3H12A", "ZFP36"]
+  },
+  "JAK_genes": {
+    "author_variable_name": "JAK_genes",
+    "comment_cited_msigdb_card": "https://www.gsea-msigdb.org/gsea/msigdb/cards/HALLMARK_IL6_JAK_STAT3_SIGNALING",
+    "n_symbols": 87,
+    "geneSymbols": ["A2M", "ACVR1B", "ACVRL1", "BAK1", "CBL", "CCL7", "CCR1", "CD14", "CD36", "CD38", "CD44", "CD9", "CNTFR", "CRLF2", "CSF1", "CSF2", "CSF2RA", "CSF2RB", "CSF3R", "CXCL1", "CXCL10", "CXCL11", "CXCL13", "CXCL3", "CXCL9", "DNTT", "EBI3", "FAS", "GRB2", "HAX1", "HMOX1", "IFNAR1", "IFNGR1", "IFNGR2", "IL10RB", "IL12RB1", "IL13RA1", "IL15RA", "IL17RA", "IL17RB", "IL18R1", "IL1B", "IL1R1", "IL1R2", "IL2RA", "IL2RG", "IL3RA", "IL4R", "IL6", "IL6ST", "IL7", "IL9R", "INHBE", "IRF1", "IRF9", "ITGA4", "ITGB3", "JUN", "LEPR", "LTB", "LTBR", "MAP3K8", "MYD88", "OSMR", "PDGFC", "PF4", "PIK3R5", "PIM1", "PLA2G2A", "PTPN1", "PTPN11", "PTPN2", "REG1A", "SOCS1", "SOCS3", "STAM2", "STAT1", "STAT2", "STAT3", "TGFB1", "TLR2", "TNF", "TNFRSF12A", "TNFRSF1A", "TNFRSF1B", "TNFRSF21", "TYK2"]
+  }
+}

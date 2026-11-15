@@ -1,0 +1,27 @@
+# configs/hpcc.yaml
+# UCR HPCC environment. Merged on top of defaults.yaml.
+# NOTE: the canonical HPCC working copy lives at 302006/ (not 302006_updategit/);
+# this git mirror is for audit/publication. Absolute /bigdata paths below point at
+# the HPCC working copy and are intentionally left under the legacy 302006/ name.
+# This file is the authoritative declaration of the cluster base path; code reads it
+# through src/scfm_benchmark/config.py (the loader) — do not duplicate paths elsewhere.
+
+project_root: /bigdata/godziklab/shared/Xinru/302006
+data_root: /bigdata/godziklab/shared/Xinru/302006/data
+logs_dir: /bigdata/godziklab/shared/Xinru/302006/logs
+
+environment:
+  # Per-FM conda envs (see docs/tooling-reference.md and reference_302006_envs):
+  geneformer_env: scgpt_finetune
+  state_env: state_env
+  uce_env: state_env
+  scgpt_env: scpeft_env
+  python_no_user_site: true   # export PYTHONNOUSERSITE=1
+
+resources:
+  partition: gpu              # short_gpu caps at 2h; use gpu --qos=gpu for long jobs
+  qos: gpu
+  memory: 256gb
+  cpus: 8
+  time: "infinite"            # always request max walltime (see SLURM walltime memory)
+  mail_type: END,FAIL

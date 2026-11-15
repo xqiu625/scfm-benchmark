@@ -1,0 +1,46 @@
+{
+  "stage": "11_interpretability",
+  "status": "success",
+  "metadata_complete": false,
+  "description": "11 - Interpretability (auto-derived from README; metadata not curated)",
+  "slurm_jobs": [],
+  "run_dates": [],
+  "generating_code": [],
+  "parameters": {},
+  "claims": [],
+  "primary_outputs": [],
+  "superseded_outputs": {},
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "results/disease_programs_STATE.csv",
+      "size_bytes": 2691,
+      "sha256": "e9ae4449057872ef8a26b322e55ec37dfb4f0184cbc937579526213890003146"
+    },
+    {
+      "path": "results/disease_programs_UCE.csv",
+      "size_bytes": 2647,
+      "sha256": "1e6a185ebf8d2f7e33965cf2611784018026bfebbe374d3e084f1050651d07ac"
+    },
+    {
+      "path": "results/program_comparison.csv",
+      "size_bytes": 616,
+      "sha256": "0113096d24f4ab2b61da1c28f61184d20e5269e99f5db8756dc53072a0b9b1a2"
+    }
+  ],
+  "n_outputs": 3,
+  "in_repo_outputs": true,
+  "no_results_reason": null,
+  "git_commit": "2f56a829ff085fbb57787e32d3f4238a75a7a93c",
+  "runtime_seconds": null,
+  "package_versions": null,
+  "config": "configs/hpcc.yaml",
+  "environment_ref": "environment.yml",
+  "provenance": {
+    "reconstructed_post_hoc": true,
+    "generated_at": "2026-06-07T19:32:27+00:00",
+    "generated_by": "scripts/99_audit/code/emit_manifests.py",
+    "verified_in": "docs/claim-traceability.md (2026-06-06 traceability audit)",
+    "note": "Manifest reconstructed during the 2026-06-06/07 audit (item A001). Outputs were produced on the HPCC before the repo restructure; sizes + sha256 + git_commit are verifiable, but run-time wall-clock and package versions were not captured in-repo and are recorded as null rather than back-filled. When metadata_complete=false, slurm_jobs/parameters/claims were not curated for this stage \u2014 the output inventory + hashes + git pin are still authoritative."
+  }
+}

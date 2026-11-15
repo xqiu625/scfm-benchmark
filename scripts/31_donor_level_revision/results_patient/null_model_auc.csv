@@ -1,0 +1,5 @@
+feature_set,variant,n_donors,n_fatal_donors,auc_oof_donor,ci_lo,ci_hi
+log_cell_count,cell-expanded,238,29,0.5674,0.4424,0.689
+log_cell_count,donor-level,238,29,0.6316,0.5219,0.7432
+log_cell_count+disease,cell-expanded,238,29,0.5308,0.4132,0.6483
+log_cell_count+disease,donor-level,238,29,0.6233,0.5092,0.7275

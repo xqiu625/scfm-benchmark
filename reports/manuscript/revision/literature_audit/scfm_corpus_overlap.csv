@@ -1,0 +1,51 @@
+cohort,events,model,overlap_status,basis
+Ren 2021 (GSE158055),12,scGPT,controls only,"CELLxGENE census 2023-05-15, explicitly filtered to samples without disease conditions — so diseased donors from these collections are excluded and only their healthy controls could be present"
+Ren 2021 (GSE158055),12,UCE,present,"IMA built from CXG census 2023-07-10 (33.9M human+mouse cells, 285 datasets); no disease filter reported, so diseased cells from CXG collections are eligible"
+Ren 2021 (GSE158055),12,scPRINT-2,present,"cellxgene mid-2023 release, primary human/mouse cells, no disease filter reported"
+Ren 2021 (GSE158055),12,Geneformer,present (V1),"Genecorpus-30M composition table (Theodoris 2023 Suppl. Table 1) lists Ren et al. 'COVID-19 immune features revealed by a large-scale single-cell...' as 2 datasets, 1,402,746 cells passed QC"
+Ren 2021 (GSE158055),12,STATE,unlikely,perturbation model: ST trained on Tahoe-100M / Replogle-Nadig; the 167M-cell observational embedding corpus is not enumerated in the quotes on file
+Stephenson 2021 (E-MTAB-10026),8,scGPT,controls only,"CELLxGENE census 2023-05-15, explicitly filtered to samples without disease conditions — so diseased donors from these collections are excluded and only their healthy controls could be present"
+Stephenson 2021 (E-MTAB-10026),8,UCE,present,"IMA built from CXG census 2023-07-10 (33.9M human+mouse cells, 285 datasets); no disease filter reported, so diseased cells from CXG collections are eligible"
+Stephenson 2021 (E-MTAB-10026),8,scPRINT-2,present,"cellxgene mid-2023 release, primary human/mouse cells, no disease filter reported"
+Stephenson 2021 (E-MTAB-10026),8,Geneformer,absent (V1); unverified (V2),"not present in the Genecorpus-30M composition table (561 datasets, citations checked). Genecorpus-104M's list is cited to Chen & Venkatesh et al., Nat Comput Sci 2026, not yet retrievable via Crossref/PubMed, and the HF repo ships only tokenized shards"
+Stephenson 2021 (E-MTAB-10026),8,STATE,unlikely,perturbation model: ST trained on Tahoe-100M / Replogle-Nadig; the 167M-cell observational embedding corpus is not enumerated in the quotes on file
+COMBAT 2022,16,scGPT,controls only,"CELLxGENE census 2023-05-15, explicitly filtered to samples without disease conditions — so diseased donors from these collections are excluded and only their healthy controls could be present"
+COMBAT 2022,16,UCE,present,"IMA built from CXG census 2023-07-10 (33.9M human+mouse cells, 285 datasets); no disease filter reported, so diseased cells from CXG collections are eligible"
+COMBAT 2022,16,scPRINT-2,present,"cellxgene mid-2023 release, primary human/mouse cells, no disease filter reported"
+COMBAT 2022,16,Geneformer,absent (V1); unverified (V2),"not present in the Genecorpus-30M composition table (561 datasets, citations checked). Genecorpus-104M's list is cited to Chen & Venkatesh et al., Nat Comput Sci 2026, not yet retrievable via Crossref/PubMed, and the HF repo ships only tokenized shards"
+COMBAT 2022,16,STATE,unlikely,perturbation model: ST trained on Tahoe-100M / Replogle-Nadig; the 167M-cell observational embedding corpus is not enumerated in the quotes on file
+Liu 2021 (GSE161918),4,scGPT,controls only,"CELLxGENE census 2023-05-15, explicitly filtered to samples without disease conditions — so diseased donors from these collections are excluded and only their healthy controls could be present"
+Liu 2021 (GSE161918),4,UCE,present,"IMA built from CXG census 2023-07-10 (33.9M human+mouse cells, 285 datasets); no disease filter reported, so diseased cells from CXG collections are eligible"
+Liu 2021 (GSE161918),4,scPRINT-2,present,"cellxgene mid-2023 release, primary human/mouse cells, no disease filter reported"
+Liu 2021 (GSE161918),4,Geneformer,absent (V1); unverified (V2),"not present in the Genecorpus-30M composition table (561 datasets, citations checked). Genecorpus-104M's list is cited to Chen & Venkatesh et al., Nat Comput Sci 2026, not yet retrievable via Crossref/PubMed, and the HF repo ships only tokenized shards"
+Liu 2021 (GSE161918),4,STATE,unlikely,perturbation model: ST trained on Tahoe-100M / Replogle-Nadig; the 167M-cell observational embedding corpus is not enumerated in the quotes on file
+Schulte-Schrepping 2020,3,scGPT,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Schulte-Schrepping 2020,3,UCE,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Schulte-Schrepping 2020,3,scPRINT-2,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Schulte-Schrepping 2020,3,Geneformer,absent (V1); unverified (V2),"not present in the Genecorpus-30M composition table (561 datasets, citations checked). Genecorpus-104M's list is cited to Chen & Venkatesh et al., Nat Comput Sci 2026, not yet retrievable via Crossref/PubMed, and the HF repo ships only tokenized shards"
+Schulte-Schrepping 2020,3,STATE,unlikely,perturbation model: ST trained on Tahoe-100M / Replogle-Nadig; the 167M-cell observational embedding corpus is not enumerated in the quotes on file
+Bernardes 2020,2,scGPT,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Bernardes 2020,2,UCE,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Bernardes 2020,2,scPRINT-2,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Bernardes 2020,2,Geneformer,absent (V1); unverified (V2),"not present in the Genecorpus-30M composition table (561 datasets, citations checked). Genecorpus-104M's list is cited to Chen & Venkatesh et al., Nat Comput Sci 2026, not yet retrievable via Crossref/PubMed, and the HF repo ships only tokenized shards"
+Bernardes 2020,2,STATE,unlikely,perturbation model: ST trained on Tahoe-100M / Replogle-Nadig; the 167M-cell observational embedding corpus is not enumerated in the quotes on file
+Cillo 2021 (GSE180578),12,scGPT,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Cillo 2021 (GSE180578),12,UCE,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Cillo 2021 (GSE180578),12,scPRINT-2,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Cillo 2021 (GSE180578),12,Geneformer,absent (V1); unverified (V2),"not present in the Genecorpus-30M composition table (561 datasets, citations checked). Genecorpus-104M's list is cited to Chen & Venkatesh et al., Nat Comput Sci 2026, not yet retrievable via Crossref/PubMed, and the HF repo ships only tokenized shards"
+Cillo 2021 (GSE180578),12,STATE,unlikely,perturbation model: ST trained on Tahoe-100M / Replogle-Nadig; the 167M-cell observational embedding corpus is not enumerated in the quotes on file
+Wilk 2021 JEM (GSE174072),5,scGPT,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Wilk 2021 JEM (GSE174072),5,UCE,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Wilk 2021 JEM (GSE174072),5,scPRINT-2,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Wilk 2021 JEM (GSE174072),5,Geneformer,partial (V1),"Genecorpus-30M contains Wilk et al. 'A single-cell atlas of the peripheral immune response...' (GSE150728, 121,311 cells). GSE174072 re-profiles the same Stanford biobank and the JEM paper states patients from the 2020 cohort are included, so donor-level overlap is likely; whether the 5 fatal donors are among them is NOT established"
+Wilk 2021 JEM (GSE174072),5,STATE,unlikely,perturbation model: ST trained on Tahoe-100M / Replogle-Nadig; the 167M-cell observational embedding corpus is not enumerated in the quotes on file
+Qiu 2021 (GSE167363),2,scGPT,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Qiu 2021 (GSE167363),2,UCE,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Qiu 2021 (GSE167363),2,scPRINT-2,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Qiu 2021 (GSE167363),2,Geneformer,absent (V1); unverified (V2),"not present in the Genecorpus-30M composition table (561 datasets, citations checked). Genecorpus-104M's list is cited to Chen & Venkatesh et al., Nat Comput Sci 2026, not yet retrievable via Crossref/PubMed, and the HF repo ships only tokenized shards"
+Qiu 2021 (GSE167363),2,STATE,unlikely,perturbation model: ST trained on Tahoe-100M / Replogle-Nadig; the 167M-cell observational embedding corpus is not enumerated in the quotes on file
+Chongqing sepsis (GSE279452),22,scGPT,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Chongqing sepsis (GSE279452),22,UCE,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Chongqing sepsis (GSE279452),22,scPRINT-2,absent,"not a CELLxGENE collection (no DOI match among 390 collections), so cannot be in a census-derived corpus"
+Chongqing sepsis (GSE279452),22,Geneformer,absent (V1); unverified (V2),"not present in the Genecorpus-30M composition table (561 datasets, citations checked). Genecorpus-104M's list is cited to Chen & Venkatesh et al., Nat Comput Sci 2026, not yet retrievable via Crossref/PubMed, and the HF repo ships only tokenized shards"
+Chongqing sepsis (GSE279452),22,STATE,unlikely,perturbation model: ST trained on Tahoe-100M / Replogle-Nadig; the 167M-cell observational embedding corpus is not enumerated in the quotes on file

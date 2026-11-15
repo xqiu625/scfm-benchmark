@@ -1,0 +1,5 @@
+metric,value
+cell_auc_in_sample,0.8936337767108977
+patient_auc_in_sample,0.9858604651162791
+n_cells,10737.0
+n_patients,240.0

@@ -1,0 +1,107 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Install linting tools
+        # Pin to known-stable version ranges. Without these pins, `pip install ruff black`
+        # grabs whatever was released yesterday -- e.g., ruff 0.15.x (Oct 2025) adds new
+        # rules that flag code that was passing the day before, and black 26.x (2026 style)
+        # reformats code that black 24.x (2024 stable style) considered correct. The
+        # bracketed ranges accept security patches while blocking style-rule churn.
+        run: pip install "ruff>=0.5,<0.10" "black>=24,<25"
+      - name: Ruff check
+        run: ruff check tests/ scripts/tracking/
+      - name: Black check
+        run: black --check tests/ scripts/tracking/
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+      - name: Install dependencies
+        # [ml] brings torch + scanpy (required by scripts/18_multimodal_fusion
+        # attention_fusion_module, scripts/24 score_activation_markers /
+        # calibration_per_cohort, scripts/06 cross_disease_fatal_vs_survived).
+        # Without it the test job fails at import time even before any
+        # @pytest.mark.slow / .integration filter would help.
+        run: |
+          pip install -e ".[ml,dev]"
+      - name: Run tests
+        # scanpy_integration is excluded here and runs in its own job below. These
+        # tests exercise the REAL scanpy scrublet path, which needs scikit-image for
+        # automatic thresholding and is approved only against a pinned version; this
+        # job installs neither. Excluding them by marker rather than by filename
+        # keeps the file's unit tests in this job.
+        run: |
+          pytest tests/ -v --tb=short -m "not slow and not integration and not scanpy_integration"
+      - name: Upload coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: htmlcov/
+
+  gate2-scanpy-integration:
+    # The real producer-consumer interface for the Gate 2 runner. The regular test
+    # job proves control flow against a double; only this job proves the schema,
+    # dtypes and numerical behaviour of the scanpy the runner is approved against.
+    #
+    # The version is pinned to APPROVED_SCANPY_VERSIONS in gate2_stress_runner.py.
+    # Do NOT widen it to make this job green: the runner's version guard exists
+    # because it reproduces scanpy's own scrublet preprocessing step for step, and
+    # an unreviewed release may reproduce something else. Widening the approved set
+    # is a methodological decision, not a CI fix.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+      - name: Install the approved Gate 2 stack
+        # scikit-image is required by scanpy's automatic scrublet threshold
+        # (filters.threshold_minimum); without it the call warns and returns an
+        # all-False prediction rather than raising, which is precisely the silent
+        # failure the runner's threshold checks exist to catch.
+        run: |
+          pip install "scanpy==1.11.3" scikit-image anndata numpy scipy pytest
+      - name: Print resolved versions
+        # Printed AFTER every install step, so a later resolution that quietly
+        # upgraded scanpy is visible in the log rather than inferred from the pin.
+        run: |
+          python -c "import scanpy, anndata, numpy, scipy, skimage, pytest; \
+            print('scanpy   ', scanpy.__version__); \
+            print('anndata  ', anndata.__version__); \
+            print('numpy    ', numpy.__version__); \
+            print('scipy    ', scipy.__version__); \
+            print('skimage  ', skimage.__version__); \
+            print('pytest   ', pytest.__version__)"
+      - name: Run Gate 2 scanpy integration tests
+        run: |
+          pytest tests/test_gate2_stress_runner.py -v --tb=short -m scanpy_integration
+
+  # Docker build is intentionally NOT in CI:
+  #   - base image (pytorch/pytorch:2.1.0-cuda11.8-cudnn8-runtime) is ~5 GB and
+  #     pushes against the GitHub-hosted runner's ~14 GB free-disk ceiling.
+  #   - actual users install via `pip install scfm-benchmark` (PyPI); HPCC users
+  #     use per-FM conda envs; the Dockerfile is a reproducibility artifact
+  #     rather than the primary distribution channel.
+  #   - run `make docker-build` locally when needed; reintroduce a docker job
+  #     here gated on `if: startsWith(github.ref, 'refs/tags/v')` if Docker
+  #     images become part of the release artifact set.

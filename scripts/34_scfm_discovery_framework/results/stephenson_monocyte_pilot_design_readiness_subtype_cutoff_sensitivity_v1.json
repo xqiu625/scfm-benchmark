@@ -1,0 +1,663 @@
+{
+  "cutoffs_checked": [
+    1,
+    20,
+    50,
+    100
+  ],
+  "n_donor_visit_rows": 31,
+  "n_multi_visit_donors": 15,
+  "n_sample_ids_missing_from_counts_table": 0,
+  "output_files": {
+    "cutoff_sensitivity_json": "/bigdata/godziklab/shared/Xinru/302006/06_LOGS/gate2_capture_scoring/claude_r1r2_fix_20261016_113650/scripts/34_scfm_discovery_framework/results/stephenson_monocyte_pilot_design_readiness_subtype_cutoff_sensitivity_v1.json",
+    "donor_visit_subtype_tsv": "/bigdata/godziklab/shared/Xinru/302006/06_LOGS/gate2_capture_scoring/claude_r1r2_fix_20261016_113650/scripts/34_scfm_discovery_framework/results/stephenson_monocyte_pilot_design_readiness_donor_visit_subtype_v1.tsv"
+  },
+  "per_subtype_cutoff_sensitivity": {
+    "C1_CD16_mono": {
+      "1": {
+        "asymptomatic": [],
+        "symptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              25,
+              25
+            ],
+            "true_donor_group": "sdrf::C-8821"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              15,
+              52
+            ],
+            "true_donor_group": "sdrf::C-8884"
+          },
+          {
+            "n_visits": 3,
+            "per_visit_counts": [
+              45,
+              228,
+              1
+            ],
+            "true_donor_group": "sdrf::C-8896"
+          }
+        ],
+        "unknown": []
+      },
+      "100": {
+        "asymptomatic": [],
+        "symptomatic": [],
+        "unknown": []
+      },
+      "20": {
+        "asymptomatic": [],
+        "symptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              25,
+              25
+            ],
+            "true_donor_group": "sdrf::C-8821"
+          }
+        ],
+        "unknown": []
+      },
+      "50": {
+        "asymptomatic": [],
+        "symptomatic": [],
+        "unknown": []
+      }
+    },
+    "CD14_mono": {
+      "1": {
+        "asymptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              11,
+              3
+            ],
+            "true_donor_group": "sdrf::CV0068"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              8,
+              1
+            ],
+            "true_donor_group": "sdrf::CV0171"
+          }
+        ],
+        "symptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              469,
+              818
+            ],
+            "true_donor_group": "sdrf::C-8821"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              363,
+              843
+            ],
+            "true_donor_group": "sdrf::C-8884"
+          },
+          {
+            "n_visits": 3,
+            "per_visit_counts": [
+              1448,
+              1323,
+              858
+            ],
+            "true_donor_group": "sdrf::C-8896"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              7,
+              10
+            ],
+            "true_donor_group": "sdrf::CV0137"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              13,
+              3
+            ],
+            "true_donor_group": "sdrf::CV0178"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              6,
+              44
+            ],
+            "true_donor_group": "sdrf::CV0284"
+          }
+        ],
+        "unknown": []
+      },
+      "100": {
+        "asymptomatic": [],
+        "symptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              469,
+              818
+            ],
+            "true_donor_group": "sdrf::C-8821"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              363,
+              843
+            ],
+            "true_donor_group": "sdrf::C-8884"
+          },
+          {
+            "n_visits": 3,
+            "per_visit_counts": [
+              1448,
+              1323,
+              858
+            ],
+            "true_donor_group": "sdrf::C-8896"
+          }
+        ],
+        "unknown": []
+      },
+      "20": {
+        "asymptomatic": [],
+        "symptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              469,
+              818
+            ],
+            "true_donor_group": "sdrf::C-8821"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              363,
+              843
+            ],
+            "true_donor_group": "sdrf::C-8884"
+          },
+          {
+            "n_visits": 3,
+            "per_visit_counts": [
+              1448,
+              1323,
+              858
+            ],
+            "true_donor_group": "sdrf::C-8896"
+          }
+        ],
+        "unknown": []
+      },
+      "50": {
+        "asymptomatic": [],
+        "symptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              469,
+              818
+            ],
+            "true_donor_group": "sdrf::C-8821"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              363,
+              843
+            ],
+            "true_donor_group": "sdrf::C-8884"
+          },
+          {
+            "n_visits": 3,
+            "per_visit_counts": [
+              1448,
+              1323,
+              858
+            ],
+            "true_donor_group": "sdrf::C-8896"
+          }
+        ],
+        "unknown": []
+      }
+    },
+    "CD16_mono": {
+      "1": {
+        "asymptomatic": [],
+        "symptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              34,
+              130
+            ],
+            "true_donor_group": "sdrf::C-8821"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              24,
+              327
+            ],
+            "true_donor_group": "sdrf::C-8884"
+          },
+          {
+            "n_visits": 3,
+            "per_visit_counts": [
+              5,
+              1671,
+              4
+            ],
+            "true_donor_group": "sdrf::C-8896"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              1,
+              2
+            ],
+            "true_donor_group": "sdrf::CV0050"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              3,
+              2
+            ],
+            "true_donor_group": "sdrf::CV0073"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              2,
+              1
+            ],
+            "true_donor_group": "sdrf::CV0176"
+          }
+        ],
+        "unknown": []
+      },
+      "100": {
+        "asymptomatic": [],
+        "symptomatic": [],
+        "unknown": []
+      },
+      "20": {
+        "asymptomatic": [],
+        "symptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              34,
+              130
+            ],
+            "true_donor_group": "sdrf::C-8821"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              24,
+              327
+            ],
+            "true_donor_group": "sdrf::C-8884"
+          }
+        ],
+        "unknown": []
+      },
+      "50": {
+        "asymptomatic": [],
+        "symptomatic": [],
+        "unknown": []
+      }
+    },
+    "CD83_CD14_mono": {
+      "1": {
+        "asymptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              75,
+              49
+            ],
+            "true_donor_group": "sdrf::CV0068"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              124,
+              64
+            ],
+            "true_donor_group": "sdrf::CV0171"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              64,
+              14
+            ],
+            "true_donor_group": "sdrf::CV0231"
+          }
+        ],
+        "symptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              10,
+              1614
+            ],
+            "true_donor_group": "sdrf::C-8821"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              207,
+              1189
+            ],
+            "true_donor_group": "sdrf::C-8884"
+          },
+          {
+            "n_visits": 3,
+            "per_visit_counts": [
+              147,
+              987,
+              288
+            ],
+            "true_donor_group": "sdrf::C-8896"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              17,
+              55
+            ],
+            "true_donor_group": "sdrf::CV0050"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              54,
+              43
+            ],
+            "true_donor_group": "sdrf::CV0062"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              50,
+              82
+            ],
+            "true_donor_group": "sdrf::CV0073"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              22,
+              426
+            ],
+            "true_donor_group": "sdrf::CV0137"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              79,
+              11
+            ],
+            "true_donor_group": "sdrf::CV0176"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              19,
+              275
+            ],
+            "true_donor_group": "sdrf::CV0178"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              43,
+              10
+            ],
+            "true_donor_group": "sdrf::CV0201"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              36,
+              5
+            ],
+            "true_donor_group": "sdrf::CV0257"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              80,
+              356
+            ],
+            "true_donor_group": "sdrf::CV0284"
+          }
+        ],
+        "unknown": []
+      },
+      "100": {
+        "asymptomatic": [],
+        "symptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              207,
+              1189
+            ],
+            "true_donor_group": "sdrf::C-8884"
+          },
+          {
+            "n_visits": 3,
+            "per_visit_counts": [
+              147,
+              987,
+              288
+            ],
+            "true_donor_group": "sdrf::C-8896"
+          }
+        ],
+        "unknown": []
+      },
+      "20": {
+        "asymptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              75,
+              49
+            ],
+            "true_donor_group": "sdrf::CV0068"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              124,
+              64
+            ],
+            "true_donor_group": "sdrf::CV0171"
+          }
+        ],
+        "symptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              207,
+              1189
+            ],
+            "true_donor_group": "sdrf::C-8884"
+          },
+          {
+            "n_visits": 3,
+            "per_visit_counts": [
+              147,
+              987,
+              288
+            ],
+            "true_donor_group": "sdrf::C-8896"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              54,
+              43
+            ],
+            "true_donor_group": "sdrf::CV0062"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              50,
+              82
+            ],
+            "true_donor_group": "sdrf::CV0073"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              22,
+              426
+            ],
+            "true_donor_group": "sdrf::CV0137"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              80,
+              356
+            ],
+            "true_donor_group": "sdrf::CV0284"
+          }
+        ],
+        "unknown": []
+      },
+      "50": {
+        "asymptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              124,
+              64
+            ],
+            "true_donor_group": "sdrf::CV0171"
+          }
+        ],
+        "symptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              207,
+              1189
+            ],
+            "true_donor_group": "sdrf::C-8884"
+          },
+          {
+            "n_visits": 3,
+            "per_visit_counts": [
+              147,
+              987,
+              288
+            ],
+            "true_donor_group": "sdrf::C-8896"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              50,
+              82
+            ],
+            "true_donor_group": "sdrf::CV0073"
+          },
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              80,
+              356
+            ],
+            "true_donor_group": "sdrf::CV0284"
+          }
+        ],
+        "unknown": []
+      }
+    },
+    "Mono_prolif": {
+      "1": {
+        "asymptomatic": [],
+        "symptomatic": [
+          {
+            "n_visits": 2,
+            "per_visit_counts": [
+              1,
+              5
+            ],
+            "true_donor_group": "sdrf::C-8821"
+          },
+          {
+            "n_visits": 3,
+            "per_visit_counts": [
+              24,
+              5,
+              34
+            ],
+            "true_donor_group": "sdrf::C-8896"
+          }
+        ],
+        "unknown": []
+      },
+      "100": {
+        "asymptomatic": [],
+        "symptomatic": [],
+        "unknown": []
+      },
+      "20": {
+        "asymptomatic": [],
+        "symptomatic": [],
+        "unknown": []
+      },
+      "50": {
+        "asymptomatic": [],
+        "symptomatic": [],
+        "unknown": []
+      }
+    }
+  },
+  "provenance_caveat": "All counts here are the SAME already-committed, already-verified raw counts from stephenson_sample_subtype_cell_counts_v1.tsv (source: the per-cohort RAW, provisional stephenson_monocyte_raw.h5ad) -- no new h5ad read was performed to build this table. The per-subtype cutoff sensitivity numbers are a DESCRIPTIVE exploration of how many donors would qualify at illustrative thresholds, NOT a new inclusion/QC rule, NOT a subtype choice, and NOT a claim that the surviving donors are ready for a real DE run.",
+  "qc_admitted_input_status": "NOT FOUND. This round searched the repository for a QC-admitted (post-retention, not merely raw) monocyte analysis input -- a retention manifest or a QC'd object joinable to these annotations by sample/cell identity -- and found none. `stephenson_monocyte_raw.h5ad` (the only per-cohort object carrying `orig_celltype`) is explicitly `provisional` (MONOCYTE_PILOT_PREREG_v1.md Sec.3), the same status as `monocyte_pilot_feasibility_v3.tsv`'s Stephenson row. docs/current-status.md line 732 states the broader platelet-level QC rebuild is unfinished, so historical downstream numbers (which would include any monocyte retention decision) remain provisional. No monocyte-specific retention/QC-admission artifact exists anywhere under scripts/34_scfm_discovery_framework/ or scripts/32_rebuild_upfront_qc/ as of this check. The counts in this table are real, confirmed counts WITHIN the raw provisional object -- never read as 'final QC-admitted cell counts for an analysis'.",
+  "sample_ids_missing_from_counts_table": [],
+  "source_files": {
+    "counts_tsv": "/bigdata/godziklab/shared/Xinru/302006/06_LOGS/gate2_capture_scoring/claude_r1r2_fix_20261016_113650/scripts/34_scfm_discovery_framework/results/stephenson_sample_subtype_cell_counts_v1.tsv",
+    "counts_tsv_sha256": "207a852b18b8a74ec5cb60404de1a4a9400e553e9a2593173309f9ad0eb2e22f",
+    "coverage_summary_json": "/bigdata/godziklab/shared/Xinru/302006/06_LOGS/gate2_capture_scoring/claude_r1r2_fix_20261016_113650/scripts/34_scfm_discovery_framework/results/stephenson_longitudinal_monocyte_coverage_v1_summary.json",
+    "coverage_summary_json_sha256": "27a892a2a68372450b4f20cc55a552ce50eedfd4b95051662571ec74ef51b2a1",
+    "grouping_tsv": "/bigdata/godziklab/shared/Xinru/302006/06_LOGS/gate2_capture_scoring/claude_r1r2_fix_20261016_113650/scripts/34_scfm_discovery_framework/results/stephenson_icu_severity_grouping_v1.tsv",
+    "grouping_tsv_sha256": "1bd3e72e503d50e24205488f3a0d9eadc80bf797908bc8fee7ac82c813b85090",
+    "roster_tsv": "/bigdata/godziklab/shared/Xinru/302006/06_LOGS/gate2_capture_scoring/claude_r1r2_fix_20261016_113650/scripts/34_scfm_discovery_framework/results/stephenson_donor_identity_roster_v1.tsv",
+    "roster_tsv_sha256": "05ad6bef74e709ccabc6aba6b4d6da5c36bb068dfd0668f49599c9d856041af5"
+  },
+  "subtype_fields": [
+    "C1_CD16_mono",
+    "CD14_mono",
+    "CD16_mono",
+    "CD83_CD14_mono",
+    "Mono_prolif"
+  ]
+}

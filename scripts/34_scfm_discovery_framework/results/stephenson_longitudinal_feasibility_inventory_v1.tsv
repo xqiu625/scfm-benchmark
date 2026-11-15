@@ -1,0 +1,16 @@
+true_donor_group	n_visits	sample_ids_in_order	collection_days_in_order	severity_first	severity_last	severity_transition	care_setting_first	care_setting_last	care_setting_transition	days_from_onset_note	same_monocyte_state_availability_checked_this_round
+sdrf::C-8821	2	MH9179821,newcastle004v2	D0,D12	Moderate	Critical	worsening	non-ICU	ICU	worsening	identical across all this donor's visits (see Sec.2 cohort caveat -- generation rule unconfirmed)	False
+sdrf::C-8884	2	newcastle21,newcastle21v2	D0,D9	Critical	Critical	stable	ICU	ICU	stable	identical across all this donor's visits (see Sec.2 cohort caveat -- generation rule unconfirmed)	False
+sdrf::C-8896	3	MH8919327,MH9143273,MH8919328	D0,D7,D13	Severe	Critical	worsening	ICU	ICU	stable	identical across all this donor's visits (see Sec.2 cohort caveat -- generation rule unconfirmed)	False
+sdrf::CV0050	2	BGCV11_CV0050,BGCV14_CV0050	D0,D28	Mild	Mild	stable	non-ICU	non-ICU	stable	identical across all this donor's visits (see Sec.2 cohort caveat -- generation rule unconfirmed)	False
+sdrf::CV0062	2	BGCV09_CV0062,BGCV12_CV0062	D0,D28	Mild	Mild	stable	non-ICU	non-ICU	stable	identical across all this donor's visits (see Sec.2 cohort caveat -- generation rule unconfirmed)	False
+sdrf::CV0068	2	BGCV02_CV0068,BGCV12_CV0068	D0,D28	Asymptomatic	Asymptomatic	stable	non-ICU	non-ICU	stable	identical across all this donor's visits (see Sec.2 cohort caveat -- generation rule unconfirmed)	False
+sdrf::CV0073	2	BGCV08_CV0073,BGCV13_CV0073	D0,D28	Mild	Mild	stable	non-ICU	non-ICU	stable	identical across all this donor's visits (see Sec.2 cohort caveat -- generation rule unconfirmed)	False
+sdrf::CV0137	2	BGCV07_CV0137,BGCV14_CV0137	D0,D28	Moderate	Moderate	stable	non-ICU	non-ICU	stable	identical across all this donor's visits (see Sec.2 cohort caveat -- generation rule unconfirmed)	False
+sdrf::CV0171	2	BGCV09_CV0171,BGCV13_CV0171	D0,D28	Asymptomatic	Asymptomatic	stable	non-ICU	non-ICU	stable	identical across all this donor's visits (see Sec.2 cohort caveat -- generation rule unconfirmed)	False
+sdrf::CV0176	2	BGCV03_CV0176,BGCV15_CV0176	D0,D28	Severe	Severe	stable	ICU	ICU	stable	identical across all this donor's visits (see Sec.2 cohort caveat -- generation rule unconfirmed)	False
+sdrf::CV0178	2	BGCV06_CV0178,BGCV12_CV0178	D0,D28	Severe	Severe	stable	ICU	ICU	stable	identical across all this donor's visits (see Sec.2 cohort caveat -- generation rule unconfirmed)	False
+sdrf::CV0201	2	BGCV08_CV0201,BGCV06_CV0201	D0,D28	Critical	Critical	stable	ICU	ICU	stable	identical across all this donor's visits (see Sec.2 cohort caveat -- generation rule unconfirmed)	False
+sdrf::CV0231	2	BGCV10_CV0231,BGCV15_CV0231	D0,D28	Asymptomatic	Asymptomatic	stable	non-ICU	non-ICU	stable	identical across all this donor's visits (see Sec.2 cohort caveat -- generation rule unconfirmed)	False
+sdrf::CV0257	2	BGCV11_CV0257,BGCV15_CV0257	D0,D28	Moderate	Moderate	stable	non-ICU	non-ICU	stable	identical across all this donor's visits (see Sec.2 cohort caveat -- generation rule unconfirmed)	False
+sdrf::CV0284	2	BGCV05_CV0284,BGCV14_CV0284	D0,D28	Critical	Critical	stable	ICU	ICU	stable	identical across all this donor's visits (see Sec.2 cohort caveat -- generation rule unconfirmed)	False

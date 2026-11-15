@@ -1,0 +1,68 @@
+{
+  "missing_code_report": {
+    "sample_id": {
+      "n_missing_(-1)": 0,
+      "n_out_of_range": 0
+    },
+    "full_clustering": {
+      "n_missing_(-1)": 0,
+      "n_out_of_range": 0
+    },
+    "patient_id": {
+      "n_missing_(-1)": 0,
+      "n_out_of_range": 0
+    },
+    "Resample": {
+      "n_missing_(-1)": 0,
+      "n_out_of_range": 0
+    },
+    "Collection_Day": {
+      "n_missing_(-1)": 0,
+      "n_out_of_range": 0
+    },
+    "Status_on_day_collection": {
+      "n_missing_(-1)": 0,
+      "n_out_of_range": 0
+    },
+    "Status_on_day_collection_summary": {
+      "n_missing_(-1)": 0,
+      "n_out_of_range": 0
+    },
+    "Days_from_onset": {
+      "n_missing_(-1)": 0,
+      "n_out_of_range": 0
+    },
+    "Site": {
+      "n_missing_(-1)": 0,
+      "n_out_of_range": 0
+    },
+    "Worst_Clinical_Status": {
+      "n_missing_(-1)": 0,
+      "n_out_of_range": 0
+    },
+    "Outcome": {
+      "n_missing_(-1)": 0,
+      "n_out_of_range": 0
+    },
+    "Status": {
+      "n_missing_(-1)": 0,
+      "n_out_of_range": 0
+    }
+  },
+  "n_fresh_monocyte_target_cells": 128503,
+  "n_existing_canonical_cells": 128503,
+  "n_unmatched_existing_cells": 0,
+  "n_sample_id_conflicts": 0,
+  "n_patient_id_conflicts": 0,
+  "n_resample_only_single_record_patients": 4,
+  "resample_only_patient_ids": [
+    "MH8919328",
+    "MH9143273",
+    "newcastle004v2",
+    "newcastle21v2"
+  ],
+  "n_distinct_samples": 102,
+  "n_distinct_patients": 90,
+  "n_multi_visit_patients": 12,
+  "n_internally_inconsistent_samples": 0
+}

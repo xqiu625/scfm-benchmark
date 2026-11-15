@@ -1,0 +1,25 @@
+% tab:corpus_fractions — one-unit corpus metrics for all five models (main text)
+\begin{table}[t]
+\centering
+\caption{Pretraining-corpus composition in one unit per model: the fraction of
+pretraining cells from blood/bone marrow, from inflammatory or infectious
+conditions, and annotated as platelets, as documented in each corpus's own
+records. ``Not reported'' means no cell-type- or condition-resolved
+composition is published for that corpus. Checkpoint names are pinned because
+corpus claims differ across versions.}
+\label{tab:corpus_fractions}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llllll}
+\toprule
+\textbf{Model (checkpoint)} & \textbf{Corpus} & \textbf{Cells} & \textbf{Blood / marrow} & \textbf{Inflamm./infect.} & \textbf{Platelet} \\
+\midrule
+STATE (SE-600M) & scBaseCount + CxG + Tahoe-100M & 167M & largest single share of scBaseCount (43\% of corpus), exact \% not reported; Tahoe part is cancer cell lines & 30.7\% cancer within scBaseCount; rest not reported & structurally absent in scBaseCount (no platelet category); full corpus not reported \\
+Geneformer (V2-316M) & Genecorpus-104M (non-cancer) & 104M & $\leq$25\% by construction (per-tissue cap); 49 of 561 source datasets are bone marrow & disease conditions included (only high-mutational-burden cells excluded); \% not reported & not reported \\
+scPRINT-2 (small-v2) & CxG + Tahoe-100M + scBaseCount & 350M & not reported (scBaseCount part shares scBaseCount's blood/marrow skew) & not reported & 0.120--0.125\% (Census-derived part) \\
+scGPT (whole-human) & CELLxGENE, non-disease & 33M & not reported (51 organs incl. blood and bone marrow) & 0\% by design (non-disease only) & 0.125\% \\
+UCE (650M) & IMA (CxG + 28 datasets) & 36M & 6.6\% (SI Table 19 representative sample); brain $\approx$25\% & not reported (mostly reference atlases) & 0.120\% (Census-derived part); published 51-category list: none \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

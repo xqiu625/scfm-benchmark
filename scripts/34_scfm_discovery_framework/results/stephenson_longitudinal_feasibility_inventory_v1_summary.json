@@ -1,0 +1,32 @@
+{
+  "care_setting_transition_counts_first_to_last_visit": {
+    "ICU->ICU": 6,
+    "non-ICU->ICU": 1,
+    "non-ICU->non-ICU": 8
+  },
+  "days_from_onset_differs_across_visits": 0,
+  "days_from_onset_identical_across_all_visits": 15,
+  "days_from_onset_unparseable": 0,
+  "n_multi_visit_donors": 15,
+  "n_single_visit_donors": 71,
+  "n_total_true_donors": 86,
+  "note": "15 multi-visit true donors does NOT mean 15 mild-to-ICU pairs. Severity-tier transition and main-comparison-ARM transition are DIFFERENT questions and must not be conflated: 12 of 15 are the already-known same-patient_id-string Initial/Resample pairs, all severity-stable AND arm-stable. Of the 3 SDRF cross-string groups: sdrf::C-8884 (Critical->Critical) is stable in BOTH severity and care-setting/arm. sdrf::C-8896 (Severe->Critical across 3 visits) shows a REAL severity-TIER worsening but stays care-setting/arm-stable (ICU->ICU the whole time -- Severe and Critical are POOLED into the same comparison arm, so this donor never crosses the comparison/reference boundary). Only sdrf::C-8821 (Moderate/non-ICU -> Critical/ICU) crosses the main-comparison ARM boundary itself. This inventory does not pick a primary/secondary longitudinal analysis -- see the companion feasibility note.",
+  "same_monocyte_state_subtype_availability_across_visits": "NOT independently checked this round for any multi-visit donor -- the roster's own subtype_coverage_checked_this_round column already says 'not re-checked this round' for every row; this is a real, named gap for the longitudinal feasibility question, not an assumed yes/no",
+  "severity_transition_counts_first_to_last_visit": {
+    "Asymptomatic->Asymptomatic": 3,
+    "Critical->Critical": 3,
+    "Mild->Mild": 3,
+    "Moderate->Critical": 1,
+    "Moderate->Moderate": 2,
+    "Severe->Critical": 1,
+    "Severe->Severe": 2
+  },
+  "source_files": {
+    "grouping_tsv": "/bigdata/godziklab/shared/Xinru/302006/06_LOGS/gate2_capture_scoring/claude_icu_grouping_20261015/tests/../scripts/34_scfm_discovery_framework/results/stephenson_icu_severity_grouping_v1.tsv",
+    "roster_tsv": "/bigdata/godziklab/shared/Xinru/302006/06_LOGS/gate2_capture_scoring/claude_icu_grouping_20261015/tests/../scripts/34_scfm_discovery_framework/results/stephenson_donor_identity_roster_v1.tsv"
+  },
+  "visit_count_distribution_among_multi_visit_donors": {
+    "2": 14,
+    "3": 1
+  }
+}

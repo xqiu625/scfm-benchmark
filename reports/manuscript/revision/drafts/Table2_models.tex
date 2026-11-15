@@ -1,0 +1,23 @@
+% Table 2 — foundation models (all facts verified against source papers; see model_architecture_analysis.md)
+\begin{table}[t]
+\centering
+\caption{Foundation models evaluated. All models received the identical raw
+AnnData object and applied their own native preprocessing; embeddings were used
+frozen with a logistic-regression head. Corpus platelet status summarizes our
+verification of each pretraining corpus (Supplementary Note~\ref{sn:corpus_platelet}).}
+\label{tab:models}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llllll}
+\toprule
+\textbf{Model (checkpoint)} & \textbf{Architecture} & \textbf{Training objective} & \textbf{Pretraining corpus} & \textbf{Embedding} & \textbf{Corpus platelet status} \\
+\midrule
+STATE (SE-600M) & dense bidirectional transformer (16 layers, 600M) & dual-axis expression reconstruction + dataset classification & 167M cells (scBaseCount, CxG, Tahoe-100M) & 2{,}058-dim & absent (scBaseCount annotation space; QC-filtered) \\
+UCE (650M) & transformer (33 layers, 650M), ESM2 gene tokens & masked gene modeling (BCE, 20\%) & IMA, 36M cells, 313 datasets & 1{,}280-dim & absent (51-type composition, SI Table 19) \\
+Geneformer (V2-316M) & BERT encoder (18 layers, 316M) & rank-value masked-gene modeling & Genecorpus-104M (non-cancer) & 1{,}152-dim & not reported; corpus rich in blood/immune datasets \\
+scPRINT-2 (small-v2) & multi-task transformer + ontology classifiers (20M active) & denoising + label prediction + bottleneck learning & 350M cells, 16 organisms & 424-dim & not reported (Census 0.120--0.125\% bound) \\
+scGPT (whole-human) & generative transformer (12 layers), generative attention mask & masked expression prediction + GEPC & 33M non-disease cells (441 studies) & 512-dim & not reported (Census $\leq$0.125\% bound) \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

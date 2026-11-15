@@ -1,0 +1,7 @@
+model,auc_ensemble,n_fatal,n_survived,hanley_mcneil_se
+STATE,0.7946,25,215,0.0551
+UCE,0.6765,25,215,0.0616
+Geneformer,0.8067,25,215,0.054
+scPRINT-2,0.7561,25,215,0.0579
+scGPT,0.7392,25,215,0.059
+PCA-200,0.7423,25,215,0.0588

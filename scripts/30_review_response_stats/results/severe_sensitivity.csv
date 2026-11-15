@@ -1,0 +1,6 @@
+fm,auc_severe_included,auc_severe_excluded,delta,n_severe_neg
+STATE,0.7319,0.7822,0.0503,18196
+scPRINT-2,0.6792,0.7228,0.0436,18029
+Geneformer,0.6702,0.7202,0.0499,18029
+scGPT,0.653,0.715,0.062,18196
+UCE,0.6041,0.6755,0.0715,18196

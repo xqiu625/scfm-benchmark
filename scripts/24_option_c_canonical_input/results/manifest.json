@@ -1,0 +1,1049 @@
+{
+  "stage": "24_option_c_canonical_input",
+  "status": "success",
+  "metadata_complete": true,
+  "description": "Option C standardized within-disease mortality benchmark on the disease-matched COVID+Sepsis subset (42,095 cells / 322 donors): primary LR/RF AUC, DeLong pairwise, calibration, plus auxiliary ablation/GSEA/SHAP/activation analyses.",
+  "slurm_jobs": [
+    "23921397",
+    "23823131",
+    "23823133",
+    "23851383"
+  ],
+  "run_dates": [
+    "2026-05-09",
+    "2026-05-04",
+    "2026-05-05"
+  ],
+  "generating_code": [
+    "scripts/24_option_c_canonical_input/code/primary_benchmark_option_c.py",
+    "scripts/24_option_c_canonical_input/code/calibration_per_cohort.py"
+  ],
+  "parameters": {
+    "cohort": "COVID+Sepsis subset (disease-matched)",
+    "n_cells": 42095,
+    "n_donors": 322,
+    "n_fatal": 8850,
+    "n_survived": 33245,
+    "cv": "5-fold patient-level",
+    "classifiers": [
+      "LR (L2, balanced)",
+      "RandomForest"
+    ],
+    "ece_bins": 10
+  },
+  "claims": [
+    {
+      "id": "C004",
+      "table": "tab:performance",
+      "value": "scPRINT-2 0.762 / Geneformer 0.738 / STATE 0.724 / UCE 0.598 (per-fold mean LR AUC)",
+      "evidence": "results/option_c_primary_benchmark/covid_sepsis_only_mortality.csv"
+    },
+    {
+      "id": "C004",
+      "table": "tab:delong",
+      "value": "STATE 0.735 > scPRINT-2 0.679 > Geneformer 0.670 > UCE 0.608 (OOF cell-weighted)",
+      "evidence": "results/option_c_primary_benchmark/covid_sepsis_only/delong_pairwise.csv"
+    },
+    {
+      "id": "C004",
+      "table": "tab:calibration",
+      "value": "STATE-LR AUC 0.732 / Brier 0.179 / ECE 0.156; STATE-RF Brier 0.149 / ECE 0.034",
+      "evidence": "results/option_c_primary_benchmark/covid_sepsis_only/calibration.csv"
+    }
+  ],
+  "primary_outputs": [
+    "option_c_primary_benchmark/covid_sepsis_only_mortality.csv",
+    "option_c_primary_benchmark/covid_sepsis_only/delong_pairwise.csv",
+    "option_c_primary_benchmark/covid_sepsis_only/calibration.csv"
+  ],
+  "superseded_outputs": {
+    "option_c_primary_benchmark/mortality_summary.csv": "non-disease-matched run (STATE-LR 0.712); main.tex L317 excludes from headline tables.",
+    "option_c_primary_benchmark/delong_pairwise.csv": "non-disease-matched run (STATE 0.720); headline DeLong is covid_sepsis_only/delong_pairwise.csv.",
+    "option_c_calibration/calibration_summary.csv": "non-disease-matched run (STATE 0.719); headline calibration is covid_sepsis_only/calibration.csv."
+  },
+  "inputs": [
+    {
+      "path": "data/processed/covid_sepsis_mortality.h5ad",
+      "exists": false,
+      "size_bytes": null,
+      "note": "gitignored / on HPCC (data/ not committed)"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/option_c_ablation/ablation_summary.csv",
+      "size_bytes": 7276,
+      "sha256": "56f732f7eeaabbca9b3b0a5f729d9137440b88e156fee2693853b405bb67dd23"
+    },
+    {
+      "path": "results/option_c_ablation/per_fm_geneformer.csv",
+      "size_bytes": 1307,
+      "sha256": "59b8d6e39fda14d717908f2303567fa8bdf5c4c5699fa59bacd5a56f93d38667"
+    },
+    {
+      "path": "results/option_c_ablation/per_fm_scprint2.csv",
+      "size_bytes": 1196,
+      "sha256": "98a80b072df4e96efc8c3eccf647b8aafa3736aa7ba33dc6bb7454d5d1f8ab93"
+    },
+    {
+      "path": "results/option_c_ablation/per_fm_state.csv",
+      "size_bytes": 1229,
+      "sha256": "df78d3cd006266ad465f9257cce06e5abd39d514bd9b067aa9d6f2bd082ec449"
+    },
+    {
+      "path": "results/option_c_ablation/per_fm_transcriptformer.csv",
+      "size_bytes": 1394,
+      "sha256": "89c67526c7f474492edf3fdc355797c7bd699769035a1f57d5f774aee3f7bfa2"
+    },
+    {
+      "path": "results/option_c_ablation/per_fm_uce.csv",
+      "size_bytes": 1201,
+      "sha256": "4a638bf2974116f0e5b46b322e99bfac37c250f0459449de87f0b18e4cca19b1"
+    },
+    {
+      "path": "results/option_c_activation_markers/geneformer_dim_correlations.csv",
+      "size_bytes": 64318,
+      "sha256": "8ab5364654f7a9fc0d729b1b2c84844d3c8753617dbc7f5c278047cc07d4ab42"
+    },
+    {
+      "path": "results/option_c_activation_markers/platelet_activation_module_scores.csv",
+      "size_bytes": 4251983,
+      "sha256": "ccb35db6532af9f22b0bc89043d70fa9bd2c88a961647d1cccc653165191cefb"
+    },
+    {
+      "path": "results/option_c_activation_markers/scprint2_dim_correlations.csv",
+      "size_bytes": 22484,
+      "sha256": "edb0f4b921a4a176a19590f4268a03ef8deb2424fafc7499863bf6b5d43937fa"
+    },
+    {
+      "path": "results/option_c_activation_markers/state_dim_correlations.csv",
+      "size_bytes": 104879,
+      "sha256": "ea1c12cf86c8c3aa89e39de2465a85bb0b81167fc1a51a09acca3cfc1451147e"
+    },
+    {
+      "path": "results/option_c_activation_markers/summary_per_fm.csv",
+      "size_bytes": 889,
+      "sha256": "e574daed363b270ca217bcd467222e6f80e39d3039e0b334dd38861dd4d13549"
+    },
+    {
+      "path": "results/option_c_activation_markers/transcriptformer_dim_correlations.csv",
+      "size_bytes": 125936,
+      "sha256": "477c22971e0c190131d52db127e044cd84e0dafee8dd565f8665232f7b4741b7"
+    },
+    {
+      "path": "results/option_c_activation_markers/uce_dim_correlations.csv",
+      "size_bytes": 61631,
+      "sha256": "97ad62dfab1c998f99ed87b253820ef8a57d6f33b1b9f6c2cac4516ac5ad6c2f"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/summaries_all.csv",
+      "size_bytes": 1331,
+      "sha256": "69a9457f4dac4decfefc3f536ba2d026a101febab2c9aabd4979fc6620677e4f"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/summary_geneformer.json",
+      "size_bytes": 443,
+      "sha256": "73623fd94648c7887e86fdf2e915a69bc11e8b03b594f920bf19ba3f017705be"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/summary_scprint2.json",
+      "size_bytes": 436,
+      "sha256": "a2f2d8a0d7dacc72f7de8db59ecfbb7fa0040f673574f44b46692d5f7583c99a"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/summary_state.json",
+      "size_bytes": 434,
+      "sha256": "36eb361181e7a28668cd6b2da40310ee2667dd757edfa2c44593391f7d2bcea4"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/summary_transcriptformer.json",
+      "size_bytes": 455,
+      "sha256": "ca4e939f40613cc194c32cab0ea66ae93454b86c052d998c631083198cae4ba6"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/summary_uce.json",
+      "size_bytes": 427,
+      "sha256": "b800939e7ecf74af8e3f7064ace44a8dac03b0fdacbf1d547b0d19edc7bcdfa9"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_dims_geneformer.csv",
+      "size_bytes": 253,
+      "sha256": "aad9cb3db461e155bb5825ac89db7bd31d2ffa44ba5a5876c45101ee117f7f70"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_dims_scprint2.csv",
+      "size_bytes": 251,
+      "sha256": "b364bb3418e679d6df3aa9c04c295808385cfa426b0cefba0d472c0828c7ff28"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_dims_state.csv",
+      "size_bytes": 253,
+      "sha256": "64146e8538718ceffde5d5c3ee717850cbb31b6997b221776044a55ff9ae4e41"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_dims_transcriptformer.csv",
+      "size_bytes": 251,
+      "sha256": "7aa83e74f7de1bf7e361e3eb3aab9238dab7cf31c6c4e203fb63545e8f994768"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_dims_uce.csv",
+      "size_bytes": 249,
+      "sha256": "04890cc31d9edbc475d6ae1a823c418dc50e12b29871f246aaac0b383234212c"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_geneformer_dim1053_rank3.csv",
+      "size_bytes": 8012,
+      "sha256": "cb16aa6c115e4ab47e01ff17eee6d6776462a40e2d357117a7d73bc471706cf9"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_geneformer_dim1122_rank5.csv",
+      "size_bytes": 6319,
+      "sha256": "0297353fc6f0a46aedd1056adc511fc6c2493b0716acf32f79c9516355b01d42"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_geneformer_dim24_rank1.csv",
+      "size_bytes": 6937,
+      "sha256": "d47131ff58d101bc4471b87366ce5892d2a28d932883b2984109a45c56336283"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_geneformer_dim297_rank2.csv",
+      "size_bytes": 6454,
+      "sha256": "5b4b3dade4a36a471f341db47df2aa4401e6c503401e7692b53a528b6624a889"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_geneformer_dim592_rank4.csv",
+      "size_bytes": 8617,
+      "sha256": "66bcb58d58b5289f315fec85d8cd4b7f34e20a9eeb76005a9b9d72459f99c99f"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_scprint2_dim166_rank1.csv",
+      "size_bytes": 6324,
+      "sha256": "b144d427d0155aa7f484bb9883fba04aee71bbac0571ec9715348587490d35d9"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_scprint2_dim169_rank2.csv",
+      "size_bytes": 6348,
+      "sha256": "0c4166c3e5943031c4dff1be6e2113425bcce07c29a16920d17a7ca8a06fef28"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_scprint2_dim192_rank5.csv",
+      "size_bytes": 6468,
+      "sha256": "7e95559e6653a073ea59065f0da690bf232cb9ff4885f8c4c203086e1444fd15"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_scprint2_dim228_rank4.csv",
+      "size_bytes": 6400,
+      "sha256": "f93faa26f26f9e9f243979567a03380e1de5c6b51fc6d0c25b2ff60f14cbe7e3"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_scprint2_dim365_rank3.csv",
+      "size_bytes": 6552,
+      "sha256": "819b77a7fc5427994074334c848ba903cd53675ac59f161d95db95ca04848687"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_state_dim1354_rank2.csv",
+      "size_bytes": 6304,
+      "sha256": "3ce00045598cfbc75efef5a046121b8a04b08b54a27084403a9f6f55bc303fc1"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_state_dim1564_rank5.csv",
+      "size_bytes": 7983,
+      "sha256": "7ee39ef3f969d5c9a9faf8fc576a8845fa69fb9572d9c2f90fec9f4ebdead832"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_state_dim1640_rank4.csv",
+      "size_bytes": 6677,
+      "sha256": "4851e8fb046ddef76e7ef2c90fc8debd8be10eb7305ae2923838372f21d5debf"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_state_dim195_rank1.csv",
+      "size_bytes": 7653,
+      "sha256": "2dd8da59f03aca3dae34607a720e7806029069e0676bce3b29bc01c0c3cee480"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_state_dim53_rank3.csv",
+      "size_bytes": 8000,
+      "sha256": "8a3c8a4e959c15b677952a073004bfe33f97fa3f7f56072a8a865b9d197307e6"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_transcriptformer_dim1474_rank5.csv",
+      "size_bytes": 6538,
+      "sha256": "82abe29095850f5e7660cc1de6714b6f9cd741fd354eebf569178516d5d5d13d"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_transcriptformer_dim1522_rank2.csv",
+      "size_bytes": 6322,
+      "sha256": "2ca5205c3e50eec9102dc7724d8218db0ee883ec1d051c15d71b3449d664142f"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_transcriptformer_dim1639_rank1.csv",
+      "size_bytes": 6242,
+      "sha256": "54918cce6e69e024d1d20f883c52ec6557c26ec1b9153f13e2b3a1bb6652b94f"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_transcriptformer_dim43_rank4.csv",
+      "size_bytes": 6516,
+      "sha256": "2101e1990e846c56552f4cd9ac0180f908306a0d2838f84399d864f122634dde"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_transcriptformer_dim657_rank3.csv",
+      "size_bytes": 6319,
+      "sha256": "e75555e7dd227be2e27bb1095aa07b53086187453ee124416609f9b888daf8a7"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_uce_dim1210_rank2.csv",
+      "size_bytes": 6341,
+      "sha256": "2780835cdd7718d5c5ff61b961d429fc1fa573f5769fe9e2f5854e397e0f0210"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_uce_dim50_rank5.csv",
+      "size_bytes": 6347,
+      "sha256": "08eddda05cea8f0840cbd0090cbe16bf533d65b75cd41d24c3a0a8bf8bf2c451"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_uce_dim580_rank1.csv",
+      "size_bytes": 6423,
+      "sha256": "558a4181f293f3e84f2d7010d493de22a8ab83b88b7cbcf66efcf1c355df89fd"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_uce_dim721_rank4.csv",
+      "size_bytes": 6397,
+      "sha256": "1c282c761bbdadffbb8ec5ed275c657107d5278d09135945b1bab99c955e7c61"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/top_genes_uce_dim788_rank3.csv",
+      "size_bytes": 6318,
+      "sha256": "e660bffa7a144e7ebeef313214fa55e370305035f45c6c07f425e1ee9477aa70"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/umap_geneformer.csv",
+      "size_bytes": 3430386,
+      "sha256": "8d5b74f0cfafeecf6d60eea8eb2e4f02ca3014158c9b474e520bd2e6657e6eb1"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/umap_scprint2.csv",
+      "size_bytes": 3434514,
+      "sha256": "ffe25e2b33285e8432f7a131ae805b9630bac3f23fb3bd25ed1e4640b4fdd470"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/umap_state.csv",
+      "size_bytes": 3512943,
+      "sha256": "12c8001884dc8a6bf39ecf414f5a2f1cbd3165781a5d40e1ff4f9a47fcf66920"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/umap_transcriptformer.csv",
+      "size_bytes": 3452616,
+      "sha256": "c9ed0dc0982a97314645ad62204a7e73e7ff837d6caea164287c6e97f7d5cbf6"
+    },
+    {
+      "path": "results/option_c_bio_interpretation/umap_uce.csv",
+      "size_bytes": 3510711,
+      "sha256": "3eb591d3c53d54a5ecff89a50aa42d286e7537e16d74bb40c3a5bb0abdd7389f"
+    },
+    {
+      "path": "results/option_c_calibration/calibration_summary.csv",
+      "size_bytes": 598,
+      "sha256": "c305b290683cf4269cec2d291ab82d8cd4e060b4ec600082dd96a87cc94a8d7b"
+    },
+    {
+      "path": "results/option_c_calibration/per_cohort_auc.csv",
+      "size_bytes": 953,
+      "sha256": "7c7808ab8068eefc5f8ddb14c03d98ad363201f53d0f8e8a38cb579e50c3a466"
+    },
+    {
+      "path": "results/option_c_cosine_validation/cosine_fatal_direction.csv",
+      "size_bytes": 1031,
+      "sha256": "0325b238e96b668d796a8a1df418678c22f5479602734b03db5f3e682259781e"
+    },
+    {
+      "path": "results/option_c_embedding_quality/embedding_quality.csv",
+      "size_bytes": 1678,
+      "sha256": "104332c7b5cf1b30a2ab816956ef56a4105476d06fe97fa674b5b55a5d5d1317"
+    },
+    {
+      "path": "results/option_c_fusion/fusion_summary.csv",
+      "size_bytes": 775,
+      "sha256": "36c66c1ff3f00ecfa6afab5910c2e29922e47599f09969fc12d88a60a9d5db95"
+    },
+    {
+      "path": "results/option_c_fusion/per_fm_oof.csv",
+      "size_bytes": 5309665,
+      "sha256": "3061dc5face0b80f0ddbf73a7f0fc2fa51fe54d39a25f0f6c661128a76066bcb"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_geneformer_dim1053_rank3_GO_Biological_Process_2023.csv",
+      "size_bytes": 2724,
+      "sha256": "5798f7066f562e41fa956e6ae96aea9795f05420063673ff0882f50464782c35"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_geneformer_dim1053_rank3_KEGG_2021_Human.csv",
+      "size_bytes": 3208,
+      "sha256": "23daec3577c18eaf0d4ce4e221f66dd5dfe7f5d1e5dbcd251f1aae0a21cf1029"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_geneformer_dim1053_rank3_Reactome_2022.csv",
+      "size_bytes": 16341,
+      "sha256": "cc7ee5d3bb0faf0b2cf5634a41c5114dc87a26d0737ea297c593176793d12200"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_geneformer_dim1122_rank5_GO_Biological_Process_2023.csv",
+      "size_bytes": 6365,
+      "sha256": "514f6fa48b4ec3f71d2a6a1a04a92716164008f2b07d6a34742e89b09b5d5080"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_geneformer_dim1122_rank5_KEGG_2021_Human.csv",
+      "size_bytes": 3837,
+      "sha256": "360576ba15c58bd8ba4c8f018dbf77de111eb52c693f1e63ee6f18910623f2c8"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_geneformer_dim1122_rank5_Reactome_2022.csv",
+      "size_bytes": 22512,
+      "sha256": "4eb0f4c659a6488e3b0ffb2891f55dbffdc64d1682315223ab5aaf95bee1cf37"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_geneformer_dim24_rank1_GO_Biological_Process_2023.csv",
+      "size_bytes": 8288,
+      "sha256": "c5055f41f1e4fa4a6fa06e814d825603c44b5d98f6c0f70a8bb99c140c715c37"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_geneformer_dim24_rank1_KEGG_2021_Human.csv",
+      "size_bytes": 3125,
+      "sha256": "42ad93379c30df75d2a5d0293e77ee56b35e354c97c2405958a30383b6d27dc3"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_geneformer_dim24_rank1_Reactome_2022.csv",
+      "size_bytes": 24892,
+      "sha256": "840dc38ebff11433825bc3f41bf70fe9cc285206a39864508535667f50f7ab1d"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_geneformer_dim297_rank2_GO_Biological_Process_2023.csv",
+      "size_bytes": 3999,
+      "sha256": "22a5005ec6642c5a22726cff1d2451e66a892f4c251f23b921e60d0409de0131"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_geneformer_dim297_rank2_KEGG_2021_Human.csv",
+      "size_bytes": 917,
+      "sha256": "38032328ccebdc251bf1d66ce2a6771e1887174ed03e8a800994af66c4b4d243"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_geneformer_dim297_rank2_Reactome_2022.csv",
+      "size_bytes": 5353,
+      "sha256": "fd92207db3c2f5b91653e9dec0ca7ce3559445387da46a50de371f8882252d9d"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_geneformer_dim592_rank4_GO_Biological_Process_2023.csv",
+      "size_bytes": 3445,
+      "sha256": "732623f30da63ce2a1b80b1fa5f6947ffbd74db253c2f1bb8fae4999491d7523"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_geneformer_dim592_rank4_KEGG_2021_Human.csv",
+      "size_bytes": 2591,
+      "sha256": "47ddc2c48973503495568c9a99830219b889805a751acff6602534359f353a4d"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_geneformer_dim592_rank4_Reactome_2022.csv",
+      "size_bytes": 7650,
+      "sha256": "62fb078f64ea6e721b141ef0b0a303d966e5ead25f6951d8b4505b182844f2d3"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_scprint2_dim166_rank1_GO_Biological_Process_2023.csv",
+      "size_bytes": 7909,
+      "sha256": "09658ad801d7ba29c6d991103df84e54203ed297cf49e74d628a653c789349a5"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_scprint2_dim166_rank1_KEGG_2021_Human.csv",
+      "size_bytes": 1425,
+      "sha256": "2cac548f77d83b8df1213d02b7eb004b18af0062d6b7f730924ddcd921fb09ee"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_scprint2_dim166_rank1_Reactome_2022.csv",
+      "size_bytes": 20999,
+      "sha256": "ff4481d332fd70addc9bf50c5b28bf7c9defb0d1ad8df83ce2c05f95edd5b948"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_scprint2_dim169_rank2_GO_Biological_Process_2023.csv",
+      "size_bytes": 4595,
+      "sha256": "01c0fb7193267a30ada5c9f4324741f35341998868d501e3a85fb1b777bb6426"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_scprint2_dim169_rank2_KEGG_2021_Human.csv",
+      "size_bytes": 650,
+      "sha256": "8fb3b4f5c789f05a2f34090c579de7ffa664ee69206798c19b7e2e0f1cde7417"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_scprint2_dim169_rank2_Reactome_2022.csv",
+      "size_bytes": 5702,
+      "sha256": "0a8d72c0ca14248e5ae2e4aa9151bb02586c514c0a57acefd52489fcec45001e"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_scprint2_dim192_rank5_GO_Biological_Process_2023.csv",
+      "size_bytes": 5548,
+      "sha256": "58c1bf5f61b00e505e9f9b516130fec012bc51b33b35283c6c09a873d2c9058d"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_scprint2_dim192_rank5_KEGG_2021_Human.csv",
+      "size_bytes": 4155,
+      "sha256": "dfc9e93d6dd4678dd53d6a7e3c252aebbe0ef2d569f986dc9ce07046d066e47c"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_scprint2_dim192_rank5_Reactome_2022.csv",
+      "size_bytes": 13742,
+      "sha256": "3b56ec75fb646ecaec0de554b8db0478148b44ea903f7fe31e4cad33152fa1d8"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_scprint2_dim228_rank4_GO_Biological_Process_2023.csv",
+      "size_bytes": 3352,
+      "sha256": "cbbf292f2505eca4032cb1b81960e5e403ff34ab09cc0d2a95bac3baa4f8ad3a"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_scprint2_dim228_rank4_KEGG_2021_Human.csv",
+      "size_bytes": 584,
+      "sha256": "7582fd2241b36eb953a1ba550826610691c70a533d3fc93af8d2fd508916717a"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_scprint2_dim228_rank4_Reactome_2022.csv",
+      "size_bytes": 6083,
+      "sha256": "feacad7cacda1a370c26383505470167881c468c2639ec1cb948271bf3cb022c"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_scprint2_dim365_rank3_GO_Biological_Process_2023.csv",
+      "size_bytes": 2889,
+      "sha256": "9cb9a2af49a5c7677685f0a4f05fa0d6a810f236e487b3bfb7a1f556d4141c88"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_scprint2_dim365_rank3_KEGG_2021_Human.csv",
+      "size_bytes": 685,
+      "sha256": "27ec38d5b373dda37f0ac8c40a85384d3b5aef146aed8966b7622469eb138b15"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_scprint2_dim365_rank3_Reactome_2022.csv",
+      "size_bytes": 5161,
+      "sha256": "8200ae21b7b1b339bed6885b305f7e8d0d2e6957e9fed84d835ac789e62cf3a4"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_state_dim1354_rank2_GO_Biological_Process_2023.csv",
+      "size_bytes": 8464,
+      "sha256": "d4a149e57bf39ecb0b6d86cea396a44714f793a51510e183f9bed4b376d4a8d9"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_state_dim1354_rank2_KEGG_2021_Human.csv",
+      "size_bytes": 2793,
+      "sha256": "88749a57f07372e68259f872401e60cfec3164422923c82e9121f53ca6c3ea2a"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_state_dim1354_rank2_Reactome_2022.csv",
+      "size_bytes": 19438,
+      "sha256": "47b1a7bdbbc0ecfe44b7b3b19b491a57c3fb04a74607e8251a21c050e5e43ba5"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_state_dim1564_rank5_GO_Biological_Process_2023.csv",
+      "size_bytes": 4490,
+      "sha256": "8a735a001e6c528c1fabc66cf411259f54d38e4198115d07266ae011abeecb8b"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_state_dim1564_rank5_KEGG_2021_Human.csv",
+      "size_bytes": 1089,
+      "sha256": "cf250802aca9e16ef9702d5ebb95d893e3380e04e71ed596a64595eb68b22bb9"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_state_dim1564_rank5_Reactome_2022.csv",
+      "size_bytes": 8572,
+      "sha256": "2a6e41bd0c9fdc4d394fe81b6be1f7251a4751a810e3fdcea64bc25e4ddce0cd"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_state_dim1640_rank4_GO_Biological_Process_2023.csv",
+      "size_bytes": 6301,
+      "sha256": "57cf686c11d34b835df97dd665fbdf1afb5f270e83c461b48feada4804c23f6b"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_state_dim1640_rank4_KEGG_2021_Human.csv",
+      "size_bytes": 2376,
+      "sha256": "6853fda23e22b6d26db9b6eabf34faa227c703873cacbe5cfafff515fdbb2810"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_state_dim1640_rank4_Reactome_2022.csv",
+      "size_bytes": 16481,
+      "sha256": "d49b2863fda5de8ac9c10796c8c535c346b24bad988f21c1798fea66ba8489f3"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_state_dim195_rank1_GO_Biological_Process_2023.csv",
+      "size_bytes": 3256,
+      "sha256": "7c08267a4ba0770d063ddbd9c4c6b63d3ac34edac979d73a269ae2360454d18a"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_state_dim195_rank1_KEGG_2021_Human.csv",
+      "size_bytes": 2661,
+      "sha256": "f46d60833d8097c4ac5f58b5733c6c954f3baf8c6f24147981db7f110accb385"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_state_dim195_rank1_Reactome_2022.csv",
+      "size_bytes": 7786,
+      "sha256": "457437f74b181260c3a2ea58e297b5225f3e193c8befb29a18f4a71a31c67774"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_state_dim53_rank3_GO_Biological_Process_2023.csv",
+      "size_bytes": 6040,
+      "sha256": "2d044d473f566a5f8a0bd777b2b10e7be91665840b10767cf39e059396d83d67"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_state_dim53_rank3_KEGG_2021_Human.csv",
+      "size_bytes": 1111,
+      "sha256": "be5da652922d1381dcc673e6fb32ebc89cd152194549217cbb8e77d2825b4879"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_state_dim53_rank3_Reactome_2022.csv",
+      "size_bytes": 19658,
+      "sha256": "964f823bf76a139d9e49bdd0d2dcf322ec7e9d41e72f05c9ce7d35779e9d6bcb"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_summary.csv",
+      "size_bytes": 2020,
+      "sha256": "aafd68f00d0413593c5b4db0940cc9fba00313f11d0ae0acfb10a1c569da0dfe"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_transcriptformer_dim1474_rank5_GO_Biological_Process_2023.csv",
+      "size_bytes": 6875,
+      "sha256": "bd15f66f13508949ead07b5a5b906e911ae78b8d95ab14809844a67eb9c8ff97"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_transcriptformer_dim1474_rank5_KEGG_2021_Human.csv",
+      "size_bytes": 2905,
+      "sha256": "806a29325509943c4baeee2b50bce11f7c653ebf8b1c7d16cd95ab1fcff031a7"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_transcriptformer_dim1474_rank5_Reactome_2022.csv",
+      "size_bytes": 25145,
+      "sha256": "7aa66e421d026c20e866806a44b9665e9d00a47c741ec8153945069ab9dca80b"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_transcriptformer_dim1522_rank2_GO_Biological_Process_2023.csv",
+      "size_bytes": 8580,
+      "sha256": "02cea46ca78647e2f4d0689a1b8c89df47eae7af66de74a12c2498bacaab3269"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_transcriptformer_dim1522_rank2_KEGG_2021_Human.csv",
+      "size_bytes": 3683,
+      "sha256": "2dab50cbea17e5e43a03845e31eeb296a23f40cbd9ddb0ba62f3838471867b2f"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_transcriptformer_dim1522_rank2_Reactome_2022.csv",
+      "size_bytes": 27846,
+      "sha256": "f6ad782cd889e5ee3f47a2ee59d11285fd782c7648a5c09fdd7eecade936dd35"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_transcriptformer_dim1639_rank1_GO_Biological_Process_2023.csv",
+      "size_bytes": 6387,
+      "sha256": "d74be3dd32092d21b92548dd2cb0e20128b79df352912225545ae007bc736b83"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_transcriptformer_dim1639_rank1_KEGG_2021_Human.csv",
+      "size_bytes": 1862,
+      "sha256": "57ea3257495ff949416016bccab426b25710cc59b244d4ac3568ee414ed56a79"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_transcriptformer_dim1639_rank1_Reactome_2022.csv",
+      "size_bytes": 17826,
+      "sha256": "47412a2b50c490d1f7f273f1192070e38e677efb3f136285c642b0ff20ae63ee"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_transcriptformer_dim43_rank4_GO_Biological_Process_2023.csv",
+      "size_bytes": 8071,
+      "sha256": "247ac3d2a4fff81c0c60e212d4f1845648ea42ff8465458249d7f70bec97373a"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_transcriptformer_dim43_rank4_KEGG_2021_Human.csv",
+      "size_bytes": 1614,
+      "sha256": "9163dca805a06d02a9833ddd108a350f726abe6128c6ec8fe9edf3365240c4db"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_transcriptformer_dim43_rank4_Reactome_2022.csv",
+      "size_bytes": 17976,
+      "sha256": "4bf2d8a6a2faebd4788dfc550c8c93bb758e91d0612a9e3f4c9a4cddb5329bfa"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_transcriptformer_dim657_rank3_GO_Biological_Process_2023.csv",
+      "size_bytes": 5034,
+      "sha256": "19d951b5dc7f369d8e4566721baf0bbbc6c6815fb6f70e49020847690f86d817"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_transcriptformer_dim657_rank3_KEGG_2021_Human.csv",
+      "size_bytes": 4421,
+      "sha256": "bfa48094de05ac852219487e1a584436ff3b47c38abe72c322b306d554ac0db1"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_transcriptformer_dim657_rank3_Reactome_2022.csv",
+      "size_bytes": 20061,
+      "sha256": "11920bf03359ee40febd8943c6c1f706b783d39f3a3471a5076fc62da6542407"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_uce_dim1210_rank2_GO_Biological_Process_2023.csv",
+      "size_bytes": 8333,
+      "sha256": "2b7b181447b3b7e2a044f697e8627ad4bdebacee071aa2dfc68721eee2465d70"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_uce_dim1210_rank2_KEGG_2021_Human.csv",
+      "size_bytes": 2782,
+      "sha256": "2292cd4cad1dfe093b1c0dfb01b93d2c5f428d60fa36a30e7c9f31da0763fc5d"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_uce_dim1210_rank2_Reactome_2022.csv",
+      "size_bytes": 14616,
+      "sha256": "f81c948d760d285b7e29d9afa7942861ed1fd4f094560ab7daf2ad894a238b12"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_uce_dim50_rank5_GO_Biological_Process_2023.csv",
+      "size_bytes": 8930,
+      "sha256": "63cf51d8217abeb564faaf8b895b5e0ef466d6b58a67a881426fdef6f4ee0c31"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_uce_dim50_rank5_KEGG_2021_Human.csv",
+      "size_bytes": 893,
+      "sha256": "713d52d4948a0676977fbc4010c88b8034f6bd9c37f00db70113e787934cf6d1"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_uce_dim50_rank5_Reactome_2022.csv",
+      "size_bytes": 15638,
+      "sha256": "1c5bc1585693570efd7ba2ba9e58e186f0c1a0b808b4294aaa727abdbdc4c651"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_uce_dim580_rank1_GO_Biological_Process_2023.csv",
+      "size_bytes": 4148,
+      "sha256": "6f8767bdc0e6666fffced249399f9b9a23f138d28c3043c7096d812c370a466c"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_uce_dim580_rank1_KEGG_2021_Human.csv",
+      "size_bytes": 647,
+      "sha256": "26e5237a69913660e8a7bd51bd037d3131f96a80559e41c107f943146dc31fdf"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_uce_dim580_rank1_Reactome_2022.csv",
+      "size_bytes": 5060,
+      "sha256": "fb4ad0d7cd1ed40e490aabf71510b59c9fe9b7b88f1d28990054ae9093868ef7"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_uce_dim721_rank4_GO_Biological_Process_2023.csv",
+      "size_bytes": 7451,
+      "sha256": "860ebbdf1c1fe53160a919b5711518936fbf644bb1b521e73181fce39398dca9"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_uce_dim721_rank4_KEGG_2021_Human.csv",
+      "size_bytes": 1654,
+      "sha256": "d6dfda79e7912b36d45825e8280a5c20a59dc6073aca20236e1903bd47b199cf"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_uce_dim721_rank4_Reactome_2022.csv",
+      "size_bytes": 16439,
+      "sha256": "4177f999d25b44b15138390288a7e24f961b01c8d1daef818f518948a5ff2db6"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_uce_dim788_rank3_GO_Biological_Process_2023.csv",
+      "size_bytes": 9554,
+      "sha256": "6f402a82a8f7d5ac644eaa72785595b18ecf9d1f762ae8d13e9666e53af9f4e0"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_uce_dim788_rank3_KEGG_2021_Human.csv",
+      "size_bytes": 2154,
+      "sha256": "dc5cc8b07cbb9232e3109558626a0d37ef7c6c661e5f2c982ece6c715df7b53a"
+    },
+    {
+      "path": "results/option_c_gsea/gsea_uce_dim788_rank3_Reactome_2022.csv",
+      "size_bytes": 21483,
+      "sha256": "5e3067a104c19ed009e03b69e928cf0fb81a1c0c51350963597c9d3fb1717d7c"
+    },
+    {
+      "path": "results/option_c_multiclassifier/multiclassifier_summary.csv",
+      "size_bytes": 2247,
+      "sha256": "98b06353ad08f7642b6c4a13c4ce15307786401e3c4be8ebeadb1e7678a022ba"
+    },
+    {
+      "path": "results/option_c_pca_baseline/pca_baseline_summary.csv",
+      "size_bytes": 353,
+      "sha256": "77437f1b91a879473e6fbd62047a2033d5bedf2cd6f06d19a84c3c65329fcc74"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/clinical_metrics.csv",
+      "size_bytes": 1300,
+      "sha256": "71aaa23dbdcf18a37d5bffe5e1e05b1fdcc6212d885b168e92af6a353b8f88fc"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/adaptation_curve/Geneformer.csv",
+      "size_bytes": 3090,
+      "sha256": "a2fe67ff4844c93f116f2e691ea3d685698095d52466f8e975eb88e83e66fcb5"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/adaptation_curve/PCA-200+LR.csv",
+      "size_bytes": 3090,
+      "sha256": "08d552177902cf588ca45748eaf4a138647db5f887917bc547b14069d0b4ee73"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/adaptation_curve/STATE.csv",
+      "size_bytes": 2786,
+      "sha256": "4a68f3f34e9aa6622f2abbcdde724b5893961cc8c44baeb3dc84acc4629a170f"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/adaptation_curve/TranscriptFormer.csv",
+      "size_bytes": 3459,
+      "sha256": "cbd6aded780808bc6098dcbc01681a2c94c40c4aa0c42d214a2756c9bee6d87c"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/adaptation_curve/UCE.csv",
+      "size_bytes": 2665,
+      "sha256": "f823c15ddc6c1e9a0ee42be26a73278fcf39c918d8d5cd98b47ba6596672f145"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/adaptation_curve/all_rows.csv",
+      "size_bytes": 20467,
+      "sha256": "1889ba88e3637c3a1a0ab092b3c2472c4657c9e4abf3b229d5646dc622bc207f"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/adaptation_curve/scPRINT-2.csv",
+      "size_bytes": 3030,
+      "sha256": "870e79f3df26da6bc7316d4649c16b824d772662218b4060d8f167131968a95c"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/adaptation_curve/summary.csv",
+      "size_bytes": 4410,
+      "sha256": "9b3af4dcbab3c47673bdb6c8ff872f512a09e274ff7b7e322ef4d20b0af09647"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/adaptation_curve_bootstrap/Geneformer.csv",
+      "size_bytes": 6586,
+      "sha256": "18bc0b9123e4109437a85a753aef582c5322ffc95c0ddf0db6d84be1fac5c5cb"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/adaptation_curve_bootstrap/PCA-200+LR.csv",
+      "size_bytes": 6591,
+      "sha256": "99fc301bf4f9a1eec938607b05a2113419ff71bc35ec25767ef9efa5a62e4d54"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/adaptation_curve_bootstrap/STATE.csv",
+      "size_bytes": 6285,
+      "sha256": "7ee74e547cb302c9f4ff8598e430327fd4119b4eb0b34160dd012bc299cf11e4"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/adaptation_curve_bootstrap/TranscriptFormer.csv",
+      "size_bytes": 6954,
+      "sha256": "597c6222b7c82de8c845b055e425ddabeb5e7793e2165718069f643230b18221"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/adaptation_curve_bootstrap/UCE.csv",
+      "size_bytes": 6178,
+      "sha256": "76da03088016f6715a5519e02fd10c4373804e00677ef1a57a3a6edf07785f62"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/adaptation_curve_bootstrap/all_rows.csv",
+      "size_bytes": 44718,
+      "sha256": "e5eef04746556cd1aaa546d459dc460636735db4325a98169e50b26ec7a0fbda"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/adaptation_curve_bootstrap/scPRINT-2.csv",
+      "size_bytes": 6536,
+      "sha256": "df173439798da617b79af3558b91e6de4c4c579bf81674c3aa8e2897b76d32cf"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/adaptation_curve_bootstrap/summary.csv",
+      "size_bytes": 5660,
+      "sha256": "02eeb7995d21e328b47f14422969699d0dac1a0604b9d1f3231500599bd8a146"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/calibration.csv",
+      "size_bytes": 1110,
+      "sha256": "b8e956e5fecc0a0441cb79689c8e206819512d0c1e5e2fe65752705ef80bcd17"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/delong_pairwise.csv",
+      "size_bytes": 1826,
+      "sha256": "18be126a883fdc54fa8b18acb35da4df529a7e6b844761c83ec34a1301e254ea"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/lobo.csv",
+      "size_bytes": 3980,
+      "sha256": "fb389863426c07f084b687a6f9992444c19eafe926411c1871cac694decb14c3"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/mortality_lr_rf.csv",
+      "size_bytes": 1317,
+      "sha256": "66b9afda24d8706f925cb9f763efb40df13977dd6fedcd5e13037da23114f7ab"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/oof_predictions/Geneformer.csv",
+      "size_bytes": 3000955,
+      "sha256": "af90a802be2b7ed81cecfbfb221bc790878f4962c7eebce57b2f995ecd236609"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/oof_predictions/STATE.csv",
+      "size_bytes": 3070028,
+      "sha256": "0879c61ecec2d8038660b414a9eca6ea10e9102db6edd3f903b61624f98e4971"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/oof_predictions/TranscriptFormer.csv",
+      "size_bytes": 2999548,
+      "sha256": "3d0f4a90fd1986a2552b8096deb51278d606f08bc00fa8f4c9bdc872f31d913e"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/oof_predictions/UCE.csv",
+      "size_bytes": 3064246,
+      "sha256": "e73d1bc936b04b03deb1b9abcdd709b25019ad823f28f0e39148a878835b82a1"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/oof_predictions/scGPT.csv",
+      "size_bytes": 3060809,
+      "sha256": "d052cbe4c8b169162f00ec2a758bd15819bee46db52589e04d4881ccc11f70cf"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/oof_predictions/scPRINT-2.csv",
+      "size_bytes": 3002960,
+      "sha256": "479d0bafd62cd6950848a593c5a03ee88f600db0d3e530cd682240c2c00a4ad1"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/pca_baseline.csv",
+      "size_bytes": 381,
+      "sha256": "8f3414cca1c892bfcda7da954d2268a04d17699939df3238ac2e35df7ba23b3e"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/per_cohort_oof.csv",
+      "size_bytes": 2254,
+      "sha256": "8fb4fbd08da861215c71a0dc11b0f342a435c8815624c4c48fa93fb0389c6ce0"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/umap/Geneformer.csv",
+      "size_bytes": 3182582,
+      "sha256": "f213d80654fadc41add676b25ab9e8b37c71c2a10c43ea14a9a4561d81f0aafa"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/umap/STATE.csv",
+      "size_bytes": 3262605,
+      "sha256": "b23f9b00751e0cb11a20f60bc2239097435acc1add7f2bb7cf45ffed332d374b"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/umap/TranscriptFormer.csv",
+      "size_bytes": 3180661,
+      "sha256": "86bb52802e36374d13a2e75393b662ec4ac0c31fa4343d436e9a5efb57f46067"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/umap/UCE.csv",
+      "size_bytes": 3258898,
+      "sha256": "9cafbccf223ef08d073d0350695a1191ad92b2589d1f9bbc4151c7e453197b6d"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only/umap/scPRINT-2.csv",
+      "size_bytes": 3194539,
+      "sha256": "aab8fae7ab81cf118d8ef1d24860c2c3ad9b2268af721159e7e353c693c89fc0"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/covid_sepsis_only_mortality.csv",
+      "size_bytes": 1765,
+      "sha256": "01417d46c55e8ab427c339d35651e8d4736defeada6859fe54f950b41e4f5d3a"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/delong_pairwise.csv",
+      "size_bytes": 2403,
+      "sha256": "d18a1434fe85e354c7d488da46b178c4820aaab60fa6af2703acae40d0426a5e"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/lobo.csv",
+      "size_bytes": 3455,
+      "sha256": "61a18921fb4c0a63367e2bf116a4f63765f2a8e4ba2f6b9abb5051656502e45b"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/mortality_per_fold.csv",
+      "size_bytes": 4454,
+      "sha256": "27fd1147c50b5165698116452368957cfb0a2896201c00ca3664bc2ce6b9feba"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/mortality_summary.csv",
+      "size_bytes": 1027,
+      "sha256": "dbb216c19859762f74b46e653fb163fe04e975501126a7e933e3228c35d2bf97"
+    },
+    {
+      "path": "results/option_c_primary_benchmark/sample_efficiency.csv",
+      "size_bytes": 8303,
+      "sha256": "86ee64cb820fb14f88f4251135b87117ecf122d6915350817334586103b4b9e1"
+    },
+    {
+      "path": "results/option_c_shap/shap_dims_geneformer.csv",
+      "size_bytes": 198,
+      "sha256": "51b6bd6c94805fb9bab3a1e4e76fe2ec39576985f501151e027e2bdd9aa0c6d1"
+    },
+    {
+      "path": "results/option_c_shap/shap_dims_scgpt.csv",
+      "size_bytes": 187,
+      "sha256": "25b55da0e6b3bb61768803c0c3e2b868dc19fbbb25f08914c0a777ec5ba1ae4a"
+    },
+    {
+      "path": "results/option_c_shap/shap_dims_scprint2.csv",
+      "size_bytes": 193,
+      "sha256": "876bbc520e2b5cdff6eeb8a8025a92225a2b9552faffb8e5a69463bca9556e0c"
+    },
+    {
+      "path": "results/option_c_shap/shap_dims_state.csv",
+      "size_bytes": 196,
+      "sha256": "e2e9115f2cf470acca611f52e645bac4a9e47e9c30d4b33c681090e18e41d769"
+    },
+    {
+      "path": "results/option_c_shap/shap_dims_transcriptformer.csv",
+      "size_bytes": 195,
+      "sha256": "950fa41ca29ff97bda8ee0c2fed9411b1431b7f26923cadfd8e22b6c50f46cb0"
+    },
+    {
+      "path": "results/option_c_shap/shap_dims_uce.csv",
+      "size_bytes": 187,
+      "sha256": "d459bf532172d3f00090a0a687e64051d1be26bbd48e63913c66866c810c5711"
+    },
+    {
+      "path": "results/option_c_shap/shap_genes_geneformer.csv",
+      "size_bytes": 19728,
+      "sha256": "476dab0b25815c31dfbf946c60412329e66c5eb1d9b694a91446d7acf227de61"
+    },
+    {
+      "path": "results/option_c_shap/shap_genes_scgpt.csv",
+      "size_bytes": 17822,
+      "sha256": "8fbedea3d5ae3cca2ba68b17726f3d776ca979ccf5967bbce50017b1ce29a69c"
+    },
+    {
+      "path": "results/option_c_shap/shap_genes_scprint2.csv",
+      "size_bytes": 18848,
+      "sha256": "59852d4749df688169ea425c1b64f580e401dbded47b2a740c27c8cd8a8b52d3"
+    },
+    {
+      "path": "results/option_c_shap/shap_genes_state.csv",
+      "size_bytes": 18292,
+      "sha256": "988623f894a64c3047269adfb6a607a8b16d314725cf431cced228a017b1c3c7"
+    },
+    {
+      "path": "results/option_c_shap/shap_genes_transcriptformer.csv",
+      "size_bytes": 21207,
+      "sha256": "965cc0bba888aa4aa06b89104fba42c9efa13894f69e61edf4f3f6b45e9ac25d"
+    },
+    {
+      "path": "results/option_c_shap/shap_genes_uce.csv",
+      "size_bytes": 17439,
+      "sha256": "afe1e315e19237d58f335d98570a32f0b1ac83170fa27836d8681b20e70cb72f"
+    },
+    {
+      "path": "results/option_c_shap/shap_jaccard_overlap.csv",
+      "size_bytes": 900,
+      "sha256": "58ce3d760b34838d7ca523d8e6ffe6fe20bd1e70d8f8f7d419bda6d9632f989e"
+    },
+    {
+      "path": "results/option_c_shap/shap_summary.csv",
+      "size_bytes": 447,
+      "sha256": "da6de07143b16f383d4d43659ff5f5ad1ae39b01f4cf5bb2622a172b23e95527"
+    }
+  ],
+  "n_outputs": 192,
+  "in_repo_outputs": true,
+  "no_results_reason": null,
+  "git_commit": "6d1a49748113d1c79f9dd2ab8969c7618f2affed",
+  "runtime_seconds": null,
+  "package_versions": null,
+  "config": "configs/hpcc.yaml",
+  "environment_ref": "environment.yml",
+  "provenance": {
+    "reconstructed_post_hoc": true,
+    "generated_at": "2026-06-09T15:42:23+00:00",
+    "generated_by": "scripts/99_audit/code/emit_manifests.py",
+    "verified_in": "docs/claim-traceability.md (2026-06-06 traceability audit)",
+    "note": "Manifest reconstructed during the 2026-06-06/07 audit (item A001). Outputs were produced on the HPCC before the repo restructure; sizes + sha256 + git_commit are verifiable, but run-time wall-clock and package versions were not captured in-repo and are recorded as null rather than back-filled. When metadata_complete=false, slurm_jobs/parameters/claims were not curated for this stage \u2014 the output inventory + hashes + git pin are still authoritative."
+  }
+}

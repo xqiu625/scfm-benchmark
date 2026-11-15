@@ -1,0 +1,296 @@
+donor_id,scRNAseq,CITEseq,group,mort14,mort28,mort90,cohort
+Abd-S1,0.0,0.0,Adult Sepsis,0.0,1.0,1.0,adult
+Res-S2,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Res-S3,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S5,0.0,0.0,Adult Sepsis,0.0,0.0,,adult
+Skin-S6,0.0,0.0,Adult Sepsis,0.0,1.0,1.0,adult
+Res-S7,0.0,0.0,Adult Sepsis,0.0,0.0,1.0,adult
+Abd-S8,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S9,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S10,1.0,1.0,Adult Sepsis,1.0,1.0,1.0,adult
+Abd-S11,1.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Abd-S12,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S13,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S14,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S15,1.0,0.0,Adult Sepsis,0.0,0.0,1.0,adult
+Res-S18,1.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Res-S19,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Uri-S20,1.0,0.0,Adult Sepsis,0.0,0.0,1.0,adult
+Res-S21,1.0,0.0,Adult Sepsis,0.0,1.0,1.0,adult
+Res-S22,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S23,1.0,1.0,Adult Sepsis,1.0,1.0,1.0,adult
+Abd-S24,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S25,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S26,1.0,0.0,Adult Sepsis,0.0,1.0,1.0,adult
+Res-S27,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S28,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+CNS-S29,0.0,0.0,Adult Sepsis,0.0,0.0,1.0,adult
+Skin-S30,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Res-S31,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Res-S32,1.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Abd-S33,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Res-S34,0.0,0.0,Adult Sepsis,0.0,0.0,1.0,adult
+Abd-S35,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S36,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Abd-S37,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Skin-S38,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S39,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S40,1.0,1.0,Adult Sepsis,1.0,1.0,1.0,adult
+Res-S41,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S42,1.0,1.0,Adult Sepsis,0.0,1.0,1.0,adult
+Skin-S43,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S45,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Skin-S46,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S47,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Uri-S48,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Abd-S49,1.0,1.0,Adult Sepsis,0.0,1.0,1.0,adult
+CNS-S50,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S51,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Skin-S52,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S53,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S54,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S55,1.0,1.0,Adult Sepsis,0.0,0.0,,adult
+Res-S56,1.0,0.0,Adult Sepsis,0.0,0.0,1.0,adult
+Abd-S57,1.0,0.0,Adult Sepsis,0.0,0.0,1.0,adult
+Abd-S58,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S59,1.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+CNS-S61,1.0,0.0,Adult Sepsis,0.0,0.0,1.0,adult
+Res-S64,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S66,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S67,1.0,1.0,Adult Sepsis,0.0,1.0,1.0,adult
+Res-S70,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S71,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S72,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S73,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Skin-S74,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S75,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S77,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S78,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S79,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S80,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S81,1.0,1.0,Adult Sepsis,0.0,1.0,1.0,adult
+Uri-S82,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S83,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Uri-S85,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S87,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Uri-S88,1.0,1.0,Adult Sepsis,0.0,0.0,1.0,adult
+Res-S89,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Abd-S91,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S92,0.0,0.0,Adult Sepsis,0.0,1.0,1.0,adult
+Uri-S93,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Uri-S94,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Uri-S95,0.0,0.0,Adult Sepsis,0.0,0.0,1.0,adult
+Abd-S96,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S97,0.0,0.0,Adult Sepsis,,,,adult
+Abd-S98,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Skin-S99,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S100,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S101,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S102,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S103,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Uri-S104,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Res-S105,0.0,0.0,Adult Sepsis,0.0,1.0,1.0,adult
+Uri-S106,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S108,0.0,0.0,Adult Sepsis,0.0,1.0,1.0,adult
+Res-S109,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S110,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S111,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Uri-S112,1.0,0.0,Adult Sepsis,0.0,0.0,1.0,adult
+Skin-S113,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S114,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S115,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Uri-S116,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Skin-S117,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S118,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S120,1.0,0.0,Adult Sepsis,,,,adult
+Abd-S123,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Uri-S124,0.0,0.0,Adult Sepsis,0.0,0.0,1.0,adult
+Res-S125,1.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Abd-S126,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S127,1.0,0.0,Adult Sepsis,0.0,,,adult
+Abd-S128,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S130,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S131,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S132,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S133,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Uri-S134,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S135,0.0,0.0,Adult Sepsis,0.0,,,adult
+Res-S136,1.0,0.0,Adult Sepsis,0.0,1.0,1.0,adult
+Abd-S137,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Uri-S138,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S139,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Skin-S140,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S141,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Skin-S142,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Uri-S143,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S144,1.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Res-S145,1.0,0.0,Adult Sepsis,0.0,0.0,1.0,adult
+Res-S146,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Uri-S147,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S148,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Res-S149,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S150,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Skin-S152,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S153,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Uri-S155,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S156,1.0,0.0,Adult Sepsis,0.0,0.0,1.0,adult
+Uri-S157,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S159,0.0,0.0,Adult Sepsis,0.0,1.0,1.0,adult
+Abd-S161,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Uri-S162,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S164,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S165,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S166,1.0,1.0,Adult Sepsis,0.0,1.0,1.0,adult
+Res-S167,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S168,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S170,1.0,1.0,Adult Sepsis,0.0,0.0,1.0,adult
+Res-S172,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Res-S173,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Res-S174,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S175,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Res-S176,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S177,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S178,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Uri-S180,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S181,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Res-S182,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S183,1.0,1.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S184,1.0,0.0,Adult Sepsis,0.0,0.0,1.0,adult
+Abd-S185,0.0,0.0,Adult Sepsis,0.0,1.0,1.0,adult
+Res-S186,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S187,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+CNS-S189,1.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Abd-S190,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Skin-S191,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Skin-S192,0.0,0.0,Adult Sepsis,,,,adult
+Res-S194,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S195,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S196,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Abd-S197,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Abd-S198,0.0,0.0,Adult Sepsis,0.0,0.0,1.0,adult
+Res-S199,0.0,0.0,Adult Sepsis,0.0,,,adult
+Uri-S200,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Uri-S201,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S202,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S203,0.0,0.0,Adult Sepsis,0.0,1.0,1.0,adult
+Res-S204,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Res-S205,0.0,0.0,Adult Sepsis,0.0,,,adult
+Res-S206,0.0,0.0,Adult Sepsis,0.0,,,adult
+Res-S207,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Uri-S208,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S209,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Res-S212,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Uri-S213,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S214,0.0,0.0,Adult Sepsis,1.0,1.0,1.0,adult
+Uri-S217,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S218,0.0,0.0,Adult Sepsis,0.0,0.0,0.0,adult
+Res-S219,0.0,0.0,Adult Sepsis,0.0,0.0,1.0,adult
+IC02,0.0,0.0,Adult ICU Control,0.0,0.0,0.0,adult
+IC03,0.0,0.0,Adult ICU Control,0.0,0.0,0.0,adult
+IC05,0.0,0.0,Adult ICU Control,0.0,0.0,0.0,adult
+IC06,0.0,0.0,Adult ICU Control,0.0,0.0,0.0,adult
+IC07,0.0,0.0,Adult ICU Control,1.0,1.0,1.0,adult
+IC08,1.0,1.0,Adult ICU Control,0.0,0.0,0.0,adult
+IC09,1.0,1.0,Adult ICU Control,0.0,0.0,1.0,adult
+IC10,1.0,1.0,Adult ICU Control,0.0,0.0,0.0,adult
+IC11,0.0,0.0,Adult ICU Control,0.0,0.0,0.0,adult
+IC12,0.0,0.0,Adult ICU Control,0.0,0.0,0.0,adult
+IC13,0.0,0.0,Adult ICU Control,1.0,1.0,1.0,adult
+IC14,0.0,0.0,Adult ICU Control,0.0,0.0,0.0,adult
+IC15,1.0,0.0,Adult ICU Control,1.0,1.0,1.0,adult
+IC16,1.0,0.0,Adult ICU Control,0.0,1.0,1.0,adult
+IC17,0.0,0.0,Adult ICU Control,1.0,1.0,1.0,adult
+IC18,0.0,0.0,Adult ICU Control,1.0,1.0,1.0,adult
+IC19,1.0,1.0,Adult ICU Control,0.0,0.0,0.0,adult
+IC20,0.0,0.0,Adult ICU Control,1.0,1.0,1.0,adult
+IC21,0.0,0.0,Adult ICU Control,0.0,0.0,0.0,adult
+IC22,1.0,0.0,Adult ICU Control,0.0,0.0,0.0,adult
+IC23,1.0,1.0,Adult ICU Control,1.0,1.0,1.0,adult
+IC26,0.0,0.0,Adult ICU Control,0.0,0.0,0.0,adult
+IC27,0.0,0.0,Adult ICU Control,0.0,0.0,0.0,adult
+IC28,0.0,0.0,Adult ICU Control,0.0,0.0,0.0,adult
+IC30,0.0,0.0,Adult ICU Control,0.0,0.0,0.0,adult
+IC31,0.0,0.0,Adult ICU Control,0.0,0.0,0.0,adult
+HC01,1.0,1.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC03,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC04,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC05,1.0,1.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC06,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC07,1.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC08,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC09,1.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC10,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC11,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC12,1.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC13,1.0,1.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC14,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC15,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC16,1.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC17,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC18,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC19,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC20,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC21,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC22,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC23,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC24,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC25,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC26,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC27,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC28,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC29,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC30,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC31,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC32,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC33,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC34,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC35,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC36,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC37,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC38,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC39,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC40,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC41,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC42,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC43,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+HC44,0.0,0.0,Adult Healthy Control,0.0,0.0,0.0,adult
+Table annotation:,,,,,,,adult
+"Binary encoding was applied to clinical, microbiological, and molecular profiling variables as follows:",,,,,,,adult
+"Chronic comorbidities and microbiological results: A value of 1 indicates the documented presence of the specified comorbidity (e.g., cardiovascular compromise, COPD, diabetes) or pathogen type (e.g., Gram-positive bacteria, fungi); blank cells indicate absence.",,,,,,,adult
+"Clinical complications and interventions: Values of 1 denote the presence of the indicated clinical condition or intervention (e.g., shock, organ failure, mechanical ventilation, acute kidney injury); 0 denotes absence.",,,,,,,adult
+"Mortality outcomes: Coded as 1 for deceased and 0 for surviving patients, evaluated at 14, 28, and 90 days following enrollment.",,,,,,,adult
+"Multi-omics profiling platforms: For each omics modality (scRNA-seq, TCR-seq, BCR-seq, CITE-seq, bulk RNA-seq, and Olink proteomics), a value of 1 indicates that the corresponding assay was performed on the sample; 0 indicates that the modality was not applied to that individual.",,,,,,,adult
+NA indicates data not available or not applicable.,,,,,,,adult
+Res-PS02,1.0,0.0,Pediatric Sepsis,0.0,0.0,0.0,pediatric
+Res-PS03,1.0,0.0,Pediatric Sepsis,0.0,0.0,0.0,pediatric
+Abd-PS04,1.0,0.0,Pediatric Sepsis,0.0,0.0,0.0,pediatric
+Abd-PS05,1.0,0.0,Pediatric Sepsis,0.0,0.0,0.0,pediatric
+Abd-PS07,1.0,0.0,Pediatric Sepsis,0.0,0.0,0.0,pediatric
+Res-PS12,1.0,0.0,Pediatric Sepsis,0.0,0.0,0.0,pediatric
+Abd-PS13,1.0,0.0,Pediatric Sepsis,0.0,0.0,0.0,pediatric
+Res-PS16,1.0,0.0,Pediatric Sepsis,0.0,0.0,0.0,pediatric
+Abd-PS18,1.0,0.0,Pediatric Sepsis,0.0,0.0,0.0,pediatric
+Abd-PS19,1.0,0.0,Pediatric Sepsis,0.0,0.0,0.0,pediatric
+Abd-PS20,1.0,0.0,Pediatric Sepsis,0.0,0.0,0.0,pediatric
+Res-PS21,1.0,0.0,Pediatric Sepsis,1.0,1.0,1.0,pediatric
+Res-PS22,1.0,0.0,Pediatric Sepsis,0.0,0.0,0.0,pediatric
+Abd-PS23,1.0,0.0,Pediatric Sepsis,0.0,0.0,0.0,pediatric
+Res-PS25,1.0,0.0,Pediatric Sepsis,0.0,1.0,1.0,pediatric
+Res-PS26,1.0,0.0,Pediatric Sepsis,0.0,0.0,0.0,pediatric
+Abd-PS27,1.0,0.0,Pediatric Sepsis,0.0,0.0,0.0,pediatric
+pIC 01,1.0,0.0,Pediatric ICU Control,0.0,0.0,0.0,pediatric
+pIC 02,1.0,0.0,Pediatric ICU Control,0.0,0.0,0.0,pediatric
+pIC 04,1.0,0.0,Pediatric ICU Control,0.0,0.0,0.0,pediatric
+pIC 05,1.0,0.0,Pediatric ICU Control,0.0,0.0,0.0,pediatric
+pIC 06,0.0,0.0,Pediatric ICU Control,0.0,0.0,0.0,pediatric
+pHC 01,1.0,0.0,Pediatric Healthy Control,0.0,0.0,0.0,pediatric
+pHC 02,1.0,0.0,Pediatric Healthy Control,0.0,0.0,0.0,pediatric
+pHC 03,1.0,0.0,Pediatric Healthy Control,0.0,0.0,0.0,pediatric
+pHC 05,1.0,0.0,Pediatric Healthy Control,0.0,0.0,0.0,pediatric
+Table annotation:,,,,,,,pediatric
+"Binary encoding was applied to clinical, microbiological, and molecular profiling variables as follows:",,,,,,,pediatric
+"Microbiological results: A value of 1 indicates the documented presence of the pathogen type (e.g., Gram-positive bacteria, fungi); blank cells indicate absence.",,,,,,,pediatric
+"Clinical complications and interventions: Values of 1 denote the presence of the indicated clinical condition or intervention (e.g., shock, organ failure, mechanical ventilation, acute kidney injury); 0 denotes absence.",,,,,,,pediatric
+"Mortality outcomes: Coded as 1 for deceased and 0 for surviving patients, evaluated at 14, 28, and 90 days following enrollment.",,,,,,,pediatric
+"Multi-omics profiling platforms: For each omics modality (scRNA-seq, TCR-seq, BCR-seq, CITE-seq, bulk RNA-seq, and Olink proteomics), a value of 1 indicates that the corresponding assay was performed on the sample; 0 indicates that the modality was not applied to that individual.",,,,,,,pediatric
+NA indicates data not available or not applicable.,,,,,,,pediatric

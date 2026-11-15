@@ -1,0 +1,7 @@
+QC+log1p(n_cells) only (no cohort dummies), L2 C=0.3, n=240/25 fatal:
+AUC = 0.6182
+
+QC+log1p(n_cells)+cohort one-hot (8 dummies), same protocol:
+AUC = 0.6270
+
+Both orientations are already positive (>0.5) without any sign flip. The "sign flip" the reviewer is asking about applies to Job K's ORIGINAL simpler QC-only-no-cohort-no-log1p(n_cells) model (0.376->0.624), NOT to this properly-specified baseline, which was never flipped.

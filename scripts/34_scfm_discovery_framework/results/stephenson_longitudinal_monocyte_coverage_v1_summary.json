@@ -1,0 +1,543 @@
+{
+  "asymptomatic_donor_rows": [
+    {
+      "any_visit_with_zero_monocyte_cells_in_this_object": false,
+      "coverage_status": "checked",
+      "n_visits": 2,
+      "per_visit": [
+        {
+          "collection_day": "D0",
+          "n_monocyte_cells_this_sample": 87,
+          "sample_id": "BGCV02_CV0068",
+          "subtypes_present_gt0": [
+            "CD14_mono",
+            "CD16_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Initial"
+        },
+        {
+          "collection_day": "D28",
+          "n_monocyte_cells_this_sample": 52,
+          "sample_id": "BGCV12_CV0068",
+          "subtypes_present_gt0": [
+            "CD14_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Resample"
+        }
+      ],
+      "shared_subtypes_present_across_all_visits": [
+        "CD14_mono",
+        "CD83_CD14_mono"
+      ],
+      "true_donor_group": "sdrf::CV0068"
+    },
+    {
+      "any_visit_with_zero_monocyte_cells_in_this_object": false,
+      "coverage_status": "checked",
+      "n_visits": 2,
+      "per_visit": [
+        {
+          "collection_day": "D0",
+          "n_monocyte_cells_this_sample": 133,
+          "sample_id": "BGCV09_CV0171",
+          "subtypes_present_gt0": [
+            "CD14_mono",
+            "CD16_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Initial"
+        },
+        {
+          "collection_day": "D28",
+          "n_monocyte_cells_this_sample": 65,
+          "sample_id": "BGCV13_CV0171",
+          "subtypes_present_gt0": [
+            "CD14_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Resample"
+        }
+      ],
+      "shared_subtypes_present_across_all_visits": [
+        "CD14_mono",
+        "CD83_CD14_mono"
+      ],
+      "true_donor_group": "sdrf::CV0171"
+    },
+    {
+      "any_visit_with_zero_monocyte_cells_in_this_object": false,
+      "coverage_status": "checked",
+      "n_visits": 2,
+      "per_visit": [
+        {
+          "collection_day": "D0",
+          "n_monocyte_cells_this_sample": 71,
+          "sample_id": "BGCV10_CV0231",
+          "subtypes_present_gt0": [
+            "CD14_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Initial"
+        },
+        {
+          "collection_day": "D28",
+          "n_monocyte_cells_this_sample": 15,
+          "sample_id": "BGCV15_CV0231",
+          "subtypes_present_gt0": [
+            "CD16_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Resample"
+        }
+      ],
+      "shared_subtypes_present_across_all_visits": [
+        "CD83_CD14_mono"
+      ],
+      "true_donor_group": "sdrf::CV0231"
+    }
+  ],
+  "n_asymptomatic_multi_visit_donors": 3,
+  "n_sample_visits_missing_from_cell_count_table": 0,
+  "n_symptomatic_donors_coverage_unknown": 0,
+  "n_symptomatic_donors_with_at_least_one_shared_subtype": 12,
+  "n_symptomatic_donors_with_zero_shared_subtypes": 0,
+  "n_symptomatic_multi_visit_donors": 12,
+  "provenance_caveat": "subtype presence (>0 cells) is read from the per-cohort RAW object's own obs['orig_celltype'] (curated_atlas_label), qc_status: provisional -- this is a feasibility coverage check, not a QC-admitted analysis input. A sample absent from the cell-count table is reported 'unknown', never folded into a 0 count.",
+  "subtypes_in_source_object": [
+    "C1_CD16_mono",
+    "CD14_mono",
+    "CD16_mono",
+    "CD83_CD14_mono",
+    "Mono_prolif"
+  ],
+  "symptomatic_donor_rows": [
+    {
+      "any_visit_with_zero_monocyte_cells_in_this_object": false,
+      "coverage_status": "checked",
+      "n_visits": 2,
+      "per_visit": [
+        {
+          "collection_day": "D0",
+          "n_monocyte_cells_this_sample": 539,
+          "sample_id": "MH9179821",
+          "subtypes_present_gt0": [
+            "C1_CD16_mono",
+            "CD14_mono",
+            "CD16_mono",
+            "CD83_CD14_mono",
+            "Mono_prolif"
+          ],
+          "visit_resample_flag": "Initial"
+        },
+        {
+          "collection_day": "D12",
+          "n_monocyte_cells_this_sample": 2592,
+          "sample_id": "newcastle004v2",
+          "subtypes_present_gt0": [
+            "C1_CD16_mono",
+            "CD14_mono",
+            "CD16_mono",
+            "CD83_CD14_mono",
+            "Mono_prolif"
+          ],
+          "visit_resample_flag": "Resample"
+        }
+      ],
+      "shared_subtypes_present_across_all_visits": [
+        "C1_CD16_mono",
+        "CD14_mono",
+        "CD16_mono",
+        "CD83_CD14_mono",
+        "Mono_prolif"
+      ],
+      "true_donor_group": "sdrf::C-8821"
+    },
+    {
+      "any_visit_with_zero_monocyte_cells_in_this_object": false,
+      "coverage_status": "checked",
+      "n_visits": 2,
+      "per_visit": [
+        {
+          "collection_day": "D0",
+          "n_monocyte_cells_this_sample": 610,
+          "sample_id": "newcastle21",
+          "subtypes_present_gt0": [
+            "C1_CD16_mono",
+            "CD14_mono",
+            "CD16_mono",
+            "CD83_CD14_mono",
+            "Mono_prolif"
+          ],
+          "visit_resample_flag": "Initial"
+        },
+        {
+          "collection_day": "D9",
+          "n_monocyte_cells_this_sample": 2411,
+          "sample_id": "newcastle21v2",
+          "subtypes_present_gt0": [
+            "C1_CD16_mono",
+            "CD14_mono",
+            "CD16_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Resample"
+        }
+      ],
+      "shared_subtypes_present_across_all_visits": [
+        "C1_CD16_mono",
+        "CD14_mono",
+        "CD16_mono",
+        "CD83_CD14_mono"
+      ],
+      "true_donor_group": "sdrf::C-8884"
+    },
+    {
+      "any_visit_with_zero_monocyte_cells_in_this_object": false,
+      "coverage_status": "checked",
+      "n_visits": 3,
+      "per_visit": [
+        {
+          "collection_day": "D0",
+          "n_monocyte_cells_this_sample": 1669,
+          "sample_id": "MH8919327",
+          "subtypes_present_gt0": [
+            "C1_CD16_mono",
+            "CD14_mono",
+            "CD16_mono",
+            "CD83_CD14_mono",
+            "Mono_prolif"
+          ],
+          "visit_resample_flag": "Initial"
+        },
+        {
+          "collection_day": "D13",
+          "n_monocyte_cells_this_sample": 4214,
+          "sample_id": "MH8919328",
+          "subtypes_present_gt0": [
+            "C1_CD16_mono",
+            "CD14_mono",
+            "CD16_mono",
+            "CD83_CD14_mono",
+            "Mono_prolif"
+          ],
+          "visit_resample_flag": "Resample"
+        },
+        {
+          "collection_day": "D7",
+          "n_monocyte_cells_this_sample": 1185,
+          "sample_id": "MH9143273",
+          "subtypes_present_gt0": [
+            "C1_CD16_mono",
+            "CD14_mono",
+            "CD16_mono",
+            "CD83_CD14_mono",
+            "Mono_prolif"
+          ],
+          "visit_resample_flag": "Resample"
+        }
+      ],
+      "shared_subtypes_present_across_all_visits": [
+        "C1_CD16_mono",
+        "CD14_mono",
+        "CD16_mono",
+        "CD83_CD14_mono",
+        "Mono_prolif"
+      ],
+      "true_donor_group": "sdrf::C-8896"
+    },
+    {
+      "any_visit_with_zero_monocyte_cells_in_this_object": false,
+      "coverage_status": "checked",
+      "n_visits": 2,
+      "per_visit": [
+        {
+          "collection_day": "D0",
+          "n_monocyte_cells_this_sample": 22,
+          "sample_id": "BGCV11_CV0050",
+          "subtypes_present_gt0": [
+            "CD14_mono",
+            "CD16_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Initial"
+        },
+        {
+          "collection_day": "D28",
+          "n_monocyte_cells_this_sample": 57,
+          "sample_id": "BGCV14_CV0050",
+          "subtypes_present_gt0": [
+            "CD16_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Resample"
+        }
+      ],
+      "shared_subtypes_present_across_all_visits": [
+        "CD16_mono",
+        "CD83_CD14_mono"
+      ],
+      "true_donor_group": "sdrf::CV0050"
+    },
+    {
+      "any_visit_with_zero_monocyte_cells_in_this_object": false,
+      "coverage_status": "checked",
+      "n_visits": 2,
+      "per_visit": [
+        {
+          "collection_day": "D0",
+          "n_monocyte_cells_this_sample": 55,
+          "sample_id": "BGCV09_CV0062",
+          "subtypes_present_gt0": [
+            "CD14_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Initial"
+        },
+        {
+          "collection_day": "D28",
+          "n_monocyte_cells_this_sample": 44,
+          "sample_id": "BGCV12_CV0062",
+          "subtypes_present_gt0": [
+            "CD16_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Resample"
+        }
+      ],
+      "shared_subtypes_present_across_all_visits": [
+        "CD83_CD14_mono"
+      ],
+      "true_donor_group": "sdrf::CV0062"
+    },
+    {
+      "any_visit_with_zero_monocyte_cells_in_this_object": false,
+      "coverage_status": "checked",
+      "n_visits": 2,
+      "per_visit": [
+        {
+          "collection_day": "D0",
+          "n_monocyte_cells_this_sample": 53,
+          "sample_id": "BGCV08_CV0073",
+          "subtypes_present_gt0": [
+            "CD16_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Initial"
+        },
+        {
+          "collection_day": "D28",
+          "n_monocyte_cells_this_sample": 86,
+          "sample_id": "BGCV13_CV0073",
+          "subtypes_present_gt0": [
+            "CD14_mono",
+            "CD16_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Resample"
+        }
+      ],
+      "shared_subtypes_present_across_all_visits": [
+        "CD16_mono",
+        "CD83_CD14_mono"
+      ],
+      "true_donor_group": "sdrf::CV0073"
+    },
+    {
+      "any_visit_with_zero_monocyte_cells_in_this_object": false,
+      "coverage_status": "checked",
+      "n_visits": 2,
+      "per_visit": [
+        {
+          "collection_day": "D0",
+          "n_monocyte_cells_this_sample": 29,
+          "sample_id": "BGCV07_CV0137",
+          "subtypes_present_gt0": [
+            "CD14_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Initial"
+        },
+        {
+          "collection_day": "D28",
+          "n_monocyte_cells_this_sample": 464,
+          "sample_id": "BGCV14_CV0137",
+          "subtypes_present_gt0": [
+            "CD14_mono",
+            "CD16_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Resample"
+        }
+      ],
+      "shared_subtypes_present_across_all_visits": [
+        "CD14_mono",
+        "CD83_CD14_mono"
+      ],
+      "true_donor_group": "sdrf::CV0137"
+    },
+    {
+      "any_visit_with_zero_monocyte_cells_in_this_object": false,
+      "coverage_status": "checked",
+      "n_visits": 2,
+      "per_visit": [
+        {
+          "collection_day": "D0",
+          "n_monocyte_cells_this_sample": 83,
+          "sample_id": "BGCV03_CV0176",
+          "subtypes_present_gt0": [
+            "CD14_mono",
+            "CD16_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Initial"
+        },
+        {
+          "collection_day": "D28",
+          "n_monocyte_cells_this_sample": 12,
+          "sample_id": "BGCV15_CV0176",
+          "subtypes_present_gt0": [
+            "CD16_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Resample"
+        }
+      ],
+      "shared_subtypes_present_across_all_visits": [
+        "CD16_mono",
+        "CD83_CD14_mono"
+      ],
+      "true_donor_group": "sdrf::CV0176"
+    },
+    {
+      "any_visit_with_zero_monocyte_cells_in_this_object": false,
+      "coverage_status": "checked",
+      "n_visits": 2,
+      "per_visit": [
+        {
+          "collection_day": "D0",
+          "n_monocyte_cells_this_sample": 32,
+          "sample_id": "BGCV06_CV0178",
+          "subtypes_present_gt0": [
+            "CD14_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Initial"
+        },
+        {
+          "collection_day": "D28",
+          "n_monocyte_cells_this_sample": 281,
+          "sample_id": "BGCV12_CV0178",
+          "subtypes_present_gt0": [
+            "CD14_mono",
+            "CD16_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Resample"
+        }
+      ],
+      "shared_subtypes_present_across_all_visits": [
+        "CD14_mono",
+        "CD83_CD14_mono"
+      ],
+      "true_donor_group": "sdrf::CV0178"
+    },
+    {
+      "any_visit_with_zero_monocyte_cells_in_this_object": false,
+      "coverage_status": "checked",
+      "n_visits": 2,
+      "per_visit": [
+        {
+          "collection_day": "D0",
+          "n_monocyte_cells_this_sample": 44,
+          "sample_id": "BGCV08_CV0201",
+          "subtypes_present_gt0": [
+            "CD14_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Initial"
+        },
+        {
+          "collection_day": "D28",
+          "n_monocyte_cells_this_sample": 10,
+          "sample_id": "BGCV06_CV0201",
+          "subtypes_present_gt0": [
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Resample"
+        }
+      ],
+      "shared_subtypes_present_across_all_visits": [
+        "CD83_CD14_mono"
+      ],
+      "true_donor_group": "sdrf::CV0201"
+    },
+    {
+      "any_visit_with_zero_monocyte_cells_in_this_object": false,
+      "coverage_status": "checked",
+      "n_visits": 2,
+      "per_visit": [
+        {
+          "collection_day": "D0",
+          "n_monocyte_cells_this_sample": 37,
+          "sample_id": "BGCV11_CV0257",
+          "subtypes_present_gt0": [
+            "CD14_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Initial"
+        },
+        {
+          "collection_day": "D28",
+          "n_monocyte_cells_this_sample": 6,
+          "sample_id": "BGCV15_CV0257",
+          "subtypes_present_gt0": [
+            "CD16_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Resample"
+        }
+      ],
+      "shared_subtypes_present_across_all_visits": [
+        "CD83_CD14_mono"
+      ],
+      "true_donor_group": "sdrf::CV0257"
+    },
+    {
+      "any_visit_with_zero_monocyte_cells_in_this_object": false,
+      "coverage_status": "checked",
+      "n_visits": 2,
+      "per_visit": [
+        {
+          "collection_day": "D0",
+          "n_monocyte_cells_this_sample": 86,
+          "sample_id": "BGCV05_CV0284",
+          "subtypes_present_gt0": [
+            "CD14_mono",
+            "CD83_CD14_mono"
+          ],
+          "visit_resample_flag": "Initial"
+        },
+        {
+          "collection_day": "D28",
+          "n_monocyte_cells_this_sample": 480,
+          "sample_id": "BGCV14_CV0284",
+          "subtypes_present_gt0": [
+            "C1_CD16_mono",
+            "CD14_mono",
+            "CD16_mono",
+            "CD83_CD14_mono",
+            "Mono_prolif"
+          ],
+          "visit_resample_flag": "Resample"
+        }
+      ],
+      "shared_subtypes_present_across_all_visits": [
+        "CD14_mono",
+        "CD83_CD14_mono"
+      ],
+      "true_donor_group": "sdrf::CV0284"
+    }
+  ]
+}

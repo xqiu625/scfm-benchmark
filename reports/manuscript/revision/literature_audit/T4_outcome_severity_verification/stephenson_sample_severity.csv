@@ -1,0 +1,144 @@
+patient_id,sample_id,Status,Status_on_day_collection,Status_on_day_collection_summary,Worst_Clinical_Status,n_cells
+MH9179824,MH9179824,Covid,Ward_O2,Moderate,Moderate,8205
+newcastle65,newcastle65,Healthy,Healthy,Healthy,Healthy,5655
+MH9143327,MH9143327,Covid,Ward_O2,Moderate,Moderate,10295
+MH9143326,MH9143326,Covid,Ward_O2,Moderate,Moderate,10446
+MH9143325,MH9143325,Covid,ITU_NIV,Severe,Death,9019
+MH9143320,MH9143320,Covid,ITU_NIV,Severe,Death,7128
+MH9143276,MH9143276,Covid,Ward_noO2,Mild,Mild,10207
+MH9143274,MH9143274,Covid,ITU_O2,Severe,Severe,6847
+MH8919226,MH8919226,Healthy,Healthy,Healthy,Healthy,1190
+MH9179821,MH9179821,Covid,Ward_O2,Moderate,Death,6149
+MH8919230,MH8919230,LPS,LPS,LPS_90mins,LPS,740
+MH9179823,MH9179823,Covid,Ward_O2,Moderate,Moderate,6029
+MH8919327,MH8919327,Covid,ITU_NIV,Severe,Critical ,8819
+newcastle20,newcastle20,Covid,Ward_noO2,Mild,Mild,3261
+MH9143370,MH9143370,Non_covid,Non_covid,Non_covid,Non-covid,1843
+MH8919331,MH8919331,Covid,Ward_O2,Moderate,Moderate,7585
+MH9143420,MH9143420,Covid,Ward_noO2,Mild,Moderate,7985
+MH9143373,MH9143373,Non_covid,Ward_O2,Non_covid,Non-covid,1641
+MH9143372,MH9143372,Non_covid,Ward_O2,Non_covid,Non-covid,3391
+MH9143371,MH9143371,Covid,Ward_O2,Moderate,Moderate,6808
+MH9143323,MH9143323,Covid,Ward_O2,Moderate,Moderate,10082
+MH9143277,MH9143277,Covid,ITU_intubated,Critical,Critical ,11710
+MH8919277,MH8919277,LPS,LPS,LPS_10hours,LPS,65
+MH9143270,MH9143270,Covid,Ward_O2,Moderate,Moderate,10084
+MH8919333,MH8919333,Healthy,Healthy,Healthy,Healthy,12081
+MH8919332,MH8919332,Healthy,Healthy,Healthy,Healthy,8004
+MH9179828,MH9179828,Non_covid,ITU_NIV,Non_covid,Non-covid,3993
+newcastle21,newcastle21,Covid,ITU_intubated,Critical,Critical ,5505
+MH8919281,MH8919281,LPS,LPS,LPS_10hours,LPS,724
+MH8919280,MH8919280,LPS,LPS,LPS_90mins,LPS,642
+MH8919278,MH8919278,LPS,LPS,LPS_90mins,LPS,1813
+MH8919276,MH8919276,LPS,LPS,LPS_90mins,LPS,473
+MH8919233,MH8919233,LPS,LPS,LPS_10hours,LPS,307
+MH8919227,MH8919227,Healthy,Healthy,Healthy,Healthy,2096
+MH8919326,MH8919326,Covid,Ward_noO2,Mild,Moderate,7816
+newcastle59,newcastle59,Covid,Ward_noO2,Mild,Mild,5096
+MH9143422,MH9143422,Covid,Ward_noO2,Mild,Mild,9608
+MH9143271,MH9143271,Covid,Ward_noO2,Mild,Mild,9542
+newcastle49,newcastle49,Covid,ITU_O2,Severe,Severe,8232
+MH9143324,MH9143324,Covid,Ward_O2,Moderate,Moderate,10014
+MH9143322,MH9143322,Covid,Ward_O2,Moderate,Moderate,8244
+MH8919330,MH8919330,Covid,Ward_O2,Moderate,Moderate,7605
+MH8919329,MH8919329,Covid,ITU_intubated,Critical,Death,6388
+MH9179822,MH9179822,Covid,ITU_O2,Severe,Severe,6614
+newcastle21v2,newcastle21v2,Covid,ITU_intubated,Critical,Critical ,7300
+MH9143426,MH9143426,Covid,Ward_noO2,Mild,Mild,7953
+MH8919283,MH8919283,Healthy,Healthy,Healthy,Healthy,7100
+MH9179827,MH9179827,Non_covid,Ward_NIV,Non_covid,Non-covid,4289
+newcastle004v2,newcastle004v2,Covid,ITU_intubated,Critical,Death,7010
+MH8919178,MH8919178,Healthy,Healthy,Healthy,Healthy,7016
+MH8919177,MH8919177,Healthy,Healthy,Healthy,Healthy,2223
+MH8919232,MH8919232,LPS,LPS,LPS_90mins,LPS,184
+MH8919229,MH8919229,LPS,LPS,LPS_10hours,LPS,305
+MH8919176,MH8919176,Healthy,Healthy,Healthy,Healthy,3217
+MH9143424,MH9143424,Covid,Ward_O2,Moderate,Severe,8530
+MH8919228,MH8919228,LPS,LPS,LPS_90mins,LPS,147
+MH8919179,MH8919179,Healthy,Healthy,Healthy,Healthy,4316
+MH9143423,MH9143423,Covid,Ward_O2,Moderate,Moderate,9083
+MH9143421,MH9143421,Covid,Ward_noO2,Mild,Mild,8111
+MH8919231,MH8919231,LPS,LPS,LPS_10hours,LPS,690
+MH9179826,MH9179826,Covid,ITU_NIV,Severe,Severe,5848
+MH9143321,MH9143321,Covid,Ward_noO2,Mild,Mild,8639
+MH9143427,MH9143427,Covid,Ward_O2,Moderate,Moderate,14317
+MH9143425,MH9143425,Covid,Ward_noO2,Asymptomatic,Asymptomatic,7011
+MH8919328,MH8919328,Covid,ITU_intubated,Critical,Critical ,8182
+MH9143275,MH9143275,Covid,Ward_NIV,Moderate,Moderate,8371
+MH8919279,MH8919279,LPS,LPS,LPS_10hours,LPS,1794
+MH9179825,MH9179825,Covid,Ward_O2,Moderate,Moderate,8919
+newcastle74,newcastle74,Healthy,Healthy,Healthy,Healthy,6932
+MH9143273,MH9143273,Covid,ITU_intubated,Critical,Critical ,7987
+MH9143272,MH9143272,Covid,Ward_noO2,Mild,Mild,9458
+MH8919282,MH8919282,Healthy,Healthy,Healthy,Healthy,6896
+AP8,AP8,Covid,ITU_NIV,Severe,nan,5589
+AP3,AP3,Covid,Ward_O2,Moderate,nan,3101
+AP6,AP6,Covid,Ward_O2,Moderate,nan,14086
+AP12,AP12,Covid,ITU_intubated,Critical,nan,8574
+AP1,AP1,Covid,ITU_NIV,Severe,nan,4494
+AP10,AP10,Covid,Ward_noO2,Mild,nan,3616
+AP2,AP2,Covid,ITU_intubated,Critical,nan,4760
+AP4,AP4,Covid,Ward_noO2,Mild,nan,7446
+AP9,AP9,Covid,Ward_O2,Moderate,nan,3815
+AP11,AP11,Covid,Ward_noO2,Mild,nan,10921
+AP5,AP5,Covid,ITU_NIV,Severe,nan,8511
+CV0904,BGCV01_CV0904,Healthy,Healthy,Healthy,Healthy,6853
+CV0025,BGCV01_CV0025,Covid,Ward_O2,Moderate,Moderate,2727
+CV0902,BGCV01_CV0902,Healthy,Healthy,Healthy,Healthy,1285
+CV0144,BGCV01_CV0144,Covid,ITU_NIV,Severe,Critical ,767
+CV0068,BGCV02_CV0068,Covid,Staff screening,Asymptomatic,Asymptomatic,2701
+CV0052,BGCV02_CV0052,Covid,Ward_O2,Moderate,Death,2626
+CV0902,BGCV02_CV0902,Healthy,Healthy,Healthy,Healthy,2599
+CV0059,BGCV02_CV0059,Covid,Staff screening,Asymptomatic,Asymptomatic,3219
+CV0074,BGCV03_CV0074,Covid,Ward_noO2,Mild,Mild,5731
+CV0176,BGCV03_CV0176,Covid,ITU_O2,Severe,Critical ,1687
+CV0084,BGCV03_CV0084,Covid,Ward_O2,Moderate,Moderate,1522
+CV0200,BGCV03_CV0200,Covid,ITU_intubated,Critical,Critical ,1184
+CV0100,BGCV04_CV0100,Covid,Ward_noO2,Mild,Mild,3431
+CV0262,BGCV04_CV0262,Covid,Staff screening,Asymptomatic,Asymptomatic,2812
+CV0164,BGCV04_CV0164,Covid,Staff screening,Asymptomatic,Asymptomatic,3038
+CV0911,BGCV04_CV0911,Healthy,Healthy,Healthy,Healthy,1905
+CV0128,BGCV05_CV0128,Covid,Ward_noO2,Mild,Mild,2614
+CV0929,BGCV05_CV0929,Healthy,Healthy,Healthy,Healthy,1466
+CV0120,BGCV05_CV0120,Covid,Ward_O2,Moderate,Moderate,2040
+CV0284,BGCV05_CV0284,Covid,ITU_intubated,Critical,Critical ,1082
+CV0201,BGCV06_CV0201,Covid,ITU_intubated,Critical,Critical ,933
+CV0178,BGCV06_CV0178,Covid,ITU_O2,Severe,Severe,1155
+CV0037,BGCV06_CV0037,Covid,Ward_O2,Moderate,Moderate,2576
+CV0234,BGCV06_CV0234,Covid,Ward_O2,Moderate,Moderate,2497
+CV0137,BGCV07_CV0137,Covid,Ward_O2,Moderate,Moderate,1552
+CV0094,BGCV07_CV0094,Covid,Ward_O2,Moderate,Moderate,2647
+CV0104,BGCV07_CV0104,Covid,Ward_noO2,Mild,Mild,1361
+CV0134,BGCV07_CV0134,Covid,Ward_O2,Moderate,Critical ,1431
+CV0201,BGCV08_CV0201,Covid,ITU_intubated,Critical,Critical ,824
+CV0155,BGCV08_CV0155,Covid,Staff screening,Asymptomatic,Asymptomatic,2674
+CV0915,BGCV08_CV0915,Healthy,Healthy,Healthy,Healthy,1940
+CV0073,BGCV08_CV0073,Covid,Ward_noO2,Mild,Mild,1998
+CV0279,BGCV09_CV0279,Covid,ITU_intubated,Critical,Critical ,2720
+CV0171,BGCV09_CV0171,Covid,Staff screening,Asymptomatic,Asymptomatic,3274
+CV0917,BGCV09_CV0917,Healthy,Healthy,Healthy,Healthy,2924
+CV0062,BGCV09_CV0062,Covid,Ward_noO2,Mild,Moderate,2125
+CV0231,BGCV10_CV0231,Covid,Staff screening,Asymptomatic,Asymptomatic,2089
+CV0160,BGCV10_CV0160,Covid,Ward_noO2,Mild,Mild,1661
+CV0939,BGCV10_CV0939,Healthy,Healthy,Healthy,Healthy,1719
+CV0198,BGCV10_CV0198,Covid,ITU_intubated,Critical,Death,2348
+CV0050,BGCV11_CV0050,Covid,Ward_noO2,Mild,Mild,759
+CV0257,BGCV11_CV0257,Covid,Ward_O2,Moderate,Moderate,3047
+CV0058,BGCV11_CV0058,Covid,Staff screening,Asymptomatic,Asymptomatic,1941
+CV0180,BGCV11_CV0180,Covid,ITU_intubated,Critical,Death,1168
+CV0062,BGCV12_CV0062,Covid,Ward_noO2,Mild,Moderate,2192
+CV0068,BGCV12_CV0068,Covid,Staff screening,Asymptomatic,Asymptomatic,2250
+CV0178,BGCV12_CV0178,Covid,ITU_O2,Severe,Severe,3009
+CV0926,BGCV12_CV0926,Healthy,Healthy,Healthy,Healthy,2622
+CV0073,BGCV13_CV0073,Covid,Ward_noO2,Mild,Mild,1812
+CV0934,BGCV13_CV0934,Healthy,Healthy,Healthy,Healthy,3408
+CV0171,BGCV13_CV0171,Covid,Staff screening,Asymptomatic,Asymptomatic,2218
+CV0326,BGCV13_CV0326,Covid,Ward_noO2,Mild,Mild,784
+CV0137,BGCV14_CV0137,Covid,Ward_O2,Moderate,Moderate,3875
+CV0284,BGCV14_CV0284,Covid,ITU_intubated,Critical,Critical ,3177
+CV0940,BGCV14_CV0940,Healthy,Healthy,Healthy,Healthy,2958
+CV0050,BGCV14_CV0050,Covid,Ward_noO2,Mild,Mild,1809
+CV0944,BGCV15_CV0944,Healthy,Healthy,Healthy,Healthy,634
+CV0176,BGCV15_CV0176,Covid,ITU_O2,Severe,Critical ,546
+CV0257,BGCV15_CV0257,Covid,Ward_O2,Moderate,Moderate,324
+CV0231,BGCV15_CV0231,Covid,Staff screening,Asymptomatic,Asymptomatic,374

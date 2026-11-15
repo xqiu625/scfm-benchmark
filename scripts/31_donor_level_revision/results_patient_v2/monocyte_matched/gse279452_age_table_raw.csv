@@ -1,0 +1,267 @@
+gsm,title,age,group,gender
+GSM8571082,scRNA Abd-PS04,7,Pediatric Sepsis,Male
+GSM8571083,scRNA Abd-PS05,3,Pediatric Sepsis,Male
+GSM8571084,scRNA Abd-PS07,9,Pediatric Sepsis,Male
+GSM8571085,scRNA Abd-PS13,14,Pediatric Sepsis,Female
+GSM8571086,scRNA Abd-PS18,0.4,Pediatric Sepsis,Female
+GSM8571087,scRNA Abd-PS19,6,Pediatric Sepsis,Male
+GSM8571088,scRNA Abd-PS20,0.8,Pediatric Sepsis,Male
+GSM8571089,scRNA Abd-PS23,2,Pediatric Sepsis,Male
+GSM8571090,scRNA Abd-PS27,0.1,Pediatric Sepsis,Male
+GSM8571091,scRNA Abd-S101,73,Adult Sepsis,Male
+GSM8571092,scRNA Abd-S102,43,Adult Sepsis,Male
+GSM8571093,scRNA Abd-S103,61,Adult Sepsis,Male
+GSM8571094,scRNA Abd-S11,72,Adult Sepsis,Male
+GSM8571095,scRNA Abd-S111,73,Adult Sepsis,Male
+GSM8571096,scRNA Abd-S12,51,Adult Sepsis,Female
+GSM8571097,scRNA Abd-S120,81,Adult Sepsis,Male
+GSM8571098,scRNA Abd-S123,77,Adult Sepsis,Female
+GSM8571099,scRNA Abd-S13,26,Adult Sepsis,Female
+GSM8571100,scRNA Abd-S156,72,Adult Sepsis,Male
+GSM8571101,scRNA Abd-S23,57,Adult Sepsis,Male
+GSM8571102,scRNA Abd-S39,40,Adult Sepsis,Male
+GSM8571103,scRNA Abd-S42,49,Adult Sepsis,Male
+GSM8571104,scRNA Abd-S45,68,Adult Sepsis,Male
+GSM8571105,scRNA Abd-S47,65,Adult Sepsis,Female
+GSM8571106,scRNA Abd-S49,73,Adult Sepsis,Female
+GSM8571107,scRNA Abd-S51,56,Adult Sepsis,Male
+GSM8571108,scRNA Abd-S53,76,Adult Sepsis,Male
+GSM8571109,scRNA Abd-S54,70,Adult Sepsis,Male
+GSM8571110,scRNA Abd-S55,41,Adult Sepsis,Male
+GSM8571111,scRNA Abd-S57,57,Adult Sepsis,Male
+GSM8571112,scRNA Abd-S58,56,Adult Sepsis,Male
+GSM8571113,scRNA Abd-S59,65,Adult Sepsis,Male
+GSM8571114,scRNA Abd-S66,56,Adult Sepsis,Male
+GSM8571115,scRNA Abd-S67,85,Adult Sepsis,Male
+GSM8571116,scRNA Abd-S72,82,Adult Sepsis,Female
+GSM8571117,scRNA Abd-S73,42,Adult Sepsis,Male
+GSM8571118,scRNA Abd-S75,91,Adult Sepsis,Male
+GSM8571119,scRNA Abd-S79,19,Adult Sepsis,Male
+GSM8571120,scRNA Abd-S8,67,Adult Sepsis,Male
+GSM8571121,scRNA Abd-S80,67,Adult Sepsis,Male
+GSM8571122,scRNA Abd-S81,71,Adult Sepsis,Male
+GSM8571123,scRNA Abd-S83,74,Adult Sepsis,Male
+GSM8571124,scRNA Res-S87,70,Adult Sepsis,Male
+GSM8571125,scRNA Abd-S9,75,Adult Sepsis,Male
+GSM8571126,scRNA Abd-S91,80,Adult Sepsis,Male
+GSM8571127,scRNA Abd-S98,70,Adult Sepsis,Male
+GSM8571128,scRNA CNS-S189,56,Adult Sepsis,Female
+GSM8571129,scRNA CNS-S50,41,Adult Sepsis,Male
+GSM8571130,scRNA CNS-S61,36,Adult Sepsis,Male
+GSM8571131,scRNA HC01,57,Adult Healthy Control,Male
+GSM8571132,scRNA HC05,69,Adult Healthy Control,Male
+GSM8571133,scRNA HC07,66,Adult Healthy Control,Male
+GSM8571134,scRNA HC09,64,Adult Healthy Control,Male
+GSM8571135,scRNA HC12,41,Adult Healthy Control,Male
+GSM8571136,scRNA HC13,55,Adult Healthy Control,Female
+GSM8571137,scRNA HC16,72,Adult Healthy Control,Female
+GSM8571138,scRNA IC08,68,Adult ICU Control,Male
+GSM8571139,scRNA IC09,72,Adult ICU Control,Male
+GSM8571140,scRNA IC10,40,Adult ICU Control,Male
+GSM8571141,scRNA IC15,48,Adult ICU Control,Male
+GSM8571142,scRNA IC16,71,Adult ICU Control,Female
+GSM8571143,scRNA IC19,51,Adult ICU Control,Male
+GSM8571144,scRNA IC22,68,Adult ICU Control,Male
+GSM8571145,scRNA IC23,54,Adult ICU Control,Female
+GSM8571146,scRNA PHC01,9,Pediatric Healthy Control,Female
+GSM8571147,scRNA PHC02,6,Pediatric Healthy Control,Male
+GSM8571148,scRNA PHC03,2,Pediatric Healthy Control,Male
+GSM8571149,scRNA PHC05,5,Pediatric Healthy Control,Male
+GSM8571150,scRNA PIC01,0.1,Pediatric ICU Control,Male
+GSM8571151,scRNA PIC02,9,Pediatric ICU Control,Female
+GSM8571152,scRNA PIC04,7,Pediatric ICU Control,Male
+GSM8571153,scRNA PIC05,5,Pediatric ICU Control,Male
+GSM8571154,scRNA Res-S19,44,Adult Sepsis,Female
+GSM8571155,scRNA Res-S26,58,Adult Sepsis,Male
+GSM8571156,scRNA Res-S70,69,Adult Sepsis,Male
+GSM8571157,scRNA Res-PS02,15,Pediatric Sepsis,Male
+GSM8571158,scRNA Res-PS03,1,Pediatric Sepsis,Female
+GSM8571159,scRNA Res-PS12,1,Pediatric Sepsis,Female
+GSM8571160,scRNA Res-PS16,3,Pediatric Sepsis,Male
+GSM8571161,scRNA Res-PS21,13,Pediatric Sepsis,Male
+GSM8571162,scRNA Res-PS22,6,Pediatric Sepsis,Male
+GSM8571163,scRNA Res-PS25,0.3,Pediatric Sepsis,Male
+GSM8571164,scRNA RES-PS26,5,Pediatric Sepsis,Female
+GSM8571165,scRNA Res-S10,65,Adult Sepsis,Male
+GSM8571166,scRNA Res-S100,64,Adult Sepsis,Male
+GSM8571167,scRNA Res-S110,54,Adult Sepsis,Male
+GSM8571168,scRNA RES-S118,54,Adult Sepsis,Female
+GSM8571169,scRNA Res-S125,59,Adult Sepsis,Female
+GSM8571170,scRNA Res-S127,77,Adult Sepsis,Female
+GSM8571171,scRNA Res-S136,46,Adult Sepsis,Male
+GSM8571172,scRNA Res-S139,73,Adult Sepsis,Male
+GSM8571173,scRNA Res-S144,77,Adult Sepsis,Male
+GSM8571174,scRNA Res-S145,81,Adult Sepsis,Male
+GSM8571175,scRNA Res-S146,75,Adult Sepsis,Male
+GSM8571176,scRNA Res-S149,81,Adult Sepsis,Male
+GSM8571177,scRNA Res-S15,81,Adult Sepsis,Female
+GSM8571178,scRNA Res-S150,83,Adult Sepsis,Male
+GSM8571179,scRNA RES-S164,79,Adult Sepsis,Male
+GSM8571180,scRNA Res-S166,56,Adult Sepsis,Female
+GSM8571181,scRNA Res-S167,85,Adult Sepsis,Male
+GSM8571182,scRNA Res-S168,19,Adult Sepsis,Female
+GSM8571183,scRNA Res-S170,69,Adult Sepsis,Male
+GSM8571184,scRNA RES-S174,40,Adult Sepsis,Female
+GSM8571185,scRNA RES-S176,78,Adult Sepsis,Female
+GSM8571186,scRNA RES-S177,40,Adult Sepsis,Male
+GSM8571187,scRNA Res-S18,93,Adult Sepsis,Male
+GSM8571188,scRNA Res-S183,68,Adult Sepsis,Male
+GSM8571189,scRNA Res-S184,82,Adult Sepsis,Female
+GSM8571190,scRNA Res-S21,93,Adult Sepsis,Male
+GSM8571191,scRNA Res-S22,90,Adult Sepsis,Male
+GSM8571192,scRNA Res-S3,41,Adult Sepsis,Male
+GSM8571193,scRNA Res-S32,47,Adult Sepsis,Female
+GSM8571194,scRNA Res-S40,81,Adult Sepsis,Male
+GSM8571195,scRNA Res-S41,81,Adult Sepsis,Male
+GSM8571196,scRNA Res-S56,66,Adult Sepsis,Male
+GSM8571197,scRNA Res-S77,35,Adult Sepsis,Male
+GSM8571198,scRNA Skin-152,69,Adult Sepsis,Male
+GSM8571199,scRNA Skin-S140,42,Adult Sepsis,Male
+GSM8571200,scRNA Skin-S142,71,Adult Sepsis,Male
+GSM8571201,scRNA Skin-S38,39,Adult Sepsis,Male
+GSM8571202,scRNA Skin-S43,46,Adult Sepsis,Female
+GSM8571203,scRNA Skin-S46,73,Adult Sepsis,Female
+GSM8571204,scRNA Skin-S52,54,Adult Sepsis,Female
+GSM8571205,scRNA Skin-S74,60,Adult Sepsis,Male
+GSM8571206,scRNA Uri-S112,64,Adult Sepsis,Male
+GSM8571207,scRNA Uri-S116,54,Adult Sepsis,Female
+GSM8571208,scRNA Uri-S134,67,Adult Sepsis,Male
+GSM8571209,scRNA Uri-S147,68,Adult Sepsis,Female
+GSM8571210,scRNA Uri-S157,74,Adult Sepsis,Female
+GSM8571211,scRNA Uri-S20,58,Adult Sepsis,Female
+GSM8571212,scRNA Uri-S85,76,Adult Sepsis,Female
+GSM8571213,scRNA Uri-S88,81,Adult Sepsis,Female
+GSM8571214,scRNA Uri-S93,53,Adult Sepsis,Female
+GSM9397061,scRNA Abd-PS04 (VDJ),7,Pediatric Sepsis,Male
+GSM9397062,scRNA Abd-PS05 (VDJ),3,Pediatric Sepsis,Male
+GSM9397063,scRNA Abd-PS07 (VDJ),9,Pediatric Sepsis,Male
+GSM9397064,scRNA Abd-PS13 (VDJ),14,Pediatric Sepsis,Female
+GSM9397065,scRNA Abd-PS18 (VDJ),0.4,Pediatric Sepsis,Female
+GSM9397066,scRNA Abd-PS19 (VDJ),6,Pediatric Sepsis,Male
+GSM9397067,scRNA Abd-PS20 (VDJ),0.8,Pediatric Sepsis,Male
+GSM9397068,scRNA Abd-PS23 (VDJ),2,Pediatric Sepsis,Male
+GSM9397069,scRNA Abd-PS27 (VDJ),0.1,Pediatric Sepsis,Male
+GSM9397070,scRNA Abd-S101 (VDJ),73,Adult Sepsis,Male
+GSM9397071,scRNA Abd-S102 (VDJ),43,Adult Sepsis,Male
+GSM9397072,scRNA Abd-S103 (VDJ),61,Adult Sepsis,Male
+GSM9397073,scRNA Abd-S11 (VDJ),72,Adult Sepsis,Male
+GSM9397074,scRNA Abd-S111 (VDJ),73,Adult Sepsis,Male
+GSM9397075,scRNA Abd-S12 (VDJ),51,Adult Sepsis,Female
+GSM9397076,scRNA Abd-S120 (VDJ),81,Adult Sepsis,Male
+GSM9397077,scRNA Abd-S123 (VDJ),77,Adult Sepsis,Female
+GSM9397078,scRNA Abd-S13 (VDJ),26,Adult Sepsis,Female
+GSM9397079,scRNA Abd-S156 (VDJ),72,Adult Sepsis,Male
+GSM9397080,scRNA Abd-S23 (VDJ),57,Adult Sepsis,Male
+GSM9397081,scRNA Abd-S39 (VDJ),40,Adult Sepsis,Male
+GSM9397082,scRNA Abd-S42 (VDJ),49,Adult Sepsis,Male
+GSM9397083,scRNA Abd-S45 (VDJ),68,Adult Sepsis,Male
+GSM9397084,scRNA Abd-S47 (VDJ),65,Adult Sepsis,Female
+GSM9397085,scRNA Abd-S49 (VDJ),73,Adult Sepsis,Female
+GSM9397086,scRNA Abd-S51 (VDJ),56,Adult Sepsis,Male
+GSM9397087,scRNA Abd-S53 (VDJ),76,Adult Sepsis,Male
+GSM9397088,scRNA Abd-S54 (VDJ),70,Adult Sepsis,Male
+GSM9397089,scRNA Abd-S55 (VDJ),41,Adult Sepsis,Male
+GSM9397090,scRNA Abd-S57 (VDJ),57,Adult Sepsis,Male
+GSM9397091,scRNA Abd-S58 (VDJ),56,Adult Sepsis,Male
+GSM9397092,scRNA Abd-S59 (VDJ),65,Adult Sepsis,Male
+GSM9397093,scRNA Abd-S66 (VDJ),56,Adult Sepsis,Male
+GSM9397094,scRNA Abd-S67 (VDJ),85,Adult Sepsis,Male
+GSM9397095,scRNA Abd-S72 (VDJ),82,Adult Sepsis,Female
+GSM9397096,scRNA Abd-S73 (VDJ),42,Adult Sepsis,Male
+GSM9397097,scRNA Abd-S75 (VDJ),91,Adult Sepsis,Male
+GSM9397098,scRNA Abd-S79 (VDJ),19,Adult Sepsis,Male
+GSM9397099,scRNA Abd-S8 (VDJ),67,Adult Sepsis,Male
+GSM9397100,scRNA Abd-S80 (VDJ),67,Adult Sepsis,Male
+GSM9397101,scRNA Abd-S81 (VDJ),71,Adult Sepsis,Male
+GSM9397102,scRNA Abd-S83 (VDJ),74,Adult Sepsis,Male
+GSM9397103,scRNA Res-S87 (VDJ),70,Adult Sepsis,Male
+GSM9397104,scRNA Abd-S9 (VDJ),75,Adult Sepsis,Male
+GSM9397105,scRNA Abd-S91 (VDJ),80,Adult Sepsis,Male
+GSM9397106,scRNA Abd-S98 (VDJ),70,Adult Sepsis,Male
+GSM9397107,scRNA CNS-S189 (VDJ),56,Adult Sepsis,Female
+GSM9397108,scRNA CNS-S50 (VDJ),41,Adult Sepsis,Male
+GSM9397109,scRNA CNS-S61 (VDJ),36,Adult Sepsis,Male
+GSM9397110,scRNA HC01 (VDJ),57,Adult Healthy Control,Male
+GSM9397111,scRNA HC05 (VDJ),69,Adult Healthy Control,Male
+GSM9397112,scRNA HC07 (VDJ),66,Adult Healthy Control,Male
+GSM9397113,scRNA HC09 (VDJ),64,Adult Healthy Control,Male
+GSM9397114,scRNA HC12 (VDJ),41,Adult Healthy Control,Male
+GSM9397115,scRNA HC13 (VDJ),55,Adult Healthy Control,Female
+GSM9397116,scRNA HC16 (VDJ),72,Adult Healthy Control,Female
+GSM9397117,scRNA IC08 (VDJ),68,Adult ICU Control,Male
+GSM9397118,scRNA IC09 (VDJ),72,Adult ICU Control,Male
+GSM9397119,scRNA IC10 (VDJ),40,Adult ICU Control,Male
+GSM9397120,scRNA IC15 (VDJ),48,Adult ICU Control,Male
+GSM9397121,scRNA IC16 (VDJ),71,Adult ICU Control,Female
+GSM9397122,scRNA IC19 (VDJ),51,Adult ICU Control,Male
+GSM9397123,scRNA IC22 (VDJ),68,Adult ICU Control,Male
+GSM9397124,scRNA IC23 (VDJ),54,Adult ICU Control,Female
+GSM9397125,scRNA PHC01 (VDJ),9,Pediatric Healthy Control,Female
+GSM9397126,scRNA PHC02 (VDJ),6,Pediatric Healthy Control,Male
+GSM9397127,scRNA PHC03 (VDJ),2,Pediatric Healthy Control,Male
+GSM9397128,scRNA PHC05 (VDJ),5,Pediatric Healthy Control,Male
+GSM9397129,scRNA PIC01 (VDJ),0.1,Pediatric ICU Control,Male
+GSM9397130,scRNA PIC02 (VDJ),9,Pediatric ICU Control,Female
+GSM9397131,scRNA PIC04 (VDJ),7,Pediatric ICU Control,Male
+GSM9397132,scRNA PIC05 (VDJ),5,Pediatric ICU Control,Male
+GSM9397133,scRNA Res-S19 (VDJ),44,Adult Sepsis,Female
+GSM9397134,scRNA Res-S26 (VDJ),58,Adult Sepsis,Male
+GSM9397135,scRNA Res-S70 (VDJ),69,Adult Sepsis,Male
+GSM9397136,scRNA Res-PS02 (VDJ),15,Pediatric Sepsis,Male
+GSM9397137,scRNA Res-PS03 (VDJ),1,Pediatric Sepsis,Female
+GSM9397138,scRNA Res-PS12 (VDJ),1,Pediatric Sepsis,Female
+GSM9397139,scRNA Res-PS16 (VDJ),3,Pediatric Sepsis,Male
+GSM9397140,scRNA Res-PS21 (VDJ),13,Pediatric Sepsis,Male
+GSM9397141,scRNA Res-PS22 (VDJ),6,Pediatric Sepsis,Male
+GSM9397142,scRNA Res-PS25 (VDJ),0.3,Pediatric Sepsis,Male
+GSM9397143,scRNA RES-PS26 (VDJ),5,Pediatric Sepsis,Female
+GSM9397144,scRNA Res-S10 (VDJ),65,Adult Sepsis,Male
+GSM9397145,scRNA Res-S100 (VDJ),64,Adult Sepsis,Male
+GSM9397146,scRNA Res-S110 (VDJ),54,Adult Sepsis,Male
+GSM9397147,scRNA RES-S118 (VDJ),54,Adult Sepsis,Female
+GSM9397148,scRNA Res-S125 (VDJ),59,Adult Sepsis,Female
+GSM9397149,scRNA Res-S127 (VDJ),77,Adult Sepsis,Female
+GSM9397150,scRNA Res-S136 (VDJ),46,Adult Sepsis,Male
+GSM9397151,scRNA Res-S139 (VDJ),73,Adult Sepsis,Male
+GSM9397152,scRNA Res-S144 (VDJ),77,Adult Sepsis,Male
+GSM9397153,scRNA Res-S145 (VDJ),81,Adult Sepsis,Male
+GSM9397154,scRNA Res-S146 (VDJ),75,Adult Sepsis,Male
+GSM9397155,scRNA Res-S149 (VDJ),81,Adult Sepsis,Male
+GSM9397156,scRNA Res-S15 (VDJ),81,Adult Sepsis,Female
+GSM9397157,scRNA Res-S150 (VDJ),83,Adult Sepsis,Male
+GSM9397158,scRNA RES-S164 (VDJ),79,Adult Sepsis,Male
+GSM9397159,scRNA Res-S166 (VDJ),56,Adult Sepsis,Female
+GSM9397160,scRNA Res-S167 (VDJ),85,Adult Sepsis,Male
+GSM9397161,scRNA Res-S168 (VDJ),19,Adult Sepsis,Female
+GSM9397162,scRNA Res-S170 (VDJ),69,Adult Sepsis,Male
+GSM9397163,scRNA RES-S174 (VDJ),40,Adult Sepsis,Female
+GSM9397164,scRNA RES-S176 (VDJ),78,Adult Sepsis,Female
+GSM9397165,scRNA RES-S177 (VDJ),40,Adult Sepsis,Male
+GSM9397166,scRNA Res-S18 (VDJ),93,Adult Sepsis,Male
+GSM9397167,scRNA Res-S183 (VDJ),68,Adult Sepsis,Male
+GSM9397168,scRNA Res-S184 (VDJ),82,Adult Sepsis,Female
+GSM9397169,scRNA Res-S21 (VDJ),93,Adult Sepsis,Male
+GSM9397170,scRNA Res-S22 (VDJ),90,Adult Sepsis,Male
+GSM9397171,scRNA Res-S3 (VDJ),41,Adult Sepsis,Male
+GSM9397172,scRNA Res-S32 (VDJ),47,Adult Sepsis,Female
+GSM9397173,scRNA Res-S40 (VDJ),81,Adult Sepsis,Male
+GSM9397174,scRNA Res-S41 (VDJ),81,Adult Sepsis,Male
+GSM9397175,scRNA Res-S56 (VDJ),66,Adult Sepsis,Male
+GSM9397176,scRNA Res-S77 (VDJ),35,Adult Sepsis,Male
+GSM9397177,scRNA Skin-152 (VDJ),69,Adult Sepsis,Male
+GSM9397178,scRNA Skin-S140 (VDJ),42,Adult Sepsis,Male
+GSM9397179,scRNA Skin-S142 (VDJ),71,Adult Sepsis,Male
+GSM9397180,scRNA Skin-S38 (VDJ),39,Adult Sepsis,Male
+GSM9397181,scRNA Skin-S43 (VDJ),46,Adult Sepsis,Female
+GSM9397182,scRNA Skin-S46 (VDJ),73,Adult Sepsis,Female
+GSM9397183,scRNA Skin-S52 (VDJ),54,Adult Sepsis,Female
+GSM9397184,scRNA Skin-S74 (VDJ),60,Adult Sepsis,Male
+GSM9397185,scRNA Uri-S112 (VDJ),64,Adult Sepsis,Male
+GSM9397186,scRNA Uri-S116 (VDJ),54,Adult Sepsis,Female
+GSM9397187,scRNA Uri-S134 (VDJ),67,Adult Sepsis,Male
+GSM9397188,scRNA Uri-S147 (VDJ),68,Adult Sepsis,Female
+GSM9397189,scRNA Uri-S157 (VDJ),74,Adult Sepsis,Female
+GSM9397190,scRNA Uri-S20 (VDJ),58,Adult Sepsis,Female
+GSM9397191,scRNA Uri-S85 (VDJ),76,Adult Sepsis,Female
+GSM9397192,scRNA Uri-S88 (VDJ),81,Adult Sepsis,Female
+GSM9397193,scRNA Uri-S93 (VDJ),53,Adult Sepsis,Female

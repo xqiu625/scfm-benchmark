@@ -1,0 +1,103 @@
+sample_id,patient_id,Resample,Collection_Day,Days_from_onset,Site,Status_on_day_collection,Status_on_day_collection_summary,Worst_Clinical_Status
+AP1,AP1,Initial,D0,28,Sanger,ITU_NIV,Severe,nan
+AP10,AP10,Initial,D0,1,Sanger,Ward_noO2,Mild,nan
+AP11,AP11,Initial,D0,9,Sanger,Ward_noO2,Mild,nan
+AP12,AP12,Initial,D0,10,Sanger,ITU_intubated,Critical,nan
+AP2,AP2,Initial,D0,47,Sanger,ITU_intubated,Critical,nan
+AP3,AP3,Initial,D0,3,Sanger,Ward_O2,Moderate,nan
+AP4,AP4,Initial,D0,15,Sanger,Ward_noO2,Mild,nan
+AP5,AP5,Initial,D0,10,Sanger,ITU_NIV,Severe,nan
+AP6,AP6,Initial,D0,17,Sanger,Ward_O2,Moderate,nan
+AP8,AP8,Initial,D0,11,Sanger,ITU_NIV,Severe,nan
+AP9,AP9,Initial,D0,5,Sanger,Ward_O2,Moderate,nan
+BGCV01_CV0025,CV0025,Initial,D0,16,Cambridge,Ward_O2,Moderate,Moderate
+BGCV06_CV0037,CV0037,Initial,D0,12,Cambridge,Ward_O2,Moderate,Moderate
+BGCV11_CV0050,CV0050,Initial,D0,11,Cambridge,Ward_noO2,Mild,Mild
+BGCV14_CV0050,CV0050,Resample,D28,11,Cambridge,Ward_noO2,Mild,Mild
+BGCV02_CV0052,CV0052,Initial,D0,8,Cambridge,Ward_O2,Moderate,Death
+BGCV11_CV0058,CV0058,Initial,D0,0,Cambridge,Staff screening,Asymptomatic,Asymptomatic
+BGCV02_CV0059,CV0059,Initial,D0,7,Cambridge,Staff screening,Asymptomatic,Asymptomatic
+BGCV09_CV0062,CV0062,Initial,D0,13,Cambridge,Ward_noO2,Mild,Moderate
+BGCV12_CV0062,CV0062,Resample,D28,13,Cambridge,Ward_noO2,Mild,Moderate
+BGCV02_CV0068,CV0068,Initial,D0,17,Cambridge,Staff screening,Asymptomatic,Asymptomatic
+BGCV12_CV0068,CV0068,Resample,D28,17,Cambridge,Staff screening,Asymptomatic,Asymptomatic
+BGCV08_CV0073,CV0073,Initial,D0,27,Cambridge,Ward_noO2,Mild,Mild
+BGCV13_CV0073,CV0073,Resample,D28,27,Cambridge,Ward_noO2,Mild,Mild
+BGCV03_CV0074,CV0074,Initial,D0,18,Cambridge,Ward_noO2,Mild,Mild
+BGCV03_CV0084,CV0084,Initial,D0,5,Cambridge,Ward_O2,Moderate,Moderate
+BGCV07_CV0094,CV0094,Initial,D0,3,Cambridge,Ward_O2,Moderate,Moderate
+BGCV04_CV0100,CV0100,Initial,D0,13,Cambridge,Ward_noO2,Mild,Mild
+BGCV07_CV0104,CV0104,Initial,D0,5,Cambridge,Ward_noO2,Mild,Mild
+BGCV05_CV0120,CV0120,Initial,D0,4,Cambridge,Ward_O2,Moderate,Moderate
+BGCV05_CV0128,CV0128,Initial,D0,13,Cambridge,Ward_noO2,Mild,Mild
+BGCV07_CV0134,CV0134,Initial,D0,9,Cambridge,Ward_O2,Moderate,Critical 
+BGCV07_CV0137,CV0137,Initial,D0,12,Cambridge,Ward_O2,Moderate,Moderate
+BGCV14_CV0137,CV0137,Resample,D28,12,Cambridge,Ward_O2,Moderate,Moderate
+BGCV01_CV0144,CV0144,Initial,D0,nan,Cambridge,ITU_NIV,Severe,Critical 
+BGCV08_CV0155,CV0155,Initial,D0,9,Cambridge,Staff screening,Asymptomatic,Asymptomatic
+BGCV10_CV0160,CV0160,Initial,D0,14,Cambridge,Ward_noO2,Mild,Mild
+BGCV04_CV0164,CV0164,Initial,D0,9,Cambridge,Staff screening,Asymptomatic,Asymptomatic
+BGCV09_CV0171,CV0171,Initial,D0,15,Cambridge,Staff screening,Asymptomatic,Asymptomatic
+BGCV13_CV0171,CV0171,Resample,D28,15,Cambridge,Staff screening,Asymptomatic,Asymptomatic
+BGCV03_CV0176,CV0176,Initial,D0,31,Cambridge,ITU_O2,Severe,Critical 
+BGCV15_CV0176,CV0176,Resample,D28,31,Cambridge,ITU_O2,Severe,Critical 
+BGCV06_CV0178,CV0178,Initial,D0,10,Cambridge,ITU_O2,Severe,Severe
+BGCV12_CV0178,CV0178,Resample,D28,10,Cambridge,ITU_O2,Severe,Severe
+BGCV11_CV0180,CV0180,Initial,D0,40,Cambridge,ITU_intubated,Critical,Death
+BGCV10_CV0198,CV0198,Initial,D0,nan,Cambridge,ITU_intubated,Critical,Death
+BGCV03_CV0200,CV0200,Initial,D0,40,Cambridge,ITU_intubated,Critical,Critical 
+BGCV08_CV0201,CV0201,Initial,D0,27,Cambridge,ITU_intubated,Critical,Critical 
+BGCV06_CV0201,CV0201,Resample,D28,27,Cambridge,ITU_intubated,Critical,Critical 
+BGCV10_CV0231,CV0231,Initial,D0,Healthy,Cambridge,Staff screening,Asymptomatic,Asymptomatic
+BGCV15_CV0231,CV0231,Resample,D28,Healthy,Cambridge,Staff screening,Asymptomatic,Asymptomatic
+BGCV06_CV0234,CV0234,Initial,D0,11,Cambridge,Ward_O2,Moderate,Moderate
+BGCV11_CV0257,CV0257,Initial,D0,13,Cambridge,Ward_O2,Moderate,Moderate
+BGCV15_CV0257,CV0257,Resample,D28,13,Cambridge,Ward_O2,Moderate,Moderate
+BGCV04_CV0262,CV0262,Initial,D0,42,Cambridge,Staff screening,Asymptomatic,Asymptomatic
+BGCV09_CV0279,CV0279,Initial,D0,51,Cambridge,ITU_intubated,Critical,Critical 
+BGCV05_CV0284,CV0284,Initial,D0,10,Cambridge,ITU_intubated,Critical,Critical 
+BGCV14_CV0284,CV0284,Resample,D28,10,Cambridge,ITU_intubated,Critical,Critical 
+BGCV13_CV0326,CV0326,Initial,D0,8,Cambridge,Ward_noO2,Mild,Mild
+MH8919326,MH8919326,Initial,D0,5,Ncl,Ward_noO2,Mild,Moderate
+MH8919327,MH8919327,Initial,D0,6,Ncl,ITU_NIV,Severe,Critical 
+MH8919328,MH8919328,Resample,D13,6,Ncl,ITU_intubated,Critical,Critical 
+MH8919329,MH8919329,Initial,D0,5,Ncl,ITU_intubated,Critical,Death
+MH8919330,MH8919330,Initial,D0,6,Ncl,Ward_O2,Moderate,Moderate
+MH8919331,MH8919331,Initial,D0,10,Ncl,Ward_O2,Moderate,Moderate
+MH9143270,MH9143270,Initial,D0,6,Ncl,Ward_O2,Moderate,Moderate
+MH9143271,MH9143271,Initial,D0,8,Ncl,Ward_noO2,Mild,Mild
+MH9143272,MH9143272,Initial,D0,1,Ncl,Ward_noO2,Mild,Mild
+MH9143273,MH9143273,Resample,D7,6,Ncl,ITU_intubated,Critical,Critical 
+MH9143274,MH9143274,Initial,D0,21,Ncl,ITU_O2,Severe,Severe
+MH9143275,MH9143275,Initial,D0,4,Ncl,Ward_NIV,Moderate,Moderate
+MH9143276,MH9143276,Initial,D0,7,Ncl,Ward_noO2,Mild,Mild
+MH9143277,MH9143277,Initial,D0,26,Ncl,ITU_intubated,Critical,Critical 
+MH9143320,MH9143320,Initial,D0,15,Ncl,ITU_NIV,Severe,Death
+MH9143321,MH9143321,Initial,D0,6,Ncl,Ward_noO2,Mild,Mild
+MH9143322,MH9143322,Initial,D0,11,Ncl,Ward_O2,Moderate,Moderate
+MH9143323,MH9143323,Initial,D0,8,Ncl,Ward_O2,Moderate,Moderate
+MH9143324,MH9143324,Initial,D0,16,Ncl,Ward_O2,Moderate,Moderate
+MH9143325,MH9143325,Initial,D0,7,Ncl,ITU_NIV,Severe,Death
+MH9143326,MH9143326,Initial,D0,22,Ncl,Ward_O2,Moderate,Moderate
+MH9143327,MH9143327,Initial,D0,8,Ncl,Ward_O2,Moderate,Moderate
+MH9143371,MH9143371,Initial,D0,1,Ncl,Ward_O2,Moderate,Moderate
+MH9143420,MH9143420,Initial,D0,11,Ncl,Ward_noO2,Mild,Moderate
+MH9143421,MH9143421,Initial,D0,13,Ncl,Ward_noO2,Mild,Mild
+MH9143422,MH9143422,Initial,D0,13,Ncl,Ward_noO2,Mild,Mild
+MH9143423,MH9143423,Initial,D0,9,Ncl,Ward_O2,Moderate,Moderate
+MH9143424,MH9143424,Initial,D0,7,Ncl,Ward_O2,Moderate,Severe
+MH9143425,MH9143425,Initial,D0,1,Ncl,Ward_noO2,Asymptomatic,Asymptomatic
+MH9143426,MH9143426,Initial,D0,2,Ncl,Ward_noO2,Mild,Mild
+MH9143427,MH9143427,Initial,D0,9,Ncl,Ward_O2,Moderate,Moderate
+MH9179821,MH9179821,Initial,D0,9,Ncl,Ward_O2,Moderate,Death
+MH9179822,MH9179822,Initial,D0,10,Ncl,ITU_O2,Severe,Severe
+MH9179823,MH9179823,Initial,D0,9,Ncl,Ward_O2,Moderate,Moderate
+MH9179824,MH9179824,Initial,D0,8,Ncl,Ward_O2,Moderate,Moderate
+MH9179825,MH9179825,Initial,D0,13,Ncl,Ward_O2,Moderate,Moderate
+MH9179826,MH9179826,Initial,D0,14,Ncl,ITU_NIV,Severe,Severe
+newcastle004v2,newcastle004v2,Resample,D12,9,Ncl,ITU_intubated,Critical,Death
+newcastle20,newcastle20,Initial,D0,22,Ncl,Ward_noO2,Mild,Mild
+newcastle21,newcastle21,Initial,D0,14,Ncl,ITU_intubated,Critical,Critical 
+newcastle21v2,newcastle21v2,Resample,D9,14,Ncl,ITU_intubated,Critical,Critical 
+newcastle49,newcastle49,Initial,D0,Not_known,Ncl,ITU_O2,Severe,Severe
+newcastle59,newcastle59,Initial,D0,2,Ncl,Ward_noO2,Mild,Mild

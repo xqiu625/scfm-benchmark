@@ -1,0 +1,2 @@
+model,classifier,auc_mean,auc_std,bacc_mean,fold_aucs,n_cells,n_donors
+Geneformer-V1-10M-zeroshot,LR,0.5919425555365867,0.09390781165762677,0.5705865485859045,0.726;0.590;0.560;0.642;0.442,43798,339

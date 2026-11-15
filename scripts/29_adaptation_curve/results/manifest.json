@@ -1,0 +1,150 @@
+{
+  "stage": "29_adaptation_curve",
+  "status": "success",
+  "metadata_complete": true,
+  "description": "Cross-disease adaptation curve: AUC on a fixed held-out sepsis test split vs number of labelled sepsis cells added to the constant COVID training pool, 10 seeds/point, 200-iteration bootstrap CIs.",
+  "slurm_jobs": [
+    "24018607"
+  ],
+  "run_dates": [
+    "2026-05-13"
+  ],
+  "generating_code": [
+    "scripts/29_adaptation_curve/code/run_adaptation_curve_bootstrap.py"
+  ],
+  "parameters": {
+    "covid_pool_cells": 38673,
+    "n_sepsis_grid": [
+      0,
+      10,
+      50,
+      100,
+      500,
+      1000,
+      "all (2882)"
+    ],
+    "seeds_per_point": 10,
+    "bootstrap_iters": 200,
+    "classifier": "LR (L2, balanced) on standardized embeddings; PCA-200 for from-scratch baseline",
+    "headline_column": "point_auc_mean (NOT boot_auc_mean)"
+  },
+  "claims": [
+    {
+      "id": "C005",
+      "table": "tab:adaptation_curve",
+      "value": "PCA-200+LR asymptote 0.964; scPRINT-2 Y-int 0.920; per-method Y-int/n100/n1000/asymptote",
+      "evidence": "results/adaptation_curve_bootstrap/summary.csv"
+    }
+  ],
+  "primary_outputs": [
+    "adaptation_curve_bootstrap/summary.csv"
+  ],
+  "superseded_outputs": {
+    "adaptation_curve/summary.csv": "single-seed legacy variant; the manuscript uses the 200-iter bootstrap (adaptation_curve_bootstrap/summary.csv)."
+  },
+  "inputs": [
+    {
+      "path": "data/processed/covid_sepsis_mortality.h5ad",
+      "exists": false,
+      "size_bytes": null,
+      "note": "gitignored / on HPCC (data/ not committed)"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/adaptation_curve/Geneformer.csv",
+      "size_bytes": 3090,
+      "sha256": "a2fe67ff4844c93f116f2e691ea3d685698095d52466f8e975eb88e83e66fcb5"
+    },
+    {
+      "path": "results/adaptation_curve/PCA-200+LR.csv",
+      "size_bytes": 3090,
+      "sha256": "08d552177902cf588ca45748eaf4a138647db5f887917bc547b14069d0b4ee73"
+    },
+    {
+      "path": "results/adaptation_curve/STATE.csv",
+      "size_bytes": 2786,
+      "sha256": "4a68f3f34e9aa6622f2abbcdde724b5893961cc8c44baeb3dc84acc4629a170f"
+    },
+    {
+      "path": "results/adaptation_curve/TranscriptFormer.csv",
+      "size_bytes": 3459,
+      "sha256": "cbd6aded780808bc6098dcbc01681a2c94c40c4aa0c42d214a2756c9bee6d87c"
+    },
+    {
+      "path": "results/adaptation_curve/UCE.csv",
+      "size_bytes": 2665,
+      "sha256": "f823c15ddc6c1e9a0ee42be26a73278fcf39c918d8d5cd98b47ba6596672f145"
+    },
+    {
+      "path": "results/adaptation_curve/all_rows.csv",
+      "size_bytes": 20467,
+      "sha256": "1889ba88e3637c3a1a0ab092b3c2472c4657c9e4abf3b229d5646dc622bc207f"
+    },
+    {
+      "path": "results/adaptation_curve/scPRINT-2.csv",
+      "size_bytes": 3030,
+      "sha256": "870e79f3df26da6bc7316d4649c16b824d772662218b4060d8f167131968a95c"
+    },
+    {
+      "path": "results/adaptation_curve/summary.csv",
+      "size_bytes": 4410,
+      "sha256": "9b3af4dcbab3c47673bdb6c8ff872f512a09e274ff7b7e322ef4d20b0af09647"
+    },
+    {
+      "path": "results/adaptation_curve_bootstrap/Geneformer.csv",
+      "size_bytes": 6586,
+      "sha256": "18bc0b9123e4109437a85a753aef582c5322ffc95c0ddf0db6d84be1fac5c5cb"
+    },
+    {
+      "path": "results/adaptation_curve_bootstrap/PCA-200+LR.csv",
+      "size_bytes": 6591,
+      "sha256": "99fc301bf4f9a1eec938607b05a2113419ff71bc35ec25767ef9efa5a62e4d54"
+    },
+    {
+      "path": "results/adaptation_curve_bootstrap/STATE.csv",
+      "size_bytes": 6285,
+      "sha256": "7ee74e547cb302c9f4ff8598e430327fd4119b4eb0b34160dd012bc299cf11e4"
+    },
+    {
+      "path": "results/adaptation_curve_bootstrap/TranscriptFormer.csv",
+      "size_bytes": 6954,
+      "sha256": "597c6222b7c82de8c845b055e425ddabeb5e7793e2165718069f643230b18221"
+    },
+    {
+      "path": "results/adaptation_curve_bootstrap/UCE.csv",
+      "size_bytes": 6178,
+      "sha256": "76da03088016f6715a5519e02fd10c4373804e00677ef1a57a3a6edf07785f62"
+    },
+    {
+      "path": "results/adaptation_curve_bootstrap/all_rows.csv",
+      "size_bytes": 44718,
+      "sha256": "e5eef04746556cd1aaa546d459dc460636735db4325a98169e50b26ec7a0fbda"
+    },
+    {
+      "path": "results/adaptation_curve_bootstrap/scPRINT-2.csv",
+      "size_bytes": 6536,
+      "sha256": "df173439798da617b79af3558b91e6de4c4c579bf81674c3aa8e2897b76d32cf"
+    },
+    {
+      "path": "results/adaptation_curve_bootstrap/summary.csv",
+      "size_bytes": 5660,
+      "sha256": "02eeb7995d21e328b47f14422969699d0dac1a0604b9d1f3231500599bd8a146"
+    }
+  ],
+  "n_outputs": 16,
+  "in_repo_outputs": true,
+  "no_results_reason": null,
+  "git_commit": "2f56a829ff085fbb57787e32d3f4238a75a7a93c",
+  "runtime_seconds": null,
+  "package_versions": null,
+  "config": "configs/hpcc.yaml",
+  "environment_ref": "environment.yml",
+  "provenance": {
+    "reconstructed_post_hoc": true,
+    "generated_at": "2026-06-07T19:32:28+00:00",
+    "generated_by": "scripts/99_audit/code/emit_manifests.py",
+    "verified_in": "docs/claim-traceability.md (2026-06-06 traceability audit)",
+    "note": "Manifest reconstructed during the 2026-06-06/07 audit (item A001). Outputs were produced on the HPCC before the repo restructure; sizes + sha256 + git_commit are verifiable, but run-time wall-clock and package versions were not captured in-repo and are recorded as null rather than back-filled. When metadata_complete=false, slurm_jobs/parameters/claims were not curated for this stage \u2014 the output inventory + hashes + git pin are still authoritative."
+  }
+}

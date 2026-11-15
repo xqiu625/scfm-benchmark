@@ -1,0 +1,15 @@
+# configs/local.yaml
+# Local workstation (macOS) environment. Merged on top of defaults.yaml.
+# Used for figure regeneration, table assembly, and lightweight analysis only —
+# foundation-model embedding generation runs on HPCC, never locally.
+
+project_root: /Users/xinruqiu/Desktop/302006/302006_updategit
+data_root: /Users/xinruqiu/Desktop/302006/302006_updategit/data
+logs_dir: /Users/xinruqiu/Desktop/302006/302006_updategit/logs
+
+environment:
+  python_no_user_site: false
+
+resources:
+  partition: local
+  cpus: 8

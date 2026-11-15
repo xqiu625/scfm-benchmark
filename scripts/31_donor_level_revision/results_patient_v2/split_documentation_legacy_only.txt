@@ -1,0 +1,1 @@
+{'sepsis_fatal_patients': ['NS2', 'NS1'], 'sepsis_surv_patients': ['Sepsis1', 'Sepsis2', 'ARDS1', 'Sepsis3', 'S1', 'S3', 'ARDS3', 'S2', 'Sepsis4', 'ARDS2'], 'test_patients': ['NS2', 'Sepsis1', 'Sepsis2', 'ARDS1'], 'train_patients': ['ARDS2', 'ARDS3', 'NS1', 'S1', 'S2', 'S3', 'Sepsis3', 'Sepsis4'], 'n_test_fatal': 1, 'n_test_surv': 3, 'n_total_sepsis_patients': 12}

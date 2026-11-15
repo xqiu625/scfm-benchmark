@@ -1,0 +1,13 @@
+2026-09-25: local isolated Git fixture, no scoring calls.
+Copied exactly the seven IMPLEMENTATION_FILES; git init; commit A contains implementation;
+commit B adds a complete TEST_ONLY_NOT_A_PRODUCTION_PERMIT naming A.
+The config module _repo_root was redirected to the fixture only; assert_permitted(path)
+used the real repository verifier, without repo_verifier injection.
+Untracked permit: REFUSED (not tracked).
+Tracked, committed full permit: ACCEPTED.
+Implementation ancestor A: 3f39fa2ac155f615397b2b657651ac910b4757b5
+Permit HEAD B: 6e61c6f4e55348b6cde09ab078bedd641cebd73e
+git status --porcelain at successful validation: empty.
+Modified tracked permit: REFUSED (unstaged changes).
+Staged but uncommitted permit: REFUSED (staged changes).
+Scoring calls: 0. No production permit created.

@@ -1,0 +1,22 @@
+$ /rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python -m pytest tests/test_gate2_scoring_wrapper.py::test_wrong_k_is_enforced_not_merely_recorded -q -p no:cacheprovider
+============================= test session starts ==============================
+platform linux -- Python 3.10.18, pytest-9.1.1, pluggy-1.6.0
+rootdir: /bigdata/godziklab/shared/Xinru/302006/worktrees/codex_gate2_final_20260925T204838Z
+configfile: pyproject.toml
+plugins: anyio-4.12.1
+collected 1 item
+
+tests/test_gate2_scoring_wrapper.py F                                    [100%]
+
+=================================== FAILURES ===================================
+_________________ test_wrong_k_is_enforced_not_merely_recorded _________________
+tests/test_gate2_scoring_wrapper.py:297: in test_wrong_k_is_enforced_not_merely_recorded
+    assert any("n_neighbors argument" in p for p in problems), problems
+E   AssertionError: []
+E   assert False
+E    +  where False = any(<generator object test_wrong_k_is_enforced_not_merely_recorded.<locals>.<genexpr> at 0x7f63bc980cf0>)
+=========================== short test summary info ============================
+FAILED tests/test_gate2_scoring_wrapper.py::test_wrong_k_is_enforced_not_merely_recorded
+============================== 1 failed in 0.17s ===============================
+
+EXIT_CODE=1

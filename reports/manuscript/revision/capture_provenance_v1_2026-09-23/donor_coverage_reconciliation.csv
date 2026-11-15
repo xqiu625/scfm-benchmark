@@ -1,0 +1,9 @@
+cohort,accession,n_canonical_donors,n_donors_with_membership,normalisation_rule,n_canonical_without_membership,canonical_without_membership,n_membership_donors_not_canonical,membership_donors_not_canonical
+Qiu 2021,GSE167363,7,7,none,0,,0,
+Chongqing sepsis 2025,GSE279452,133,133,remove spaces and upper-case,1,Skin-S152,1,SKIN-152
+Ren 2021,GSE158055,196,196,none,0,,0,
+Wilk 2021 JEM,GSE174072,25,23,none,2,55650-0132d0;55650-0132d7,0,
+Cillo 2021,GSE180578,40,29,none,12,ALIR_5097_10_PBMC_TEST;ALIR_5310_10;Healthy_10_PBMC;Healthy_1_PBMC;Healthy_2_PBMC;Healthy_3_PBMC;Healthy_4_PBMC;Healthy_5_PBMC;Healthy_6_PBMC;Healthy_7_PBMC;Healthy_8_PBMC;Healthy_9_PBMC,1,ARDS_5
+Stephenson 2021,E-MTAB-10026,130,130,none,0,,0,
+COMBAT 2022,COMBAT-CITESeq,124,124,none,0,,0,
+Liu 2021,GSE161918,33,50,strip trailing _B<n>/_T<n> from the demuxlet genotype id,0,,15,AA220014;AA220534;AA220907;CHI014;HDML_PBMC;HDVO_PBMC;IM000040;SHD1_NA;SHD2_NA;SHD3_NA;SHD4_NA;SHD5_NA;SHD6_NA;SHD7_NA;SHD8_NA

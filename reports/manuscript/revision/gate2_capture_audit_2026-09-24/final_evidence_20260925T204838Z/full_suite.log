@@ -1,0 +1,47 @@
+$ /rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python -m pytest tests/ -q -p no:cacheprovider
+============================= test session starts ==============================
+platform linux -- Python 3.10.18, pytest-9.1.1, pluggy-1.6.0
+rootdir: /bigdata/godziklab/shared/Xinru/302006/worktrees/codex_gate2_final_20260925T204838Z
+configfile: pyproject.toml
+plugins: anyio-4.12.1
+collected 726 items
+
+tests/test_activation_markers.py ........                                [  1%]
+tests/test_attention_fusion.py .........                                 [  2%]
+tests/test_benchmark_utils.py .......                                    [  3%]
+tests/test_calibration.py .............                                  [  5%]
+tests/test_cross_disease_fatal.py ..............                         [  7%]
+tests/test_embeddings.py .........                                       [  8%]
+tests/test_gate2_capture_preflight.py F..F...................            [ 11%]
+tests/test_gate2_runtime_config_draft.py ....................            [ 14%]
+tests/test_gate2_safety_layer.py ....................................... [ 19%]
+........................................................................ [ 29%]
+........................................................................ [ 39%]
+.......                                                                  [ 40%]
+tests/test_gate2_scoring_config.py ..................................... [ 45%]
+..........                                                               [ 46%]
+tests/test_gate2_scoring_wrapper.py ..........................           [ 50%]
+tests/test_gate2_stress_design.py ...................................... [ 55%]
+.......................................                                  [ 61%]
+tests/test_gate2_stress_runner.py ...................................... [ 66%]
+.........................................................                [ 74%]
+tests/test_stage31_doublet_semantics.py ................................ [ 78%]
+........................................................................ [ 88%]
+........................................................................ [ 98%]
+............                                                             [100%]
+
+=================================== FAILURES ===================================
+____________ test_every_input_has_a_full_64_character_expected_sha _____________
+tests/test_gate2_capture_preflight.py:45: in test_every_input_has_a_full_64_character_expected_sha
+    import capture_preflight_GSM5102900_HC1 as P  # noqa: E402
+E   ModuleNotFoundError: No module named 'capture_preflight_GSM5102900_HC1'
+_________ test_the_container_identity_is_a_full_sha_not_path_plus_size _________
+tests/test_gate2_capture_preflight.py:103: in test_the_container_identity_is_a_full_sha_not_path_plus_size
+    import capture_preflight_GSM5102900_HC1 as P
+E   ModuleNotFoundError: No module named 'capture_preflight_GSM5102900_HC1'
+=========================== short test summary info ============================
+FAILED tests/test_gate2_capture_preflight.py::test_every_input_has_a_full_64_character_expected_sha
+FAILED tests/test_gate2_capture_preflight.py::test_the_container_identity_is_a_full_sha_not_path_plus_size
+================== 2 failed, 724 passed in 182.52s (0:03:02) ===================
+
+EXIT_CODE=1

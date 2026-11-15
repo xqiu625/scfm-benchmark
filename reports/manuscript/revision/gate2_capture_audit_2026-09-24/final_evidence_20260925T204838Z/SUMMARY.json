@@ -1,0 +1,271 @@
+{
+  "started_utc": "2026-09-25T20:52:25.143379+00:00",
+  "host": "skylark",
+  "python": "3.10.18 | packaged by conda-forge | (main, Jun  4 2025, 14:45:41) [GCC 13.3.0]",
+  "worktree": "/bigdata/godziklab/shared/Xinru/302006/worktrees/codex_gate2_final_20260925T204838Z",
+  "head": "9aab7befba0bd2a59ea1224aff95d261237611c6",
+  "phases": [
+    {
+      "label": "focused",
+      "command": [
+        "/rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_gate2_scoring_config.py",
+        "tests/test_gate2_scoring_wrapper.py",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 136.26
+    },
+    {
+      "label": "scanpy_integration",
+      "command": [
+        "/rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python",
+        "-m",
+        "pytest",
+        "tests/",
+        "-m",
+        "scanpy_integration",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 85.74
+    },
+    {
+      "label": "full_suite",
+      "command": [
+        "/rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python",
+        "-m",
+        "pytest",
+        "tests/",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 214.32
+    },
+    {
+      "label": "full_suite_retry",
+      "command": [
+        "/rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python",
+        "-m",
+        "pytest",
+        "tests/",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 121.8
+    }
+  ],
+  "mutations": [
+    {
+      "label": "M4",
+      "command": [
+        "/rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_gate2_scoring_wrapper.py::test_zero_captures_is_a_failure_not_a_pass",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 2.1,
+      "target": "scripts/32_rebuild_upfront_qc/code/gate2_score_capture_GSM5102900_HC1.py",
+      "test": "tests/test_gate2_scoring_wrapper.py::test_zero_captures_is_a_failure_not_a_pass",
+      "baseline_sha256": "0e19767c8ec5b013350210a7f55d13c8e8d2356531935ac1971ba0c5d9c64519",
+      "mutation_sha256": "b8a373b7fbbd21756caa51c6755941e83852a3c71437f2bc7c28f0e9acf898b3",
+      "injected": true,
+      "killed": true,
+      "restored_byte_identical": true
+    },
+    {
+      "label": "M5",
+      "command": [
+        "/rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_gate2_scoring_wrapper.py::test_wrong_k_is_enforced_not_merely_recorded",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 2.18,
+      "target": "scripts/32_rebuild_upfront_qc/code/gate2_score_capture_GSM5102900_HC1.py",
+      "test": "tests/test_gate2_scoring_wrapper.py::test_wrong_k_is_enforced_not_merely_recorded",
+      "baseline_sha256": "0e19767c8ec5b013350210a7f55d13c8e8d2356531935ac1971ba0c5d9c64519",
+      "mutation_sha256": "f3b0974dd69b39a5d2da6a46e261bd8ddea278cd36bc6556ee283327c05f7b8b",
+      "injected": true,
+      "killed": true,
+      "restored_byte_identical": true
+    },
+    {
+      "label": "M6",
+      "command": [
+        "/rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_gate2_scoring_wrapper.py::test_wrong_shape_is_enforced",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 2.33,
+      "target": "scripts/32_rebuild_upfront_qc/code/gate2_score_capture_GSM5102900_HC1.py",
+      "test": "tests/test_gate2_scoring_wrapper.py::test_wrong_shape_is_enforced",
+      "baseline_sha256": "0e19767c8ec5b013350210a7f55d13c8e8d2356531935ac1971ba0c5d9c64519",
+      "mutation_sha256": "9d70acaa5673527b2281e3a1b90d4305f1f66e033dbe73dcd197dba7852470e2",
+      "injected": true,
+      "killed": true,
+      "restored_byte_identical": true
+    },
+    {
+      "label": "M7",
+      "command": [
+        "/rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_gate2_scoring_wrapper.py::test_topology_differing_across_priors_is_enforced",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 2.38,
+      "target": "scripts/32_rebuild_upfront_qc/code/gate2_score_capture_GSM5102900_HC1.py",
+      "test": "tests/test_gate2_scoring_wrapper.py::test_topology_differing_across_priors_is_enforced",
+      "baseline_sha256": "0e19767c8ec5b013350210a7f55d13c8e8d2356531935ac1971ba0c5d9c64519",
+      "mutation_sha256": "3b53983b93847e4b9b6c876b75a2735ecf4e06eb69a48d0b26d12768ebcc4304",
+      "injected": true,
+      "killed": true,
+      "restored_byte_identical": true
+    },
+    {
+      "label": "M8",
+      "command": [
+        "/rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_gate2_scoring_wrapper.py::test_distances_are_recorded_but_not_claimed_invariant",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 2.28,
+      "target": "scripts/32_rebuild_upfront_qc/code/gate2_score_capture_GSM5102900_HC1.py",
+      "test": "tests/test_gate2_scoring_wrapper.py::test_distances_are_recorded_but_not_claimed_invariant",
+      "baseline_sha256": "0e19767c8ec5b013350210a7f55d13c8e8d2356531935ac1971ba0c5d9c64519",
+      "mutation_sha256": "b8a44b834a8fd6fa0d1d34218ebcffc5521e2dca01053f34296c7cf93c914202",
+      "injected": true,
+      "killed": true,
+      "restored_byte_identical": true
+    },
+    {
+      "label": "M9",
+      "command": [
+        "/rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_gate2_scoring_config.py::test_the_permit_commit_gate_is_satisfiable_at_all",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 2.33,
+      "target": "scripts/32_rebuild_upfront_qc/code/gate2_scoring_config_GSM5102900_HC1.py",
+      "test": "tests/test_gate2_scoring_config.py::test_the_permit_commit_gate_is_satisfiable_at_all",
+      "baseline_sha256": "e0586ac3d5a4809a37f8dffc0ab74b3ec42c37f1a721999a3f194cadb51cacd1",
+      "mutation_sha256": "a6b889b58d80c132ceb92ff4fba889b19fdb8250b3f1758557bef04ab7acd236",
+      "injected": true,
+      "killed": true,
+      "restored_byte_identical": true
+    },
+    {
+      "label": "M10",
+      "command": [
+        "/rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_gate2_scoring_config.py::test_an_implementation_edited_after_the_reviewed_commit_is_refused",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 2.28,
+      "target": "scripts/32_rebuild_upfront_qc/code/gate2_scoring_config_GSM5102900_HC1.py",
+      "test": "tests/test_gate2_scoring_config.py::test_an_implementation_edited_after_the_reviewed_commit_is_refused",
+      "baseline_sha256": "e0586ac3d5a4809a37f8dffc0ab74b3ec42c37f1a721999a3f194cadb51cacd1",
+      "mutation_sha256": "a764a9be3154585622498dc28a34f69ecdc19e40150896947e7c5d5cbcfebf42",
+      "injected": true,
+      "killed": true,
+      "restored_byte_identical": true
+    },
+    {
+      "label": "M11",
+      "command": [
+        "/rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_gate2_scoring_config.py::test_an_implementation_dirty_on_disk_is_refused",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 2.46,
+      "target": "scripts/32_rebuild_upfront_qc/code/gate2_scoring_config_GSM5102900_HC1.py",
+      "test": "tests/test_gate2_scoring_config.py::test_an_implementation_dirty_on_disk_is_refused",
+      "baseline_sha256": "e0586ac3d5a4809a37f8dffc0ab74b3ec42c37f1a721999a3f194cadb51cacd1",
+      "mutation_sha256": "bad0881999356c77cf4309200d5809152d3ac63ea27f94bec81336bef65f3053",
+      "injected": true,
+      "killed": true,
+      "restored_byte_identical": true
+    },
+    {
+      "label": "M12",
+      "command": [
+        "/rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_gate2_scoring_config.py::test_a_commit_predating_the_implementation_is_refused",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 2.25,
+      "target": "scripts/32_rebuild_upfront_qc/code/gate2_scoring_config_GSM5102900_HC1.py",
+      "test": "tests/test_gate2_scoring_config.py::test_a_commit_predating_the_implementation_is_refused",
+      "baseline_sha256": "e0586ac3d5a4809a37f8dffc0ab74b3ec42c37f1a721999a3f194cadb51cacd1",
+      "mutation_sha256": "67de10221f9698e8a99c257d7b007b17f8865b6fbcbd4e94bb8982de3d32743d",
+      "injected": true,
+      "killed": true,
+      "restored_byte_identical": true
+    }
+  ],
+  "complete": true,
+  "versions": {
+    "scanpy": "1.11.3",
+    "anndata": "0.11.4",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "sklearn": "1.7.1",
+    "pytest": "9.1.1"
+  },
+  "ended_utc": "2026-09-25T21:11:34.588803+00:00",
+  "retry_reason": "The first full suite could not import the repository preflight module. Explicit repository-local PYTHONPATH fixes test invocation; all 529 source/test hashes are unchanged.",
+  "retry_pythonpath": "/bigdata/godziklab/shared/Xinru/302006/worktrees/codex_gate2_final_20260925T204838Z/scripts/32_rebuild_upfront_qc/code:/bigdata/godziklab/shared/Xinru/302006/worktrees/codex_gate2_final_20260925T204838Z/reports/manuscript/revision/gate2_capture_audit_2026-09-24:/bigdata/godziklab/shared/Xinru/302006/worktrees/codex_gate2_final_20260925T204838Z"
+}

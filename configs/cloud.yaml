@@ -1,0 +1,16 @@
+# configs/cloud.yaml
+# Placeholder for a cloud/container environment (e.g. running the published
+# Docker image). Not currently used; kept so the config layer matches the
+# architecture template and is ready if the benchmark is rerun off-HPCC.
+
+project_root: /workspace/302006
+data_root: /workspace/302006/data
+logs_dir: /workspace/302006/logs
+
+environment:
+  python_no_user_site: true
+
+resources:
+  partition: cloud
+  memory: 256gb
+  cpus: 8

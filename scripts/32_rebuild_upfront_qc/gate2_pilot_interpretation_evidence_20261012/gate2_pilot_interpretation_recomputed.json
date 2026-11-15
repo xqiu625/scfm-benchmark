@@ -1,0 +1,171 @@
+{
+  "all_argsorts_identical": true,
+  "all_pairs_nested": true,
+  "argsort_identical_to_prior_0.005": {
+    "0.01": true,
+    "0.02": true,
+    "0.04": true,
+    "0.08": true,
+    "0.12": true,
+    "0.16": true,
+    "0.2": true
+  },
+  "argsort_identity_is_about_rank_order_only": "expected_doublet_rate feeds the per-cell score formula itself (scanpy calculate_doublet_scores -> _nearest_neighbor_classifier); argsort identity does not imply the score VALUES share one scale across priors",
+  "distinct_candidate_set_groups": [
+    {
+      "priors": [
+        "0.005",
+        "0.01",
+        "0.02"
+      ],
+      "size": 8
+    },
+    {
+      "priors": [
+        "0.04",
+        "0.08"
+      ],
+      "size": 225
+    },
+    {
+      "priors": [
+        "0.12",
+        "0.2"
+      ],
+      "size": 251
+    },
+    {
+      "priors": [
+        "0.16"
+      ],
+      "size": 291
+    }
+  ],
+  "global_intersection_cells_zero_indexed": [
+    724,
+    734,
+    1281,
+    1326,
+    2204,
+    2810,
+    3878,
+    7659
+  ],
+  "global_intersection_size": 8,
+  "global_union_size": 291,
+  "jaccard_pairwise_recomputed": {
+    "0.005|0.01": 1.0,
+    "0.005|0.02": 1.0,
+    "0.005|0.04": 0.035555555555555556,
+    "0.005|0.08": 0.035555555555555556,
+    "0.005|0.12": 0.03187250996015936,
+    "0.005|0.16": 0.027491408934707903,
+    "0.005|0.2": 0.03187250996015936,
+    "0.01|0.02": 1.0,
+    "0.01|0.04": 0.035555555555555556,
+    "0.01|0.08": 0.035555555555555556,
+    "0.01|0.12": 0.03187250996015936,
+    "0.01|0.16": 0.027491408934707903,
+    "0.01|0.2": 0.03187250996015936,
+    "0.02|0.04": 0.035555555555555556,
+    "0.02|0.08": 0.035555555555555556,
+    "0.02|0.12": 0.03187250996015936,
+    "0.02|0.16": 0.027491408934707903,
+    "0.02|0.2": 0.03187250996015936,
+    "0.04|0.08": 1.0,
+    "0.04|0.12": 0.896414342629482,
+    "0.04|0.16": 0.7731958762886598,
+    "0.04|0.2": 0.896414342629482,
+    "0.08|0.12": 0.896414342629482,
+    "0.08|0.16": 0.7731958762886598,
+    "0.08|0.2": 0.896414342629482,
+    "0.12|0.16": 0.8625429553264605,
+    "0.12|0.2": 1.0,
+    "0.16|0.2": 0.8625429553264605
+  },
+  "mechanical_consistency_checked": "call == (score > threshold) verified for every cell, every prior",
+  "n_distinct_candidate_sets": 4,
+  "nested_pairwise": {
+    "0.005|0.01": true,
+    "0.005|0.02": true,
+    "0.005|0.04": true,
+    "0.005|0.08": true,
+    "0.005|0.12": true,
+    "0.005|0.16": true,
+    "0.005|0.2": true,
+    "0.01|0.02": true,
+    "0.01|0.04": true,
+    "0.01|0.08": true,
+    "0.01|0.12": true,
+    "0.01|0.16": true,
+    "0.01|0.2": true,
+    "0.02|0.04": true,
+    "0.02|0.08": true,
+    "0.02|0.12": true,
+    "0.02|0.16": true,
+    "0.02|0.2": true,
+    "0.04|0.08": true,
+    "0.04|0.12": true,
+    "0.04|0.16": true,
+    "0.04|0.2": true,
+    "0.08|0.12": true,
+    "0.08|0.16": true,
+    "0.08|0.2": true,
+    "0.12|0.16": true,
+    "0.12|0.2": true,
+    "0.16|0.2": true
+  },
+  "per_prior": {
+    "0.005": {
+      "fraction_of_cells": 0.0010435690060005217,
+      "n_called_recomputed": 8,
+      "threshold": 0.08893224756911655
+    },
+    "0.01": {
+      "fraction_of_cells": 0.0010435690060005217,
+      "n_called_recomputed": 8,
+      "threshold": 0.16317361897652366
+    },
+    "0.02": {
+      "fraction_of_cells": 0.0010435690060005217,
+      "n_called_recomputed": 8,
+      "threshold": 0.2831719097097717
+    },
+    "0.04": {
+      "fraction_of_cells": 0.029350378293764676,
+      "n_called_recomputed": 225,
+      "threshold": 0.1889218330475847
+    },
+    "0.08": {
+      "fraction_of_cells": 0.029350378293764676,
+      "n_called_recomputed": 225,
+      "threshold": 0.3110016050193378
+    },
+    "0.12": {
+      "fraction_of_cells": 0.03274197756326637,
+      "n_called_recomputed": 251,
+      "threshold": 0.4090986476447284
+    },
+    "0.16": {
+      "fraction_of_cells": 0.03795982259326898,
+      "n_called_recomputed": 291,
+      "threshold": 0.4480878192326313
+    },
+    "0.2": {
+      "fraction_of_cells": 0.03274197756326637,
+      "n_called_recomputed": 251,
+      "threshold": 0.5405056420124046
+    }
+  },
+  "prior_0.16_to_0.2_moved_in_count": 0,
+  "prior_0.16_to_0.2_moved_out_count": 40,
+  "source": {
+    "calls_sidecar": "/bigdata/godziklab/shared/Xinru/302006/05_RESULTS/gate2_capture_scoring/GSM5102900_HC1__cfg0f02df7c7e2a__impl30831273d4d3/PER_PRIOR_CALLS.json",
+    "cell_order_sha256": "6a221afce4cf11e7da5f89213ff255c7462e7b7a7b4ba9be844d3a17d5acbc8e",
+    "manifest": "/bigdata/godziklab/shared/Xinru/302006/05_RESULTS/gate2_capture_scoring/GSM5102900_HC1__cfg0f02df7c7e2a__impl30831273d4d3/SCORING_MANIFEST.json",
+    "manifest_sha256": "e827399b33730ace0aca40c1660b31b30872e8328e41881c46965a0149f86e90",
+    "n_cells": 7666,
+    "scores_sidecar": "/bigdata/godziklab/shared/Xinru/302006/05_RESULTS/gate2_capture_scoring/GSM5102900_HC1__cfg0f02df7c7e2a__impl30831273d4d3/PER_PRIOR_SCORES.json"
+  },
+  "threshold_monotonic_nondecreasing_across_prior_grid_order": false
+}

@@ -1,0 +1,48 @@
+% R2 — within-sepsis mortality prediction is null at late sampling windows (draft 2026-09-07)
+\subsection{Within-sepsis, no model predicts mortality above chance at late sampling windows}
+\label{ssec:r2_within_sepsis}
+
+We next ran the identical protocol on the sepsis arm (91 patients, 17 fatal,
+28-day mortality; Section~\ref{ssec:methods_cohort}). Sepsis is
+life-threatening organ dysfunction caused by a dysregulated host response to
+infection \citep{singer2016sepsis3} and accounts for roughly 11 million
+deaths annually worldwide \citep{rudd2020global}. This is, to our
+knowledge, the largest platelet single-cell sepsis cohort with per-patient
+outcome labels assembled to date, and the first evaluated under patient-level
+cross-validation. No model exceeded chance
+(Table~\ref{tab:within_sepsis} and Figure~\ref{fig:within_sepsis}).
+\model{UCE} scored highest (patient-level AUC 0.548 $\pm$ 0.038), followed by
+\model{scPRINT-2} (0.523 $\pm$ 0.049), \model{Geneformer} (0.515 $\pm$ 0.043),
+and \model{STATE} (0.511 $\pm$ 0.040), with \model{scGPT} (0.449 $\pm$ 0.052)
+and the PCA-200 baseline (0.428 $\pm$ 0.082) both below chance. Under
+patient-level paired bootstrap with multi-comparison control, no pairwise
+difference between models survived:
+the only nominal contrast was \model{UCE} over \model{scGPT} ($+0.101$,
+95\% CI [0.001, 0.197], $p = 0.047$, not surviving correction), and no model
+separated from the PCA-200 baseline (all 95\% confidence intervals include
+zero; smallest nominal $p = 0.079$ for \model{UCE}). In other words, the
+within-sepsis comparison is a complete null: not only does every method sit at
+chance, no ordering among them can be defended at this sample size. At 17
+fatal events the benchmark resolves only large effects: 80\% power to detect
+a single predictor requires a patient-level AUC of about 0.71 or higher, so
+this null bounds rather than excludes smaller signal.
+
+The cohort's sampling times complicate any stronger reading
+(Section~\ref{ssec:limitations}). Draws occurred a median of 16 days after
+admission (range 3--121), and fatal cases were drawn earlier than survivors
+(median 10 versus 18.5 days), so sampling time is associated with the outcome
+and could, in principle, masquerade as signal. The measured result is a null
+despite that confound working in the models' favor. The literature context
+sharpens the interpretation: outcome-predictive platelet transcriptomic signals
+in sepsis have so far been documented only in early windows, within hours of
+diagnosis or within 72 hours of ICU admission
+\citep{qiu2021sepsis, middleton2019sepsis, middleton2020nets}, against a
+background of sepsis host-response heterogeneity established by single-cell
+and transcriptomic studies \citep{reyes2020immune, davenport2016genomic,
+sweeney2018unsupervised}. Our measurement is the first at
+draws beyond the first days of illness, and it bounds when that signal remains
+predictable: by the second week after admission, neither foundation-model
+embeddings nor simple baselines carried usable patient-level mortality signal.
+Because the early-window evidence comes from different cohorts and platforms,
+this comparison is between studies; a within-cohort temporal test would
+require serial draws we do not have.

@@ -1,0 +1,1903 @@
+% =============================================================================
+% Project: 302006 - OOD-robustness benchmark of single-cell foundation models
+% File: main.tex (P2 rewrite, assembled 2026-09-11 from revision/drafts/ +
+%   P0_onepager.md round-17 final numbers; supersedes the 2026-08-26 version,
+%   which remains in git history)
+% Title/framing: "benchmarking review of five published models" (user decision
+%   2026-09-09, BIB scope). All statistics trace to P0_onepager.md or the
+%   results CSVs cited per section.
+% Compile: pdflatex main (x2). Supplementary cross-refs resolve after the P2
+%   supplementary.tex pass (xr).
+% =============================================================================
+
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{lineno}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{authblk}
+\usepackage{xr}
+
+% Resolve \ref to labels defined in supplementary.tex.
+% Compile order: pdflatex supplementary -> pdflatex supplementary -> pdflatex main -> pdflatex main
+\externaldocument{supplementary}
+
+% Custom commands
+\newcommand{\model}[1]{\textsc{#1}}
+\newcommand{\auc}{\text{AUC}}
+\newcommand{\ci}[2]{[#1, #2]}
+
+% Line numbers for review
+\linenumbers
+
+\title{Stress-testing single-cell foundation models on underrepresented
+platelets: a patient-level mortality benchmark}
+
+\author[1]{Xinru Qiu}
+\author[1]{Adam Godzik}
+\affil[1]{Division of Biomedical Sciences, School of Medicine, University of California, Riverside, CA, USA}
+
+\date{}
+
+% Allow TeX to loosen inter-word spacing rather than overrun the margin
+\setlength{\emergencystretch}{3em}
+
+\begin{document}
+
+\maketitle
+
+% ============================================================================
+% ABSTRACT (P0_onepager.md Sec.4 final, 308 words)
+% ============================================================================
+\begin{abstract}
+We benchmarked five single-cell foundation models (\model{STATE}, \model{UCE},
+\model{Geneformer}, \model{scPRINT-2}, \model{scGPT}) on human platelets, a
+minority cell type in the public atlases these models draw their pretraining
+corpora from. We used in-hospital and 28-day mortality as a patient-level task
+in 240 COVID-19 and 91 sepsis patients. All models received identical raw
+input and were evaluated under repeated patient-level cross-validation, every
+prediction aggregated to the patient before scoring, against a from-scratch
+PCA + logistic-regression baseline, a null model, and an in-distribution
+monocyte positive control. Mortality was learnable from platelet
+transcriptomes (patient-level AUC up to 0.79), but under a pre-specified,
+selection-corrected test no foundation model significantly outperformed the
+baseline (label-permutation $P = 0.181$; cross-check $P = 0.073$; stable
+across all 25 leave-one-fatal-out refits). A separate question --- whether a
+model's score adds information beyond the baseline's even without ranking
+patients better on its own --- was examined with a nested-model comparison; no
+model's increment survived the same multiple-comparison correction used
+throughout (Benjamini--Hochberg, 0/5 in every comparator configuration
+tested). Within sepsis, no model exceeded chance at late sampling windows (17
+events, resolving only AUC $\gtrsim 0.71$), consistent with published
+platelet-outcome signals being reported only in early disease windows.
+Cross-disease transfer was rank-indeterminate in the direction where signal
+exists and uninformative in the direction where it does not; the adaptation
+curve has the same resolution limit. The one result that survived
+selection-corrected and multiple-comparison testing was that two models
+(\model{STATE}, \model{Geneformer}, statistically indistinguishable from each
+other) separated from a third (\model{UCE}), the weakest method throughout ---
+the only one that failed to clear the null model built from cell counts and
+disease identity. At realistic clinical event counts, pretraining bought no
+detectable advantage over a strong from-scratch baseline on this
+underrepresented cell type; the benchmark quantifies the resolution achieved
+($\sim$0.10 AUC at 25 events) and the scale needed to detect smaller effects.
+
+\textbf{Keywords:} single-cell foundation models; benchmarking; patient-level
+evaluation; platelet transcriptomics; mortality prediction; statistical
+resolution
+\end{abstract}
+
+% ============================================================================
+% KEY POINTS (BIB-required; P0_onepager.md Sec.7 final wording)
+% ============================================================================
+\section*{Key Points}
+\begin{itemize}
+    \item Five published single-cell foundation models were benchmarked on
+    platelet mortality prediction; none significantly outperformed a
+    from-scratch PCA+logistic-regression baseline under a pre-specified,
+    selection-corrected test (permutation $P = 0.181$).
+    \item A pretraining-corpus-composition hypothesis for the one confirmatory
+    finding was overturned by the corpus measurement itself --- the three
+    models whose corpora can be measured show no ordering by platelet content.
+    \item The one result that survives correction is not that two models have
+    a pretraining advantage --- it is that a third (\model{UCE}) is the
+    weakest performer throughout, the only one that fails to clear the
+    count+disease null model.
+    \item The same null held on an in-distribution positive control
+    (monocytes), showing platelet underrepresentation is not the explanation
+    --- the benchmark's pipeline finds no foundation-model advantage anywhere
+    it looked.
+    \item The paper's contribution is a resolution-quantified benchmarking
+    protocol ($\sim$0.10 AUC resolvable at 25 events), not a leaderboard ---
+    a distinction that matters because comparable patient-level scFM
+    evaluations in the literature report no correction for the comparisons
+    they make, and none reports event counts at the granularity of those
+    comparisons.
+\end{itemize}
+
+\newpage
+
+% ============================================================================
+% INTRODUCTION
+% ============================================================================
+\section{Introduction}
+
+Single-cell foundation models (scFMs) promise general-purpose representations
+of cellular state learned by self-supervision on tens of millions of cells
+from public reference atlases \citep{cui2024scgpt, theodoris2023geneformer,
+regev2017hca, tabula2022sapiens, czi2025cellxgene}, importing into biology the
+paradigm that transformed language and vision \citep{bommasani2021foundation,
+moor2023generalist, bunne2024virtualcell}. The family has grown rapidly and
+now spans masked-language, rank-value, generative, and ontology-aware
+objectives \citep{cui2024scgpt, theodoris2023geneformer, hao2024scfoundation,
+wen2024cellplm, rosen2026universal, kalfon2025scprint, adduri2025state,
+yang2022scbert, chen2025genept, tejada2025nicheformer},
+reviewed comprehensively by \citet{szalata2024transformers} and, most
+recently, by a field-wide landscape analysis \citep{jiang2026landscape}. What
+these models are good for, however, depends on how they are evaluated, and the
+evaluation literature splits sharply in two. On cell-level tasks --- cell-type
+annotation, clustering, batch integration, perturbation response ---
+benchmarking is mature and has already produced a sobering pattern: zero-shot
+foundation models are matched or beaten by simpler methods such as scVI,
+highly-variable-gene selection, or mean expression
+\citep{kedzierska2025zeroshot, ahlmanneltze2025linear, bendidi2024pca,
+luecken2019bestpractices, luecken2022benchmarking, luecken2025openproblems,
+csendes2025benchmark, wenteler2025perteval, boiarsky2023deepdive,
+denadel2026scaling, liu2026evaluating}. On
+patient-level clinical-outcome prediction, the setting in which scFM
+representations would have to justify their scale for precision medicine
+\citep{jiang2026landscape}, systematic evaluation is essentially absent. The
+few studies we could identify (Table~\ref{tab:review_outcomes}
+\citep{egsp2026survival, empiricalscfm2025cancer, tissueformer2025covid})
+share three gaps: none reports a correction for the comparisons it makes (winner
+selection, multiplicity), none discloses event counts at the granularity of
+its own comparisons, and event counts are what determine whether any two
+scores are distinguishable at all.
+
+The present study is a benchmarking review of five published single-cell
+foundation models --- \model{STATE} \citep{adduri2025state}, \model{UCE}
+\citep{rosen2026universal}, \model{Geneformer}
+\citep{theodoris2023geneformer}, \model{scPRINT-2} \citep{kalfon2025scprint},
+and \model{scGPT} \citep{cui2024scgpt} --- under one standardized,
+patient-level protocol, rather than a new-method paper. As the test case we
+pair a clinically decisive endpoint, mortality, with a cell type that the
+pretraining corpora barely contain. Platelets are anucleate cell fragments
+carrying megakaryocyte-derived mRNA
+\citep{rowley2011genomewide, bray2013complex, zaid2020platelets}; in the
+three corpora whose composition
+can be numerically bounded against public records they account for
+approximately 0.12\% of cells, \model{STATE}'s corpus is bounded lower still
+(below 0.05\%) through its public component documentation, and only
+\model{Geneformer} publishes no cell-type-level corpus composition at all.
+They are also mechanistically proximal to fatal inflammatory disease:
+platelet-driven immunothrombosis is implicated in COVID-19 and sepsis
+mortality \citep{manne2020platelet, barrett2021platelets, hottz2020platelet,
+ackermann2020pulmonary, nicolai2020immunothrombotic, levi2020coagulation,
+shappell2023sars},
+and outcome-predictive platelet transcriptomic signals have been reported in
+early sepsis windows
+\citep{qiu2021sepsis, middleton2019sepsis, middleton2020nets, qiu2024deciphering}. We assemble
+240 COVID-19 patients (25 fatal) and 91 sepsis patients (17 fatal) with
+per-patient outcome labels from public platelet scRNA-seq cohorts, and we ask
+four questions. Does any foundation model beat a strong from-scratch baseline
+(PCA + logistic regression on the same cells) at patient-level mortality
+prediction, once winner selection is accounted for? Is the signal real at
+all, or reducible to cell counts, library quality, or cohort membership? Does
+it transfer across diseases and cohorts? And when the models are mapped back
+to genes, do they even use the same biology
+(Figure~\ref{fig:overview})?
+
+The answers are uniformly sobering and quantitatively bounded. Mortality is
+learnable from platelet transcriptomes beyond every artifact control we could
+build, but under a pre-specified, winner-corrected test no foundation model
+outperformed the from-scratch baseline (permutation $P = 0.181$), and a
+nested complementarity analysis returned the same null under
+multiple-comparison correction. The same null returned within sepsis, in both
+cross-disease directions, and on an in-distribution monocyte positive control,
+and the one confirmatory separation that survives correction is a statement
+about the weakest model, not the strongest. Because every null is reported
+with the resolution of its design ($\sim$0.10 AUC at 25 fatal events;
+detecting 0.03--0.05 AUC effects requires on the order of $10^3$ patients at
+this event rate), the benchmark doubles as a plug-in protocol: any future
+model can be dropped into the identical pipeline and read against the same
+baselines, and any future claim of a pretraining advantage on this task now
+has a measured bar to clear.
+
+% Table: review content (P0_onepager.md Sec.5; search strategy verbatim)
+\begin{table}[t]
+\centering
+\caption{Patient-level clinical-outcome evaluations of single-cell foundation
+models identified by our search (PubMed via Google
+\texttt{site:pubmed.ncbi.nlm.nih.gov} + bioRxiv/medRxiv; query
+``\texttt{single-cell foundation model patient-level clinical outcome
+benchmark survival mortality 2025 2026}'', run 2026-09-09; 4 unique records
+recalled, 2 included, 2 excluded as not scFM-based). TissueFormer was
+identified in an earlier literature pass and confirmed retrievable by a
+targeted search rather than the general query. None of the three reports a
+selection or multiplicity correction for its comparisons, and only the first
+discloses pooled event counts.}
+\label{tab:review_outcomes}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{p{4.2cm}p{2.6cm}p{3.4cm}p{2.2cm}p{1.9cm}p{1.6cm}}
+\toprule
+\textbf{Study (venue)} & \textbf{scFM(s)} & \textbf{Task / outcome} & \textbf{From-scratch baseline} & \textbf{Patient-level aggregation} & \textbf{Correction} \\
+\midrule
+EGSP, Bioinformatics Advances 2026 (peer-reviewed; PMC13032892) & scFoundation (embedding transfer to bulk) & pan-cancer overall survival (TCGA, 25 types; 8{,}776 samples) & yes (Ridge/Lasso-Cox) & yes & none reported \\
+Empirical Evaluation of scFMs for Predicting Cancer Outcomes, bioRxiv 2025.10.31.685892 (preprint) & 9 models & 6 cancer clinical/biological outcome tasks (1{,}170 experiments) & yes (HVG, PCA, scVI) & yes (3 schemes) & none reported \\
+TissueFormer, bioRxiv 2025.08.17.670735 (preprint) & murine-adapted Geneformer & COVID-19 severity, 3-class (376 donors, 3 cohorts) & yes (random-init) & yes & none reported \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/Figure1_overview.pdf}
+\caption{\textbf{Study design.} \textbf{(A)} Cohorts: platelet single-cell
+transcriptomes from 240 COVID-19 patients (25 fatal), 103 sepsis patients in
+the dataset (19 fatal; the seven GSE151263 patients, who lack per-patient
+outcome records, are excluded from all mortality analyses), and 70 healthy
+donors (reference only); a monocyte in-distribution positive control covers
+148 patients (19 fatal). Multiple draws per patient are merged to the patient
+level (61{,}759 platelet transcriptomes in the full COVID-19 and sepsis
+dataset; 61{,}283 across the mortality-analysis pools after the GSE151263
+exclusion). \textbf{(B)} Unified input: every model receives the
+identical raw AnnData object and applies its own native preprocessing; the
+five foundation models are benchmarked frozen, against a from-scratch
+PCA-200 + logistic-regression baseline and four control families.
+\textbf{(C)} Patient-level evaluation: repeated cross-validation (10 seeds
+$\times$ 5 folds) with patients grouped so that no patient's cells or draws
+span folds; cell-level predictions are aggregated to one score per patient;
+the primary metric is patient-level out-of-fold ROC-AUC, under a three-tier
+inference hierarchy (pre-specified primary, confirmatory secondary,
+exploratory). \textbf{(D)} The four analysis arms and their headline
+results. Figure created with BioRender.com.}
+\label{fig:overview}
+\end{figure}
+
+% Methods (synced to P0 round-17 state, 2026-09-09)
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Cohort and endpoint definitions}
+\label{ssec:methods_cohort}
+
+We analyzed human platelet single-cell transcriptomes from public cohorts
+(Table~\ref{tab:cohort}): 240 COVID-19 patients (25 fatal), 103 sepsis
+patients in the dataset (19 fatal), and 70 healthy donors retained as a
+reference group only. Multiple draws of the same patient (longitudinal samples
+or replicate libraries) were merged into a single patient-level unit
+(\texttt{patient\_id}) before any analysis, so that all of a patient's cells
+and draws share one cross-validation group and one aggregated score.
+GSE151263 (7 patients) does not report per-patient outcomes in the source
+record and is excluded from all mortality analyses; it is retained in the
+dataset for completeness. This eligibility decision follows from source-record
+availability and was fixed at dataset assembly, independently of any
+outcome-associated result. No reported table or figure contains GSE151263
+patients; the cohort appears only in the dataset description
+(Table~\ref{tab:cohort}). In arithmetic terms: of the 103 sepsis patients in
+the dataset, 7 enter no outcome-labeled analysis, 91 (GSE279452) form the
+main sepsis arm, and all 96 outcome-labeled patients (91 plus 5 from
+GSE167363) form the reverse-transfer training pool.
+The primary endpoint was mortality: in-hospital
+death for the COVID-19 cohorts and GSE167363, and 28-day death for GSE279452;
+the difference is stated wherever the GSE279452 arm is used. Survivors
+include patients discharged alive at any severity grade (severe cases are
+ICU-discharged survivors, labeled as the negative class). Outcome labels were
+verified against the source records for every fatal patient
+(Supplementary Note~\ref{sn:label_provenance}).
+
+\subsection{Foundation models and unified input}
+\label{ssec:methods_models}
+
+We evaluated five single-cell foundation models (scFMs) chosen to span the
+main representation families (Table~\ref{tab:models}): \model{STATE},
+\model{UCE}, \model{Geneformer}, \model{scPRINT-2}, and \model{scGPT}. To
+remove input preprocessing as a confounder, every model received the identical
+raw AnnData object \citep{wolf2018scanpy} and applied its own native
+preprocessing pipeline as recommended by its authors; embeddings were then used frozen, with no
+fine-tuning, generative, or task-specific capabilities of any model. For
+\model{STATE}, a two-component system, we evaluate the state-embedding
+component (SE-600M): the state-transition module is trained for
+perturbation-response prediction and has no natural mapping to a
+patient-level discrimination task, and SE is the system's representation
+component. Platelets are anucleate cell fragments carrying
+megakaryocyte-derived mRNA; in the three pretraining corpora whose
+composition can be numerically bounded they account for approximately
+0.12\% of cells, and \model{STATE}'s corpus is bounded lower still (below
+0.05\%) through its public component documentation, while only
+\model{Geneformer} publishes no cell-type-level corpus composition at all
+(Table~\ref{tab:models} and Supplementary Note~\ref{sn:corpus_platelet}).
+They are therefore an underrepresented substrate in every corpus that can
+be checked --- documented as absent from some, bounded near one per mille
+in the rest.
+
+\subsection{Evaluation protocol}
+\label{ssec:methods_cv}
+
+The primary evaluation unit is the patient. Classifiers were trained and
+evaluated under repeated patient-level cross-validation: 10 repeats of 5-fold
+\texttt{StratifiedGroupKFold} (\texttt{shuffle=True}, seeds 42--51) with
+\texttt{patient\_id} as the group variable, so that no patient's cells or
+draws ever span training and test folds
+\citep{varma2006bias, kapoor2023leakage, whalen2022pitfalls,
+mcdermott2021reproducibility, koh2021wilds}. Within each repeat, out-of-fold cell
+predictions were averaged per patient (mean; median and trimmed-mean as
+sensitivity analyses, Supplementary Note~\ref{sn:aggregation}) to yield one
+score per patient. The primary metric is patient-level out-of-fold ROC-AUC
+(patient-level AUC) computed as the repeat-mean, reported with the standard
+deviation across repeats (repeat-sd) as a measure of split-to-split stability.
+
+We pre-specified a single primary inferential question: does the best
+foundation model beat the from-scratch baseline? Because quoting the best of
+five correlated candidates inflates the error rate, this contrast was tested
+with a winner-corrected max-statistic permutation test: mortality labels were
+permuted at the patient level (10{,}000 permutations) on the frozen
+seed-ensemble scores, and the familywise $P$ is the fraction of permutations
+whose maximum foundation-model-minus-baseline AUC difference reaches the
+observed maximum; a recentered bootstrap is reported as a cross-check
+(Supplementary Note~\ref{sn:winner_test}).
+Every other contrast is reported as
+exploratory, with nominal $p$-values from exact DeLong's test \citep{delong1988comparing}
+labeled as such
+(paired-bootstrap agreement documented in Supplementary
+Note~\ref{sn:se_check}), and the stability of the primary result was assessed by
+leave-one-fatal-patient-out refits (Supplementary Note~\ref{sn:fragility}).
+Uncertainty quantification was matched to each analysis
+design: repeated-CV for fold-based within-disease evaluation, patient-clustered
+bootstrap (200 iterations) for fixed-split cross-disease transfer, and
+training-pool subsampling (10 seeds) for the adaptation curve.
+All feature-wise preprocessing was fit inside training folds only:
+standardization, PCA, and any gene selection saw no test cells, and the 70
+healthy donors entered no model fit. The primary classifier was logistic
+regression ($C=1.0$, lbfgs, balanced class weights) and the secondary a random
+forest (100 trees, balanced class weights), both as implemented in
+scikit-learn \citep{pedregosa2011scikit}.
+Two safeguards apply to every inferential construction. Any
+selection-corrected $P$ must be at least the smallest uncorrected $p$ in its
+comparison family, and any nested out-of-fold pooling harness must pass a
+unit test, in which a known frozen score refit through the harness must
+reproduce its own out-of-fold AUC within 0.02--0.04, before it may produce
+significance conclusions (Supplementary Note~\ref{sn:nested_comparison}).
+
+\subsection{Baselines and controls}
+\label{ssec:methods_baselines}
+
+Six controls ran under the identical protocol. (i) A from-scratch
+PCA + logistic-regression baseline on raw counts: PCA dimensionality was
+selected from \{50, 100, 200, 500\} in a pre-registered sweep with
+selection performed inside training folds, and we report the 200-component
+setting throughout (PCA-200+LR). (ii) A null model using only each patient's
+cell count and disease label; within COVID-19, where disease is constant, it
+reduces to a cell-count-only model. (iii) A QC-metrics-only model using
+per-patient mean UMI counts, detected genes, percent mitochondrial reads, and
+cell count, to test whether predictions could be explained by library-quality
+or processing artifacts (Supplementary Note~\ref{sn:qc_baseline}).
+(iv) A cohort-only model scoring each patient by their cohort's mortality
+rate, estimated within training folds only
+(Supplementary Note~\ref{sn:cohort_baseline}). (v) A nested incremental-value
+family, in which a covariate baseline (QC metrics, cell count, and cohort
+identity; L2-regularized logistic regression at $C = 0.3$) is augmented with
+each representation score in turn; its pre-specified primary is the single
+PCA-200 nested likelihood-ratio test against an empirical permutation null,
+chosen because it involves no model selection
+(Supplementary Note~\ref{sn:qc_incremental}), and each method is additionally
+compared with the null model directly
+(Supplementary Note~\ref{sn:method_vs_null}). (vi) An
+in-distribution positive control on monocytes from the same source cohorts
+(148 patients, 19 fatal), a cell type the models were pretrained on
+(Section~\ref{ssec:r4_monocyte}); monocyte identities came from the published
+atlas annotations (Ren, Stephenson) or a marker-based call (GSE167363), and a
+patient-matched subset analysis is reported in
+Supplementary Note~\ref{sn:monocyte_matched}.
+
+\subsection{Cross-disease transfer and adaptation curve}
+\label{ssec:methods_transfer}
+
+Cross-disease transfer used fixed disease splits in both directions
+(COVID-19$\rightarrow$sepsis and sepsis$\rightarrow$COVID-19) under the primary
+severe-as-survived label definition: the forward direction trained on COVID-19
+(240 patients) and tested on the 91 GSE279452 sepsis patients, and the reverse
+direction trained on all 96 outcome-labeled sepsis patients and tested on
+COVID-19, with patient-level scoring and patient-clustered bootstrap
+confidence intervals (200 iterations); a
+severe-excluded variant is retained as a sensitivity analysis
+(Supplementary Note~\ref{sn:severe}). The adaptation curve measured whether
+transfer is recovered with target-disease supervision: COVID-trained
+classifiers received increasing numbers of sepsis training cells
+($n \in \{0, 10, 50, 100, 500, 1000, \text{all}\}$, 10 seeds per size) and were
+scored on a held-out 32-patient sepsis test set, a one-third stratified
+holdout of the 96-patient labeled sepsis pool.
+
+\subsection{Metrics and calibration}
+\label{ssec:methods_metrics}
+
+The primary metric is patient-level out-of-fold ROC-AUC
+(Section~\ref{ssec:methods_cv}). Secondary quantities, always named, are the
+cell-weighted out-of-fold AUC, the per-fold mean AUC, the leave-one-cohort-out
+(LOBO) cohort AUC, and the out-of-fold nested $\Delta$AUC of the
+complementarity family (Supplementary Note~\ref{sn:nested_comparison}); no
+unqualified ``AUC'' is used elsewhere. Because cohort is
+confounded with disease and sampling site in these data, LOBO is treated as a
+secondary robustness axis rather than a co-primary estimand; the fixed-split
+cross-disease analysis isolates the transfer question directly
+(Section~\ref{ssec:methods_transfer}). A LOBO fold is computable only when the
+held-out cohort contains at least one fatal and at least one survivor patient;
+cohorts failing this rule (34 patients, all in survivor-only cohorts) remain
+in the training pool throughout, so pooled LOBO covers 206 of the 240 patients
+with all 25 fatal events retained. A fifth named quantity, the
+seed-ensemble out-of-fold AUC (ensemble-OOF AUC), averages each patient's
+scores across the ten repeats and scores them once; the primary test, all
+paired-bootstrap contrasts, fragility refits, score correlations, and the
+consensus predictor are computed on these ensemble scores, while the
+repeat-mean and repeat-sd report split-to-split stability of the same
+protocol.
+Calibration was
+assessed on patient-level out-of-fold predictions with the Brier score \citep{brier1950verification} and the
+expected calibration error (ECE, 10 equal-width bins)
+\citep{guo2017calibration, vancalster2019calibration}. Multiplicity was
+controlled within each comparison family with Benjamini--Hochberg FDR
+\citep{benjamini1995controlling}, and the
+family is stated with every reported $q$.
+
+\subsection{Reproducibility and availability}
+\label{ssec:methods_repro}
+
+All analyses ran with fixed seeds (CV seeds 42--51; bootstrap seed 42) and are
+fully scripted \citep{fahsbender2025czi}. Code, per-model environments, the patient-level mapping, and
+all result tables are available at \url{https://github.com/xqiu625/302006_updategit}. Embeddings were computed
+on the UCR HPCC cluster with each model's recommended environment and publicly
+released checkpoints (Table~\ref{tab:models}).
+
+\subsection{Masking-based gene attribution}
+\label{ssec:methods_masking}
+
+For each model, cells of the canonical within-COVID cohort (240 patients, 25
+fatal) were subsampled to at most 60 per patient (10{,}737 cells). Per cell,
+the top-256 expressed genes were selected from the intersection of model
+vocabularies (deterministic, identical across models sharing the same
+universe). One in-sample L2 logistic regression ($C = 0.3$) per model on that
+model's own candidate-restricted embeddings defined the mortality direction,
+$s = w \cdot z + b$. Each candidate gene was then occluded in turn via the
+model's native attention mechanism (attention mask set to 0 for
+\model{Geneformer}; physical sequence deletion for \model{STATE}, the only
+architecture whose mask flag does not reach attention;
+\texttt{src\_key\_padding\_mask} set for \model{scGPT} and \model{UCE}, the
+latter with a one-line float-to-boolean cast required for the mask to
+function at all; \texttt{mask\_zeros} cleared for \model{scPRINT-2}), and
+$\Delta(g, \text{cell}) = s_\text{full} - s_\text{masked}(g)$ was averaged
+across cells (minimum 30 occurrences) into a ranked per-gene list per model.
+Prerank GSEA \citep{subramanian2005gsea} (gseapy \citep{fang2023gseapy};
+MSigDB Hallmark 2020, KEGG 2021, Reactome 2022; 10--500 genes per term;
+1{,}000 permutations; seed 20260910) produced per-model pathway tables. The joint-occlusion control masked the top-$N$ attributed
+genes jointly ($N \in \{10, 30, 128\}$) versus matched random-$N$ sets (three
+draws per cell) over the full cohort, comparing paired per-cell deltas.
+% Table 1 — cohort characteristics (counts verified against donor_meta_with_patient_id_v2.csv + Job M)
+\begin{table}[t]
+\centering
+\caption{Source cohorts. Patients are unique patient-level units after merging
+multiple draws per patient. ``Fatal'' counts are patients with a fatal outcome
+under each cohort's outcome definition. Sampling windows are reported from the
+source publications or repository records; ``not reported'' means the source
+states no draw timing. GSE151263 is excluded from all mortality analyses
+(no per-patient outcome in the source). Healthy donors ($n=70$) are used as a
+reference group only and enter no model fit.}
+\label{tab:cohort}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllrrlll}
+\toprule
+\textbf{Cohort (accession)} & \textbf{Disease} & \textbf{Patients} & \textbf{Fatal} & \textbf{Cells} & \textbf{Sampling window} & \textbf{Platform} & \textbf{Outcome definition} \\
+\midrule
+Ren 2021 \citep{ren2021covid} (GSE158055) & COVID-19 & 54 & 9 & 8{,}394 & 1--126 d post onset (median 23) & 10x & in-hospital death \\
+Stephenson 2021 \citep{stephenson2021singlecell} (E-MTAB-10026) & COVID-19 & 90 & 8 & 11{,}387 & not reported & 10x & death \\
+Liu 2021 \citep{liu2021timeresolved} (GSE161918) & COVID-19 & 31 & 4 & 2{,}050 & T0 median 11 d post onset (T0--T3) & 10x & death \\
+Schulte-Schrepping 2020 \citep{schulteschrepping2020severe} (EGA) & COVID-19 & 18 & 3 & 616 & 3--20 d (c1), 2--25 d (c2) post onset & 10x / Rhapsody & death \\
+Bernardes 2020 \citep{bernardes2020longitudinal} (FastGenomics) & COVID-19 & 13 & 1 & 6{,}030 & d 0/2/7/10/13 and/or discharge & 10x & death \\
+Combes 2021 \citep{combes2021global} (GSE163668) & COVID-19 & 13 & 0 & 1{,}985 & screened $\leq$3 d of hospitalization & 10x & (survivors) \\
+Wilk 2020 \citep{wilk2020singlecell} (GSE150728) & COVID-19 & 6 & 0 & 180 & 2--16 d post onset & 10x & (survivors) \\
+Lee 2020 \citep{lee2020immunophenotyping} (GSE149689) & COVID-19 & 8 & 0 & 944 & not reported & 10x & (survivors) \\
+Arunachalam 2020 \citep{arunachalam2020systems} (GSE155673) & COVID-19 & 7 & 0 & 4{,}490 & 2--16 d post onset (median 9) & 10x & (survivors) \\
+\midrule
+Qiu 2021 \citep{qiu2021sepsis} (GSE167363) & Sepsis & 5 & 2 & 2{,}946 & 0 h and 6 h post sepsis recognition (ICU) & 10x & in-hospital death \\
+GSE279452 & Sepsis & 91 & 17 & 22{,}261 & median 16 d post admission (3--121) & 10x & 28-day death \\
+Jiang 2020 \citep{jiang2020ards} (GSE151263) & Sepsis/ARDS & 7 & --- & 476 & within 24 h of intubation & 10x & not reported (excluded) \\
+\midrule
+Healthy donors (multiple) & Healthy & 70 & --- & 3{,}205 & --- & 10x & reference only \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+% Table 2 — foundation models (all facts verified against source papers; see model_architecture_analysis.md)
+\begin{table}[t]
+\centering
+\caption{Foundation models evaluated. All models received the identical raw
+AnnData object and applied their own native preprocessing; embeddings were used
+frozen with a logistic-regression head. Corpus platelet status summarizes our
+verification of each pretraining corpus (Supplementary Note~\ref{sn:corpus_platelet}).}
+\label{tab:models}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llllll}
+\toprule
+\textbf{Model (checkpoint)} & \textbf{Architecture} & \textbf{Training objective} & \textbf{Pretraining corpus} & \textbf{Embedding} & \textbf{Corpus platelet status} \\
+\midrule
+STATE (SE-600M) & dense bidirectional transformer (16 layers, 600M) & dual-axis expression reconstruction + dataset classification & 167M cells (scBaseCount, CxG, Tahoe-100M) & 2{,}058-dim & absent (scBaseCount annotation space; QC-filtered) \\
+UCE (650M) & transformer (33 layers, 650M), ESM2 gene tokens & masked gene modeling (BCE, 20\%) & IMA, 36M cells, 313 datasets & 1{,}280-dim & absent (51-type composition, SI Table 19) \\
+Geneformer (V2-316M) & BERT encoder (18 layers, 316M) & rank-value masked-gene modeling & Genecorpus-104M (non-cancer) & 1{,}152-dim & not reported; corpus rich in blood/immune datasets \\
+scPRINT-2 (small-v2) & multi-task transformer + ontology classifiers (20M active) & denoising + label prediction + bottleneck learning & 350M cells, 16 organisms & 424-dim & not reported (Census 0.120--0.125\% bound) \\
+scGPT (whole-human) & generative transformer (12 layers), generative attention mask & masked expression prediction + GEPC & 33M non-disease cells (441 studies) & 512-dim & not reported (Census $\leq$0.125\% bound) \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+% ============================================================================
+% RESULTS
+% ============================================================================
+\section{Results}
+\label{sec:results}
+
+% R1 — within-COVID mortality discrimination (synced to P0 round-17 state, 2026-09-09)
+\subsection{Within-COVID, models differ from each other, but no foundation model beats the from-scratch baseline under the pre-specified test}
+\label{ssec:r1_within_covid}
+
+We first asked whether foundation-model embeddings carry any patient-level
+mortality signal within COVID-19. For each model, frozen embeddings of the same
+raw platelet transcriptomes were classified with logistic regression under
+repeated patient-level cross-validation (10 repeats of 5-fold
+\texttt{StratifiedGroupKFold} with \texttt{patient\_id} as the group), and each
+patient's out-of-fold cell predictions were averaged into a single score before
+computing the patient-level out-of-fold ROC-AUC (patient-level AUC;
+Section~\ref{ssec:methods_metrics}). Three from-scratch controls ran under the
+identical protocol: a PCA-200 + logistic-regression baseline on raw counts, a
+null model given only each patient's cell count and disease label, and a
+cohort-only model given each patient's cohort mortality rate.
+
+Patient-level mortality signal was learnable: five of the six methods,
+including the from-scratch baseline, significantly outscored the null model
+(exact DeLong paired tests on the seed-ensemble scores, $p = 0.0006$--$0.023$);
+the exception was \model{UCE} ($p = 0.157$; Supplementary
+Note~\ref{sn:method_vs_null}). The pre-specified primary contrast
+(Section~\ref{ssec:methods_cv}) asked whether the best foundation model beats
+the from-scratch baseline once winner selection is accounted for. It was not
+met: the observed maximum advantage (\model{Geneformer}, $+0.064$
+patient-level AUC on the seed-ensemble scores) did not exceed what the
+selection procedure produces under the null (patient-level label-permutation
+max-statistic test, 10{,}000 permutations, $P = 0.181$; recentered-bootstrap
+cross-check, $P = 0.073$; Supplementary Note~\ref{sn:winner_test}). The result
+is stable: all 25 leave-one-fatal-patient-out refits returned $P > 0.05$
+(range 0.141--0.288; Supplementary Note~\ref{sn:fragility}).
+
+The model ranking underneath this null is still informative
+(Table~\ref{tab:within_covid} and Figure~\ref{fig:within_covid}). \model{Geneformer} and \model{STATE} led at
+0.786 $\pm$ 0.026 and 0.778 $\pm$ 0.033 (repeat-mean $\pm$ repeat-sd) and
+could not be distinguished from each other ($\Delta = -0.012$, exact DeLong
+$p = 0.58$). Their nominal advantages over the baseline (\model{Geneformer}
+$+0.064$, $p = 0.036$; \model{STATE} $+0.052$, $p = 0.048$) are reported as
+exploratory and do not survive the winner correction above. All remaining
+contrasts are likewise exploratory
+(Supplementary Note~\ref{sn:se_check}):
+\model{scPRINT-2} placed third (0.740 $\pm$ 0.027) and could not be separated
+from the baseline ($p = 0.65$), and \model{scGPT} (0.720 $\pm$ 0.047) was
+statistically indistinguishable from it ($p = 0.91$). \model{UCE} placed last
+(0.661 $\pm$ 0.046), below the from-scratch baseline, though the paired
+contrast was not itself significant ($-0.066$, $p = 0.081$). One separation
+survives selection correction: the two leaders' advantage over \model{UCE}
+($+0.118$ and $+0.130$) is confirmed by a range-statistic test on the same
+label permutations as the primary analysis (max-minus-min over the five
+foundation models, $P = 0.011$; Supplementary Note~\ref{sn:range_test}) and
+is the paper's single confirmatory secondary result. Within the exploratory
+pairwise family, six contrasts survive Benjamini--Hochberg correction, all
+with \model{UCE} or \model{scGPT} on the losing side ($q \leq 0.037$;
+Supplementary Figure~\ref{fig:supp_pairwise}), and the two
+leaders-versus-\model{UCE} gaps are the largest. The result's content is a
+statement about the losing model, addressed in
+Section~\ref{ssec:discussion_property}.
+
+A separate question, whether a model's score adds information beyond the
+baseline's even without ranking patients better on its own, was examined with
+nested-model comparisons: a reduced model containing cohort and the PCA-200
+score against a full model adding each foundation-model score in turn. No
+model's increment survived the same Benjamini--Hochberg correction used
+throughout, in any of three comparator configurations
+(Supplementary Note~\ref{sn:nested_comparison}). The complementarity question
+therefore returns the same answer as the superiority question, and the
+headline statement needs no qualifier.
+
+Three controls bound where the learnable signal does not come from. The null
+model reached only 0.554, so mortality was not readable from cell counts or
+disease identity alone; per-patient cell counts also correlated only weakly
+with predicted scores across models (Spearman $\rho = 0.18$--$0.29$;
+Supplementary Figure~\ref{fig:supp_cellcount}). The cohort-only model reached
+0.486 $\pm$ 0.038, statistically indistinguishable from chance; because a
+rate estimator based on add-one smoothing inverts risk ordering for small
+cohorts, this number is silent on the confound question rather than
+exonerating cohort (Supplementary Note~\ref{sn:cohort_baseline}). A
+QC-metrics-only model scored below chance out-of-fold (0.376 as-fit), a
+textbook suppression pattern: the QC features carry outcome information only
+conditional on library depth, and adding each patient's cell count recovers a
+correctly oriented 0.618 (Supplementary Note~\ref{sn:qc_baseline}). The
+decisive test is incremental value over all of these covariates at once:
+a baseline of QC metrics, cell count, and cohort identity reached 0.627, and
+the pre-specified primary for this question, whether the from-scratch
+platelet representation adds information over that baseline, chosen because
+it involves no model selection, was met by a nested likelihood-ratio test
+against an empirical permutation null ($P < 0.0001$;
+Supplementary Note~\ref{sn:qc_incremental}). The five foundation models,
+reported as exploratory with both readings paired, each added significant
+value by the same test ($P < 0.0001$--$0.0022$, \model{UCE} weakest) and, for
+all but \model{UCE}, by paired-AUC comparison ($\Delta = +0.026$ to $+0.065$,
+exact DeLong $p = 0.0001$--$0.006$; \model{UCE} $+0.016$, $p = 0.072$). The
+likelihood-ratio family establishes that incremental information exists; the
+AUC increments quantify it; and the resolution argument applies to that
+magnitude, not to the likelihood-ratio $P$-values.
+
+Two protocol observations qualify the headline numbers. First, random-forest
+classifiers scored uniformly lower than logistic regression on the same
+embeddings (e.g., \model{STATE}: 0.696 versus 0.778), so we report logistic
+regression throughout and retain random forest only for calibration analysis
+(Section~\ref{ssec:r5_calibration}). Second, per-seed variation was large enough
+to change the apparent ranking: \model{STATE}'s patient-level AUC ranged from
+0.711 to 0.815 across the ten repeats, and a single 5-fold split would have
+reported any point in that range as ``the'' result. We therefore treat the
+repeat-mean, not any single split, as the primary estimate throughout, with
+inferential quantities computed on the seed-ensemble scores
+(Section~\ref{ssec:methods_cv}).
+
+The within-COVID picture is thus one of inter-model differences without a
+detectable pretraining advantage. Signal is present and learnable by nearly
+every method, and it is not reducible to library quality, cell counts, or
+cohort membership: platelet representations carry outcome information beyond
+all three. Yet no foundation-model representation carries information beyond
+what a from-scratch PCA of the same data already provides, not in
+discrimination and not in nested complementarity. The two leading models
+separate from \model{UCE} under a confirmatory test, a statement about the
+weakest model rather than the strongest. At 25 fatal events this benchmark
+resolves advantages of roughly 0.10 patient-level AUC or larger between two
+different representations (Section~\ref{ssec:discussion_property}): the
+nominal 0.05--0.06 advantages sit below that resolution, and detecting effects
+of that size would require on the order of $10^3$ patients. Whether any signal
+transfers beyond COVID-19 is addressed next
+(Sections~\ref{ssec:r2_within_sepsis}--\ref{ssec:r3_cross_disease}).
+
+% Table: within-COVID main table (tables_v3.md Table 3; sources cited therein)
+\begin{table}[t]
+\centering
+\caption{Within-COVID-19 patient-level mortality prediction (240 patients, 25
+fatal; repeated 10$\times$5-fold cross-validation, logistic regression).
+Repeat-mean $\pm$ repeat-sd is the primary reporting unit; the ensemble-OOF
+AUC averages each patient's scores across the ten repeats before scoring
+once. Pairwise contrasts are exploratory nominal exact-DeLong $p$-values. The
+pre-specified primary contrast (best foundation model versus PCA-200) was not
+met: winner-corrected permutation $P = 0.181$, recentered-bootstrap
+cross-check $P = 0.073$. The single confirmatory secondary result is the two
+leaders' separation from \model{UCE} (range-statistic permutation
+$P = 0.011$).}
+\label{tab:within_covid}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{Repeat-mean $\pm$ sd} & \textbf{Ensemble-OOF AUC} & \textbf{vs PCA-200 (DeLong $p$)} & \textbf{vs null (DeLong $p$)} \\
+\midrule
+\model{Geneformer} & 0.786 $\pm$ 0.026 & 0.807 & 0.036 & 0.0006 \\
+\model{STATE} & 0.778 $\pm$ 0.033 & 0.795 & 0.048 & 0.0014 \\
+\model{scPRINT-2} & 0.740 $\pm$ 0.027 & 0.756 & 0.655 & 0.011 \\
+PCA-200+LR (baseline) & 0.725 $\pm$ 0.033 & 0.742 & --- & 0.013 \\
+\model{scGPT} & 0.720 $\pm$ 0.047 & 0.739 & 0.909 & 0.023 \\
+\model{UCE} & 0.661 $\pm$ 0.046 & 0.677 & 0.081 & 0.157 \\
+\midrule
+null (cell count + disease) & 0.554 & --- & --- & --- \\
+cohort-only & 0.486 $\pm$ 0.038 & --- & --- & --- \\
+QC metrics + cell count (as-fit) & 0.618 & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/v2/Figure2_within_covid.pdf}
+\caption{\textbf{Within-COVID-19 mortality prediction.} \textbf{(A)}
+Patient-level AUC (repeat-mean $\pm$ repeat-sd over 10$\times$5-fold
+cross-validation) for the five foundation models, the PCA-200+LR baseline
+(open circle), and three controls (gray squares: null = cell count +
+disease; cohort-only; QC + cell count). Bracket: the pre-specified primary
+contrast (best foundation model versus PCA-200), winner-corrected permutation
+$P = 0.181$ (n.s.); the confirmatory leaders-versus-\model{UCE} range
+statistic, $P = 0.011$. \textbf{(B)} Incremental value over a
+QC + cell count + cohort baseline (AUC 0.627): points are exact-DeLong
+$\Delta$AUC with 1.96$\times$SE whiskers, annotated with DeLong $p$ and the
+nested likelihood-ratio permutation $P$; the PCA-200 row is the
+pre-specified primary for this question ($P < 0.0001$).}
+\label{fig:within_covid}
+\end{figure}
+
+% R2 — within-sepsis mortality prediction is null at late sampling windows (draft 2026-09-07)
+\subsection{Within-sepsis, no model predicts mortality above chance at late sampling windows}
+\label{ssec:r2_within_sepsis}
+
+We next ran the identical protocol on the sepsis arm (91 patients, 17 fatal,
+28-day mortality; Section~\ref{ssec:methods_cohort}). Sepsis is
+life-threatening organ dysfunction caused by a dysregulated host response to
+infection \citep{singer2016sepsis3} and accounts for roughly 11 million
+deaths annually worldwide \citep{rudd2020global}. This is, to our
+knowledge, the largest platelet single-cell sepsis cohort with per-patient
+outcome labels assembled to date, and the first evaluated under patient-level
+cross-validation. No model exceeded chance
+(Table~\ref{tab:within_sepsis} and Figure~\ref{fig:within_sepsis}).
+\model{UCE} scored highest (patient-level AUC 0.548 $\pm$ 0.038), followed by
+\model{scPRINT-2} (0.523 $\pm$ 0.049), \model{Geneformer} (0.515 $\pm$ 0.043),
+and \model{STATE} (0.511 $\pm$ 0.040), with \model{scGPT} (0.449 $\pm$ 0.052)
+and the PCA-200 baseline (0.428 $\pm$ 0.082) both below chance. Under
+patient-level paired bootstrap with multi-comparison control, no pairwise
+difference between models survived:
+the only nominal contrast was \model{UCE} over \model{scGPT} ($+0.101$,
+95\% CI [0.001, 0.197], $p = 0.047$, not surviving correction), and no model
+separated from the PCA-200 baseline (all 95\% confidence intervals include
+zero; smallest nominal $p = 0.079$ for \model{UCE}). In other words, the
+within-sepsis comparison is a complete null: not only does every method sit at
+chance, no ordering among them can be defended at this sample size. At 17
+fatal events the benchmark resolves only large effects: 80\% power to detect
+a single predictor requires a patient-level AUC of about 0.71 or higher, so
+this null bounds rather than excludes smaller signal.
+
+The cohort's sampling times complicate any stronger reading
+(Section~\ref{ssec:limitations}). Draws occurred a median of 16 days after
+admission (range 3--121), and fatal cases were drawn earlier than survivors
+(median 10 versus 18.5 days), so sampling time is associated with the outcome
+and could, in principle, masquerade as signal. The measured result is a null
+despite that confound working in the models' favor. The literature context
+sharpens the interpretation: outcome-predictive platelet transcriptomic signals
+in sepsis have so far been documented only in early windows, within hours of
+diagnosis or within 72 hours of ICU admission
+\citep{qiu2021sepsis, middleton2019sepsis, middleton2020nets}, against a
+background of sepsis host-response heterogeneity established by single-cell
+and transcriptomic studies \citep{reyes2020immune, davenport2016genomic,
+sweeney2018unsupervised}. Our measurement is the first at
+draws beyond the first days of illness, and it bounds when that signal remains
+predictable: by the second week after admission, neither foundation-model
+embeddings nor simple baselines carried usable patient-level mortality signal.
+Because the early-window evidence comes from different cohorts and platforms,
+this comparison is between studies; a within-cohort temporal test would
+require serial draws we do not have.
+
+% Table: within-sepsis (P0_onepager.md Sec.3b)
+\begin{table}[t]
+\centering
+\caption{Within-sepsis mortality prediction (91 GSE279452 patients, 17 fatal,
+28-day endpoint; same repeated-CV protocol as
+Table~\ref{tab:within_covid}). No pairwise contrast survives
+multiple-comparison control; the only nominal one was \model{UCE} over
+\model{scGPT} ($p = 0.047$, not corrected-significant), and no model
+separates from the PCA-200 baseline (all 95\% confidence intervals include
+zero). At 17 fatal events the design resolves only AUC $\gtrsim 0.71$ at
+80\% power, so the null bounds rather than excludes smaller signal.}
+\label{tab:within_sepsis}
+\small
+\begin{tabular}{lc}
+\toprule
+\textbf{Method} & \textbf{Patient-level AUC (repeat-mean $\pm$ sd)} \\
+\midrule
+\model{UCE} & 0.548 $\pm$ 0.038 \\
+\model{scPRINT-2} & 0.523 $\pm$ 0.049 \\
+\model{Geneformer} & 0.515 $\pm$ 0.043 \\
+\model{STATE} & 0.511 $\pm$ 0.040 \\
+\model{scGPT} & 0.449 $\pm$ 0.052 \\
+PCA-200+LR (baseline) & 0.428 $\pm$ 0.082 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/v2/Figure3_within_sepsis.pdf}
+\caption{\textbf{Within-sepsis mortality prediction is null at late sampling
+windows.} Distribution of per-repeat patient-level AUCs (10$\times$5-fold
+cross-validation; violin, per-repeat points, and mean) for the five
+foundation models and the PCA-200+LR baseline on the 91-patient/17-fatal
+GSE279452 arm (28-day mortality, median draw 16 days post admission). Every
+method sits at or below chance, and no model ordering is defensible at this
+sample size (Table~\ref{tab:within_sepsis}).}
+\label{fig:within_sepsis}
+\end{figure}
+
+% R3 — cross-disease transfer and the adaptation curve (synced to P0 round-17 state, 2026-09-09)
+\subsection{Cross-disease transfer is unresolvable in one direction and rank-indeterminate in the other}
+\label{ssec:r3_cross_disease}
+
+We then tested whether representations learned in one disease carry to the
+other, training on COVID-19 and testing on sepsis and vice versa under the
+primary severe-as-survived label definition, with patient-level scoring and
+patient-clustered bootstrap intervals (Section~\ref{ssec:methods_transfer}).
+Forward transfer (COVID$\rightarrow$sepsis; 91 sepsis patients, 17 fatal) is
+uninformative by construction: Section~\ref{ssec:r2_within_sepsis} establishes
+that mortality is not learnable in this pool even with in-domain training, so
+a transfer measurement into it re-measures that null rather than transfer
+ability. Point estimates spanned 0.644 (\model{Geneformer}) to 0.684
+(\model{UCE}), with bootstrap confidence intervals overlapping throughout
+(Table~\ref{tab:transfer} and Figure~\ref{fig:transfer}). Reverse transfer
+(sepsis$\rightarrow$COVID; 96 sepsis training patients, 240 COVID-19 test
+patients, 25 fatal) tests the direction where signal exists and gave higher
+point estimates throughout: \model{STATE} 0.721 (95\% CI [0.621, 0.809]) and
+\model{Geneformer} 0.712 (95\% CI [0.612, 0.814]) with logistic regression
+(0.711 and 0.636 with random forest), followed by \model{UCE} (0.693/0.607),
+\model{scGPT} (0.642/0.622), and \model{scPRINT-2} (0.619/0.517) (logistic
+regression/random forest), with all bootstrap intervals overlapping. No
+reverse-direction ranking can be defended either: the severe-excluded
+sensitivity analysis reverses the top two models (\model{Geneformer} 0.775,
+\model{STATE} 0.765), and adding only five training patients moves
+\model{UCE} by $+0.086$ AUC between the 91- and 96-patient training pools
+(Table~\ref{tab:transfer}). Transfer estimates are therefore
+not identifiable at this scale, which is itself the strongest evidence the
+experiment provides. The forward/reverse asymmetry is a property of the two
+target tasks, one learnable and one not, not of transfer direction.
+
+To ask whether transfer can be recovered with target-disease supervision, we
+measured the adaptation curve: COVID-trained classifiers received increasing
+numbers of sepsis training cells and were scored on a held-out 32-patient
+sepsis test set, a one-third stratified holdout of the 96-patient labeled
+sepsis pool (Section~\ref{ssec:methods_transfer}). Even with all
+target-disease training data, all five foundation models and the PCA-200
+baseline remained between 0.40 and 0.62 patient-level AUC (zero-shot values
+lower still), with no foundation model separating from the baseline at any
+training size (Figure~\ref{fig:adaptation_curve}). We report this as
+unresolvable rather than null: at roughly 3 fatal events in 32 test patients,
+the 95\% interval around any patient-level AUC spans about 0.7, so the
+observed range is consistent with a single value plus noise, and no
+rescue-or-not conclusion is identifiable at this test-set size. Two
+comparability notes accompany this result. First, cross-disease
+transfer on the 5-patient GSE167363 sepsis test set (2 fatal) produced
+substantially higher point estimates (up to 1.00 patient-level AUC); given
+the test-set size, we report those values
+only as a labeled small-sample reference (Supplementary Note~\ref{sn:gse167363_testset}). Second, two additional
+models evaluated under a different test split (TranscriptFormer and STACK) are
+excluded from this comparison for the same reason and are noted in the same
+supplementary record.
+
+Together, the transfer experiments provide no evidence for a transferable
+inflammatory-mortality representation on this underrepresented cell type:
+forward transfer is uninformative, reverse transfer is rank-indeterminate,
+and the adaptation curve is below the resolution of its test set.
+
+% Table: cross-disease transfer (tables_v3.md Table 5)
+\begin{table}[t]
+\centering
+\caption{Cross-disease transfer under the primary severe-as-survived label
+definition (patient-level scoring; 95\% patient-clustered-bootstrap intervals,
+200 iterations). Forward: train on COVID-19 (240 patients), test on the
+91-patient GSE279452 sepsis pool (17 fatal) --- uninformative by construction
+because the target task is not learnable in-domain
+(Table~\ref{tab:within_sepsis}). Reverse: train on all 96 outcome-labeled
+sepsis patients (91 GSE279452 + 5 GSE167363), test on COVID-19 (240 patients,
+25 fatal). The severe-excluded column is the label-variant sensitivity
+analysis; it reverses the top two reverse-direction models, so no ranking is
+reported.}
+\label{tab:transfer}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llccc}
+\toprule
+\textbf{Direction} & \textbf{Model} & \textbf{LR AUC [95\% CI]} & \textbf{RF AUC} & \textbf{Severe-excluded LR AUC} \\
+\midrule
+forward (COVID$\rightarrow$sepsis) & \model{UCE} & 0.684 [0.543, 0.805] & --- & --- \\
+ & \model{STATE} & 0.653 [0.490, 0.808] & --- & --- \\
+ & \model{scGPT} & 0.650 [0.495, 0.780] & --- & --- \\
+ & \model{scPRINT-2} & 0.647 [0.496, 0.791] & --- & --- \\
+ & \model{Geneformer} & 0.644 [0.486, 0.824] & --- & --- \\
+\midrule
+reverse (sepsis$\rightarrow$COVID) & \model{STATE} & 0.721 [0.621, 0.809] & 0.711 & 0.765 \\
+ & \model{Geneformer} & 0.712 [0.612, 0.814] & 0.636 & 0.775 \\
+ & \model{UCE} & 0.693 [0.596, 0.799] & 0.607 & 0.772 \\
+ & \model{scGPT} & 0.642 [0.525, 0.765] & 0.622 & 0.678 \\
+ & \model{scPRINT-2} & 0.619 [0.493, 0.743] & 0.517 & 0.630 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/v2/Figure5_cross_disease.pdf}
+\caption{\textbf{Cross-disease transfer and the adaptation curve.}
+\textbf{(A)} Bidirectional transfer per model (logistic regression): forward
+(COVID$\rightarrow$sepsis, 91-patient GSE279452 test pool) versus reverse
+(sepsis$\rightarrow$COVID, 96-patient training pool, 240-patient test). All
+bootstrap confidence intervals overlap (Table~\ref{tab:transfer}); forward
+transfer re-measures the within-sepsis null, and the reverse direction is
+rank-indeterminate (the severe-excluded sensitivity analysis reverses the
+top two models). \textbf{(B)} Adaptation curve: COVID-trained classifiers
+given increasing numbers of sepsis training cells and scored on a held-out
+32-patient sepsis test set. The gray band marks the unresolvable region at
+this test-set size (approximately three fatal events; 95\% interval width
+$\approx 0.7$); all methods lie inside it throughout.}
+\label{fig:transfer}
+\label{fig:adaptation_curve}
+\end{figure}
+
+% R4 — in-distribution positive control on monocytes (draft 2026-09-07)
+\subsection{The in-distribution positive control returns no separation either}
+\label{ssec:r4_monocyte}
+
+A reviewer could dismiss the platelet results as an artifact of evaluating too
+far outside the models' intended use. We therefore reran the identical pipeline
+on a cell type the models were trained on: monocytes from the same source
+cohorts (Ren and Stephenson COVID-19; five Qiu sepsis patients; 148
+patients\footnote{One Ren survivor patient (S-S072) is not represented in
+the monocyte cell set, so the monocyte cohort contains 148 rather than 149
+patients and the disease-matched COVID-only subset 143 rather than 144;
+fatal counts are unaffected.}, 19 fatal; Section~\ref{ssec:methods_baselines}). Monocytes are among the most
+abundant immune cells in the atlases these models were pretrained on, so this
+arm isolates cell-type familiarity as the single changed variable.
+
+The positive control returned no separation at all
+(Table~\ref{tab:monocyte} and Figure~\ref{fig:indist_vs_ood}). Under
+patient-level paired bootstrap, no foundation model significantly outperformed
+the PCA-200 baseline on monocytes (\model{STATE} $+0.043$, 95\% CI [$-0.026$,
+0.120], $p = 0.23$; \model{Geneformer} $+0.022$, $p = 0.57$; \model{scPRINT-2}
+$+0.018$, $p = 0.68$; \model{UCE} $+0.012$, $p = 0.80$; \model{scGPT} $+0.005$,
+$p = 0.94$). Even on a cell type these models were trained on, the from-scratch
+baseline is statistically sufficient. One directional pattern is worth
+noting: \model{UCE}'s monocyte-versus-platelet difference is the closest to
+zero of any method in both cohort pools ($-0.005$ COVID-only, $-0.014$
+all-cohort, versus drops of $0.043$--$0.119$ for the other five methods) ---
+the least affected by cell type, though it beats the baseline on neither.
+
+One inversion requires careful reading. Every method, including the baseline,
+scored lower on monocytes than on platelets (baseline $-0.072$; confirmed on
+the disease-matched COVID-only subset, 143 patients, 17 fatal). Because the
+from-scratch baseline drops by as much as the foundation models, the inversion
+is a property of the task and cohort, not of pretraining: patient-level
+mortality from monocytes is simply a harder measurement in these cohorts. That
+platelet transcriptomes carry more mortality signal than monocyte
+transcriptomes in COVID-19 is consistent with the mechanistic literature
+placing platelet-driven immunothrombosis proximal to fatal disease
+\citep{manne2020platelet,barrett2021platelets}. The positive control therefore narrows the out-of-distribution
+objection in an unexpected direction. Even on a cell type the models were
+trained on, the from-scratch baseline is statistically sufficient, and with
+the within-COVID primary contrast also returning null under the
+winner-corrected test (Section~\ref{ssec:r1_within_covid}), the pipeline
+resolved no pretraining advantage over the baseline in any cell of the
+design. The platelet results can therefore not be attributed to evaluating
+too far outside the models' intended use: the same comparison is null
+in-distribution. Equally, the control cannot certify that this pipeline
+resolves foundation-model advantages anywhere, and we report it with that
+qualification (Section~\ref{ssec:limitations}).
+
+% Table: monocyte positive control (P0_onepager.md Sec.3c)
+\begin{table}[t]
+\centering
+\caption{In-distribution positive control on monocytes from the same source
+cohorts (148 patients, 19 fatal; same repeated-CV protocol). Patient-level
+AUC point estimates with the paired-bootstrap contrast against the PCA-200
+baseline; no foundation model separates from the baseline
+(\model{STATE} $+0.043$, 95\% CI [$-0.026$, 0.120]). Every method, including
+the baseline, scores lower on monocytes than on platelets (baseline
+$-0.072$), a task property, not a model property.}
+\label{tab:monocyte}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Method} & \textbf{Patient-level AUC} & \textbf{vs PCA-200 ($\Delta$, $p$)} \\
+\midrule
+\model{STATE} & 0.696 & $+0.043$, $p = 0.23$ \\
+\model{scGPT} & 0.677 & $+0.005$, $p = 0.94$ \\
+\model{Geneformer} & 0.674 & $+0.022$, $p = 0.57$ \\
+\model{scPRINT-2} & 0.672 & $+0.018$, $p = 0.68$ \\
+PCA-200+LR (baseline) & 0.654 & --- \\
+\model{UCE} & 0.648 & $+0.012$, $p = 0.80$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/v2/Figure4_indist_vs_ood.pdf}
+\caption{\textbf{In-distribution (monocytes) versus underrepresented
+(platelets) mortality prediction.} \textbf{(A)} Patient-level AUC per method
+on the 148-patient/19-fatal monocyte control (all cohorts, including five Qiu
+sepsis patients) against the within-COVID-19 platelet arm: no foundation
+model separates from the PCA-200 baseline on either cell type, and every
+method scores lower on the in-distribution cell type. \textbf{(B)}--\textbf{(C)}
+The COVID-only matched subset (143 patients, 17 fatal) confirms the inversion
+is not a cohort-composition artifact.}
+\label{fig:indist_vs_ood}
+\end{figure}
+
+% R5 — calibration and robustness axes (draft 2026-09-07)
+\subsection{Calibration favors STATE, and random forest probabilities are better calibrated than logistic-regression scores}
+\label{ssec:r5_calibration}
+
+Discrimination is not the only property that decides whether a risk estimate
+can be acted on: the emitted probability must also mean what it says. We
+computed patient-level calibration on the within-COVID out-of-fold predictions
+(Figure~\ref{fig:calibration}). Among logistic-regression classifiers,
+\model{STATE} was the best calibrated (Brier 0.118, expected calibration error
+0.168), ahead of \model{Geneformer} (0.119, 0.190) and \model{scPRINT-2}
+(0.121, 0.181), with \model{UCE} (0.162, 0.243) and \model{scGPT} (0.165,
+0.257) the least calibrated. Random-forest probabilities were better
+calibrated than logistic-regression scores for every model (ECE 0.054--0.080
+versus 0.168--0.257), reflecting the conservatism of tree-averaged
+probabilities \citep{niculescu2005predicting, naeini2015obtaining}, so where calibrated risk estimates matter for deployment we
+recommend random forest on the leading embedding (\model{STATE}-RF: Brier
+0.095, ECE 0.079) over any logistic-regression variant.
+
+Two further secondary axes complete the multi-axis profile. First,
+\model{UCE} was the most resistant to embedding-dimension dropout: its AUC did
+not degrade under 70\% dimension zeroing, indicating a highly distributed
+representation (Supplementary Figure~\ref{fig:supp_dropout}; computed on the
+legacy analysis pool, an earlier cohort assembly predating the canonical
+240-patient cohort, Section~\ref{ssec:limitations}). Second,
+leave-one-cohort-out evaluation on the analysis cohort measured
+generalization to cohorts that contain fatal cases, an outcome-selected
+estimand: folds are computable only when the held-out cohort contains both
+classes, so survivor-only cohorts contribute to training throughout and are
+never scored out-of-fold (Supplementary Figure~\ref{fig:supp_lobo}).
+Because the five computable folds range from 13 to 90 patients and from 1 to
+9 fatal events, we report the AUC over concatenated held-out predictions
+(206 patients, 25 fatal events) rather than a mean of per-fold AUCs: the top
+three models sit within 0.005 AUC of each other (\model{STATE} 0.753,
+\model{scPRINT-2} 0.751, \model{Geneformer} 0.748), ahead of \model{UCE}
+(0.681) and \model{scGPT} (0.638). Per-fold AUCs and the per-cohort counts
+are given in Supplementary Table~\ref{tab:lobo_folds}. By fold-to-fold spread,
+\model{scGPT} was the most cohort-consistent ($\sigma = 0.123$) and
+\model{UCE} the least ($\sigma = 0.152$). No single model leads on every
+axis; the choice among them is deployment-specific
+(Section~\ref{ssec:discussion_guidance}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/v2/Figure7_calibration.pdf}
+\caption{\textbf{Calibration of patient-level mortality predictions within
+COVID-19.} Reliability diagrams (10 equal-width bins; point area proportional
+to bin population) for \textbf{(A)} logistic-regression and \textbf{(B)}
+random-forest classifiers on each model's out-of-fold predictions.
+\model{STATE} is the best-calibrated logistic-regression model (Brier 0.118,
+ECE 0.168); random-forest probabilities are better calibrated for every
+model (ECE 0.054--0.080), with \model{STATE}-RF at Brier 0.095, ECE 0.079.}
+\label{fig:calibration}
+\end{figure}
+
+% R6 — unified masking-based gene attribution + cross-model GSEA comparison
+% (masking thread completed 2026-09-11: 5 models, full-cohort runs, GSEA,
+% joint-occlusion dose control; all numbers verified against
+% scripts/31_donor_level_revision/results_gene_attribution_gsea/)
+\subsection{The five models prioritize different biological programs for the same prediction, and pathway-level signal is decoupled from predictive performance}
+\label{ssec:r6_attribution_gsea}
+
+The analyses above ask how well each model predicts. Here we ask a different
+question: when the models' representations are mapped back to genes, do they
+use the \emph{same biology} to predict mortality? We built a unified
+masking-based (leave-one-gene-out) attribution pipeline
+(Section~\ref{ssec:methods_masking}; Figure~\ref{fig:masking_design}): for
+every cell, the same top-256
+expressed candidate genes were selected from the intersection of the models'
+vocabularies; each gene was occluded in turn through the model's native
+attention mechanism, and the change in the mortality-classifier score,
+$\Delta(g, \text{cell}) = s_\text{full} - s_\text{masked}(g)$, was averaged
+across all 10{,}737 cells into a per-gene mortality attribution for each
+model. The classifier is a single in-sample logistic regression per model
+($C = 0.3$) that defines each model's mortality direction; its AUC is an
+internal direction-quality diagnostic, not an out-of-fold performance
+estimate, and is not comparable to the cross-validated AUCs of
+Section~\ref{ssec:r1_within_covid}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/v2/Figure_masking_design.png}
+\caption{\textbf{Unified masking-based gene attribution across the five
+foundation models.} Every model receives the same cells and, per cell, the
+same top-256 expressed candidate genes from the intersection of the five
+model vocabularies, and an intact-cell mortality-classifier score is
+established before any gene is removed (Stages 1--2). Each candidate gene is
+then occluded in turn and the change in score,
+$\Delta(g, \text{cell}) = s_\text{full} - s_\text{masked}(g)$, is recorded
+(Stage 3). Occlusion uses each architecture's native attention mechanism ---
+attention-mask flag for \model{Geneformer}, physical sequence deletion for
+\model{STATE} (the only model whose mask flag does not reach attention),
+padding-mask flag for \model{scGPT} and \model{UCE}, and an
+inverted-polarity mask flag for \model{scPRINT-2} --- so the measured
+quantity is identical across architectures (Stage 4). Per-gene deltas are
+averaged across the 10{,}737 cells into a ranked list per model (Stage 5)
+and taken to prerank GSEA for the cross-model pathway comparison (Stage 6).}
+\label{fig:masking_design}
+\end{figure}
+
+\textbf{The five models agree on the task but not on the genes.} Each
+model's classifier recovered the mortality direction from its own
+256-gene-restricted embeddings (patient-level in-sample AUC 0.760--0.990;
+Table~\ref{tab:attribution_diagnostics}), yet the per-gene attributions were
+only weakly concordant across models: pairwise Spearman rank correlations of
+the full ranked lists ranged from $-0.03$ to $0.40$ on the 3{,}917 genes
+ranked by all five models. \model{Geneformer}'s top genes were dominated by
+ribosomal proteins (RPLP2, RPL24, RPL18A) with TIMP1; \model{scGPT}'s by
+glycolytic and metabolic enzymes (ALDOA, G6PD, PKM, SHMT2); \model{UCE}'s by
+myeloid and tissue-remodeling genes (AXL, C1QA, PLCG2, IL1R2);
+\model{STATE}'s by TIMP1, RSU1, TNFSF13B and PFN1; \model{scPRINT-2}'s by
+housekeeping genes with no coherent theme. Full 5-way sign agreement is more
+common than the pairwise correlations alone suggest: 531 of the 3{,}917
+commonly-ranked genes (365 positive, 166 negative) carry the same sign in
+all five models, exceeding the $\sim$272 expected under the models'
+independent marginal sign rates. AMFR, SHMT2 and ARID5B are among the
+positively-agreeing genes (AMFR and ARID5B ranking 9th--17th in
+\model{STATE} and \model{UCE}, SHMT2 5th in \model{scGPT} and 14th in
+\model{STATE}), and CCL5 is negatively attributed in all five (ODC1 in
+four, the fifth indistinguishable from zero) --- but several prominent
+platelet genes carry opposite signs across models: PPBP is among the most
+negative genes for \model{Geneformer} and \model{scGPT} yet mildly positive
+for \model{STATE} and \model{UCE}, and TMSB4X is positive for
+\model{Geneformer} and \model{scGPT} but the fifth-most negative gene for
+\model{STATE} (Figure~\ref{fig:attribution_gsea}A;
+Supplementary Note~\ref{sn:attribution_gsea}).
+
+\textbf{Pathway-level signal is model-specific, not shared.} Prerank GSEA
+(Hallmark, KEGG, Reactome; FDR $q < 0.25$) on each model's ranked list found
+\emph{no pathway significant in four or more of the five models}. The shared
+structure that does exist is pairwise or three-way, and frequently
+sign-discordant (Figure~\ref{fig:attribution_gsea}B): oxidative
+phosphorylation is the one program enriched positively in three models
+(\model{Geneformer}, \model{scGPT}, \model{UCE}); interferon-alpha and
+interferon-gamma responses are positively enriched in \model{Geneformer}
+\emph{and} \model{scGPT} but negatively in \model{UCE}; the
+TNF-$\alpha$/NF-$\kappa$B and allograft-rejection programs are
+significantly \emph{negative} in \model{scGPT} and \model{UCE} and trend
+the same (negative) direction, non-significantly, in \model{Geneformer}
+($NES=-1.46$ and $-1.22$); and immunoregulatory signaling is the true
+sign-flip among the three --- significantly \emph{positive} in
+\model{Geneformer} (Reactome, Immunoregulatory Interactions Between A
+Lymphoid And A Non-Lymphoid Cell, $NES=2.09$) yet significantly negative in
+\model{scGPT} and \model{UCE}. \model{UCE} additionally
+carries its own axis --- extracellular-matrix organization and
+complement/coagulation --- not shared with any other model. \model{scGPT}
+and \model{UCE} produced broad pathway profiles (28--63 and 23--70
+significant terms respectively in Hallmark/KEGG, and 257 and 82 in
+Reactome), \model{Geneformer} and \model{STATE} narrow ones (2--23 and
+2--7), and \model{scPRINT-2} none at all (0 of 48 Hallmark, 0 of 252 KEGG,
+0 of 864 Reactome terms).
+
+\textbf{Predictive performance and pathway signal are decoupled.}
+\model{scPRINT-2}'s mortality classifier is the second-best of the five
+(patient-level in-sample AUC 0.963) yet has zero significant pathways, while
+\model{UCE}'s is the weakest (0.760) yet has one of the broadest pathway
+signatures (Table~\ref{tab:attribution_diagnostics}). We adjudicated
+\model{scPRINT-2}'s null directly. Its single-gene attributions have a
+noise-to-signal ratio of 9.4 (median within-gene SD over across-gene SD,
+versus 0.4--1.6 for the other models), raising the possibility of redundant
+or compensatory gene encoding masking a real program. A joint-occlusion
+dose control rules this out: jointly masking the top-10, top-30, or top-128
+attributed genes (up to half of each cell's candidate sentence) moved the
+score by no more than masking matched random gene sets (paired tests,
+$n = 10{,}736$ cells, $P = 0.21$--$0.93$ across tiers and polarities), while
+the naive additive prediction from the single-gene attributions was 55--750
+times larger. The classifier's mortality direction in \model{scPRINT-2} is
+therefore decoupled from gene identity at every occlusion granularity
+tested; whether this reflects genuinely diffuse biology or a limitation of
+gene-token occlusion for this architecture cannot be resolved with the
+present method and would require an independent attribution method as a
+cross-check.
+
+\textbf{Caveats.} Three scope notes apply to this section. First, the
+candidate gene universe differed across models by construction: it was the
+vocabulary intersection of the models built up to each run (11{,}984 genes
+for \model{Geneformer} and \model{STATE}, 11{,}977 after intersecting
+\model{scGPT}'s vocabulary, and progressively smaller once \model{UCE}'s and
+\model{scPRINT-2}'s vocabularies were intersected); all cross-model
+comparisons here are therefore computed post hoc on the 3{,}917 genes ranked
+by all five models, and pathway coverage differences partly reflect these
+universe differences. Second, \model{UCE}'s released inference path passes a
+float (not boolean) padding mask to its transformer, which PyTorch treats as
+an additive attention bias rather than an exclusion; occlusion is only
+defined for \model{UCE} after a one-line boolean cast, which we applied
+uniformly to full and occluded inputs --- its attributions thus describe a
+minimally corrected variant of the released model. Third, cross-model
+comparisons are rank-based only: each classifier's logit scale is its own,
+so attribution magnitudes are not comparable across models.
+
+% ---- Table (inline; numbers verified 2026-09-11 against
+% results_gene_attribution_gsea/<model>_masking/classifier_diagnostics.csv,
+% *_ranked.csv, and the three *_gsea_*.csv per model) ----
+\begin{table}[htbp]
+\centering
+\caption{Masking-based gene attribution: per-model classifier diagnostics
+(in-sample, 256-gene-restricted embeddings, canonical within-COVID cohort of
+240 patients / 25 fatal, 10{,}737 cells) and GSEA breadth (FDR $q < 0.25$).
+Noise/signal = median within-gene attribution SD divided by the across-gene
+SD of mean attributions. AUCs are internal direction-quality diagnostics,
+not out-of-fold performance estimates.}
+\label{tab:attribution_diagnostics}
+\small
+\begin{tabular}{lcccccc}
+\hline
+Model & Cell AUC & Patient AUC & Ranked genes & Noise/signal & Sig. terms (H/K/R) \\
+\hline
+\model{Geneformer} & 0.893 & 0.990 & 5{,}038 & 0.78 & 6 / 23 / 2 \\
+\model{STATE} & 0.844 & 0.933 & 5{,}000 & 0.39 & 5 / 7 / 2 \\
+\model{scGPT} & 0.802 & 0.933 & 4{,}987 & 1.62 & 28 / 63 / 257 \\
+\model{UCE} & 0.680 & 0.760 & 4{,}850 & 0.44 & 23 / 70 / 82 \\
+\model{scPRINT-2} & 0.857 & 0.963 & 4{,}850 & 9.43 & 0 / 0 / 0 \\
+\hline
+\end{tabular}
+\end{table}
+
+% ---- Figure block (PDF at reports/manuscript/figures/v2/Figure_gene_attribution_gsea.pdf;
+% numbering provisional, assigned at P2 assembly) ----
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/v2/Figure_gene_attribution_gsea.pdf}
+\caption{\textbf{Masking-based gene attribution and pathway emphasis across
+five foundation models.} \textbf{(A)} Union of each model's top-7
+mortality-attributed genes; color is the gene's rank within that model's own
+ranked list (darker = more important), and $+$/$-$ marks the attribution
+sign. \textbf{(B)} GSEA NES for pathways significant (FDR $q < 0.25$) in at
+least two models, plus the strongest model-specific term of each model that
+has one (below the divider); dots mark significance. No pathway is significant in four or more
+models; \model{scPRINT-2}'s empty column is its complete GSEA null,
+adjudicated by the joint-occlusion dose control as occlusion insensitivity
+of the architecture (redundant encoding excluded). Comparisons are
+rank-based only.}
+\label{fig:attribution_gsea}
+\end{figure}
+
+% ============================================================================
+% DISCUSSION
+% ============================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+% Discussion D1 — which property of a foundation model predicts patient-state representation? (synced to P0 round-17 state, 2026-09-09)
+\subsection{Which model property tracks patient-state representation?}
+\label{ssec:discussion_property}
+
+Architecture family is not identifiable in these data: although the
+within-family spread among bidirectional transformer encoders (from
+\model{Geneformer} 0.786 to \model{UCE} 0.661) exceeds the gap to the only
+generative model, every between-family contrast is small against the roughly
+0.10-AUC resolution of a 25-event benchmark, and the strongest between-family
+gaps (\model{STATE}$-$\model{scGPT} $+0.055$;
+\model{Geneformer}$-$\model{scGPT} $+0.068$; exact DeLong $p = 0.014$ and
+$0.008$, in agreement with the paired bootstrap;
+Supplementary Note~\ref{sn:se_check}) sit exactly at that resolution's
+edge. We therefore do not claim architecture-level attribution.
+
+The one confirmatory separation, the two leaders versus \model{UCE}
+(range-statistic $P = 0.011$; Supplementary Note~\ref{sn:range_test}), is a
+statement about the losing model before it is a statement about the winning
+ones. \model{UCE} is the only method that never significantly outscored the
+count-plus-disease null model ($p = 0.157$;
+Supplementary Note~\ref{sn:method_vs_null}), so the content of the gap is
+that \model{UCE} is unsuited to this task, not that the leaders carry a
+pretraining advantage, a claim the primary test rejects
+(Section~\ref{ssec:r1_within_covid}). The natural attribution hypothesis for
+such a gap, blood and immune representation in the pretraining corpus, was
+measured directly and is falsified on both ends
+(Supplementary Note~\ref{sn:corpus_platelet}). The three models whose
+platelet content can be numerically bounded against public corpus records
+(\model{scPRINT-2} 0.120--0.125\%, \model{scGPT} 0.125\%, \model{UCE}
+0.120\%) share essentially identical fractions yet span 0.079 patient-level
+AUC, 63\% of the entire between-model spread. Of the two leaders,
+\model{STATE}'s corpus status is itself bounded and is the lowest documented
+of all --- about two-thirds of its corpus (the scBaseCount and Tahoe
+components) is platelet-free at both the annotation and quality-control
+layers, and the remainder shares the Census bound, capping its platelet
+content below 0.05\% (Table~\ref{tab:models}) --- while \model{Geneformer}
+is the one model with no cell-type-level corpus composition in any published
+material. A leader at a documented near-zero and a laggard at 0.120\%
+produce the same ordering as one leader with a documented corpus and one
+without: wherever corpus platelet content can actually be checked, it does
+not track performance.
+
+Three further facts bound any property claim. First, corpus metrics must be
+read in one unit, and none exists across all five models: the fraction of
+pretraining cells from blood and bone marrow is documented as dataset counts
+for \model{Geneformer} (49 of 561 source datasets, under a 25\%-per-tissue
+cap), as a sample fraction for \model{UCE} (6.6\%), and not at all for the
+rest (Supplementary Table~\ref{tab:corpus_fractions}). Second,
+\model{scPRINT-2} contradicts any simple identity-objective story: its
+objective includes explicit cell-label prediction, the attribute assigned to
+the losing model, yet it ranks third, above the baseline on point estimates;
+and the from-scratch PCA-200 baseline, with no pretraining at all, lands
+mid-table and is statistically inseparable from two of the five models.
+Third, the ordering does not persist on the in-distribution monocyte control:
+\model{scGPT} moves from fourth on platelets to second on monocytes
+(Section~\ref{ssec:r4_monocyte}), so no corpus-level constant can explain the
+ranking on both cell types.
+
+We therefore state the property question as a set of benchmark-testable
+hypotheses, one of which now carries a recorded falsification. Supplementary
+Table~\ref{tab:property_multiplicity} enumerates the candidate attributes we
+checked (corpus blood/marrow fraction, corpus disease-condition fraction,
+objective loss target, tokenization, corpus size, parameter count, embedding
+dimension, vocabulary size, species coverage, and release year) and reports
+how many separate the observed ranking equally well; the corpus-composition
+hypothesis above remains in the set as an untested candidate, now known to be
+falsified where it is measurable and untestable where it would matter.
+Resolving any such property at the 0.03--0.05 AUC scale where attribution
+lives requires on the order of $10^3$ patients at this event rate; the
+present benchmark is designed so that any new model or new candidate property
+can be inserted and tested under the identical protocol.
+
+\subsection{Limitations}
+\label{ssec:limitations}
+
+Every null in this benchmark is an upper bound set by a finite design, not a
+proof of absence, and the bounds are reported as such: at 25 fatal events the
+within-COVID arm resolves advantages of roughly 0.10 patient-level AUC between
+two representations, and the 17-event sepsis arm resolves only AUC
+$\gtrsim 0.71$, so effects below those floors remain compatible with the
+data. Four further limitations qualify the results. First, the two sepsis
+sources use different endpoints (in-hospital death for GSE167363, 28-day
+death for GSE279452), and within GSE279452 the fatal cases were drawn earlier
+than survivors (median 10 versus 18.5 days), so sampling time is associated
+with the outcome; the null was measured despite that association favoring the
+models. Second, \model{Geneformer} publishes no cell-type-level corpus
+composition at all, so corpus-composition attribution cannot be assessed for
+it; and across all five models, overlap between the pretraining corpora and
+this evaluation cohort cannot be excluded without corpus study-level
+manifests --- a structural problem this field has already flagged for
+benchmark design \citep{kedzierska2025zeroshot}.
+Third, the LOBO axis is an outcome-selected estimand: folds are computable
+only for cohorts containing at least one fatal and one survivor patient, so
+all-survivor cohorts (34 patients) contribute to training throughout and are
+never scored out-of-fold; LOBO therefore measures generalization to
+fatal-case-containing cohorts only. Fourth, most source studies do not report
+per-patient sex, age, or ancestry, so demographic bias cannot be audited in
+these data --- a field-level gap \citep{corpas2025diversity, pot2019gender},
+not a property of this benchmark.
+
+The interpretability results carry their own caveats
+(Section~\ref{ssec:r6_attribution_gsea}): the attribution classifiers are
+in-sample direction definitions, not out-of-fold performance estimates; the
+candidate gene universes differed across models by construction, so
+pathway-coverage differences partly reflect universe differences;
+\model{UCE}'s attributions describe a minimally corrected variant of the
+released model; and occlusion is one attribution family --- for
+\model{scPRINT-2}, whether the empty pathway profile reflects diffuse biology
+or a limitation of gene-token occlusion remains open pending an independent
+attribution method. One secondary robustness result also predates the
+canonical cohort: the embedding-dimension dropout analysis
+(Section~\ref{ssec:r5_calibration}) was computed on the legacy analysis pool,
+an earlier cohort assembly that predates the canonical 240-patient cohort,
+and is reported as a secondary observation rather than a headline axis.
+
+\subsection{Deployment guidance}
+\label{ssec:discussion_guidance}
+
+For patient-level outcome prediction on this cell type at this event count,
+the defensible default is the from-scratch PCA + logistic-regression
+baseline: it is statistically indistinguishable from every foundation model
+in every design cell tested, including the in-distribution monocyte control,
+and it costs orders of magnitude less to run and audit. If a foundation model
+is used regardless, the choice should be made on the secondary axes rather
+than on discrimination: \model{STATE} with a random-forest head is the
+best-calibrated option (Brier 0.095, ECE 0.079), while \model{scGPT}'s low
+cohort-to-cohort variance should not be mistaken for robustness --- it is
+low variance around the weakest pooled-LOBO mean (0.638). For future models
+and future claims, the protocol itself is the contribution we offer:
+pre-specify a single primary contrast, correct for winner selection and
+multiplicity within each family, report the resolvable effect size of the
+design alongside every AUC, and include a from-scratch baseline trained under
+the identical protocol \citep{collins2024tripodai}. At this event rate, detecting the 0.03--0.05 AUC
+effects that property attributions live at requires on the order of $10^3$
+patients; claims based on tens of patients should be read against that scale.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+Across a patient-level benchmark pairing mortality with an underrepresented
+cell type, five published single-cell foundation models did not outperform a
+from-scratch baseline under a pre-specified, selection-corrected test, and
+the same null held within sepsis, across diseases, and on an in-distribution
+positive control. The outcome signal itself is real and not reducible to cell
+counts, library quality, or cohort membership, and the models are not
+interchangeable --- they prioritize measurably different genes and pathways
+for the same prediction --- but the one separation that survives correction
+marks the weakest model, not a winner. At realistic clinical event counts,
+pretraining bought no detectable advantage; what the field can use is the
+measured resolution of such benchmarks and a protocol that makes the next
+claim cheap to test.
+
+
+% ============================================================================
+% DATA AND CODE AVAILABILITY
+% ============================================================================
+\section{Data and Code Availability}
+
+All analysis code, SLURM submitters, and the LaTeX manuscript source are
+publicly available at \url{https://github.com/xqiu625/302006_updategit} under
+the MIT license. The benchmark pipeline is distributed as the pip-installable
+Python package \texttt{scfm-benchmark} (CLI entry point \texttt{scfm-bench}),
+with documentation hosted at
+\url{https://xqiu625.github.io/302006_updategit/}. Conda environment manifests
+are provided under \texttt{environments/} in the repository, and a Dockerfile
+is included for the core analysis environment. The platelet scRNA-seq dataset
+was integrated from publicly available source studies (per-cohort patient,
+event, and cell counts in Table~\ref{tab:cohort}); per-study accession
+identifiers (GEO/EGA) and primary citations are listed in
+\texttt{docs/cohort\_sources\_reference.md} in the repository. Pre-computed
+unified-input foundation-model embeddings, the patient-level result tables,
+and the masking-attribution and GSEA outputs will be archived to Zenodo with
+a permanent DOI upon acceptance.
+
+% ============================================================================
+% DECLARATIONS (OUP / Briefings in Bioinformatics required sections)
+% ============================================================================
+\section*{Acknowledgments}
+
+We thank the UC Riverside High-Performance Computing Center for computational resources.
+
+\section*{Author Contributions}
+
+\textbf{Xinru Qiu}: Conceptualization, Methodology, Software, Validation, Formal analysis,
+Investigation, Data curation, Visualization, Writing --- original draft,
+Writing --- review \& editing.
+\textbf{Adam Godzik}: Conceptualization, Methodology, Resources, Supervision,
+Project administration, Writing --- review \& editing.
+Both authors read and approved the final manuscript.
+
+\section*{Conflict of Interest}
+
+The authors declare that they have no competing interests.
+
+\section*{Funding}
+
+This work received no specific grant from any funding agency in the public,
+commercial, or not-for-profit sectors.
+
+\section*{Ethics Approval}
+
+This study is a secondary analysis of de-identified, publicly available
+single-cell RNA sequencing datasets obtained from GEO and EGA under the terms of
+their original consent and data-use agreements (per-study accessions listed in
+\texttt{docs/cohort\_sources\_reference.md}). No new human or animal data were
+collected, and no institutional review board approval was required.
+
+\section*{Author Biographies}
+
+\noindent\textbf{Xinru Qiu} is a computational biologist in the Division of
+Biomedical Sciences at the University of California, Riverside. Her research
+applies machine learning and single-cell transcriptomics to immune dysregulation
+in infectious and inflammatory disease, with a focus on rigorous, leakage-free
+evaluation of predictive models on clinical endpoints.
+
+\noindent\textbf{Adam Godzik} is a Professor in the Division of Biomedical
+Sciences at the University of California, Riverside. His group works on
+computational structural biology, protein function prediction, and the
+integration of large-scale biological data for translational applications.
+
+% ============================================================================
+% REFERENCES
+% ============================================================================
+\begin{thebibliography}{99}
+
+\bibitem[Cui et al.(2024)]{cui2024scgpt}
+Cui, H., Wang, C., Maan, H., et al. (2024).
+\newblock scGPT: toward building a foundation model for single-cell multi-omics using generative AI.
+\newblock Nature Methods, 21(8), 1470--1480. doi:10.1038/s41592-024-02201-0.
+
+\bibitem[Theodoris et al.(2023)]{theodoris2023geneformer}
+Theodoris, C. V., Xiao, L., Chopra, A., et al. (2023).
+\newblock Transfer learning enables predictions in network biology.
+\newblock Nature, 618(7965), 616--624. doi:10.1038/s41586-023-06139-9.
+
+\bibitem[Bommasani et al.(2021)]{bommasani2021foundation}
+Bommasani, R., Hudson, D. A., Adeli, E., et al. (2021).
+\newblock On the opportunities and risks of foundation models.
+\newblock arXiv preprint, 2108.07258. doi:10.48550/arXiv.2108.07258.
+
+\bibitem[Moor et al.(2023)]{moor2023generalist}
+Moor, M., Banerjee, O., Abad, Z. S. H., et al. (2023).
+\newblock Foundation models for generalist medical artificial intelligence.
+\newblock Nature, 616, 259--265. doi:10.1038/s41586-023-05881-4.
+
+\bibitem[Regev et al.(2017)]{regev2017hca}
+Regev, A., Teichmann, S. A., Lander, E. S., et al. (2017).
+\newblock The Human Cell Atlas.
+\newblock eLife, 6, e27041. doi:10.7554/eLife.27041.
+
+\bibitem[Tabula Sapiens Consortium(2022)]{tabula2022sapiens}
+The Tabula Sapiens Consortium, Jones, R. C., Karkanias, J., Krasnow, M. A., et al. (2022).
+\newblock The Tabula Sapiens: a multiple-organ, single-cell transcriptomic atlas of humans.
+\newblock Science, 376(6594), eabl4896. doi:10.1126/science.abl4896.
+
+\bibitem[CZI Cell Science Program et al.(2025)]{czi2025cellxgene}
+CZI Cell Science Program, Abdulla, S., Aevermann, B., et al. (2025).
+\newblock CZ CELLxGENE Discover: a single-cell data platform for scalable exploration, analysis and modeling of aggregated data.
+\newblock Nucleic Acids Research, 53(D1), D886--D900. doi:10.1093/nar/gkae1142.
+
+\bibitem[Yang et al.(2022)]{yang2022scbert}
+Yang, F., Wang, W., Wang, F., et al. (2022).
+\newblock scBERT as a large-scale pretrained deep language model for cell type annotation of single-cell RNA-seq data.
+\newblock Nature Machine Intelligence, 4, 852--866. doi:10.1038/s42256-022-00534-z.
+
+\bibitem[Hao et al.(2024)]{hao2024scfoundation}
+Hao, M., Gong, J., Zeng, X., et al. (2024).
+\newblock Large-scale foundation model on single-cell transcriptomics.
+\newblock Nature Methods, 21, 1481--1491. doi:10.1038/s41592-024-02305-7.
+
+\bibitem[Wen et al.(2024)]{wen2024cellplm}
+Wen, H., Tang, W., Dai, X., et al. (2024).
+\newblock CellPLM: pre-training of cell language model beyond single cells.
+\newblock In The Twelfth International Conference on Learning Representations (ICLR).
+
+\bibitem[Rosen et al.(2026)]{rosen2026universal}
+Rosen, Y., Roohani, Y., Agrawal, A., et al. (2026).
+\newblock Universal cell embedding provides a foundation model for cell biology.
+\newblock Nature, advance online publication. doi:10.1038/s41586-026-10689-z.
+
+\bibitem[Chen \& Zou(2025)]{chen2025genept}
+Chen, Y., \& Zou, J. (2025).
+\newblock Simple and effective embedding model for single-cell biology built from ChatGPT.
+\newblock Nature Biomedical Engineering, 9(4), 483--493. doi:10.1038/s41551-024-01284-6.
+
+\bibitem[Tejada-Lapuerta et al.(2025)]{tejada2025nicheformer}
+Tejada-Lapuerta, A., Schaar, A. C., Gutgesell, R., et al. (2025).
+\newblock Nicheformer: a foundation model for single-cell and spatial omics.
+\newblock Nature Methods, 22(12), 2525--2538. doi:10.1038/s41592-025-02814-z.
+
+\bibitem[Sza{\l}ata et al.(2024)]{szalata2024transformers}
+Sza{\l}ata, A., Hrovatin, K., Becker, S., et al. (2024).
+\newblock Transformers in single-cell omics: a review and new perspectives.
+\newblock Nature Methods, 21, 1430--1443. doi:10.1038/s41592-024-02353-z.
+
+\bibitem[Bunne et al.(2024)]{bunne2024virtualcell}
+Bunne, C., Roohani, Y., Rosen, Y., et al. (2024).
+\newblock How to build the virtual cell with artificial intelligence: priorities and opportunities.
+\newblock Cell, 187(25), 7045--7063. doi:10.1016/j.cell.2024.11.015.
+
+\bibitem[Kedzierska et al.(2025)]{kedzierska2025zeroshot}
+Kedzierska, K. Z., Crawford, L., Amini, A. P., \& Lu, A. X. (2025).
+\newblock Zero-shot evaluation reveals limitations of single-cell foundation models.
+\newblock Genome Biology, 26(1), 101. doi:10.1186/s13059-025-03574-x.
+
+\bibitem[Liu et al.(2026)]{liu2026evaluating}
+Liu, T., Li, K., Wang, Y., Li, H., \& Zhao, H. (2026).
+\newblock Evaluating the utilities of foundation models in single-cell data analysis.
+\newblock Advanced Science, 13(27), e14490. doi:10.1002/advs.202514490.
+
+\bibitem[Boiarsky et al.(2023)]{boiarsky2023deepdive}
+Boiarsky, R., Singh, N. M., Buendia, A., Getz, G., \& Sontag, D. (2023).
+\newblock A deep dive into single-cell RNA sequencing foundation models.
+\newblock bioRxiv, 2023.10.19.563100. doi:10.1101/2023.10.19.563100.
+
+\bibitem[Ahlmann-Eltze et al.(2025)]{ahlmanneltze2025linear}
+Ahlmann-Eltze, C., Huber, W., \& Anders, S. (2025).
+\newblock Deep-learning-based gene perturbation effect prediction does not yet outperform simple linear baselines.
+\newblock Nature Methods, 22, 1657--1661. doi:10.1038/s41592-025-02772-6.
+
+\bibitem[Wenteler et al.(2025)]{wenteler2025perteval}
+Wenteler, A., Occhetta, M., Branson, N., et al. (2025).
+\newblock PertEval-scFM: benchmarking single-cell foundation models for perturbation effect prediction.
+\newblock In Proceedings of the 42nd International Conference on Machine Learning, PMLR 267, 66633--66677.
+
+\bibitem[Csendes et al.(2025)]{csendes2025benchmark}
+Csendes, G., Sanz, G., Szalay, K. Z., \& Szalai, B. (2025).
+\newblock Benchmarking foundation cell models for post-perturbation RNA-seq prediction.
+\newblock BMC Genomics, 26, 393. doi:10.1186/s12864-025-11600-2.
+
+\bibitem[Kapoor \& Narayanan(2023)]{kapoor2023leakage}
+Kapoor, S., \& Narayanan, A. (2023).
+\newblock Leakage and the reproducibility crisis in machine-learning-based science.
+\newblock Patterns, 4(9), 100804. doi:10.1016/j.patter.2023.100804.
+
+\bibitem[Whalen et al.(2022)]{whalen2022pitfalls}
+Whalen, S., Schreiber, J., Noble, W. S., \& Pollard, K. S. (2022).
+\newblock Navigating the pitfalls of applying machine learning in genomics.
+\newblock Nature Reviews Genetics, 23(3), 169--181. doi:10.1038/s41576-021-00434-9.
+
+\bibitem[Varma \& Simon(2006)]{varma2006bias}
+Varma, S., \& Simon, R. (2006).
+\newblock Bias in error estimation when using cross-validation for model selection.
+\newblock BMC Bioinformatics, 7(1), 91. doi:10.1186/1471-2105-7-91.
+
+\bibitem[Fahsbender et al.(2025)]{fahsbender2025czi}
+Fahsbender, E., Andersson, A., Ash, J., et al. (2025).
+\newblock Benchmarking and evaluation of AI models in biology: outcomes and recommendations from the CZI Virtual Cells Workshop.
+\newblock arXiv preprint, 2507.10502v2.
+
+\bibitem[Koh et al.(2021)]{koh2021wilds}
+Koh, P. W., Sagawa, S., Marklund, H., et al. (2021).
+\newblock WILDS: a benchmark of in-the-wild distribution shifts.
+\newblock In Proceedings of the 38th International Conference on Machine Learning, PMLR 139, 5637--5664.
+
+\bibitem[Rowley et al.(2011)]{rowley2011genomewide}
+Rowley, J. W., Oler, A. J., Tolley, N. D., et al. (2011).
+\newblock Genome-wide RNA-seq analysis of human and mouse platelet transcriptomes.
+\newblock Blood, 118(14), e101--e111. doi:10.1182/blood-2011-03-339705.
+
+\bibitem[Bray et al.(2013)]{bray2013complex}
+Bray, P. F., McKenzie, S. E., Edelstein, L. C., et al. (2013).
+\newblock The complex transcriptional landscape of the anucleate human platelet.
+\newblock BMC Genomics, 14, 1. doi:10.1186/1471-2164-14-1.
+
+\bibitem[Middleton et al.(2019)]{middleton2019sepsis}
+Middleton, E. A., Rowley, J. W., Campbell, R. A., et al. (2019).
+\newblock Sepsis alters the transcriptional and translational landscape of human and murine platelets.
+\newblock Blood, 134(12), 911--923. doi:10.1182/blood.2019000067.
+
+\bibitem[Manne et al.(2020)]{manne2020platelet}
+Manne, B. K., Denorme, F., Middleton, E. A., et al. (2020).
+\newblock Platelet gene expression and function in patients with COVID-19.
+\newblock Blood, 136(11), 1317--1329. doi:10.1182/blood.2020007214.
+
+\bibitem[Zaid et al.(2020)]{zaid2020platelets}
+Zaid, Y., Puhm, F., Allaeys, I., et al. (2020).
+\newblock Platelets can associate with SARS-CoV-2 RNA and are hyperactivated in COVID-19.
+\newblock Circulation Research, 127(11), 1404--1418. doi:10.1161/CIRCRESAHA.120.317703.
+
+\bibitem[Hottz et al.(2020)]{hottz2020platelet}
+Hottz, E. D., Azevedo-Quintanilha, I. G., Palhinha, L., et al. (2020).
+\newblock Platelet activation and platelet-monocyte aggregate formation trigger tissue factor expression in patients with severe COVID-19.
+\newblock Blood, 136(11), 1330--1341. doi:10.1182/blood.2020007252.
+
+\bibitem[Middleton et al.(2020)]{middleton2020nets}
+Middleton, E. A., He, X.-Y., Denorme, F., et al. (2020).
+\newblock Neutrophil extracellular traps contribute to immunothrombosis in COVID-19 acute respiratory distress syndrome.
+\newblock Blood, 136(10), 1169--1179. doi:10.1182/blood.2020007008.
+
+\bibitem[Nicolai et al.(2020)]{nicolai2020immunothrombotic}
+Nicolai, L., Leunig, A., Brambs, S., et al. (2020).
+\newblock Immunothrombotic dysregulation in COVID-19 pneumonia is associated with respiratory failure and coagulopathy.
+\newblock Circulation, 142(12), 1176--1189. doi:10.1161/CIRCULATIONAHA.120.048488.
+
+\bibitem[Levi et al.(2020)]{levi2020coagulation}
+Levi, M., Thachil, J., Iba, T., \& Levy, J. H. (2020).
+\newblock Coagulation abnormalities and thrombosis in patients with COVID-19.
+\newblock The Lancet Haematology, 7(6), e438--e440. doi:10.1016/S2352-3026(20)30145-9.
+
+\bibitem[Ackermann et al.(2020)]{ackermann2020pulmonary}
+Ackermann, M., Verleden, S. E., Kuehnel, M., et al. (2020).
+\newblock Pulmonary vascular endothelialitis, thrombosis, and angiogenesis in Covid-19.
+\newblock New England Journal of Medicine, 383(2), 120--128. doi:10.1056/NEJMoa2015432.
+
+\bibitem[Barrett et al.(2021)]{barrett2021platelets}
+Barrett, T. J., Bilaloglu, S., Cornwell, M., et al. (2021).
+\newblock Platelets contribute to disease severity in COVID-19.
+\newblock Journal of Thrombosis and Haemostasis, 19(12), 3139--3153. doi:10.1111/jth.15534.
+
+\bibitem[Qiu et al.(2024)]{qiu2024deciphering}
+Qiu, X., Nair, M. G., Jaroszewski, L., \& Godzik, A. (2024).
+\newblock Deciphering abnormal platelet subpopulations in COVID-19, sepsis and systemic lupus erythematosus through machine learning and single-cell transcriptomics.
+\newblock International Journal of Molecular Sciences, 25(11), 5941. doi:10.3390/ijms25115941.
+
+\bibitem[Adduri et al.(2025)]{adduri2025state}
+Adduri, A. K., Gautam, D., Bevilacqua, B., et al. (2025).
+\newblock Predicting cellular responses to perturbation across diverse contexts with STATE.
+\newblock bioRxiv, 2025.06.26.661135. doi:10.1101/2025.06.26.661135.
+
+\bibitem[Kalfon et al.(2025)]{kalfon2025scprint}
+Kalfon, J., Samaran, J., Peyr\'{e}, G., \& Cantini, L. (2025).
+\newblock scPRINT: pre-training on 50 million cells allows robust gene network predictions.
+\newblock Nature Communications, 16, 3607. doi:10.1038/s41467-025-58699-1.
+
+\bibitem[Pearce et al.(2026)]{pearce2025transcriptformer}
+Pearce, J. D., Simmonds, S. E., Mahmoudabadi, G., et al. (2026).
+\newblock TranscriptFormer: a generative cell atlas across 1.5 billion years of evolution.
+\newblock Science, 393(6806), aec8514. doi:10.1126/science.aec8514.
+
+\bibitem[Van Calster et al.(2019)]{vancalster2019calibration}
+Van Calster, B., McLernon, D. J., van Smeden, M., et al. (2019).
+\newblock Calibration: the Achilles heel of predictive analytics.
+\newblock BMC Medicine, 17(1), 230. doi:10.1186/s12916-019-1466-7.
+
+\bibitem[Collins et al.(2024)]{collins2024tripodai}
+Collins, G. S., Moons, K. G. M., Dhiman, P., et al. (2024).
+\newblock TRIPOD+AI statement: updated guidance for reporting clinical prediction models that use regression or machine learning methods.
+\newblock BMJ, 385, e078378. doi:10.1136/bmj-2023-078378.
+
+\bibitem[Singer et al.(2016)]{singer2016sepsis3}
+Singer, M., Deutschman, C. S., Seymour, C. W., et al. (2016).
+\newblock The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3).
+\newblock JAMA, 315(8), 801--810. doi:10.1001/jama.2016.0287.
+
+\bibitem[Rudd et al.(2020)]{rudd2020global}
+Rudd, K. E., Johnson, S. C., Agesa, K. M., et al. (2020).
+\newblock Global, regional, and national sepsis incidence and mortality, 1990--2017: analysis for the Global Burden of Disease Study.
+\newblock The Lancet, 395(10219), 200--211. doi:10.1016/S0140-6736(19)32989-7.
+
+\bibitem[Reyes et al.(2020)]{reyes2020immune}
+Reyes, M., Filbin, M. R., Bhattacharyya, R. P., et al. (2020).
+\newblock An immune-cell signature of bacterial sepsis.
+\newblock Nature Medicine, 26(3), 333--340. doi:10.1038/s41591-020-0752-4.
+
+\bibitem[Davenport et al.(2016)]{davenport2016genomic}
+Davenport, E. E., Burnham, K. L., Radhakrishnan, J., et al. (2016).
+\newblock Genomic landscape of the individual host response and outcomes in sepsis: a prospective cohort study.
+\newblock The Lancet Respiratory Medicine, 4(4), 259--271. doi:10.1016/S2213-2600(16)00046-1.
+
+\bibitem[Sweeney et al.(2018)]{sweeney2018unsupervised}
+Sweeney, T. E., Azad, T. D., Donato, M., et al. (2018).
+\newblock Unsupervised analysis of transcriptomics in bacterial sepsis across multiple datasets reveals three robust clusters.
+\newblock Critical Care Medicine, 46(6), 915--925. doi:10.1097/CCM.0000000000003084.
+
+\bibitem[Wilk et al.(2020)]{wilk2020singlecell}
+Wilk, A. J., Rustagi, A., Zhao, N. Q., et al. (2020).
+\newblock A single-cell atlas of the peripheral immune response in patients with severe COVID-19.
+\newblock Nature Medicine, 26(7), 1070--1076. doi:10.1038/s41591-020-0944-y.
+
+\bibitem[Schulte-Schrepping et al.(2020)]{schulteschrepping2020severe}
+Schulte-Schrepping, J., Reusch, N., Paclik, D., et al. (2020).
+\newblock Severe COVID-19 is marked by a dysregulated myeloid cell compartment.
+\newblock Cell, 182(6), 1419--1440.e23. doi:10.1016/j.cell.2020.08.001.
+
+\bibitem[Bernardes et al.(2020)]{bernardes2020longitudinal}
+Bernardes, J. P., Mishra, N., Tran, F., et al. (2020).
+\newblock Longitudinal multi-omics analyses identify responses of megakaryocytes, erythroid cells, and plasmablasts as hallmarks of severe COVID-19.
+\newblock Immunity, 53(6), 1296--1314.e9. doi:10.1016/j.immuni.2020.11.017.
+
+\bibitem[Ren et al.(2021)]{ren2021covid}
+Ren, X., Wen, W., Fan, X., et al. (2021).
+\newblock COVID-19 immune features revealed by a large-scale single-cell transcriptome atlas.
+\newblock Cell, 184(7), 1895--1913.e19. doi:10.1016/j.cell.2021.01.053.
+
+\bibitem[Stephenson et al.(2021)]{stephenson2021singlecell}
+Stephenson, E., Reynolds, G., Botting, R. A., et al. (2021).
+\newblock Single-cell multi-omics analysis of the immune response in COVID-19.
+\newblock Nature Medicine, 27(5), 904--916. doi:10.1038/s41591-021-01329-2.
+
+\bibitem[Shappell et al.(2023)]{shappell2023sars}
+Shappell, C. N., Klompas, M., Chan, C., et al. (2023).
+\newblock Use of electronic clinical data to track incidence and mortality for SARS-CoV-2-associated sepsis.
+\newblock JAMA Network Open, 6(9), e2335728. doi:10.1001/jamanetworkopen.2023.35728.
+
+\bibitem[Pedregosa et al.(2011)]{pedregosa2011scikit}
+Pedregosa, F., Varoquaux, G., Gramfort, A., et al. (2011).
+\newblock Scikit-learn: machine learning in Python.
+\newblock Journal of Machine Learning Research, 12, 2825--2830.
+
+\bibitem[Wolf et al.(2018)]{wolf2018scanpy}
+Wolf, F. A., Angerer, P., \& Theis, F. J. (2018).
+\newblock SCANPY: large-scale single-cell gene expression data analysis.
+\newblock Genome Biology, 19(1), 15. doi:10.1186/s13059-017-1382-0.
+
+\bibitem[Luecken \& Theis(2019)]{luecken2019bestpractices}
+Luecken, M. D., \& Theis, F. J. (2019).
+\newblock Current best practices in single-cell RNA-seq analysis: a tutorial.
+\newblock Molecular Systems Biology, 15(6), e8746. doi:10.15252/msb.20188746.
+
+\bibitem[Brier(1950)]{brier1950verification}
+Brier, G. W. (1950).
+\newblock Verification of forecasts expressed in terms of probability.
+\newblock Monthly Weather Review, 78(1), 1--3.
+
+\bibitem[Naeini et al.(2015)]{naeini2015obtaining}
+Naeini, M. P., Cooper, G. F., \& Hauskrecht, M. (2015).
+\newblock Obtaining well calibrated probabilities using Bayesian binning.
+\newblock Proceedings of the AAAI Conference on Artificial Intelligence, 29(1), 2901--2907. doi:10.1609/aaai.v29i1.9602.
+
+\bibitem[Guo et al.(2017)]{guo2017calibration}
+Guo, C., Pleiss, G., Sun, Y., \& Weinberger, K. Q. (2017).
+\newblock On calibration of modern neural networks.
+\newblock In Proceedings of the 34th International Conference on Machine Learning, PMLR 70, 1321--1330.
+
+\bibitem[Niculescu-Mizil \& Caruana(2005)]{niculescu2005predicting}
+Niculescu-Mizil, A., \& Caruana, R. (2005).
+\newblock Predicting good probabilities with supervised learning.
+\newblock In Proceedings of the 22nd International Conference on Machine Learning, 625--632. doi:10.1145/1102351.1102430.
+
+\bibitem[DeLong et al.(1988)]{delong1988comparing}
+DeLong, E. R., DeLong, D. M., \& Clarke-Pearson, D. L. (1988).
+\newblock Comparing the areas under two or more correlated receiver operating characteristic curves: a nonparametric approach.
+\newblock Biometrics, 44(3), 837--845. doi:10.2307/2531595.
+
+\bibitem[Hanley \& McNeil(1982)]{hanley1982meaning}
+Hanley, J. A., \& McNeil, B. J. (1982).
+\newblock The meaning and use of the area under a receiver operating characteristic (ROC) curve.
+\newblock Radiology, 143(1), 29--36. doi:10.1148/radiology.143.1.7063747.
+
+\bibitem[Benjamini \& Hochberg(1995)]{benjamini1995controlling}
+Benjamini, Y., \& Hochberg, Y. (1995).
+\newblock Controlling the false discovery rate: a practical and powerful approach to multiple testing.
+\newblock Journal of the Royal Statistical Society: Series B (Methodological), 57(1), 289--300.
+
+\bibitem[McDermott et al.(2021)]{mcdermott2021reproducibility}
+McDermott, M. B. A., Wang, S., Marinsek, N., et al. (2021).
+\newblock Reproducibility in machine learning for health research: still a ways to go.
+\newblock Science Translational Medicine, 13(586), eabb1655. doi:10.1126/scitranslmed.abb1655.
+
+\bibitem[Luecken et al.(2022)]{luecken2022benchmarking}
+Luecken, M. D., B\"{u}ttner, M., Chaichoompu, K., et al. (2022).
+\newblock Benchmarking atlas-level data integration in single-cell genomics.
+\newblock Nature Methods, 19(1), 41--50. doi:10.1038/s41592-021-01336-8.
+
+\bibitem[Subramanian et al.(2005)]{subramanian2005gsea}
+Subramanian, A., Tamayo, P., Mootha, V. K., et al. (2005).
+\newblock Gene set enrichment analysis: a knowledge-based approach for interpreting genome-wide expression profiles.
+\newblock Proceedings of the National Academy of Sciences, 102(43), 15545--15550. doi:10.1073/pnas.0506580102.
+
+\bibitem[Fang et al.(2023)]{fang2023gseapy}
+Fang, Z., Liu, X., \& Peltz, G. (2023).
+\newblock GSEApy: a comprehensive package for performing gene set enrichment analysis in Python.
+\newblock Bioinformatics, 39(1), btac757. doi:10.1093/bioinformatics/btac757.
+
+\bibitem[Luecken et al.(2025)]{luecken2025openproblems}
+Luecken, M. D., Gigante, S., Burkhardt, D. B., et al. (2025).
+\newblock Defining and benchmarking open problems in single-cell analysis.
+\newblock Nature Biotechnology, 43(7), 1035--1040. doi:10.1038/s41587-025-02694-w.
+
+\bibitem[Corpas et al.(2025)]{corpas2025diversity}
+Corpas, M., et al. (2025).
+\newblock Bridging genomics' greatest challenge: the diversity gap.
+\newblock Cell Genomics, 5, 100724.
+
+\bibitem[Pot et al.(2019)]{pot2019gender}
+Pot, M., Spahl, W., \& Prainsack, B. (2019).
+\newblock The gender of biomedical data: challenges for personalised and precision medicine.
+\newblock Somatechnics, 9, 170--187.
+
+\bibitem[Jiang et al.(2026)]{jiang2026landscape}
+Jiang, S., Fang, Z., Zhang, Y., et al. (2026).
+\newblock The landscape of single-cell foundation models: design principles, applications, and open challenges.
+\newblock Preprints, 2026081166. doi:10.20944/preprints202608.1166.v1.
+
+\bibitem[Bendidi et al.(2024)]{bendidi2024pca}
+Bendidi, I., Whitfield, S., Kenyon-Dean, K., et al. (2024).
+\newblock Benchmarking transcriptomics foundation models for perturbation analysis: one PCA still rules them all.
+\newblock arXiv preprint, 2410.13956. doi:10.48550/arXiv.2410.13956.
+
+\bibitem[DenAdel et al.(2026)]{denadel2026scaling}
+DenAdel, A., Hughes, M., Thoutam, A., et al. (2026).
+\newblock Evaluating the role of pretraining dataset size and diversity on single-cell foundation model performance.
+\newblock Nature Methods, 23, 1447--1457. doi:10.1038/s41592-026-03120-y.
+
+\bibitem[Lee et al.(2020)]{lee2020immunophenotyping}
+Lee, J. S., Park, S., Jeong, H. W., et al. (2020).
+\newblock Immunophenotyping of COVID-19 and influenza highlights the role of type I interferons in development of severe COVID-19.
+\newblock Science Immunology, 5(49), eabd1554. doi:10.1126/sciimmunol.abd1554.
+
+\bibitem[Arunachalam et al.(2020)]{arunachalam2020systems}
+Arunachalam, P. S., Wimmers, F., Mok, C. K. P., et al. (2020).
+\newblock Systems biological assessment of immunity to mild versus severe COVID-19 infection in humans.
+\newblock Science, 369(6508), 1210--1220. doi:10.1126/science.abc6261.
+
+\bibitem[Liu et al.(2021)]{liu2021timeresolved}
+Liu, C., Martins, A. J., Lau, W. W., et al. (2021).
+\newblock Time-resolved systems immunology reveals a late juncture linked to fatal COVID-19.
+\newblock Cell, 184(7), 1836--1857.e22. doi:10.1016/j.cell.2021.02.018.
+
+\bibitem[Combes et al.(2021)]{combes2021global}
+Combes, A. J., Courau, T., Kuhn, N. F., et al. (2021).
+\newblock Global absence and targeting of protective immune states in severe COVID-19.
+\newblock Nature, 591(7848), 124--130. doi:10.1038/s41586-021-03234-7.
+
+\bibitem[Qiu et al.(2021)]{qiu2021sepsis}
+Qiu, X., Li, J., Bonenfant, J., et al. (2021).
+\newblock Dynamic changes in human single-cell transcriptional signatures during fatal sepsis.
+\newblock Journal of Leukocyte Biology, 110(6), 1253--1268. doi:10.1002/JLB.5MA0721-825R.
+
+\bibitem[Jiang et al.(2020)]{jiang2020ards}
+Jiang, Y., Rosborough, B. R., Chen, J., et al. (2020).
+\newblock Single cell RNA sequencing identifies an early monocyte gene signature in acute respiratory distress syndrome.
+\newblock JCI Insight, 5(13), e135678. doi:10.1172/jci.insight.135678.
+
+% Review-content-table studies (P0_onepager.md Sec.5; identifiers verified
+% 2026-09-09. Author lists to be completed at the references pass.)
+\bibitem[EGSP(2026)]{egsp2026survival}
+(2026).
+\newblock Leveraging single-cell foundation models for accurate survival outcome prediction.
+\newblock Bioinformatics Advances. PMC13032892 (peer-reviewed version of record).
+
+\bibitem[Empirical Evaluation of scFMs(2025)]{empiricalscfm2025cancer}
+(2025).
+\newblock Empirical Evaluation of Single-Cell Foundation Models for Predicting Cancer Outcomes.
+\newblock bioRxiv preprint, 2025.10.31.685892. doi:10.1101/2025.10.31.685892.
+
+\bibitem[TissueFormer(2025)]{tissueformer2025covid}
+(2025).
+\newblock TissueFormer: COVID-19 severity classification with a murine-adapted Geneformer.
+\newblock bioRxiv preprint, 2025.08.17.670735. doi:10.1101/2025.08.17.670735.
+
+\end{thebibliography}
+
+\end{document}

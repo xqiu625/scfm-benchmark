@@ -1,0 +1,47 @@
+{
+  "source_file": "scripts/24_option_c_canonical_input/results/option_c_bio_interpretation/umap_scprint2.csv",
+  "source_sha256": "ffe25e2b33285e8432f7a131ae805b9630bac3f23fb3bd25ed1e4640b4fdd470",
+  "renderer_sha256": "1156da8ebc0cc8af7d81790400f6feeb7d2a1ed1754f717e3f0263aa79d03b23",
+  "n_cells": 43803,
+  "annotation_counts": {
+    "cohort": {
+      "302004data01": 179,
+      "302004data02": 977,
+      "302004data04": 616,
+      "302004data05": 4472,
+      "302004data15": 8394,
+      "302004data16": 2000,
+      "302004data17": 12102,
+      "302004data18": 471,
+      "302005data01": 5410,
+      "302005data02": 6236,
+      "302005data03": 2946
+    },
+    "severity": {
+      "fatal": 9281,
+      "mild": 7281,
+      "moderate": 4274,
+      "recovered": 3348,
+      "severe": 19619
+    }
+  },
+  "plotting": {
+    "all_rows_used": true,
+    "same_coordinates_in_both_panels": true,
+    "draw_order_seed": 42,
+    "marker_size": 2.8,
+    "alpha": 0.55,
+    "umap_refitted": false,
+    "model_refitted": false
+  },
+  "versions": {
+    "matplotlib": "3.10.3",
+    "numpy": "2.2.6",
+    "pandas": "2.3.1"
+  },
+  "outputs": {
+    "workflow.svg": "5c9b8a77751dd9fb1509be203cd64e1921e5e2b0334356915d76dbeecf8ffc02",
+    "workflow.png": "ab0b6bcb06a678dae68ae4e611ef30fa0335d0faafc1b48e463ebf6b6c24c6ba",
+    "historical_umap.png": "1d3ef00394367ae0fad02409590333887acecca03f34943f3e84c3742baacb8f"
+  }
+}

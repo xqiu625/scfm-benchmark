@@ -1,0 +1,9 @@
+TOTAL patients: 259
+patients with a single draw: 207
+patients with >1 draw: 52
+  of those, severity+Disease consistent across draws: 49
+  of those, INCONSISTENT (severity and/or Disease differ across draws): 3
+
+Note: mortality y (fatal/not) is derived FROM covid_severity (severity=="fatal" -> y=1),
+so a severity-consistent patient is automatically y-consistent too; y is reported
+per-draw below only as a cross-check, not as an independent consistency dimension.

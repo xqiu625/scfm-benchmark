@@ -1,0 +1,439 @@
+================================================================================
+Captured query output supporting the stage 31 job claims.
+
+Produced by run_evidence/capture_scheduler_evidence.sh, committed alongside this
+file. Within one execution, each command is printed by the same string that is
+then evaluated -- see the run() echoed below. That is a property of the display
+mechanism; it does not certify that this file was never edited afterwards, for
+which git history is the record.
+
+The stream is unfiltered: this is the combined remote stdout+stderr exactly as
+it arrived, SSH banner lines included. No path is abbreviated, nothing is piped
+through head/tail, and sacct uses --parsable2 so no field is cut to a column
+width.
+================================================================================
+cluster                      : cluster.hpcc.ucr.edu (UCR HPCC, SLURM)
+account                      : xinruqiu
+captured from                : Sheen-Macbookpro-14.local over ssh, non-interactive login shell
+captured at                  : 2026-09-22 21:10:03 PDT -0700  (capture host clock)
+capture-script local repo HEAD: 70e7bb1ada23263328dc3f31057a95fda7dde993
+window                       : sacct --starttime=2026-09-22T00:00:00
+
+NOTE: the line above is the LOCAL checkout the script ran from. The HPCC
+checkout being inspected is reported separately, by the first remote command.
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+/rhome/xinruqiu/.bashrc: line 31: npm: command not found
+
+the run() used for every command below, as the shell itself reports it:
+/rhome/xinruqiu/.bashrc: line 31: npm: command not found
+  run () 
+  { 
+      printf '\n$ %s\n' "$1";
+      eval "$1" 2>&1;
+      rc=$?;
+      if [ $rc -ne 0 ]; then
+          printf '\n*** COMMAND FAILED (exit %s): %s\n' "$rc" "$1";
+          printf '*** capture ABORTED -- this transcript is incomplete\n';
+          exit 70;
+      fi
+  }
+
+cluster clock at query time: 2026-09-22 21:10:06 PDT -0700
+slurm version: slurm 24.11.1
+
+$ git -C /bigdata/godziklab/shared/Xinru/302006/302006_updategit rev-parse HEAD
+35131cf38da5485c4010676669173ca98f57630f
+
+$ git -C /bigdata/godziklab/shared/Xinru/302006/302006_updategit status --short
+ M archive/deprecated_scripts/debug_fix/verify_scpeft_setup.py
+ M reports/manuscript/main.tex
+ M reports/manuscript/supplementary.tex
+ M scripts/17_domain_adapted_fm/code/extract_adapted_embeddings.py
+ M scripts/17_domain_adapted_fm/code/geneformer_continue_pretrain.py
+ M scripts/finetuning/geneformer_peft_finetune.py
+ M scripts/foundation_models/Geneformer/run_geneformer_covid_option_c.sh
+?? CLAUDE.md
+?? docs/scrublet_dimension_parameter.md
+?? gate2_score_core.py
+?? reports/manuscript/revision/
+?? scripts/31_donor_level_revision/
+?? scripts/32_rebuild_upfront_qc/
+?? test_gate2_safety_layer.py
+?? tests/test_gate2_safety_layer.py
+?? tests/test_stage31_doublet_semantics.py
+
+$ sacct --user=xinruqiu --starttime=2026-09-22T00:00:00 --allocations --parsable2 --format=JobID,JobName,Partition,Submit,Start,End,Elapsed,State,ExitCode,WorkDir
+JobID|JobName|Partition|Submit|Start|End|Elapsed|State|ExitCode|WorkDir
+28996424|c0_perm_smoke|batch|2026-09-21T22:57:20|2026-09-21T22:57:21|2026-09-22T00:45:53|01:48:32|COMPLETED|0:0|/bigdata/nairlab/shared/XQiu/RR059/c0_motif_discovery_scripts
+29008467|c0_perm_null|batch|2026-09-22T12:59:48|2026-09-22T12:59:52|2026-09-22T17:56:38|04:56:46|COMPLETED|0:0|/bigdata/nairlab/shared/XQiu/RR059/c0_motif_discovery_scripts
+29008756|02_fastqc.sh|epyc|2026-09-22T13:39:14|2026-09-22T13:39:15|Unknown|07:30:51|RUNNING|0:0|/bigdata/nairlab/shared/XQiu/EOS_project/adipose-eos-atlas
+29008792|bash|short|2026-09-22T13:41:53|2026-09-22T13:41:56|2026-09-22T13:42:03|00:00:07|COMPLETED|0:0|/rhome/xinruqiu
+29008842|r_env_setup|batch|2026-09-22T13:48:22|2026-09-22T13:48:26|2026-09-22T14:33:09|00:44:43|COMPLETED|0:0|/bigdata/nairlab/shared/XQiu/EOS_project/adipose-eos-atlas
+29008973|bash|short|2026-09-22T14:13:08|2026-09-22T14:13:10|2026-09-22T14:13:39|00:00:29|COMPLETED|0:0|/rhome/xinruqiu
+29009081|env_check|short|2026-09-22T14:14:07|2026-09-22T14:14:08|2026-09-22T14:14:58|00:00:50|COMPLETED|0:0|/rhome/xinruqiu
+29009242|r_version_check|short|2026-09-22T14:19:54|2026-09-22T14:19:55|2026-09-22T14:19:57|00:00:02|COMPLETED|0:0|/rhome/xinruqiu
+29009867|r_env_fix2|batch|2026-09-22T14:38:31|2026-09-22T14:38:36|2026-09-22T15:09:33|00:30:57|FAILED|1:0|/bigdata/nairlab/shared/XQiu/EOS_project/adipose-eos-atlas
+29010060|sccomp_fix|batch|2026-09-22T15:04:53|2026-09-22T15:04:54|2026-09-22T15:06:38|00:01:44|COMPLETED|0:0|/bigdata/nairlab/shared/XQiu/EOS_project/adipose-eos-atlas
+29010091|scshc_fix|batch|2026-09-22T15:10:39|2026-09-22T15:10:40|2026-09-22T15:11:45|00:01:05|COMPLETED|0:0|/bigdata/nairlab/shared/XQiu/EOS_project/adipose-eos-atlas
+29010096|r_env_verify|batch|2026-09-22T15:12:16|2026-09-22T15:12:17|2026-09-22T15:13:04|00:00:47|FAILED|1:0|/bigdata/nairlab/shared/XQiu/EOS_project/adipose-eos-atlas
+29010104|cmdstan_install|batch|2026-09-22T15:13:55|2026-09-22T15:13:56|2026-09-22T15:19:48|00:05:52|COMPLETED|0:0|/bigdata/nairlab/shared/XQiu/EOS_project/adipose-eos-atlas
+29010142|r_env_verify2|batch|2026-09-22T15:20:26|2026-09-22T15:20:27|2026-09-22T15:21:10|00:00:43|FAILED|1:0|/bigdata/nairlab/shared/XQiu/EOS_project/adipose-eos-atlas
+29010157|r_env_verify3|batch|2026-09-22T15:22:17|2026-09-22T15:22:18|2026-09-22T15:34:11|00:11:53|COMPLETED|0:0|/bigdata/nairlab/shared/XQiu/EOS_project/adipose-eos-atlas
+29010216|r_env_status|short|2026-09-22T15:35:13|2026-09-22T15:35:14|2026-09-22T15:35:15|00:00:01|FAILED|2:0|/rhome/xinruqiu
+29010220|r_env_status|short|2026-09-22T15:36:08|2026-09-22T15:36:09|2026-09-22T15:36:27|00:00:18|COMPLETED|0:0|/bigdata/nairlab/shared/XQiu/EOS_project/adipose-eos-atlas
+29010227|r_env_status2|short|2026-09-22T15:38:34|2026-09-22T15:38:35|2026-09-22T15:39:12|00:00:37|COMPLETED|0:0|/bigdata/nairlab/shared/XQiu/EOS_project/adipose-eos-atlas
+29010326|doublet_detect_v2|short|2026-09-22T15:58:38|2026-09-22T15:58:39|2026-09-22T16:01:06|00:02:27|COMPLETED|0:0|/bigdata/godziklab/shared/Xinru/302006/302006_updategit/scripts/31_donor_level_revision/code
+29012006|mo_barcodes|short|2026-09-22T18:42:29|2026-09-22T18:42:30|2026-09-22T18:43:44|00:01:14|COMPLETED|0:0|/rhome/xinruqiu
+29012023|cellsnp_M_Naive|batch|2026-09-22T18:43:49|2026-09-22T18:43:50|Unknown|02:26:16|RUNNING|0:0|/bigdata/nairlab/shared/XQiu/RR059/donor_demux_multiome_scripts
+29012024|cellsnp_M_Inf|batch|2026-09-22T18:43:49|2026-09-22T18:43:50|Unknown|02:26:16|RUNNING|0:0|/bigdata/nairlab/shared/XQiu/RR059/donor_demux_multiome_scripts
+29012025|cellsnp_F_Naive|batch|2026-09-22T18:44:03|2026-09-22T18:44:04|Unknown|02:26:02|RUNNING|0:0|/bigdata/nairlab/shared/XQiu/RR059/donor_demux_multiome_scripts
+29012026|cellsnp_F_Inf|batch|2026-09-22T18:44:03|2026-09-22T18:44:04|Unknown|02:26:02|RUNNING|0:0|/bigdata/nairlab/shared/XQiu/RR059/donor_demux_multiome_scripts
+
+$ squeue --user=xinruqiu --format='%i|%j|%P|%T|%M|%V'
+JOBID|NAME|PARTITION|STATE|TIME|SUBMIT_TIME
+29012025|cellsnp_F_Naive|batch|RUNNING|2:26:13|2026-09-22T18:44:03
+29012026|cellsnp_F_Inf|batch|RUNNING|2:26:13|2026-09-22T18:44:03
+29012023|cellsnp_M_Naive|batch|RUNNING|2:26:27|2026-09-22T18:43:49
+29012024|cellsnp_M_Inf|batch|RUNNING|2:26:27|2026-09-22T18:43:49
+29008756|02_fastqc.sh|epyc|RUNNING|7:31:02|2026-09-22T13:39:14
+29014443|RR0104|highmem|PENDING|0:00|2026-09-22T21:03:22
+29014442|RR1316|highmem|PENDING|0:00|2026-09-22T21:03:22
+29014445|RR0912|intel|PENDING|0:00|2026-09-22T21:03:22
+29014444|RR0508|intel|PENDING|0:00|2026-09-22T21:03:22
+
+$ sacct --jobs=29010326 --parsable2 --format=JobID,JobName,Submit,Start,End,Elapsed,State,ExitCode,MaxRSS,WorkDir,SubmitLine
+JobID|JobName|Submit|Start|End|Elapsed|State|ExitCode|MaxRSS|WorkDir|SubmitLine
+29010326|doublet_detect_v2|2026-09-22T15:58:38|2026-09-22T15:58:39|2026-09-22T16:01:06|00:02:27|COMPLETED|0:0||/bigdata/godziklab/shared/Xinru/302006/302006_updategit/scripts/31_donor_level_revision/code|sbatch run_doublet_detection.sh /bigdata/godziklab/shared/Xinru/302006/05_RESULTS/bib_revision_tier2/contamination_audit_v2_fixed_semantics_2026-09-22_v1 --integration-only
+29010326.batch|batch|2026-09-22T15:58:39|2026-09-22T15:58:39|2026-09-22T16:01:06|00:02:27|COMPLETED|0:0|12832492K||
+29010326.extern|extern|2026-09-22T15:58:39|2026-09-22T15:58:39|2026-09-22T16:01:06|00:02:27|COMPLETED|0:0|0||
+
+$ ls -la /bigdata/godziklab/shared/Xinru/302006/05_RESULTS/bib_revision_tier2/
+total 515
+drwxr-s---  6 xinruqiu godziklab   4096 Sep 22 19:02 .
+drwxr-sr-x 77 xinruqiu godziklab 524288 Sep 14 21:58 ..
+drwxr-s---  2 xinruqiu godziklab   4096 Sep 13 13:26 clinical_utility
+drwxr-s---  4 xinruqiu godziklab   4096 Sep 22 13:38 contamination_audit
+drwxr-s---  2 xinruqiu godziklab   4096 Sep 22 16:01 contamination_audit_v2_fixed_semantics_2026-09-22_v1
+drwxr-s---  2 xinruqiu godziklab   4096 Sep 13 14:06 pla_t_ratio
+
+$ ls -la /bigdata/godziklab/shared/Xinru/302006/05_RESULTS/bib_revision_tier2/contamination_audit/
+total 6150
+drwxr-s--- 4 xinruqiu godziklab    4096 Sep 22 13:38 .
+drwxr-s--- 6 xinruqiu godziklab    4096 Sep 22 19:02 ..
+-rw-r----- 1 xinruqiu godziklab    2509 Sep 13 14:53 consensus_gene_contamination_audit.csv
+-rw-r----- 1 xinruqiu godziklab    2031 Sep 13 22:48 contamination_audit_v2_doublet_excluded.csv
+-rw-r----- 1 xinruqiu godziklab    6265 Sep 13 22:44 cross_lineage_flag_by_cohort.csv
+-rw-r----- 1 xinruqiu godziklab     638 Sep 13 17:56 decontx_candidate_gene_impact.csv
+-rw-r----- 1 xinruqiu godziklab    2930 Sep 13 17:56 decontx_flagged_gene_correlations.csv
+-rw-r----- 1 xinruqiu godziklab 1675179 Sep 13 19:56 decontx_genomewide_delta_rho.csv
+drwxr-s--- 2 xinruqiu godziklab    4096 Sep 13 19:46 decontx_io
+drwxr-s--- 2 xinruqiu godziklab    4096 Sep 13 20:54 decontx_multicelltype
+-rw-r----- 1 xinruqiu godziklab    3222 Sep 13 20:55 decontx_multicelltype_flagged_gene_correlations.csv
+-rw-r----- 1 xinruqiu godziklab    6692 Sep 13 22:48 doublet_rate_per_patient.csv
+-rw-r----- 1 xinruqiu godziklab  751790 Sep 13 22:48 doublet_scores_per_cell.csv
+-rw-r----- 1 xinruqiu godziklab     430 Sep 14 00:46 pca200_restricted_vs_unrestricted.csv
+-rw-r----- 1 xinruqiu godziklab  952253 Sep 13 22:44 per_cell_purity_and_crosslineage.csv
+-rw-r----- 1 xinruqiu godziklab   16153 Sep 13 22:44 platelet_purity_by_cohort.csv
+-rw-r----- 1 xinruqiu godziklab    3373 Sep 13 22:45 r6_full_gene_contamination_audit.csv
+-rw-r----- 1 xinruqiu godziklab    5585 Sep 22 14:06 STALE_READ_BEFORE_USE.md
+
+$ ls -la /bigdata/godziklab/shared/Xinru/302006/05_RESULTS/bib_revision_tier2/contamination_audit_v2_fixed_semantics_2026-09-22_v1/
+total 1538
+drwxr-s--- 2 xinruqiu godziklab   4096 Sep 22 16:01 .
+drwxr-s--- 6 xinruqiu godziklab   4096 Sep 22 19:02 ..
+-rw-r----- 1 xinruqiu godziklab   1438 Sep 22 16:01 contamination_audit_v2_doublet_excluded.csv
+-rw-r----- 1 xinruqiu godziklab  10393 Sep 22 16:01 doublet_rate_per_patient.csv
+-rw-r----- 1 xinruqiu godziklab 818150 Sep 22 16:01 doublet_scores_per_cell.csv
+-rw-r----- 1 xinruqiu godziklab   3391 Sep 22 16:01 RUN_MANIFEST.json
+
+$ find /bigdata/godziklab/shared/Xinru/302006/302006_updategit/scripts/31_donor_level_revision/logs -maxdepth 1 -type f -name 'doublet_detect_*' -print
+/bigdata/godziklab/shared/Xinru/302006/302006_updategit/scripts/31_donor_level_revision/logs/doublet_detect_29010326.err
+/bigdata/godziklab/shared/Xinru/302006/302006_updategit/scripts/31_donor_level_revision/logs/doublet_detect_28355823.err
+/bigdata/godziklab/shared/Xinru/302006/302006_updategit/scripts/31_donor_level_revision/logs/doublet_detect_28355823.out
+/bigdata/godziklab/shared/Xinru/302006/302006_updategit/scripts/31_donor_level_revision/logs/doublet_detect_29010326.out
+
+$ ls -1 /bigdata/godziklab/shared/Xinru/302006/302006_updategit/scripts/31_donor_level_revision/logs/
+build_multicelltype_28353780.err
+build_multicelltype_28353780.out
+clin_util_consensus_28335993.err
+clin_util_consensus_28335993.out
+clin_util_consensus_28336088.err
+clin_util_consensus_28336088.out
+clin_util_consensus_28336123.err
+clin_util_consensus_28336123.out
+clin_util_consensus_28336206.err
+clin_util_consensus_28336206.out
+contam_audit_28347778.err
+contam_audit_28347778.out
+decontx_ambient_28353294.err
+decontx_ambient_28353294.out
+decontx_reaudit_28350462.err
+decontx_reaudit_28350462.out
+decontx_review_fu_28353287.err
+decontx_review_fu_28353287.out
+doublet_detect_28355823.err
+doublet_detect_28355823.out
+doublet_detect_29010326.err
+doublet_detect_29010326.out
+export_decontx_28350355.err
+export_decontx_28350355.out
+export_decontx_28350367.err
+export_decontx_28350367.out
+geneformer_attr_28244390.err
+geneformer_attr_28244390.out
+geneformer_attr_28249890.err
+geneformer_attr_28249890.out
+geneformer_attr_28250404.err
+geneformer_attr_28250404.out
+geneformer_gsea_28251605.err
+geneformer_gsea_28251605.out
+geneformer_gsea_28252032.err
+geneformer_gsea_28252032.out
+geneformer_mask_full_28263744.err
+geneformer_mask_full_28263744.out
+gsea_masking_v2_28283632.err
+gsea_masking_v2_28283632.out
+gsea_scprint2_28299957.err
+gsea_scprint2_28299957.out
+gsea_state_28295727.err
+gsea_state_28295727.out
+gsea_uce_28292636.err
+gsea_uce_28292636.out
+hvg_marker_full_28339361.err
+hvg_marker_full_28339361.out
+inspect_scprint2_b_28295980.err
+inspect_scprint2_b_28295980.out
+inspect_scprint2_b.log
+inspect_scprint2_c_28296138.err
+inspect_scprint2_c_28296138.out
+inspect_scprint2.log
+install_decontx2_28348139.err
+install_decontx2_28348139.out
+install_decontx_28347992.err
+install_decontx_28347992.out
+install_decontx3_28348159.err
+install_decontx3_28348159.out
+install_decontx_bioc_28348177.err
+install_decontx_bioc_28348177.out
+install_decontx_bioc_28348304.err
+install_decontx_bioc_28348304.out
+install_decontx_bioc_28349290.err
+install_decontx_bioc_28349290.out
+jobH2_oof_28058454.err
+jobH2_oof_28058454.out
+jobH2_oof_28060400.err
+jobH2_oof_28060400.out
+jobH2_oof_28128642.err
+jobH2_oof_28128642.out
+jobH2_pca200_28058493.err
+jobH2_pca200_28058493.out
+jobH2_pca200_28060401.err
+jobH2_pca200_28060401.out
+jobH2_pca200_28128643.err
+jobH2_pca200_28128643.out
+jobH2_step3cross_28059149.err
+jobH2_step3cross_28059149.out
+jobH2_step3cross_28121440.err
+jobH2_step3cross_28121440.out
+jobH2_step3cross_28146392.err
+jobH2_step3cross_28146392.out
+jobH2_step3cross_28146519.err
+jobH2_step3cross_28146519.out
+jobH2_step3cross_28148167.err
+jobH2_step3cross_28148167.out
+jobH2_step3cross_28187143.err
+jobH2_step3cross_28187143.out
+jobH_oof_28019290.err
+jobH_oof_28019290.out
+jobH_oof_28052867.err
+jobH_oof_28052867.out
+jobH_step3_28019328.err
+jobH_step3_28019328.out
+jobH_step3_28026809.err
+jobH_step3_28026809.out
+jobH_step3_28052868.err
+jobH_step3_28052868.out
+jobH_step4_28019329.err
+jobH_step4_28019329.out
+jobH_step4_28052869.err
+jobH_step4_28052869.out
+jobJsupp_96pool_28205555.err
+jobJsupp_96pool_28205555.out
+jobJsupp_96pool.log
+jobK_qc_28193070.err
+jobK_qc_28193070.out
+jobL_paired_28193089.err
+jobL_paired_28193089.out
+jobN_lobo_28193090.err
+jobN_lobo_28193090.out
+jobR_winner_28203972.err
+jobR_winner_28203972.out
+jobS2_lobo_pool_28205525.err
+jobS2_lobo_pool_28205525.out
+jobS2_r4primary_28205524.err
+jobS2_r4primary_28205524.out
+jobS2_r4primary_28209726.err
+jobS2_r4primary_28209726.out
+jobS2_r4primary_28210993.err
+jobS2_r4primary_28210993.out
+jobS_adaptcurve_28148169.err
+jobS_adaptcurve_28148169.out
+jobS_adaptcurve_28148282.err
+jobS_adaptcurve_28148282.out
+jobS_adaptcurve_28187218.err
+jobS_adaptcurve_28187218.out
+jobS_adaptpca_28170614.err
+jobS_adaptpca_28170614.out
+jobS_crossdis_28145049.err
+jobS_crossdis_28145049.out
+jobS_crossdis_28145630.err
+jobS_crossdis_28145630.out
+jobS_crossdis_28146393.err
+jobS_crossdis_28146393.out
+jobS_crossdis_28148168.err
+jobS_crossdis_28148168.out
+jobS_download_nohup.log
+jobS_geneformer_28094488.err
+jobS_geneformer_28094488.out
+jobS_geneformer_28124961.err
+jobS_geneformer_28124961.out
+jobS_integrate_28082174.err
+jobS_integrate_28082174.out
+jobS_integrate_28082283.err
+jobS_integrate_28082283.out
+jobS_integrate_28121653.err
+jobS_integrate_28121653.out
+jobS_pca200_28145041.err
+jobS_pca200_28145041.out
+jobS_pca200_28148166.err
+jobS_pca200_28148166.out
+jobS_pca200fix_28152662.err
+jobS_pca200fix_28152662.out
+jobS_scgpt_28094490.err
+jobS_scgpt_28094490.out
+jobS_scgpt_28148155.err
+jobS_scgpt_28148155.out
+jobS_scgpt_28148161.err
+jobS_scgpt_28148161.out
+jobS_scprint2_28094489.err
+jobS_scprint2_28094489.out
+jobS_scprint2_28124960.err
+jobS_scprint2_28124960.out
+jobS_state_28094486.err
+jobS_state_28094486.out
+jobS_state_28124956.err
+jobS_state_28124956.out
+jobS_uce_28094487.err
+jobS_uce_28094487.out
+jobS_uce_28121654.err
+jobS_uce_28121654.out
+jobS_uce_28124958.err
+jobS_uce_28124958.out
+jobS_uce_28128250.err
+jobS_uce_28128250.out
+jobS_within_sepsis_28145040.err
+jobS_within_sepsis_28145040.out
+jobS_within_sepsis_28148165.err
+jobS_within_sepsis_28148165.out
+mc_reaudit_28353782.err
+mc_reaudit_28353782.out
+pca_restricted_28355995.err
+pca_restricted_28355995.out
+pca_restricted_cmp_28356001.err
+pca_restricted_cmp_28356001.out
+pla_t_ratio_28346897.err
+pla_t_ratio_28346897.out
+pseudobulk_en_c1_28344966.err
+pseudobulk_en_c1_28344966.out
+pseudobulk_en_c2_28344967.err
+pseudobulk_en_c2_28344967.out
+r10_nestedLR_28227832_0.err
+r10_nestedLR_28227832_0.out
+r10_nestedLR_28227832_1.err
+r10_nestedLR_28227832_1.out
+r10_nestedLR_28227832_2.err
+r10_nestedLR_28227832_2.out
+r10_nestedLR_28227832_3.err
+r10_nestedLR_28227832_3.out
+r10_nestedLR_28227832_4.err
+r10_nestedLR_28227832_4.out
+r10_nestedLR_28227832_5.err
+r10_nestedLR_28227832_5.out
+r12_headdev_28229781_0.err
+r12_headdev_28229781_0.out
+r12_headdev_28229781_1.err
+r12_headdev_28229781_1.out
+r12_headdev_28229781_2.err
+r12_headdev_28229781_2.out
+r12_headdev_28229781_3.err
+r12_headdev_28229781_3.out
+r6_item1_28214649.err
+r6_item1_28214649.out
+r6_purity_audit_28355818.err
+r6_purity_audit_28355818.out
+ren_ml_awk_28353762.err
+ren_ml_awk_28353762.out
+ren_ml_keepcols_28353728.err
+ren_ml_keepcols_28353728.out
+round7_item34_28214823.err
+round7_item34_28214823.out
+round8_item1_28214868.err
+round8_item1_28214868.out
+run_decontx_28350373.err
+run_decontx_28350373.out
+run_decontx_mc_28353781.err
+run_decontx_mc_28353781.out
+scgpt_mask_full_28277291.err
+scgpt_mask_full_28277291.out
+scprint2_mask_full_28296488.err
+scprint2_mask_full_28296488.out
+scprint2_occl_full_28301885.err
+scprint2_occl_full_28301885.out
+scprint2_occl_full_28302453.err
+scprint2_occl_full_28302453.out
+state_mask_ckpt_28277349.err
+state_mask_ckpt_28277349.out
+state_mask_ckpt_28279580.err
+state_mask_ckpt_28279580.out
+state_mask_ckpt_28283185.err
+state_mask_ckpt_28283185.out
+state_mask_ckpt_28284799.err
+state_mask_ckpt_28284799.out
+state_mask_ckpt_28292167.err
+state_mask_ckpt_28292167.out
+state_mask_ckpt_28292455.err
+state_mask_ckpt_28292455.out
+state_mask_ckpt_28293159.err
+state_mask_ckpt_28293159.out
+state_mask_ckpt_28293578.err
+state_mask_ckpt_28293578.out
+test_hvg_marker_28337517.err
+test_hvg_marker_28337517.out
+test_masking_28262888.err
+test_masking_28262888.out
+test_pseudobulk_en_28337518.err
+test_pseudobulk_en_28337518.out
+test_scgpt_mask_28277159.err
+test_scgpt_mask_28277159.out
+test_scprint2_mask_28296329.err
+test_scprint2_mask_28296329.out
+test_scprint2_occl_28301773.err
+test_scprint2_occl_28301773.out
+test_scprint2_occl_28302325.err
+test_scprint2_occl_28302325.out
+test_state_mask_28263163.err
+test_state_mask_28263163.out
+test_state_mask_28263339.err
+test_state_mask_28263339.out
+test_state_mask_28263708.err
+test_state_mask_28263708.out
+test_uce_mask_28284801.err
+test_uce_mask_28284801.out
+uce_mask_full_28284858.err
+uce_mask_full_28284858.out
+uce_mask_full_28292454.err
+uce_mask_full_28292454.out
+verify_gene_mapping.log
+verify_state.log

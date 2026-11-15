@@ -1,0 +1,96 @@
+{
+  "stage": "08_statistical_significance",
+  "status": "success",
+  "metadata_complete": false,
+  "description": "08 - Statistical Significance (auto-derived from README; metadata not curated)",
+  "slurm_jobs": [],
+  "run_dates": [],
+  "generating_code": [],
+  "parameters": {},
+  "claims": [],
+  "primary_outputs": [],
+  "superseded_outputs": {},
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "results/bootstrap_ci_fast_20260109_125319.csv",
+      "size_bytes": 282,
+      "sha256": "8a6851b225c15284f5b814f3921c38e52d10ecb1fd964f943ef8e019e6e0e609"
+    },
+    {
+      "path": "results/bootstrap_ci_fast_20260109_125332.csv",
+      "size_bytes": 272,
+      "sha256": "98d0e1f4b294daf50fbe7508324d816ed91aac275f53a2fb55179826cf19c07f"
+    },
+    {
+      "path": "results/bootstrap_ci_fast_20260109_125348.csv",
+      "size_bytes": 272,
+      "sha256": "00efd9d22ee2515ed355f23583f9ab0436ffde5e5bda17a5d824a3375a098a97"
+    },
+    {
+      "path": "results/bootstrap_ci_fast_20260109_125356.csv",
+      "size_bytes": 267,
+      "sha256": "fe9e119776106a537046efdcea453351e3ee1620ecd44dffa346faa59b1232c2"
+    },
+    {
+      "path": "results/bootstrap_ci_fast_20260416_215446.csv",
+      "size_bytes": 1198,
+      "sha256": "ee8559388d684cbfcb48781e5a0d27408cf260aaab28cb9448184c22bedeb615"
+    },
+    {
+      "path": "results/delong_tests_fast_20260109_125319.csv",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "results/delong_tests_fast_20260109_125332.csv",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "results/delong_tests_fast_20260109_125348.csv",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "results/delong_tests_fast_20260109_125356.csv",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "results/fold_aucs_fast_20260109_125319.csv",
+      "size_bytes": 414,
+      "sha256": "7d824c6e62397924c051cb5cb92338289c89ade549b63980b56b1fbdd0433fe3"
+    },
+    {
+      "path": "results/fold_aucs_fast_20260109_125332.csv",
+      "size_bytes": 363,
+      "sha256": "cb65cd703814864d0b0e5740ec964da33d21ebc92c66f38fc4201aa24dcacb8a"
+    },
+    {
+      "path": "results/fold_aucs_fast_20260109_125348.csv",
+      "size_bytes": 365,
+      "sha256": "3e14202dd61ed4436689a9e3ac2ebe2168254a695555b625bf096e3aae40dcef"
+    },
+    {
+      "path": "results/fold_aucs_fast_20260109_125356.csv",
+      "size_bytes": 342,
+      "sha256": "0ec6bdfe1513c6c87df8cb46bd7baf91a306356708e4f3bc342960f8c532ab61"
+    }
+  ],
+  "n_outputs": 13,
+  "in_repo_outputs": true,
+  "no_results_reason": null,
+  "git_commit": "2f56a829ff085fbb57787e32d3f4238a75a7a93c",
+  "runtime_seconds": null,
+  "package_versions": null,
+  "config": "configs/hpcc.yaml",
+  "environment_ref": "environment.yml",
+  "provenance": {
+    "reconstructed_post_hoc": true,
+    "generated_at": "2026-06-07T19:32:27+00:00",
+    "generated_by": "scripts/99_audit/code/emit_manifests.py",
+    "verified_in": "docs/claim-traceability.md (2026-06-06 traceability audit)",
+    "note": "Manifest reconstructed during the 2026-06-06/07 audit (item A001). Outputs were produced on the HPCC before the repo restructure; sizes + sha256 + git_commit are verifiable, but run-time wall-clock and package versions were not captured in-repo and are recorded as null rather than back-filled. When metadata_complete=false, slurm_jobs/parameters/claims were not curated for this stage \u2014 the output inventory + hashes + git pin are still authoritative."
+  }
+}

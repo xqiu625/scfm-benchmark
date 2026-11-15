@@ -1,0 +1,6 @@
+Model,Embedding_Dims,UMAP_Pattern,Batch_Integration,Batch_Shift_AUC,Notes
+STATE,2058,Continuous mixed,Excellent,0.789,Batches well-integrated in UMAP space
+UCE,1280,Continuous mixed,Good,0.750,Minor batch clustering
+Geneformer,1152,Dispersed mixed,Good,0.730,Batches well-integrated
+TranscriptFormer,2048,Continuous mixed,Good,NA,Batches integrated
+scGPT,512,Discrete crescents,Poor,0.524,Each crescent corresponds to a different batch - encodes technical variation

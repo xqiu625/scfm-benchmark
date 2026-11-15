@@ -1,0 +1,36 @@
+% Table 1 — cohort characteristics (counts verified against donor_meta_with_patient_id_v2.csv + Job M)
+\begin{table}[t]
+\centering
+\caption{Source cohorts. Patients are unique patient-level units after merging
+multiple draws per patient. ``Fatal'' counts are patients with a fatal outcome
+under each cohort's outcome definition. Sampling windows are reported from the
+source publications or repository records; ``not reported'' means the source
+states no draw timing. GSE151263 is excluded from all mortality analyses
+(no per-patient outcome in the source). Healthy donors ($n=70$) are used as a
+reference group only and enter no model fit.}
+\label{tab:cohort}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllrrlll}
+\toprule
+\textbf{Cohort (accession)} & \textbf{Disease} & \textbf{Patients} & \textbf{Fatal} & \textbf{Cells} & \textbf{Sampling window} & \textbf{Platform} & \textbf{Outcome definition} \\
+\midrule
+Ren 2021 \citep{ren2021covid} (GSE158055) & COVID-19 & 54 & 9 & 8{,}394 & 1--126 d post onset (median 23) & 10x & in-hospital death \\
+Stephenson 2021 \citep{stephenson2021singlecell} (E-MTAB-10026) & COVID-19 & 90 & 8 & 11{,}387 & not reported & 10x & death \\
+Liu 2021 \citep{liu2021timeresolved} (GSE161918) & COVID-19 & 31 & 4 & 2{,}050 & T0 median 11 d post onset (T0--T3) & 10x & death \\
+Schulte-Schrepping 2020 \citep{schulteschrepping2020severe} (EGA) & COVID-19 & 18 & 3 & 616 & 3--20 d (c1), 2--25 d (c2) post onset & 10x / Rhapsody & death \\
+Bernardes 2020 \citep{bernardes2020longitudinal} (FastGenomics) & COVID-19 & 13 & 1 & 6{,}030 & d 0/2/7/10/13 and/or discharge & 10x & death \\
+Combes 2021 \citep{combes2021global} (GSE163668) & COVID-19 & 13 & 0 & 1{,}985 & screened $\leq$3 d of hospitalization & 10x & (survivors) \\
+Wilk 2020 \citep{wilk2020singlecell} (GSE150728) & COVID-19 & 6 & 0 & 180 & 2--16 d post onset & 10x & (survivors) \\
+Lee 2020 \citep{lee2020immunophenotyping} (GSE149689) & COVID-19 & 8 & 0 & 944 & not reported & 10x & (survivors) \\
+Arunachalam 2020 \citep{arunachalam2020systems} (GSE155673) & COVID-19 & 7 & 0 & 4{,}490 & 2--16 d post onset (median 9) & 10x & (survivors) \\
+\midrule
+Qiu 2021 \citep{qiu2021sepsis} (GSE167363) & Sepsis & 5 & 2 & 2{,}946 & 0 h and 6 h post sepsis recognition (ICU) & 10x & in-hospital death \\
+GSE279452 & Sepsis & 91 & 17 & 22{,}261 & median 16 d post admission (3--121) & 10x & 28-day death \\
+Jiang 2020 \citep{jiang2020ards} (GSE151263) & Sepsis/ARDS & 7 & --- & 476 & within 24 h of intubation & 10x & not reported (excluded) \\
+\midrule
+Healthy donors (multiple) & Healthy & 70 & --- & 3{,}205 & --- & 10x & reference only \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

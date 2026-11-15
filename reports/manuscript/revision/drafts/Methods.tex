@@ -1,0 +1,187 @@
+% Methods (synced to P0 round-17 state, 2026-09-09)
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Cohort and endpoint definitions}
+\label{ssec:methods_cohort}
+
+We analyzed human platelet single-cell transcriptomes from public cohorts
+(Table~\ref{tab:cohort}): 240 COVID-19 patients (25 fatal), 103 sepsis
+patients in the dataset (19 fatal), and 70 healthy donors retained as a
+reference group only. Multiple draws of the same patient (longitudinal samples
+or replicate libraries) were merged into a single patient-level unit
+(\texttt{patient\_id}) before any analysis, so that all of a patient's cells
+and draws share one cross-validation group and one aggregated score.
+GSE151263 (7 patients) does not report per-patient outcomes in the source
+record and is excluded from all mortality analyses; it is retained in the
+dataset for completeness. This eligibility decision follows from source-record
+availability and was fixed at dataset assembly, independently of any
+outcome-associated result. No reported table or figure contains GSE151263
+patients; the cohort appears only in the dataset description
+(Table~\ref{tab:cohort}). In arithmetic terms: of the 103 sepsis patients in
+the dataset, 7 enter no outcome-labeled analysis, 91 (GSE279452) form the
+main sepsis arm, and all 96 outcome-labeled patients (91 plus 5 from
+GSE167363) form the reverse-transfer training pool.
+The primary endpoint was mortality: in-hospital
+death for the COVID-19 cohorts and GSE167363, and 28-day death for GSE279452;
+the difference is stated wherever the GSE279452 arm is used. Survivors
+include patients discharged alive at any severity grade (severe cases are
+ICU-discharged survivors, labeled as the negative class). Outcome labels were
+verified against the source records for every fatal patient
+(Supplementary Note~\ref{sn:label_provenance}).
+
+\subsection{Foundation models and unified input}
+\label{ssec:methods_models}
+
+We evaluated five single-cell foundation models (scFMs) chosen to span the
+main representation families (Table~\ref{tab:models}): \model{STATE},
+\model{UCE}, \model{Geneformer}, \model{scPRINT-2}, and \model{scGPT}. To
+remove input preprocessing as a confounder, every model received the identical
+raw AnnData object and applied its own native preprocessing pipeline as
+recommended by its authors; embeddings were then used frozen, with no
+fine-tuning, generative, or task-specific capabilities of any model. For
+\model{STATE}, a two-component system, we evaluate the state-embedding
+component (SE-600M): the state-transition module is trained for
+perturbation-response prediction and has no natural mapping to a
+patient-level discrimination task, and SE is the system's representation
+component. Platelets are anucleate cell fragments carrying
+megakaryocyte-derived mRNA; in the three pretraining corpora whose
+composition can be numerically bounded they account for approximately
+0.12\% of cells, and \model{STATE}'s corpus is bounded lower still (below
+0.05\%) through its public component documentation, while only
+\model{Geneformer} publishes no cell-type-level corpus composition at all
+(Table~\ref{tab:models} and Supplementary Note~\ref{sn:corpus_platelet}).
+They are therefore an underrepresented substrate in every corpus that can
+be checked --- documented as absent from some, bounded near one per mille
+in the rest.
+
+\subsection{Evaluation protocol}
+\label{ssec:methods_cv}
+
+The primary evaluation unit is the patient. Classifiers were trained and
+evaluated under repeated patient-level cross-validation: 10 repeats of 5-fold
+\texttt{StratifiedGroupKFold} (\texttt{shuffle=True}, seeds 42--51) with
+\texttt{patient\_id} as the group variable, so that no patient's cells or
+draws ever span training and test folds. Within each repeat, out-of-fold cell
+predictions were averaged per patient (mean; median and trimmed-mean as
+sensitivity analyses, Supplementary Note~\ref{sn:aggregation}) to yield one
+score per patient. The primary metric is patient-level out-of-fold ROC-AUC
+(patient-level AUC) computed as the repeat-mean, reported with the standard
+deviation across repeats (repeat-sd) as a measure of split-to-split stability.
+
+We pre-specified a single primary inferential question: does the best
+foundation model beat the from-scratch baseline? Because quoting the best of
+five correlated candidates inflates the error rate, this contrast was tested
+with a winner-corrected max-statistic permutation test: mortality labels were
+permuted at the patient level (10{,}000 permutations) on the frozen
+seed-ensemble scores, and the familywise $P$ is the fraction of permutations
+whose maximum foundation-model-minus-baseline AUC difference reaches the
+observed maximum; a recentered bootstrap is reported as a cross-check
+(Supplementary Note~\ref{sn:winner_test}).
+Every other contrast is reported as
+exploratory, with nominal $p$-values from exact DeLong's test labeled as such
+(paired-bootstrap agreement documented in Supplementary
+Note~\ref{sn:se_check}), and the stability of the primary result was assessed by
+leave-one-fatal-patient-out refits (Supplementary Note~\ref{sn:fragility}).
+Uncertainty quantification was matched to each analysis
+design: repeated-CV for fold-based within-disease evaluation, patient-clustered
+bootstrap (200 iterations) for fixed-split cross-disease transfer, and
+training-pool subsampling (10 seeds) for the adaptation curve.
+All feature-wise preprocessing was fit inside training folds only:
+standardization, PCA, and any gene selection saw no test cells, and the 70
+healthy donors entered no model fit. The primary classifier was logistic
+regression ($C=1.0$, lbfgs, balanced class weights); random forest (100 trees,
+balanced class weights) is reported as a secondary classifier.
+Two safeguards apply to every inferential construction. Any
+selection-corrected $P$ must be at least the smallest uncorrected $p$ in its
+comparison family, and any nested out-of-fold pooling harness must pass a
+unit test, in which a known frozen score refit through the harness must
+reproduce its own out-of-fold AUC within 0.02--0.04, before it may produce
+significance conclusions (Supplementary Note~\ref{sn:nested_comparison}).
+
+\subsection{Baselines and controls}
+\label{ssec:methods_baselines}
+
+Six controls ran under the identical protocol. (i) A from-scratch
+PCA + logistic-regression baseline on raw counts: PCA dimensionality was
+selected from \{50, 100, 200, 500\} in a pre-registered sweep with
+selection performed inside training folds, and we report the 200-component
+setting throughout (PCA-200+LR). (ii) A null model using only each patient's
+cell count and disease label; within COVID-19, where disease is constant, it
+reduces to a cell-count-only model. (iii) A QC-metrics-only model using
+per-patient mean UMI counts, detected genes, percent mitochondrial reads, and
+cell count, to test whether predictions could be explained by library-quality
+or processing artifacts (Supplementary Note~\ref{sn:qc_baseline}).
+(iv) A cohort-only model scoring each patient by their cohort's mortality
+rate, estimated within training folds only
+(Supplementary Note~\ref{sn:cohort_baseline}). (v) A nested incremental-value
+family, in which a covariate baseline (QC metrics, cell count, and cohort
+identity; L2-regularized logistic regression at $C = 0.3$) is augmented with
+each representation score in turn; its pre-specified primary is the single
+PCA-200 nested likelihood-ratio test against an empirical permutation null,
+chosen because it involves no model selection
+(Supplementary Note~\ref{sn:qc_incremental}), and each method is additionally
+compared with the null model directly
+(Supplementary Note~\ref{sn:method_vs_null}). (vi) An
+in-distribution positive control on monocytes from the same source cohorts
+(148 patients, 19 fatal), a cell type the models were pretrained on
+(Section~\ref{ssec:r4_monocyte}); monocyte identities came from the published
+atlas annotations (Ren, Stephenson) or a marker-based call (GSE167363), and a
+patient-matched subset analysis is reported in
+Supplementary Note~\ref{sn:monocyte_matched}.
+
+\subsection{Cross-disease transfer and adaptation curve}
+\label{ssec:methods_transfer}
+
+Cross-disease transfer used fixed disease splits in both directions
+(COVID-19$\rightarrow$sepsis and sepsis$\rightarrow$COVID-19) under the primary
+severe-as-survived label definition: the forward direction trained on COVID-19
+(240 patients) and tested on the 91 GSE279452 sepsis patients, and the reverse
+direction trained on all 96 outcome-labeled sepsis patients and tested on
+COVID-19, with patient-level scoring and patient-clustered bootstrap
+confidence intervals (200 iterations); a
+severe-excluded variant is retained as a sensitivity analysis
+(Supplementary Note~\ref{sn:severe}). The adaptation curve measured whether
+transfer is recovered with target-disease supervision: COVID-trained
+classifiers received increasing numbers of sepsis training cells
+($n \in \{0, 10, 50, 100, 500, 1000, \text{all}\}$, 10 seeds per size) and were
+scored on a held-out 32-patient sepsis test set, a one-third stratified
+holdout of the 96-patient labeled sepsis pool.
+
+\subsection{Metrics and calibration}
+\label{ssec:methods_metrics}
+
+The primary metric is patient-level out-of-fold ROC-AUC
+(Section~\ref{ssec:methods_cv}). Secondary quantities, always named, are the
+cell-weighted out-of-fold AUC, the per-fold mean AUC, the leave-one-cohort-out
+(LOBO) cohort AUC, and the out-of-fold nested $\Delta$AUC of the
+complementarity family (Supplementary Note~\ref{sn:nested_comparison}); no
+unqualified ``AUC'' is used elsewhere. Because cohort is
+confounded with disease and sampling site in these data, LOBO is treated as a
+secondary robustness axis rather than a co-primary estimand; the fixed-split
+cross-disease analysis isolates the transfer question directly
+(Section~\ref{ssec:methods_transfer}). A LOBO fold is computable only when the
+held-out cohort contains at least one fatal and at least one survivor patient;
+cohorts failing this rule (34 patients, all in survivor-only cohorts) remain
+in the training pool throughout, so pooled LOBO covers 206 of the 240 patients
+with all 25 fatal events retained. A fifth named quantity, the
+seed-ensemble out-of-fold AUC (ensemble-OOF AUC), averages each patient's
+scores across the ten repeats and scores them once; the primary test, all
+paired-bootstrap contrasts, fragility refits, score correlations, and the
+consensus predictor are computed on these ensemble scores, while the
+repeat-mean and repeat-sd report split-to-split stability of the same
+protocol.
+Calibration was
+assessed on patient-level out-of-fold predictions with the Brier score and the
+expected calibration error (ECE, 10 equal-width bins). Multiplicity was
+controlled within each comparison family with Benjamini--Hochberg FDR, and the
+family is stated with every reported $q$.
+
+\subsection{Reproducibility and availability}
+\label{ssec:methods_repro}
+
+All analyses ran with fixed seeds (CV seeds 42--51; bootstrap seed 42) and are
+fully scripted. Code, per-model environments, the patient-level mapping, and
+all result tables are available at [repository URL]. Embeddings were computed
+on the UCR HPCC cluster with each model's recommended environment and publicly
+released checkpoints (Table~\ref{tab:models}).

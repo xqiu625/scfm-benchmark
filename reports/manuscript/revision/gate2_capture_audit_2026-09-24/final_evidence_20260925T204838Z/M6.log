@@ -1,0 +1,22 @@
+$ /rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python -m pytest tests/test_gate2_scoring_wrapper.py::test_wrong_shape_is_enforced -q -p no:cacheprovider
+============================= test session starts ==============================
+platform linux -- Python 3.10.18, pytest-9.1.1, pluggy-1.6.0
+rootdir: /bigdata/godziklab/shared/Xinru/302006/worktrees/codex_gate2_final_20260925T204838Z
+configfile: pyproject.toml
+plugins: anyio-4.12.1
+collected 1 item
+
+tests/test_gate2_scoring_wrapper.py F                                    [100%]
+
+=================================== FAILURES ===================================
+_________________________ test_wrong_shape_is_enforced _________________________
+tests/test_gate2_scoring_wrapper.py:304: in test_wrong_shape_is_enforced
+    assert any("shape" in p for p in problems), problems
+E   AssertionError: []
+E   assert False
+E    +  where False = any(<generator object test_wrong_shape_is_enforced.<locals>.<genexpr> at 0x7f21130b8d60>)
+=========================== short test summary info ============================
+FAILED tests/test_gate2_scoring_wrapper.py::test_wrong_shape_is_enforced - As...
+============================== 1 failed in 0.18s ===============================
+
+EXIT_CODE=1

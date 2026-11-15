@@ -1,0 +1,11 @@
+cohort_x,publication_doi,in_cellxgene,cxg_collection_id,cxg_collection_name,events
+Ren 2021 (GSE158055),10.1016/j.cell.2021.01.053,yes,0a839c4b-10d0-4d64-9272-684c49a2c8ba,COVID-19 immune features revealed by a large-scale single-cell transcr,
+Stephenson 2021 (E-MTAB-10026),10.1038/s41591-021-01329-2,yes,ddfad306-714d-4cc0-9985-d9072820c530,Single-cell multi-omics analysis of the immune response in COVID-19,
+COMBAT 2022,10.1016/j.cell.2022.01.012,yes,8f126edf-5405-4731-8374-b5ce11f53e82,A blood atlas of COVID-19 defines hallmarks of disease severity and sp,16.0
+Liu 2021 (GSE161918),10.1016/j.cell.2021.02.018,yes,ed9185e3-5b82-40c7-9824-b2141590c7f0,Time-resolved Systems Immunology Reveals a Late Juncture Linked to Fat,
+Schulte-Schrepping 2020,10.1016/j.cell.2020.08.001,no,,,3.0
+Bernardes 2020,10.1016/j.immuni.2020.11.017,no,,,2.0
+Cillo 2021 (GSE180578),10.1016/j.xcrm.2021.100476,no,,,
+Wilk 2021 JEM (GSE174072),10.1084/jem.20210582,no,,,
+Qiu 2021 (GSE167363),(no DOI-indexed publication used),no,,,
+Chongqing sepsis (GSE279452),(no DOI-indexed publication used),no,,,

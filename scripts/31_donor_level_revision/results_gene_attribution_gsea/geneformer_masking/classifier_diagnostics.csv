@@ -1,0 +1,2 @@
+model,cell_auc,patient_auc,n_cells,n_patients,top_k_genes
+geneformer_masking,0.8928832792750468,0.9903255813953488,10737,240,256

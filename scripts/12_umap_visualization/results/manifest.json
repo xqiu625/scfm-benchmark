@@ -1,0 +1,61 @@
+{
+  "stage": "12_umap_visualization",
+  "status": "success",
+  "metadata_complete": false,
+  "description": "12 - UMAP Visualization (auto-derived from README; metadata not curated)",
+  "slurm_jobs": [],
+  "run_dates": [],
+  "generating_code": [],
+  "parameters": {},
+  "claims": [],
+  "primary_outputs": [],
+  "superseded_outputs": {},
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "results/README.md",
+      "size_bytes": 2709,
+      "sha256": "2e48c33f5611b4cbbedb941108190862cc9759f09cf9dcb47ab8d338ff6f840c"
+    },
+    {
+      "path": "results/batch_effect_analysis_conclusions.md",
+      "size_bytes": 5394,
+      "sha256": "e0d49a73b775184f3d0bf4eaa6ee00add3631351fc99944cf1b9186a106a355e"
+    },
+    {
+      "path": "results/batch_effect_analysis_method_results.md",
+      "size_bytes": 6647,
+      "sha256": "c18d078335a0c82cdf8c6c0322db1a1dbe1e6d66d6869d9974137a8a463dca7a"
+    },
+    {
+      "path": "results/batch_effect_metrics_6models.csv",
+      "size_bytes": 985,
+      "sha256": "ed5c07530e67100a72ccea65d58e32bab4846d3758e41b7c7cca6454398b54f0"
+    },
+    {
+      "path": "results/batch_integration_summary.csv",
+      "size_bytes": 466,
+      "sha256": "73e10c2d2c21af101865d6165fabb29918a322a4d611b695c9b076b0f959ad21"
+    },
+    {
+      "path": "results/data_processing_pipeline.md",
+      "size_bytes": 12204,
+      "sha256": "56ad5dbdbae3b183bb77116098e0f7491ec7fad52d17cfc4259694cafbd276ed"
+    }
+  ],
+  "n_outputs": 6,
+  "in_repo_outputs": true,
+  "no_results_reason": null,
+  "git_commit": "2f56a829ff085fbb57787e32d3f4238a75a7a93c",
+  "runtime_seconds": null,
+  "package_versions": null,
+  "config": "configs/hpcc.yaml",
+  "environment_ref": "environment.yml",
+  "provenance": {
+    "reconstructed_post_hoc": true,
+    "generated_at": "2026-06-07T19:32:28+00:00",
+    "generated_by": "scripts/99_audit/code/emit_manifests.py",
+    "verified_in": "docs/claim-traceability.md (2026-06-06 traceability audit)",
+    "note": "Manifest reconstructed during the 2026-06-06/07 audit (item A001). Outputs were produced on the HPCC before the repo restructure; sizes + sha256 + git_commit are verifiable, but run-time wall-clock and package versions were not captured in-repo and are recorded as null rather than back-filled. When metadata_complete=false, slurm_jobs/parameters/claims were not curated for this stage \u2014 the output inventory + hashes + git pin are still authoritative."
+  }
+}

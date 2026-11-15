@@ -1,0 +1,16 @@
+Patient,recovered,who_max,max_cat,visits,days_since_onset
+001,yes,4,complicated (recovering),TA;TA2;TB;TB2;TC,8;10;15;18;21
+002,no,8,Critical (fatal),TA;TA2,19;21
+003,no,8,Critical (fatal),TA,12
+004,yes,4,complicated (hyperinflammatory),TA;TA2;TB,9;11;16
+005,yes,4,complicated (hyperinflammatory),TA;TA2;TB;TB2,6;8;13;16
+006,yes,4,mild (recovering)/ asymptomatic,TA;TA2;TB;rec,12;14;19;44
+007,yes,2,Recovery/Asymptomatic,rec,45
+008,yes,4,complicated (hyperinflammatory),TA,18
+009,yes,4,complicated (recovering),TA;TA2;TB,18;20;24
+010,yes,4,complicated (hyperinflammatory),TA;TA2;TB;TB2;TC,9;14;16;20;24
+011,yes,3,mild (recovering)/ asymptomatic,TA;TA2;TB;TB2,4;7;11;14
+012,yes,6,Critical,TA;TB;TC;TD;TE,29;36;43;50;57
+013,yes,4,complicated (hyperinflammatory),TA;TB,5;12
+014,yes,5,complicated (hyperinflammatory),TA;TA2,46;48
+CO-002,yes,4,complicated (hyperinflammatory),TA2,21

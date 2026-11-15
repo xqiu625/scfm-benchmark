@@ -1,0 +1,28 @@
+{
+  "permit_id": "gate2-GSM5102900_HC1-pilot-20261012T032632Z",
+  "authorised_by": "xinruqiu (repository owner), via chat message to Claude Code this session",
+  "authorised_utc": "2026-10-12T03:26:32Z",
+  "capture": "GSM5102900_HC1",
+  "config_sha256": "0f02df7c7e2a81da1efa2f371d6890878ad8f747146986ae5bc5db7a94f1dd41",
+  "input_sha256": {
+    "GSM5102900_HC1_barcodes.tsv.gz": "e6dbf9f587d9a6cf3ecff31cbf4d53b09c6faf9837c82d5c1c0a26227f377a02",
+    "GSM5102900_HC1_features.tsv.gz": "c7408e82af270ca6308a8aa7ea659795a15ab76f2e3a85bd5db4cd3d53244199",
+    "GSM5102900_HC1_matrix.mtx.gz": "4ea259bfc4de02cc9799df563779fce7c9bd4c889532d3ff1178e2caf545b9f8"
+  },
+  "scope": "one job, one capture, eight approved priors, scoring only; no outcome access, no cell deletion, no retry, no second job",
+  "implementation_sha256": "30831273d4d3030ef5f9b123ecefbb44af2ae37aa9b7a95aab18ffeb8de80d84",
+  "implementation_commit": "07b5662362ed71b7f7856dcdf4b86d27bf6a6e7e",
+  "resource_ceiling": {
+    "partition": "short",
+    "time": "2:00:00",
+    "mem": "48G",
+    "cpus_per_task": 4,
+    "max_jobs": 1
+  },
+  "output_root": "/bigdata/godziklab/shared/Xinru/302006/05_RESULTS/gate2_capture_scoring",
+  "_authorization_message_verbatim": "我批准按这份审查创建并提交限定 permit、完成全新 HPCC 部署及 dry-run。完成后交 Codex 审查；不批准 SLURM 评分作业、push 或细胞删除。",
+  "_authorization_excludes": "SLURM scoring job submission; git push; cell deletion. The scoring job requires a further, separate authorization after a passing dry-run review.",
+  "_authorized_per_review": "codex_output/20261011_201340.md, draft approval text in 给你的单次批准文案",
+  "_deployment_plan_doc": "scripts/32_rebuild_upfront_qc/GATE2_PILOT_PREPARATION_PACKET_v1.md",
+  "_underscore_fields_note": "Fields prefixed with underscore are provenance only, not read or checked by gate2_scoring_config_GSM5102900_HC1.py's assert_permitted(); they record authorization context without altering the validated schema."
+}

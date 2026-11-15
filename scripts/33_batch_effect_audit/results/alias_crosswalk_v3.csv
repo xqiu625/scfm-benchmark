@@ -1,0 +1,166 @@
+cohort,normalization_rule,normalized_key,canonical_donor_ids,capture_file_donor_ids,n_canonical,n_capture_file,cardinality,status
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000042,HGR0000042,HGR0000042_T0,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000051,HGR0000051,HGR0000051_T0,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000069,HGR0000069,HGR0000069_T0,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000071,HGR0000071,HGR0000071,1,1,1:1,exact_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000074,HGR0000074,HGR0000074,1,1,1:1,exact_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000078,HGR0000078,HGR0000078,1,1,1:1,exact_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000079,HGR0000079,HGR0000079,1,1,1:1,exact_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000083,HGR0000083,HGR0000083,1,1,1:1,exact_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000089,HGR0000089,HGR0000089,1,1,1:1,exact_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000091,HGR0000091,HGR0000091,1,1,1:1,exact_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000092,HGR0000092,HGR0000092_T0,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000093,HGR0000093,HGR0000093,1,1,1:1,exact_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000094,HGR0000094,HGR0000094_T0,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000098,HGR0000098,HGR0000098,1,1,1:1,exact_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000101,HGR0000101,HGR0000101_T0,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000102,HGR0000102,HGR0000102_T0,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000110,HGR0000110,HGR0000110,1,1,1:1,exact_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000115,HGR0000115,HGR0000115_T1,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000124,HGR0000124,HGR0000124_T0,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000134,HGR0000134,HGR0000134_T0,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000135,HGR0000135,HGR0000135_T0,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000136,HGR0000136,HGR0000136,1,1,1:1,exact_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000137,HGR0000137,HGR0000137,1,1,1:1,exact_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000141,HGR0000141,HGR0000141,1,1,1:1,exact_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000142,HGR0000142,HGR0000142_T0,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000143,HGR0000143,HGR0000143,1,1,1:1,exact_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000144,HGR0000144,HGR0000144_T0,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000391,HGR0000391,HGR0000391_T0,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000392,HGR0000392,HGR0000392_T0,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000395,HGR0000395,HGR0000395_T0,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000418,HGR0000418,HGR0000418_T1,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000429,HGR0000429,HGR0000429_T1,1,1,1:1,normalized_match
+Liu 2021,strip_demuxlet_timepoint_suffix,HGR0000430,HGR0000430,HGR0000430_T1,1,1,1:1,normalized_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDPS04,Abd-PS04,Abd-PS04,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDPS05,Abd-PS05,Abd-PS05,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDPS07,Abd-PS07,Abd-PS07,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDPS13,Abd-PS13,Abd-PS13,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDPS18,Abd-PS18,Abd-PS18,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDPS19,Abd-PS19,Abd-PS19,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDPS20,Abd-PS20,Abd-PS20,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDPS23,Abd-PS23,Abd-PS23,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDPS27,Abd-PS27,Abd-PS27,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS101,Abd-S101,Abd-S101,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS102,Abd-S102,Abd-S102,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS103,Abd-S103,Abd-S103,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS11,Abd-S11,Abd-S11,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS111,Abd-S111,Abd-S111,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS12,Abd-S12,Abd-S12,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS120,Abd-S120,Abd-S120,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS123,Abd-S123,Abd-S123,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS13,Abd-S13,Abd-S13,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS156,Abd-S156,Abd-S156,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS23,Abd-S23,Abd-S23,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS39,Abd-S39,Abd-S39,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS42,Abd-S42,Abd-S42,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS45,Abd-S45,Abd-S45,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS47,Abd-S47,Abd-S47,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS49,Abd-S49,Abd-S49,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS51,Abd-S51,Abd-S51,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS53,Abd-S53,Abd-S53,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS54,Abd-S54,Abd-S54,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS55,Abd-S55,Abd-S55,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS57,Abd-S57,Abd-S57,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS58,Abd-S58,Abd-S58,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS59,Abd-S59,Abd-S59,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS66,Abd-S66,Abd-S66,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS67,Abd-S67,Abd-S67,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS72,Abd-S72,Abd-S72,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS73,Abd-S73,Abd-S73,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS75,Abd-S75,Abd-S75,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS79,Abd-S79,Abd-S79,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS8,Abd-S8,Abd-S8,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS80,Abd-S80,Abd-S80,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS81,Abd-S81,Abd-S81,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS83,Abd-S83,Abd-S83,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS9,Abd-S9,Abd-S9,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS91,Abd-S91,Abd-S91,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,ABDS98,Abd-S98,Abd-S98,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,CNSS189,CNS-S189,CNS-S189,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,CNSS50,CNS-S50,CNS-S50,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,CNSS61,CNS-S61,CNS-S61,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,HC01,HC01,HC01,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,HC05,HC05,HC05,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,HC07,HC07,HC07,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,HC09,HC09,HC09,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,HC12,HC12,HC12,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,HC13,HC13,HC13,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,HC16,HC16,HC16,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,IC08,IC08,IC08,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,IC09,IC09,IC09,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,IC10,IC10,IC10,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,IC15,IC15,IC15,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,IC16,IC16,IC16,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,IC19,IC19,IC19,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,IC22,IC22,IC22,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,IC23,IC23,IC23,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,PHC01,pHC 01,PHC01,1,1,1:1,normalized_match
+Chongqing sepsis 2025,case_whitespace_insensitive,PHC02,pHC 02,PHC02,1,1,1:1,normalized_match
+Chongqing sepsis 2025,case_whitespace_insensitive,PHC03,pHC 03,PHC03,1,1,1:1,normalized_match
+Chongqing sepsis 2025,case_whitespace_insensitive,PHC05,pHC 05,PHC05,1,1,1:1,normalized_match
+Chongqing sepsis 2025,case_whitespace_insensitive,PIC01,pIC 01,PIC01,1,1,1:1,normalized_match
+Chongqing sepsis 2025,case_whitespace_insensitive,PIC02,pIC 02,PIC02,1,1,1:1,normalized_match
+Chongqing sepsis 2025,case_whitespace_insensitive,PIC04,pIC 04,PIC04,1,1,1:1,normalized_match
+Chongqing sepsis 2025,case_whitespace_insensitive,PIC05,pIC 05,PIC05,1,1,1:1,normalized_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESPS02,Res-PS02,Res-PS02,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESPS03,Res-PS03,Res-PS03,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESPS12,Res-PS12,Res-PS12,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESPS16,Res-PS16,Res-PS16,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESPS21,Res-PS21,Res-PS21,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESPS22,Res-PS22,Res-PS22,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESPS25,Res-PS25,Res-PS25,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESPS26,Res-PS26,Res-PS26,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS10,Res-S10,Res-S10,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS100,Res-S100,Res-S100,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS110,Res-S110,Res-S110,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS118,Res-S118,Res-S118,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS125,Res-S125,Res-S125,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS127,Res-S127,Res-S127,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS136,Res-S136,Res-S136,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS139,Res-S139,Res-S139,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS144,Res-S144,Res-S144,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS145,Res-S145,Res-S145,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS146,Res-S146,Res-S146,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS149,Res-S149,Res-S149,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS15,Res-S15,Res-S15,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS150,Res-S150,Res-S150,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS164,Res-S164,Res-S164,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS166,Res-S166,Res-S166,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS167,Res-S167,Res-S167,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS168,Res-S168,Res-S168,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS170,Res-S170,Res-S170,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS174,Res-S174,Res-S174,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS176,Res-S176,Res-S176,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS177,Res-S177,Res-S177,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS18,Res-S18,Res-S18,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS183,Res-S183,Res-S183,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS184,Res-S184,Res-S184,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS19,Res-S19,Res-S19,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS21,Res-S21,Res-S21,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS22,Res-S22,Res-S22,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS26,Res-S26,Res-S26,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS3,Res-S3,Res-S3,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS32,Res-S32,Res-S32,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS40,Res-S40,Res-S40,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS41,Res-S41,Res-S41,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS56,Res-S56,Res-S56,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS70,Res-S70,Res-S70,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS77,Res-S77,Res-S77,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,RESS87,Res-S87,Res-S87,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,SKINS140,Skin-S140,Skin-S140,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,SKINS142,Skin-S142,Skin-S142,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,SKINS38,Skin-S38,Skin-S38,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,SKINS43,Skin-S43,Skin-S43,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,SKINS46,Skin-S46,Skin-S46,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,SKINS52,Skin-S52,Skin-S52,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,SKINS74,Skin-S74,Skin-S74,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,URIS112,Uri-S112,Uri-S112,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,URIS116,Uri-S116,Uri-S116,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,URIS134,Uri-S134,Uri-S134,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,URIS147,Uri-S147,Uri-S147,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,URIS157,Uri-S157,Uri-S157,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,URIS20,Uri-S20,Uri-S20,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,URIS85,Uri-S85,Uri-S85,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,URIS88,Uri-S88,Uri-S88,1,1,1:1,exact_match
+Chongqing sepsis 2025,case_whitespace_insensitive,URIS93,Uri-S93,Uri-S93,1,1,1:1,exact_match

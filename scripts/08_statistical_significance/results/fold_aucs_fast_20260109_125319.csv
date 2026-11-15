@@ -1,0 +1,11 @@
+Task,Model,Fold,AUC
+binary,Geneformer,1,0.7627521590353594
+binary,Geneformer,2,0.7811517411266282
+binary,Geneformer,3,0.7812897843580273
+binary,Geneformer,4,0.7789269286340228
+binary,Geneformer,5,0.7726330744758819
+3-class,Geneformer,1,0.7787976515060361
+3-class,Geneformer,2,0.7829682074349608
+3-class,Geneformer,3,0.7850574529938225
+3-class,Geneformer,4,0.7842187427443262
+3-class,Geneformer,5,0.781040920952575

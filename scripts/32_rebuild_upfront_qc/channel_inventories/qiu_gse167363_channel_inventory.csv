@@ -1,0 +1,13 @@
+gsm,sample_name,donor,disease_state,draw_time
+GSM5102900,HC1,Tissue donor 1,healthy control,
+GSM5102901,HC2,Tissue donor 2,healthy control,
+GSM5102902,NS LS T0,Tissue donor 3,non-survived septic patient,T0
+GSM5102903,NS LS T6,Tissue donor 3,non-survived septic patient,T6
+GSM5102904,S1 T0,Tissue donor 4,survived septic patient,T0
+GSM5102905,S1 T6,Tissue donor 4,survived septic patient,T6
+GSM5511351,NS ES_T0,donor 5,non-survived septic patient,T0
+GSM5511352,NS ES_T6,donor 5,non-survived septic patient,T6
+GSM5511353,S2_T0,donor 6,survived septic patient,T0
+GSM5511354,S2_T6,donor 6,survived septic patient,T6
+GSM5511355,S3_T0,donor 7,survived septic patient,T0
+GSM5511356,S3_T6,donor 7,survived septic patient,T6

@@ -1,0 +1,254 @@
+{
+  "STATE": {
+    "COVID->Sepsis": {
+      "n_train": 38673,
+      "n_test": 3422,
+      "fatal_train": 6237,
+      "fatal_test": 2613,
+      "LogReg": {
+        "auc": 0.7900097307510181,
+        "balanced_accuracy": 0.5909706956327991,
+        "boot_auc_mean": 0.7889854352255437,
+        "boot_ci_lo": 0.6766936306691742,
+        "boot_ci_hi": 0.8795328612153218
+      },
+      "RandomForest": {
+        "auc": 0.6551080293124092,
+        "balanced_accuracy": 0.5,
+        "boot_auc_mean": 0.6621988848285888,
+        "boot_ci_lo": 0.573981850485504,
+        "boot_ci_hi": 0.745162624649797
+      }
+    },
+    "Sepsis->COVID": {
+      "n_train": 3422,
+      "n_test": 38673,
+      "fatal_train": 2613,
+      "fatal_test": 6237,
+      "LogReg": {
+        "auc": 0.6405858851598154,
+        "balanced_accuracy": 0.5919930770097251,
+        "boot_auc_mean": 0.6341184867910296,
+        "boot_ci_lo": 0.5480559576943141,
+        "boot_ci_hi": 0.7112866420094791
+      },
+      "RandomForest": {
+        "auc": 0.5731521861439237,
+        "balanced_accuracy": 0.5576734569057913,
+        "boot_auc_mean": 0.5679871876083987,
+        "boot_ci_lo": 0.5020539173948423,
+        "boot_ci_hi": 0.6283744092954102
+      }
+    }
+  },
+  "UCE": {
+    "COVID->Sepsis": {
+      "n_train": 38673,
+      "n_test": 3422,
+      "fatal_train": 6237,
+      "fatal_test": 2613,
+      "LogReg": {
+        "auc": 0.5365579632502128,
+        "balanced_accuracy": 0.5007696612497085,
+        "boot_auc_mean": 0.5528498872213575,
+        "boot_ci_lo": 0.44339339381811727,
+        "boot_ci_hi": 0.6864219608988393
+      },
+      "RandomForest": {
+        "auc": 0.4210621798301447,
+        "balanced_accuracy": 0.5,
+        "boot_auc_mean": 0.4301913342046183,
+        "boot_ci_lo": 0.3237015528004411,
+        "boot_ci_hi": 0.5585661676214209
+      }
+    },
+    "Sepsis->COVID": {
+      "n_train": 3422,
+      "n_test": 38673,
+      "fatal_train": 2613,
+      "fatal_test": 6237,
+      "LogReg": {
+        "auc": 0.5658215703535718,
+        "balanced_accuracy": 0.5358275735171777,
+        "boot_auc_mean": 0.5601576912156377,
+        "boot_ci_lo": 0.4672799359992604,
+        "boot_ci_hi": 0.6473129890782525
+      },
+      "RandomForest": {
+        "auc": 0.4782382402876093,
+        "balanced_accuracy": 0.447883762487906,
+        "boot_auc_mean": 0.47928669272829216,
+        "boot_ci_lo": 0.4088336013127285,
+        "boot_ci_hi": 0.5539317273232881
+      }
+    }
+  },
+  "TranscriptFormer": {
+    "COVID->Sepsis": {
+      "n_train": 37901,
+      "n_test": 3414,
+      "fatal_train": 6108,
+      "fatal_test": 2612,
+      "LogReg": {
+        "auc": 0.7564783485390658,
+        "balanced_accuracy": 0.5909933244988601,
+        "boot_auc_mean": 0.7592601510868396,
+        "boot_ci_lo": 0.6941425834353587,
+        "boot_ci_hi": 0.8041562386915077
+      },
+      "RandomForest": {
+        "auc": 0.6955274046888903,
+        "balanced_accuracy": 0.5,
+        "boot_auc_mean": 0.7027379870146757,
+        "boot_ci_lo": 0.6679047821237915,
+        "boot_ci_hi": 0.7390200691129203
+      }
+    },
+    "Sepsis->COVID": {
+      "n_train": 3414,
+      "n_test": 37901,
+      "fatal_train": 2612,
+      "fatal_test": 6108,
+      "LogReg": {
+        "auc": 0.5986189472704604,
+        "balanced_accuracy": 0.5545289477028167,
+        "boot_auc_mean": 0.5965964363168595,
+        "boot_ci_lo": 0.5317339195326132,
+        "boot_ci_hi": 0.6680132762473993
+      },
+      "RandomForest": {
+        "auc": 0.5530756771388166,
+        "balanced_accuracy": 0.5333825692314547,
+        "boot_auc_mean": 0.5584846830250183,
+        "boot_ci_lo": 0.46964493946785363,
+        "boot_ci_hi": 0.6625571630735156
+      }
+    }
+  },
+  "scPRINT2": {
+    "COVID->Sepsis": {
+      "n_train": 37903,
+      "n_test": 3417,
+      "fatal_train": 6108,
+      "fatal_test": 2613,
+      "LogReg": {
+        "auc": 0.7528407522281437,
+        "balanced_accuracy": 0.5881649445082281,
+        "boot_auc_mean": 0.7608198518598513,
+        "boot_ci_lo": 0.5786663547060544,
+        "boot_ci_hi": 0.9034531876783978
+      },
+      "RandomForest": {
+        "auc": 0.47822050291976775,
+        "balanced_accuracy": 0.5,
+        "boot_auc_mean": 0.4949247014953865,
+        "boot_ci_lo": 0.386421749362387,
+        "boot_ci_hi": 0.6771559670685524
+      }
+    },
+    "Sepsis->COVID": {
+      "n_train": 3417,
+      "n_test": 37903,
+      "fatal_train": 2613,
+      "fatal_test": 6108,
+      "LogReg": {
+        "auc": 0.4764368638192876,
+        "balanced_accuracy": 0.4769156545086179,
+        "boot_auc_mean": 0.4762237595944039,
+        "boot_ci_lo": 0.3918685033424764,
+        "boot_ci_hi": 0.5545625808022613
+      },
+      "RandomForest": {
+        "auc": 0.4792366845849511,
+        "balanced_accuracy": 0.47220710494631774,
+        "boot_auc_mean": 0.48178647426559656,
+        "boot_ci_lo": 0.3828158762405485,
+        "boot_ci_hi": 0.5799647299244041
+      }
+    }
+  },
+  "STACK": {
+    "COVID->Sepsis": {
+      "n_train": 38673,
+      "n_test": 3422,
+      "fatal_train": 6237,
+      "fatal_test": 2613,
+      "LogReg": {
+        "auc": 0.12288372722297042,
+        "balanced_accuracy": 0.48824386198701275,
+        "boot_auc_mean": 0.15168144748032628,
+        "boot_ci_lo": 0.042050797197518884,
+        "boot_ci_hi": 0.5012449723948671
+      },
+      "RandomForest": {
+        "auc": 0.43999835376696433,
+        "balanced_accuracy": 0.5,
+        "boot_auc_mean": 0.4452405590937494,
+        "boot_ci_lo": 0.3192266348722403,
+        "boot_ci_hi": 0.5730489019277205
+      }
+    },
+    "Sepsis->COVID": {
+      "n_train": 3422,
+      "n_test": 38673,
+      "fatal_train": 2613,
+      "fatal_test": 6237,
+      "LogReg": {
+        "auc": 0.5841053967415624,
+        "balanced_accuracy": 0.4989938450445295,
+        "boot_auc_mean": 0.5776183411315166,
+        "boot_ci_lo": 0.44464275250500995,
+        "boot_ci_hi": 0.7058015642346763
+      },
+      "RandomForest": {
+        "auc": 0.560643126233828,
+        "balanced_accuracy": 0.5287275223919693,
+        "boot_auc_mean": 0.5569423469209598,
+        "boot_ci_lo": 0.40764809260870744,
+        "boot_ci_hi": 0.6926082320665725
+      }
+    }
+  },
+  "Geneformer": {
+    "COVID->Sepsis": {
+      "n_train": 37903,
+      "n_test": 3417,
+      "fatal_train": 6108,
+      "fatal_test": 2613,
+      "LogReg": {
+        "auc": 0.7343182670649813,
+        "balanced_accuracy": 0.5855338691159586,
+        "boot_auc_mean": 0.7397899418225349,
+        "boot_ci_lo": 0.6402464280889584,
+        "boot_ci_hi": 0.8263383380047457
+      },
+      "RandomForest": {
+        "auc": 0.5709117062982066,
+        "balanced_accuracy": 0.5,
+        "boot_auc_mean": 0.5784080371176437,
+        "boot_ci_lo": 0.534759106519562,
+        "boot_ci_hi": 0.6301766001665594
+      }
+    },
+    "Sepsis->COVID": {
+      "n_train": 3417,
+      "n_test": 37903,
+      "fatal_train": 2613,
+      "fatal_test": 6108,
+      "LogReg": {
+        "auc": 0.5718971085332701,
+        "balanced_accuracy": 0.5431614103859728,
+        "boot_auc_mean": 0.5707460049202536,
+        "boot_ci_lo": 0.5311825045171601,
+        "boot_ci_hi": 0.6061000785277112
+      },
+      "RandomForest": {
+        "auc": 0.5289027185144518,
+        "balanced_accuracy": 0.5265698194670281,
+        "boot_auc_mean": 0.5323233217882215,
+        "boot_ci_lo": 0.482510014840225,
+        "boot_ci_hi": 0.5866732069344129
+      }
+    }
+  }
+}

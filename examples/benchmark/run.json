@@ -1,0 +1,44 @@
+{
+  "status": "complete",
+  "schema_version": 1,
+  "data_kind": "synthetic-demo",
+  "package_version": "1.2.0.dev0",
+  "python": "3.10.18",
+  "dependencies": {
+    "numpy": "2.2.6",
+    "pandas": "2.3.1",
+    "scikit-learn": "1.7.1"
+  },
+  "source_sha256": "0f42141c9cc6b81488405a9201a9cbc85efb803e7e96a60fd46d01c6233f2c23",
+  "input_sha256": {
+    "metadata": "46f01144ccbab59683c3bf025b97c69f9ac25f29e89bc0f288f4e259a5758e3e",
+    "embedding:toy_signal": "136bcdf41c222914a6fdfdf6077989b8c6a45ffaf7c7a3d999456325242f4528",
+    "embedding:toy_noise": "4ac0d2ef3aba213a5258acc9cebe1d77dc5c78784fb62858eb046221e39a0ff0",
+    "embedding:toy_expression_pca": "acb2d7c04dec978ca42c55a1b87565af366807f8b76c6fbfa8472dd505ea4009"
+  },
+  "parameters": {
+    "n_splits": 5,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "pca": {
+      "toy_expression_pca": 5
+    },
+    "probe": "StandardScaler + optional PCA + LogisticRegression(max_iter=1000)",
+    "training_unit": "cell",
+    "metric_unit": "donor",
+    "donor_aggregation": "mean held-out probability",
+    "split_group": "cv_group"
+  },
+  "n_cells": 320,
+  "n_donors": 40,
+  "artifacts": {
+    "donor_predictions.csv": "3240df07add88e0cd732c06254edf9834945970d537a46c38a71f66ec7eca6df",
+    "folds.csv": "88169d28b92698d71cd0f4d4cec89210ba029b8ca2092e5d31b677a51c84c91a",
+    "metrics.csv": "50df5f1f87545621bf5c2f0c52bd164c07475a331d126e623d916a4f9527982e",
+    "preview.svg": "b006848d2d1a404b4331fbb66e0b2dbbb7d44362ad57b071bf388114b8a4ca7b",
+    "report.html": "709ce9d37b86a2b8a8a3ecc121d6b95b3e2df2965459aab2a1b6df2599017f56"
+  }
+}

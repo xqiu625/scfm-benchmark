@@ -1,0 +1,2 @@
+n_patients,n_fatal,point_auc,boot_ci_lo,boot_ci_hi
+148,18,0.7406,0.6014,0.8603

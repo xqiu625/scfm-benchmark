@@ -1,0 +1,157 @@
+================================================================================
+Test-run evidence: which file bytes the reported pass count belongs to, and
+which commit those bytes come from.
+Produced by run_evidence/capture_test_run_evidence.sh, committed alongside.
+Unfiltered combined stdout+stderr. Exit code non-zero => void, do not cite.
+================================================================================
+captured from : Sheen-Macbookpro-14.local
+captured at   : 2026-09-22 21:09:39 PDT -0700
+local HEAD    : 70e7bb1ada23263328dc3f31057a95fda7dde993
+local dirty   : 8 file(s) in the repo overall
+cluster       : cluster.hpcc.ucr.edu
+remote root   : /bigdata/godziklab/shared/Xinru/302006/302006_updategit
+suite         : tests/test_stage31_doublet_semantics.py
+files under test-identity check: 6
+
+NOTE: "local dirty" counts the WHOLE repo. It says nothing about the six files
+below, which is why step 0 checks them against HEAD explicitly -- an earlier
+version reported dirty=4 and left the reader to assume the six were not among
+them.
+
+=== 0. EACH FILE MUST EQUAL ITS HEAD BLOB (exit 74 otherwise)  [2026-09-22 21:09:39 PDT] ===
+29ce475dbaec835052657907c82b6443e2fb644d4cf54516e1b66de7a900e754  HEAD:scripts/31_donor_level_revision/code/doublet_detection_and_reaudit.py
+29ce475dbaec835052657907c82b6443e2fb644d4cf54516e1b66de7a900e754  work:scripts/31_donor_level_revision/code/doublet_detection_and_reaudit.py
+022ca977d90601a34f7c37c4ab95206a1ef9411b1d918577e11af9b2a471aea9  HEAD:scripts/31_donor_level_revision/code/run_doublet_detection.sh
+022ca977d90601a34f7c37c4ab95206a1ef9411b1d918577e11af9b2a471aea9  work:scripts/31_donor_level_revision/code/run_doublet_detection.sh
+ed76188230732d23afbfb4262073ad65d387962b88f342c74ef12429121c5901  HEAD:tests/test_stage31_doublet_semantics.py
+ed76188230732d23afbfb4262073ad65d387962b88f342c74ef12429121c5901  work:tests/test_stage31_doublet_semantics.py
+f0697b426c3042cbc45721f3afafe7389dbf683a8c78fd25b5efb8f66849a576  HEAD:docs/scrublet_dimension_parameter.md
+f0697b426c3042cbc45721f3afafe7389dbf683a8c78fd25b5efb8f66849a576  work:docs/scrublet_dimension_parameter.md
+f9bddfd8e2ee4e540a39544783693f5c059fff5c502ee1e95557302653131e99  HEAD:scripts/31_donor_level_revision/STALE_ARTIFACTS.md
+f9bddfd8e2ee4e540a39544783693f5c059fff5c502ee1e95557302653131e99  work:scripts/31_donor_level_revision/STALE_ARTIFACTS.md
+df64759474e5bfa9ad43a24a9be6f44953b01f7801077cc7615170ea2ae394eb  HEAD:CLAUDE.md
+df64759474e5bfa9ad43a24a9be6f44953b01f7801077cc7615170ea2ae394eb  work:CLAUDE.md
+all 6 files equal their HEAD blobs at 70e7bb1ada23263328dc3f31057a95fda7dde993
+
+=== 1. LOCAL hashes, before sync  [2026-09-22 21:09:40 PDT] ===
+29ce475dbaec835052657907c82b6443e2fb644d4cf54516e1b66de7a900e754  scripts/31_donor_level_revision/code/doublet_detection_and_reaudit.py
+022ca977d90601a34f7c37c4ab95206a1ef9411b1d918577e11af9b2a471aea9  scripts/31_donor_level_revision/code/run_doublet_detection.sh
+ed76188230732d23afbfb4262073ad65d387962b88f342c74ef12429121c5901  tests/test_stage31_doublet_semantics.py
+f0697b426c3042cbc45721f3afafe7389dbf683a8c78fd25b5efb8f66849a576  docs/scrublet_dimension_parameter.md
+f9bddfd8e2ee4e540a39544783693f5c059fff5c502ee1e95557302653131e99  scripts/31_donor_level_revision/STALE_ARTIFACTS.md
+df64759474e5bfa9ad43a24a9be6f44953b01f7801077cc7615170ea2ae394eb  CLAUDE.md
+
+=== 2. REMOTE hashes, before sync (raw, banners included)  [2026-09-22 21:09:40 PDT] ===
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+/rhome/xinruqiu/.bashrc: line 31: npm: command not found
+29ce475dbaec835052657907c82b6443e2fb644d4cf54516e1b66de7a900e754  scripts/31_donor_level_revision/code/doublet_detection_and_reaudit.py
+022ca977d90601a34f7c37c4ab95206a1ef9411b1d918577e11af9b2a471aea9  scripts/31_donor_level_revision/code/run_doublet_detection.sh
+ed76188230732d23afbfb4262073ad65d387962b88f342c74ef12429121c5901  tests/test_stage31_doublet_semantics.py
+f0697b426c3042cbc45721f3afafe7389dbf683a8c78fd25b5efb8f66849a576  docs/scrublet_dimension_parameter.md
+f9bddfd8e2ee4e540a39544783693f5c059fff5c502ee1e95557302653131e99  scripts/31_donor_level_revision/STALE_ARTIFACTS.md
+df64759474e5bfa9ad43a24a9be6f44953b01f7801077cc7615170ea2ae394eb  CLAUDE.md
+
+=== 3. SYNC  [2026-09-22 21:09:41 PDT] ===
+$ rsync -az --no-perms --no-owner --no-group scripts/31_donor_level_revision/code/doublet_detection_and_reaudit.py xinruqiu@cluster.hpcc.ucr.edu:/bigdata/godziklab/shared/Xinru/302006/302006_updategit/scripts/31_donor_level_revision/code/doublet_detection_and_reaudit.py
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+/rhome/xinruqiu/.bashrc: line 31: npm: command not found
+$ rsync -az --no-perms --no-owner --no-group scripts/31_donor_level_revision/code/run_doublet_detection.sh xinruqiu@cluster.hpcc.ucr.edu:/bigdata/godziklab/shared/Xinru/302006/302006_updategit/scripts/31_donor_level_revision/code/run_doublet_detection.sh
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+/rhome/xinruqiu/.bashrc: line 31: npm: command not found
+$ rsync -az --no-perms --no-owner --no-group tests/test_stage31_doublet_semantics.py xinruqiu@cluster.hpcc.ucr.edu:/bigdata/godziklab/shared/Xinru/302006/302006_updategit/tests/test_stage31_doublet_semantics.py
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+/rhome/xinruqiu/.bashrc: line 31: npm: command not found
+$ rsync -az --no-perms --no-owner --no-group docs/scrublet_dimension_parameter.md xinruqiu@cluster.hpcc.ucr.edu:/bigdata/godziklab/shared/Xinru/302006/302006_updategit/docs/scrublet_dimension_parameter.md
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+/rhome/xinruqiu/.bashrc: line 31: npm: command not found
+$ rsync -az --no-perms --no-owner --no-group scripts/31_donor_level_revision/STALE_ARTIFACTS.md xinruqiu@cluster.hpcc.ucr.edu:/bigdata/godziklab/shared/Xinru/302006/302006_updategit/scripts/31_donor_level_revision/STALE_ARTIFACTS.md
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+/rhome/xinruqiu/.bashrc: line 31: npm: command not found
+$ rsync -az --no-perms --no-owner --no-group CLAUDE.md xinruqiu@cluster.hpcc.ucr.edu:/bigdata/godziklab/shared/Xinru/302006/302006_updategit/CLAUDE.md
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+/rhome/xinruqiu/.bashrc: line 31: npm: command not found
+
+=== 4. REMOTE hashes, after sync  [2026-09-22 21:09:46 PDT] ===
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+/rhome/xinruqiu/.bashrc: line 31: npm: command not found
+29ce475dbaec835052657907c82b6443e2fb644d4cf54516e1b66de7a900e754  scripts/31_donor_level_revision/code/doublet_detection_and_reaudit.py
+022ca977d90601a34f7c37c4ab95206a1ef9411b1d918577e11af9b2a471aea9  scripts/31_donor_level_revision/code/run_doublet_detection.sh
+ed76188230732d23afbfb4262073ad65d387962b88f342c74ef12429121c5901  tests/test_stage31_doublet_semantics.py
+f0697b426c3042cbc45721f3afafe7389dbf683a8c78fd25b5efb8f66849a576  docs/scrublet_dimension_parameter.md
+f9bddfd8e2ee4e540a39544783693f5c059fff5c502ee1e95557302653131e99  scripts/31_donor_level_revision/STALE_ARTIFACTS.md
+df64759474e5bfa9ad43a24a9be6f44953b01f7801077cc7615170ea2ae394eb  CLAUDE.md
+
+=== 5. AGREEMENT CHECK (exit 71 if any file differs)  [2026-09-22 21:09:47 PDT] ===
+AGREE: all 6 files byte-identical local <-> HPCC (after sync, before the run)
+
+=== 6. ENVIRONMENT  [2026-09-22 21:09:47 PDT] ===
+$ ssh xinruqiu@cluster.hpcc.ucr.edu bash -l -s   # with the block below on stdin
+set -euo pipefail
+export PATH=$ENVDIR/bin:$PATH
+python3 -V
+python3 -c "import scanpy, anndata, numpy, pandas, pytest; print('scanpy', scanpy.__version__, 'anndata', anndata.__version__, 'numpy', numpy.__version__, 'pandas', pandas.__version__, 'pytest', pytest.__version__)"
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+/rhome/xinruqiu/.bashrc: line 31: npm: command not found
+Python 3.10.18
+/rhome/xinruqiu/.bashrc: line 31: npm: command not found
+scanpy 1.11.3 anndata 0.11.4 numpy 2.2.6 pandas 2.3.1 pytest 9.1.1
+
+=== 7. TEST RUN  [2026-09-22 21:09:54 PDT] ===
+$ ssh xinruqiu@cluster.hpcc.ucr.edu bash -l -s   # with the block below on stdin
+set -euo pipefail
+export PATH=/rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin:$PATH PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1
+cd /bigdata/godziklab/shared/Xinru/302006/302006_updategit
+python3 -B -m pytest tests/test_stage31_doublet_semantics.py -q
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+/rhome/xinruqiu/.bashrc: line 31: npm: command not found
+/rhome/xinruqiu/.bashrc: line 31: npm: command not found
+============================= test session starts ==============================
+platform linux -- Python 3.10.18, pytest-9.1.1, pluggy-1.6.0
+rootdir: /bigdata/godziklab/shared/Xinru/302006/302006_updategit
+configfile: pyproject.toml
+plugins: anyio-4.12.1
+collected 188 items
+
+tests/test_stage31_doublet_semantics.py ................................ [ 17%]
+........................................................................ [ 55%]
+........................................................................ [ 93%]
+............                                                             [100%]
+
+============================= 188 passed in 4.55s ==============================
+
+=== 8. REMOTE hashes, AFTER the run -- rules out the files moving under it  [2026-09-22 21:10:03 PDT] ===
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+/rhome/xinruqiu/.bashrc: line 31: npm: command not found
+29ce475dbaec835052657907c82b6443e2fb644d4cf54516e1b66de7a900e754  scripts/31_donor_level_revision/code/doublet_detection_and_reaudit.py
+022ca977d90601a34f7c37c4ab95206a1ef9411b1d918577e11af9b2a471aea9  scripts/31_donor_level_revision/code/run_doublet_detection.sh
+ed76188230732d23afbfb4262073ad65d387962b88f342c74ef12429121c5901  tests/test_stage31_doublet_semantics.py
+f0697b426c3042cbc45721f3afafe7389dbf683a8c78fd25b5efb8f66849a576  docs/scrublet_dimension_parameter.md
+f9bddfd8e2ee4e540a39544783693f5c059fff5c502ee1e95557302653131e99  scripts/31_donor_level_revision/STALE_ARTIFACTS.md
+df64759474e5bfa9ad43a24a9be6f44953b01f7801077cc7615170ea2ae394eb  CLAUDE.md
+
+=== 9. FINAL AGREEMENT CHECK (exit 71 if anything moved under the run)  [2026-09-22 21:10:03 PDT] ===
+AGREE: all 6 files byte-identical local <-> HPCC (after the run)
+
+=== DONE  [2026-09-22 21:10:03 PDT] ===

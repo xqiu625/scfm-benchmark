@@ -1,0 +1,149 @@
+{
+  "C1_raw_count_provenance": {
+    "banner_declares_integer": true,
+    "feature_types": {
+      "agrees": true,
+      "expected": "{'Gene Expression'}",
+      "value": "{'Gene Expression'}"
+    },
+    "matrixmarket_banner": "%%MatrixMarket matrix coordinate integer general",
+    "n_cells": {
+      "agrees": true,
+      "expected": 7666,
+      "value": 7666
+    },
+    "n_features": {
+      "agrees": true,
+      "expected": 33538,
+      "value": 33538
+    },
+    "n_genes": {
+      "agrees": true,
+      "expected": 33538,
+      "value": 33538
+    },
+    "nnz_declared": {
+      "agrees": true,
+      "expected": 9903096,
+      "value": 9903096
+    },
+    "nnz_streamed": {
+      "agrees": true,
+      "expected": 9903096,
+      "value": 9903096
+    },
+    "non_integer_values": {
+      "agrees": true,
+      "expected": 0,
+      "value": 0
+    },
+    "value_max": 9027.0,
+    "value_min": 1.0
+  },
+  "C2_capture_and_barcode_namespace": {
+    "all_unique": {
+      "agrees": true,
+      "expected": 7666,
+      "value": 7666
+    },
+    "example_barcode": "AAACCCACACCAAAGG-1",
+    "gem_suffixes": {
+      "agrees": true,
+      "expected": "{'1'}",
+      "value": "{'1'}"
+    },
+    "n_barcodes": {
+      "agrees": true,
+      "expected": 7666,
+      "value": 7666
+    },
+    "token_lengths": {
+      "agrees": true,
+      "expected": "{16}",
+      "value": "{16}"
+    }
+  },
+  "C3_population_completeness": {
+    "complete_declared_stage_population": 7666,
+    "container_admissible_for_c3": false,
+    "container_cells": {
+      "agrees": true,
+      "expected": 65,
+      "value": 65
+    },
+    "container_is_subset": {
+      "agrees": true,
+      "expected": true,
+      "value": true
+    },
+    "deposit_barcodes": 7666,
+    "retained_fraction_percent": 0.8479,
+    "tokens_found_in_deposit": {
+      "agrees": true,
+      "expected": 65,
+      "value": 65
+    }
+  },
+  "capture": "GSM5102900_HC1",
+  "container_obs_datasets_opened": [
+    "_index",
+    "Sample_ID"
+  ],
+  "disagreements": [],
+  "elapsed_seconds": 14.0,
+  "generated_utc": "2026-09-25T04:57:48Z",
+  "geo_sample": "GSM5102900",
+  "outcome_columns_read": [],
+  "pc_feasibility": {
+    "approved_n_prin_comps": 30,
+    "cells_passing_min_genes_3": {
+      "agrees": true,
+      "expected": 7666,
+      "value": 7666
+    },
+    "feasibility_confirmed": false,
+    "genes_passing_min_cells_3": {
+      "agrees": true,
+      "expected": 17226,
+      "value": 17226
+    },
+    "median_genes_per_cell": 1207,
+    "min_genes_per_cell": 14,
+    "n_usable_features_hvg": null,
+    "n_usable_features_status": "NOT MEASURED - requires materialising the matrix; the login-node attempt was OOM-killed and no SLURM job is authorised",
+    "strict_rule": "n_prin_comps < min(n_cells_effective, n_usable_features)"
+  },
+  "produced_scores_calls_or_rates": false,
+  "read_only": true,
+  "sources": {
+    "canonical_container": {
+      "bytes": 5027039977,
+      "path": "/bigdata/godziklab/shared/Xinru/302006/01_DATA/raw/human_platelet_covid_severity_raw_counts.h5ad",
+      "sha256_note": "not hashed: 5.0 GB; identity is the path plus size recorded here"
+    },
+    "deposit_files": {
+      "barcodes.tsv.gz": {
+        "bytes": 39604,
+        "geo_supplementary_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM5102nnn/GSM5102900/suppl/GSM5102900_HC1_barcodes.tsv.gz",
+        "path": "/bigdata/godziklab/shared/Xinru/302006/01_DATA/raw/GSE167363_qiu/extracted/GSM5102900_HC1_barcodes.tsv.gz",
+        "sha256": "e6dbf9f587d9a6cf3ecff31cbf4d53b09c6faf9837c82d5c1c0a26227f377a02"
+      },
+      "features.tsv.gz": {
+        "bytes": 304728,
+        "geo_supplementary_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM5102nnn/GSM5102900/suppl/GSM5102900_HC1_features.tsv.gz",
+        "path": "/bigdata/godziklab/shared/Xinru/302006/01_DATA/raw/GSE167363_qiu/extracted/GSM5102900_HC1_features.tsv.gz",
+        "sha256": "c7408e82af270ca6308a8aa7ea659795a15ab76f2e3a85bd5db4cd3d53244199"
+      },
+      "matrix.mtx.gz": {
+        "bytes": 38785404,
+        "geo_supplementary_url": "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM5102nnn/GSM5102900/suppl/GSM5102900_HC1_matrix.mtx.gz",
+        "path": "/bigdata/godziklab/shared/Xinru/302006/01_DATA/raw/GSE167363_qiu/extracted/GSM5102900_HC1_matrix.mtx.gz",
+        "sha256": "4ea259bfc4de02cc9799df563779fce7c9bd4c889532d3ff1178e2caf545b9f8"
+      }
+    },
+    "geo_sample_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5102900",
+    "geo_series_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE167363"
+  },
+  "submitted_jobs": false,
+  "verification": "gate2_capture_evidence/1"
+}

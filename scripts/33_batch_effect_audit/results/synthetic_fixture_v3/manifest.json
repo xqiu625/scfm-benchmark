@@ -1,0 +1,260 @@
+{
+  "population_stage": "synthetic_fixture",
+  "input_h5ad": "results/synthetic_fixture_v3/fixture.h5ad",
+  "input_sha256": "9ba8d9cc930b9322b02194440744b5871608828b838d6215e121f485829eb16a",
+  "code_revision": "e93cc6a",
+  "code_revision_verified": true,
+  "params": {
+    "h5ad": "results/synthetic_fixture_v3/fixture.h5ad",
+    "out_dir": "results/synthetic_fixture_v3/diagnostic_run",
+    "population_stage": "synthetic_fixture",
+    "code_revision": "e93cc6a",
+    "expression_source": "None",
+    "lineage_col": "lineage",
+    "batch_col": "cohort",
+    "patient_col": "patient_id",
+    "outcome_col": "outcome",
+    "exclude_outcome_values": "['unknown']",
+    "lineages": "None",
+    "embeddings": "['X_synthFM']",
+    "n_pcs": "30",
+    "diagnostic_n_per_patient": "20",
+    "min_group_size": "10",
+    "seed": "0",
+    "run_harmony": "True"
+  },
+  "started_at": "2026-10-09T21:13:04.427024+00:00",
+  "status": "complete",
+  "per_lineage": [
+    {
+      "lineage": "Monocyte_Myeloid",
+      "n_total_cells": 2413,
+      "n_excluded_outcome": 0,
+      "excluded_outcome_values": [
+        "unknown"
+      ],
+      "n_patients": 80,
+      "n_diagnostic_cells": 1544,
+      "n_excluded_by_cap": 869,
+      "diagnostic_sampling_rule": "<= 20 cells/patient, seeded",
+      "embeddings": {
+        "expression_pca": {
+          "status": "complete",
+          "uncorrected": {
+            "batch_asw": {
+              "asw_batch_per_group": {
+                "fatal": 0.45897507667541504,
+                "survived": 0.0970270037651062
+              },
+              "skipped_groups": {},
+              "batch_asw_scib": 0.2780010402202606,
+              "batch_asw_neg_scib": 0.7219989597797394
+            },
+            "neighborhood_mixing": {
+              "mean_neighbor_batch_mixing": 0.1298791018998273,
+              "expected_under_random_mixing": 0.7499219777712154,
+              "k_used": 15,
+              "reason": ""
+            },
+            "bio_conservation": {
+              "ari": 0.14701426606794327,
+              "nmi": 0.07427366794963139,
+              "reason": ""
+            }
+          },
+          "harmony": {
+            "label": "transductive/exploratory integration -- jointly fit on this diagnostic subsample, NOT an out-of-sample transform",
+            "result": {
+              "batch_asw": {
+                "asw_batch_per_group": {
+                  "fatal": 0.07170600444078445,
+                  "survived": 0.07944762706756592
+                },
+                "skipped_groups": {},
+                "batch_asw_scib": 0.07557681575417519,
+                "batch_asw_neg_scib": 0.9244231842458248
+              },
+              "neighborhood_mixing": {
+                "mean_neighbor_batch_mixing": 0.47668393782383417,
+                "expected_under_random_mixing": 0.7499219777712154,
+                "k_used": 15,
+                "reason": ""
+              },
+              "bio_conservation": {
+                "ari": 0.3894478306060169,
+                "nmi": 0.4262688338211252,
+                "reason": ""
+              }
+            }
+          }
+        },
+        "X_synthFM": {
+          "status": "complete",
+          "uncorrected": {
+            "batch_asw": {
+              "asw_batch_per_group": {
+                "fatal": 0.2629480601423171,
+                "survived": 0.13598567724099261
+              },
+              "skipped_groups": {},
+              "batch_asw_scib": 0.19946686869165486,
+              "batch_asw_neg_scib": 0.8005331313083451
+            },
+            "neighborhood_mixing": {
+              "mean_neighbor_batch_mixing": 0.08721934369602763,
+              "expected_under_random_mixing": 0.7499219777712154,
+              "k_used": 15,
+              "reason": ""
+            },
+            "bio_conservation": {
+              "ari": -0.000749232064500991,
+              "nmi": 7.300284908560953e-07,
+              "reason": ""
+            }
+          },
+          "harmony": {
+            "label": "transductive/exploratory integration -- jointly fit on this diagnostic subsample, NOT an out-of-sample transform",
+            "result": {
+              "batch_asw": {
+                "asw_batch_per_group": {
+                  "fatal": 0.07468536403706787,
+                  "survived": 0.044977621770856374
+                },
+                "skipped_groups": {},
+                "batch_asw_scib": 0.05983149290396212,
+                "batch_asw_neg_scib": 0.9401685070960378
+              },
+              "neighborhood_mixing": {
+                "mean_neighbor_batch_mixing": 0.6646373056994819,
+                "expected_under_random_mixing": 0.7499219777712154,
+                "k_used": 15,
+                "reason": ""
+              },
+              "bio_conservation": {
+                "ari": 0.975541024059139,
+                "nmi": 0.9459900329931291,
+                "reason": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "lineage": "Platelet",
+      "n_total_cells": 2438,
+      "n_excluded_outcome": 0,
+      "excluded_outcome_values": [
+        "unknown"
+      ],
+      "n_patients": 80,
+      "n_diagnostic_cells": 1537,
+      "n_excluded_by_cap": 901,
+      "diagnostic_sampling_rule": "<= 20 cells/patient, seeded",
+      "embeddings": {
+        "expression_pca": {
+          "status": "complete",
+          "uncorrected": {
+            "batch_asw": {
+              "asw_batch_per_group": {
+                "fatal": 0.13256697356700897,
+                "survived": 0.08368074148893356
+              },
+              "skipped_groups": {},
+              "batch_asw_scib": 0.10812385752797127,
+              "batch_asw_neg_scib": 0.8918761424720287
+            },
+            "neighborhood_mixing": {
+              "mean_neighbor_batch_mixing": 0.17757536326176535,
+              "expected_under_random_mixing": 0.7499590453481231,
+              "k_used": 15,
+              "reason": ""
+            },
+            "bio_conservation": {
+              "ari": 0.14354873370635882,
+              "nmi": 0.07412156365239454,
+              "reason": ""
+            }
+          },
+          "harmony": {
+            "label": "transductive/exploratory integration -- jointly fit on this diagnostic subsample, NOT an out-of-sample transform",
+            "result": {
+              "batch_asw": {
+                "asw_batch_per_group": {
+                  "fatal": 0.03027348592877388,
+                  "survived": 0.05853208154439926
+                },
+                "skipped_groups": {},
+                "batch_asw_scib": 0.04440278373658657,
+                "batch_asw_neg_scib": 0.9555972162634134
+              },
+              "neighborhood_mixing": {
+                "mean_neighbor_batch_mixing": 0.5577531988722619,
+                "expected_under_random_mixing": 0.7499590453481231,
+                "k_used": 15,
+                "reason": ""
+              },
+              "bio_conservation": {
+                "ari": 0.33983442590087076,
+                "nmi": 0.39939322378534536,
+                "reason": ""
+              }
+            }
+          }
+        },
+        "X_synthFM": {
+          "status": "complete",
+          "uncorrected": {
+            "batch_asw": {
+              "asw_batch_per_group": {
+                "fatal": 0.14057815254446218,
+                "survived": 0.10119932345499852
+              },
+              "skipped_groups": {},
+              "batch_asw_scib": 0.12088873799973035,
+              "batch_asw_neg_scib": 0.8791112620002697
+            },
+            "neighborhood_mixing": {
+              "mean_neighbor_batch_mixing": 0.1677293428757319,
+              "expected_under_random_mixing": 0.7499590453481231,
+              "k_used": 15,
+              "reason": ""
+            },
+            "bio_conservation": {
+              "ari": -0.0048339223889850005,
+              "nmi": 0.0001289503723285428,
+              "reason": ""
+            }
+          },
+          "harmony": {
+            "label": "transductive/exploratory integration -- jointly fit on this diagnostic subsample, NOT an out-of-sample transform",
+            "result": {
+              "batch_asw": {
+                "asw_batch_per_group": {
+                  "fatal": 0.051282137242012714,
+                  "survived": 0.03594357878489093
+                },
+                "skipped_groups": {},
+                "batch_asw_scib": 0.04361285801345182,
+                "batch_asw_neg_scib": 0.9563871419865482
+              },
+              "neighborhood_mixing": {
+                "mean_neighbor_batch_mixing": 0.6855779657341141,
+                "expected_under_random_mixing": 0.7499590453481231,
+                "k_used": 15,
+                "reason": ""
+              },
+              "bio_conservation": {
+                "ari": 0.9409614697250126,
+                "nmi": 0.8868693658769846,
+                "reason": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "finished_at": "2026-10-09T21:20:23.117007+00:00"
+}

@@ -1,0 +1,22 @@
+$ /rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python -m pytest tests/test_gate2_scoring_wrapper.py::test_topology_differing_across_priors_is_enforced -q -p no:cacheprovider
+============================= test session starts ==============================
+platform linux -- Python 3.10.18, pytest-9.1.1, pluggy-1.6.0
+rootdir: /bigdata/godziklab/shared/Xinru/302006/worktrees/codex_gate2_final_20260925T204838Z
+configfile: pyproject.toml
+plugins: anyio-4.12.1
+collected 1 item
+
+tests/test_gate2_scoring_wrapper.py F                                    [100%]
+
+=================================== FAILURES ===================================
+______________ test_topology_differing_across_priors_is_enforced _______________
+tests/test_gate2_scoring_wrapper.py:318: in test_topology_differing_across_priors_is_enforced
+    assert any("topology differed" in p for p in problems), problems
+E   AssertionError: []
+E   assert False
+E    +  where False = any(<generator object test_topology_differing_across_priors_is_enforced.<locals>.<genexpr> at 0x7f1f06270dd0>)
+=========================== short test summary info ============================
+FAILED tests/test_gate2_scoring_wrapper.py::test_topology_differing_across_priors_is_enforced
+============================== 1 failed in 0.20s ===============================
+
+EXIT_CODE=1

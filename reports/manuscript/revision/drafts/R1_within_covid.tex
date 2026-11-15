@@ -1,0 +1,122 @@
+% R1 — within-COVID mortality discrimination (synced to P0 round-17 state, 2026-09-09)
+\subsection{Within-COVID, models differ from each other, but no foundation model beats the from-scratch baseline under the pre-specified test}
+\label{ssec:r1_within_covid}
+
+We first asked whether foundation-model embeddings carry any patient-level
+mortality signal within COVID-19. For each model, frozen embeddings of the same
+raw platelet transcriptomes were classified with logistic regression under
+repeated patient-level cross-validation (10 repeats of 5-fold
+\texttt{StratifiedGroupKFold} with \texttt{patient\_id} as the group), and each
+patient's out-of-fold cell predictions were averaged into a single score before
+computing the patient-level out-of-fold ROC-AUC (patient-level AUC;
+Section~\ref{ssec:methods_metrics}). Three from-scratch controls ran under the
+identical protocol: a PCA-200 + logistic-regression baseline on raw counts, a
+null model given only each patient's cell count and disease label, and a
+cohort-only model given each patient's cohort mortality rate.
+
+Patient-level mortality signal was learnable: five of the six methods,
+including the from-scratch baseline, significantly outscored the null model
+(exact DeLong paired tests on the seed-ensemble scores, $p = 0.0006$--$0.023$);
+the exception was \model{UCE} ($p = 0.157$; Supplementary
+Note~\ref{sn:method_vs_null}). The pre-specified primary contrast
+(Section~\ref{ssec:methods_cv}) asked whether the best foundation model beats
+the from-scratch baseline once winner selection is accounted for. It was not
+met: the observed maximum advantage (\model{Geneformer}, $+0.064$
+patient-level AUC on the seed-ensemble scores) did not exceed what the
+selection procedure produces under the null (patient-level label-permutation
+max-statistic test, 10{,}000 permutations, $P = 0.181$; recentered-bootstrap
+cross-check, $P = 0.073$; Supplementary Note~\ref{sn:winner_test}). The result
+is stable: all 25 leave-one-fatal-patient-out refits returned $P > 0.05$
+(range 0.141--0.288; Supplementary Note~\ref{sn:fragility}).
+
+The model ranking underneath this null is still informative
+(Table~\ref{tab:within_covid} and Figure~\ref{fig:within_covid}). \model{Geneformer} and \model{STATE} led at
+0.786 $\pm$ 0.026 and 0.778 $\pm$ 0.033 (repeat-mean $\pm$ repeat-sd) and
+could not be distinguished from each other ($\Delta = -0.012$, exact DeLong
+$p = 0.58$). Their nominal advantages over the baseline (\model{Geneformer}
+$+0.064$, $p = 0.036$; \model{STATE} $+0.052$, $p = 0.048$) are reported as
+exploratory and do not survive the winner correction above. All remaining
+contrasts are likewise exploratory
+(Supplementary Note~\ref{sn:se_check}):
+\model{scPRINT-2} placed third (0.740 $\pm$ 0.027) and could not be separated
+from the baseline ($p = 0.65$), and \model{scGPT} (0.720 $\pm$ 0.047) was
+statistically indistinguishable from it ($p = 0.91$). \model{UCE} placed last
+(0.661 $\pm$ 0.046), below the from-scratch baseline, though the paired
+contrast was not itself significant ($-0.066$, $p = 0.081$). One separation
+survives selection correction: the two leaders' advantage over \model{UCE}
+($+0.118$ and $+0.130$) is confirmed by a range-statistic test on the same
+label permutations as the primary analysis (max-minus-min over the five
+foundation models, $P = 0.011$; Supplementary Note~\ref{sn:range_test}) and
+is the paper's single confirmatory secondary result. Within the exploratory
+pairwise family, six contrasts survive Benjamini--Hochberg correction, all
+with \model{UCE} or \model{scGPT} on the losing side ($q \leq 0.037$;
+Supplementary Figure~\ref{fig:supp_pairwise}), and the two
+leaders-versus-\model{UCE} gaps are the largest. The result's content is a
+statement about the losing model, addressed in
+Section~\ref{ssec:discussion_property}.
+
+A separate question, whether a model's score adds information beyond the
+baseline's even without ranking patients better on its own, was examined with
+nested-model comparisons: a reduced model containing cohort and the PCA-200
+score against a full model adding each foundation-model score in turn. No
+model's increment survived the same Benjamini--Hochberg correction used
+throughout, in any of three comparator configurations
+(Supplementary Note~\ref{sn:nested_comparison}). The complementarity question
+therefore returns the same answer as the superiority question, and the
+headline statement needs no qualifier.
+
+Three controls bound where the learnable signal does not come from. The null
+model reached only 0.554, so mortality was not readable from cell counts or
+disease identity alone; per-patient cell counts also correlated only weakly
+with predicted scores across models (Spearman $\rho = 0.18$--$0.29$;
+Supplementary Figure~\ref{fig:supp_cellcount}). The cohort-only model reached
+0.486 $\pm$ 0.038, statistically indistinguishable from chance; because a
+rate estimator based on add-one smoothing inverts risk ordering for small
+cohorts, this number is silent on the confound question rather than
+exonerating cohort (Supplementary Note~\ref{sn:cohort_baseline}). A
+QC-metrics-only model scored below chance out-of-fold (0.376 as-fit), a
+textbook suppression pattern: the QC features carry outcome information only
+conditional on library depth, and adding each patient's cell count recovers a
+correctly oriented 0.618 (Supplementary Note~\ref{sn:qc_baseline}). The
+decisive test is incremental value over all of these covariates at once:
+a baseline of QC metrics, cell count, and cohort identity reached 0.627, and
+the pre-specified primary for this question, whether the from-scratch
+platelet representation adds information over that baseline, chosen because
+it involves no model selection, was met by a nested likelihood-ratio test
+against an empirical permutation null ($P < 0.0001$;
+Supplementary Note~\ref{sn:qc_incremental}). The five foundation models,
+reported as exploratory with both readings paired, each added significant
+value by the same test ($P < 0.0001$--$0.0022$, \model{UCE} weakest) and, for
+all but \model{UCE}, by paired-AUC comparison ($\Delta = +0.026$ to $+0.065$,
+exact DeLong $p = 0.0001$--$0.006$; \model{UCE} $+0.016$, $p = 0.072$). The
+likelihood-ratio family establishes that incremental information exists; the
+AUC increments quantify it; and the resolution argument applies to that
+magnitude, not to the likelihood-ratio $P$-values.
+
+Two protocol observations qualify the headline numbers. First, random-forest
+classifiers scored uniformly lower than logistic regression on the same
+embeddings (e.g., \model{STATE}: 0.696 versus 0.778), so we report logistic
+regression throughout and retain random forest only for calibration analysis
+(Section~\ref{ssec:r5_calibration}). Second, per-seed variation was large enough
+to change the apparent ranking: \model{STATE}'s patient-level AUC ranged from
+0.711 to 0.815 across the ten repeats, and a single 5-fold split would have
+reported any point in that range as ``the'' result. We therefore treat the
+repeat-mean, not any single split, as the primary estimate throughout, with
+inferential quantities computed on the seed-ensemble scores
+(Section~\ref{ssec:methods_cv}).
+
+The within-COVID picture is thus one of inter-model differences without a
+detectable pretraining advantage. Signal is present and learnable by nearly
+every method, and it is not reducible to library quality, cell counts, or
+cohort membership: platelet representations carry outcome information beyond
+all three. Yet no foundation-model representation carries information beyond
+what a from-scratch PCA of the same data already provides, not in
+discrimination and not in nested complementarity. The two leading models
+separate from \model{UCE} under a confirmatory test, a statement about the
+weakest model rather than the strongest. At 25 fatal events this benchmark
+resolves advantages of roughly 0.10 patient-level AUC or larger between two
+different representations (Section~\ref{ssec:discussion_property}): the
+nominal 0.05--0.06 advantages sit below that resolution, and detecting effects
+of that size would require on the order of $10^3$ patients. Whether any signal
+transfers beyond COVID-19 is addressed next
+(Sections~\ref{ssec:r2_within_sepsis}--\ref{ssec:r3_cross_disease}).

@@ -1,0 +1,921 @@
+% =============================================================================
+% Project: 302006 - OOD-robustness benchmark of single-cell foundation models
+% File: supplementary.tex (P2 rewrite, assembled 2026-09-12 from
+%   revision/drafts/SI_resolved_data.tex + tables_v3.md + result CSVs)
+% COMPILE ORDER (so cross-references resolve):
+%   pdflatex supplementary.tex
+%   pdflatex supplementary.tex
+%   pdflatex main.tex
+%   pdflatex main.tex
+% =============================================================================
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{natbib}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{authblk}
+\usepackage{xr}
+
+% Resolve \ref to labels defined in main.tex
+\externaldocument{main}
+
+% Custom commands (must match main.tex)
+\newcommand{\model}[1]{\textsc{#1}}
+\newcommand{\auc}{\text{AUC}}
+\newcommand{\ci}[2]{[#1, #2]}
+
+% Number supplementary notes/tables/figures with an S prefix
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thesubsection}{S\arabic{subsection}}
+
+\title{Supplementary Material: Stress-testing single-cell foundation models
+on underrepresented platelets: a patient-level mortality benchmark}
+
+\author[1]{Xinru Qiu}
+\author[1]{Adam Godzik}
+\affil[1]{Division of Biomedical Sciences, School of Medicine, University of California, Riverside, CA, USA}
+
+\date{}
+
+\setlength{\emergencystretch}{3em}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+% ============================================================================
+% SUPPLEMENTARY NOTES
+% ============================================================================
+\section{Supplementary Notes}
+
+\subsection{Outcome-label provenance}
+\label{sn:label_provenance}
+
+Outcome labels for every fatal patient were verified against source records:
+Ren (GEO outcome field), Stephenson (E-MTAB-10026 outcome attribute, 8 deaths),
+Qiu GSE167363 (publication, 2 deaths), Liu (Table S6B, 4 deaths),
+Schulte-Schrepping (Table S1, 3 deaths), Bernardes (publication, 1 death),
+GSE279452 (series supplement, 17 deaths at 28 days), and Combes (Supplementary
+Table 1 of the source publication). GSE151263 does not report per-patient
+outcomes and is excluded from all mortality analyses
+(Section~\ref{ssec:methods_cohort}).
+
+\subsection{Platelet and megakaryocyte content of pretraining corpora}
+\label{sn:corpus_platelet}
+
+We measured or bounded the platelet content of each model's pretraining
+corpus against public records. For \model{STATE}'s corpus the content is
+bounded through its public component corpora: the scBaseCount component
+(71.7M cells) contains no platelet or megakaryocyte category in its
+cell-type annotation space, and its quality-control filters ($\geq$300 genes
+and $\geq$500 UMIs per cell) exclude typical anucleate platelet barcodes;
+Tahoe-100M consists of cancer cell lines; the Census-derived remainder
+shares the Census bound below, capping \model{STATE}'s overall platelet
+content below 0.05\%. For \model{UCE}'s IMA corpus, the published
+51-category composition of the 2{,}969{,}114-cell representative sample
+contains neither platelets nor megakaryocytes. For the three Census-derived
+corpora, platelet-annotated cells are present and similarly rare:
+approximately 0.120\% (\model{UCE}), 0.125\% (\model{scGPT}), and
+0.120--0.125\% (\model{scPRINT-2}) of the respective releases, tens of
+thousands of annotated cells. For \model{Geneformer} (Genecorpus-104M),
+cell-type-resolved composition is not published in any material we could
+identify and cannot be bounded. Per-corpus metrics in one unit where
+available are given in Supplementary Table~\ref{tab:corpus_fractions}. This
+measurement bears directly on the attribution hypothesis in
+Section~\ref{ssec:discussion_property}: the three bounded models share
+essentially identical platelet fractions yet span most of the between-model
+performance spread, one leader (\model{STATE}) is bounded near zero, and the
+other (\model{Geneformer}) cannot be bounded at all --- corpus platelet
+content does not track performance wherever it can actually be checked.
+
+\subsection{Aggregation sensitivity}
+\label{sn:aggregation}
+
+Patient-level scores were computed as the mean of a patient's out-of-fold cell
+predictions. Recomputing all headline tables with median and 10\% trimmed-mean
+aggregation changed no ranking and no significance call
+(Supplementary Table~\ref{tab:aggregation_sens}).
+
+\subsection{Winner-corrected primary test}
+\label{sn:winner_test}
+
+The pre-specified primary question, whether the best foundation model beats
+the from-scratch baseline, was tested with a max-statistic permutation test on
+the seed-ensemble out-of-fold scores: mortality labels were permuted at the
+patient level (10{,}000 permutations), the maximum
+foundation-model-minus-baseline AUC difference was recorded for each
+permutation, and the familywise $P$ is the fraction of permutations whose
+maximum reaches the observed maximum. This construction simulates the null
+while preserving the inter-model score correlations (Pearson $r = 0.71$--$0.90$;
+Supplementary Table~\ref{tab:score_correlation}) and the winner-selection
+procedure itself; because labels are permuted on frozen scores without
+retraining, it tests the slightly weaker null that the scores carry no
+outcome information. The observed maximum contrast (\model{Geneformer},
+$+0.064$ AUC) gave $P = 0.181$ (Supplementary
+Table~\ref{tab:winner_ensemble}); a
+recentered-bootstrap cross-check (subtracting the observed per-model
+differences before taking the maximum in each patient resample) gave
+$P = 0.073$. The pre-specified primary contrast is therefore not met. As an
+exploratory comparison, a consensus predictor averaging the five models'
+scores reached AUC 0.768, above the PCA-200 baseline (0.742) but below the
+best single model (\model{Geneformer} 0.807): averaging over the weaker
+candidates scores 0.039 AUC below the post-hoc winner on the same patients
+used to identify it; this comparison is descriptive, and a prospective choice
+between winner selection and ensembling would require nested evaluation.
+
+\subsection{Variance-estimation consistency check}
+\label{sn:se_check}
+
+Pairwise AUC contrasts are reported with exact DeLong standard errors
+(placement-value covariance) computed on the seed-ensemble scores. As a
+consistency check, patient-level paired bootstrap standard errors agree with
+the exact DeLong values for all 15 within-COVID pairs (within about 5\%;
+Supplementary Table~\ref{tab:se_check}). The Hanley--McNeil formula \citep{hanley1982meaning} with the
+raw-score Pearson correlation is an unpaired approximation and overestimates
+the paired standard errors by 20--35\% in 8 of 15 pairs; it is not used for
+any reported contrast. The winner-selection and range statistics
+(Supplementary Notes~\ref{sn:winner_test} and~\ref{sn:range_test}) do not
+admit a DeLong form and use permutation nulls throughout.
+
+\subsection{Stability of the primary result}
+\label{sn:fragility}
+
+Leave-one-fatal-patient-out refits (25 in total) repeated the permutation
+max-statistic test on 239 patients. Every refit returned $P > 0.05$ (range
+0.141--0.288): the primary null is not driven by any single death
+(Section~\ref{ssec:r1_within_covid}).
+
+\subsection{QC-metrics-only baseline}
+\label{sn:qc_baseline}
+
+To test whether predictions could be explained by library-quality or
+processing artifacts rather than biology, we trained logistic regression on
+per-patient QC metrics (mean UMI counts, detected genes, percent mitochondrial
+reads, and cell count) under the identical repeated-CV protocol
+(Section~\ref{ssec:methods_cv}). On the COVID-only cohort (240 patients, 25
+fatal) the model scored below chance (0.376 as-fit). The below-chance value is
+a textbook suppression pattern, not an anomaly: the QC features are
+mechanically correlated with library depth and carry outcome information only
+conditional on it. Adding each patient's log-transformed cell count to the
+same model recovers a correctly oriented 0.618 as-fit, and adding cohort
+identity on top reaches 0.627; it is the cell count, not cohort, that flips
+the sign (cohort contributes $+0.009$). Fatal patients showed higher mean UMI
+counts and mitochondrial fractions than survivors in both diseases, consistent
+with more activated, fragment-rich platelet transcriptomes (per-patient QC
+distributions are available as machine-readable data; see Data and Code
+Availability). Because a baseline race cannot separate these contributions,
+the confound question is settled by the incremental-value test in
+Supplementary Note~\ref{sn:qc_incremental}.
+
+\subsection{Incremental value over QC, cell-count, and cohort covariates}
+\label{sn:qc_incremental}
+
+The decisive confound test is incremental value, not a baseline race. The
+baseline covariate set (per-patient mean UMI counts, detected genes, percent
+mitochondrial reads, log-transformed cell count, and cohort indicator
+variables; 13 covariates) was fit with L2-regularized logistic regression
+($C = 0.3$; regularization is required at 13 covariates and 25 events) under
+the identical repeated-CV protocol, reaching a patient-level AUC of 0.627
+as-fit on the seed-ensemble scores.
+
+The pre-specified primary test for this question is a single nested
+likelihood-ratio test, covariates-only against covariates plus the PCA-200
+representation score, chosen because it involves no model selection and is
+exactly the question asked: does a platelet representation add over QC, cell
+count, and cohort? Because an L2-penalized statistic has no valid $\chi^2(1)$
+reference, the null distribution is empirical: patient-level label
+permutation (10{,}000 permutations) with both nested models refit per
+permutation at the identical penalty. The observed statistic (4.477) exceeds
+every permuted maximum, $P < 0.0001$ at the estimator's resolution floor
+($P < 1/10{,}001$). This pre-specified test alone carries the conclusion that
+mortality is learnable from platelet transcriptomes beyond QC, cell count,
+and cohort.
+
+The five foundation models are reported as exploratory, with two readings
+paired so that neither is quoted alone (Supplementary
+Table~\ref{tab:incremental_value}). By the same nested likelihood-ratio test
+against the empirical null, every representation added significant value
+(four of five at the resolution floor $P < 0.0001$; \model{UCE} weakest at
+$P = 0.0022$); by paired-AUC comparison against the same baseline, five of
+six increments were significant (\model{STATE} $+0.065$, \model{Geneformer}
+$+0.053$, PCA-200 $+0.050$, \model{scPRINT-2} $+0.046$, \model{scGPT}
+$+0.026$; exact DeLong $p = 0.0001$--$0.006$), with \model{UCE} again the
+exception ($+0.016$, $p = 0.072$). The likelihood-ratio family establishes
+that incremental information exists; the AUC increments quantify its
+magnitude; the penalized statistic is sensitive to presence but nearly
+insensitive to magnitude, so no effect size should be read from the
+likelihood-ratio $P$-values themselves. Two diagnostic tables accompany the
+result: the cross-validation folds are cohort-balanced (Supplementary
+Table~\ref{tab:fold_balance}), and the per-cohort QC--mortality associations
+are reported in Supplementary Table~\ref{tab:qc_by_cohort}.
+
+\subsection{Each method against the count-plus-disease null}
+\label{sn:method_vs_null}
+
+Each method's seed-ensemble scores were compared with the null model
+(per-patient cell count and disease label; AUC 0.554) by exact DeLong paired
+tests (Supplementary Table~\ref{tab:method_vs_null}). Five of six methods
+significantly outscored the null: \model{STATE}
+($p = 0.0014$), \model{Geneformer} ($p = 0.0006$), \model{scPRINT-2}
+($p = 0.011$), \model{scGPT} ($p = 0.023$), and PCA-200 ($p = 0.013$), all
+surviving Benjamini--Hochberg correction across the six tests. \model{UCE}
+did not ($+0.122$, $p = 0.157$) and is the only method failing that
+correction; it is the weakest method throughout this benchmark
+(Section~\ref{ssec:r1_within_covid}).
+
+\subsection{Cohort-only baseline}
+\label{sn:cohort_baseline}
+
+Because cohort is the variable the QC diagnostic points at, we scored each
+patient by their cohort's mortality rate, estimated within training folds
+only with add-one (Laplace) smoothing, under the identical repeated-CV
+protocol. The cohort-only model reached a patient-level AUC of
+0.486 $\pm$ 0.038 (repeat-mean $\pm$ repeat-sd), statistically
+indistinguishable from chance. This number must not be read as exonerating
+cohort: add-one smoothing is size-dependent, so a small zero-death cohort
+receives a higher smoothed rate than a large cohort with real deaths,
+inverting the risk ordering by construction (per-cohort counts and smoothed
+rates in Supplementary Table~\ref{tab:cohort_rates}). The estimate therefore
+measures the failure of one particular cohort-risk estimator and is silent on
+the confound question; the evidence on that question is the incremental-value
+test with cohort identity in the covariate set
+(Supplementary Note~\ref{sn:qc_incremental}).
+
+\subsection{Patient-matched monocyte comparison}
+\label{sn:monocyte_matched}
+
+The monocyte--platelet comparison was repeated on the patient intersection
+identified through the verified sample-to-patient crosswalk (Ren: sample title
+base to patient; Stephenson: individual identifier; GSE167363: internal sample
+map; one Ren survivor patient, S-S072, is not represented in the monocyte
+cell set). Apparent direction flips under single-seed splits were traced to
+split-to-split variability and disappeared under the 10-seed ensemble:
+\model{STATE}, \model{scGPT}, and the PCA-200 baseline returned to the
+platelet-favoring direction (or to zero difference) in all configurations,
+while \model{UCE}'s monocyte-versus-platelet difference remained the closest
+to zero of any method in every configuration --- the model-specific pattern
+reported in Section~\ref{ssec:r4_monocyte}.
+
+\subsection{Severe-excluded sensitivity analysis}
+\label{sn:severe}
+
+Because severe cases (ICU-discharged survivors) are clinically adjacent to
+fatal outcomes and severity grading is not harmonized across source cohorts,
+the primary label definition includes severe cases as survivors. The
+bidirectional transfer analysis was recomputed with severe cases excluded
+from the survivor class (Supplementary Table~\ref{tab:severe_sens}).
+Reverse-direction point estimates shifted by $+0.011$--$+0.079$, and the
+variant reverses the top two reverse-direction models (\model{Geneformer}
+0.775 above \model{STATE} 0.765, with \model{UCE} 0.772 between them) ---
+the basis for reporting the reverse-direction ranking as rank-indeterminate
+(Section~\ref{ssec:r3_cross_disease}).
+
+\subsection{Nested-comparison (complementarity) family}
+\label{sn:nested_comparison}
+
+A question distinct from superiority is complementarity: whether a
+foundation-model score adds information beyond the baseline's score even
+without ranking patients better on its own. We tested it with nested models:
+a reduced model containing the PCA-200 score (in three comparator
+configurations: the PCA-200 score alone; plus log-transformed cell count;
+plus the full QC and cohort covariate set) against a full model adding each
+foundation-model score in turn, refit inside the repeated-CV protocol with
+all preprocessing fit within training folds, including per-fold feature
+standardization. Any nested out-of-fold pooling harness of this kind is
+required to pass a unit test before use: a known frozen score refit through
+the harness must reproduce its own out-of-fold AUC within 0.02--0.04, and a
+harness failing the gate produces no significance conclusions. With the gated
+harness, the reduced models reached 0.710--0.724 patient-level AUC against
+PCA-200's own 0.725, and no foundation model's increment survived
+Benjamini--Hochberg correction ($\alpha = 0.05$) in any of the three
+comparator configurations (0/5 in each; rank-by-rank values in Supplementary
+Table~\ref{tab:nested_oof}); the only nominal signal was \model{STATE} at
+$p = 0.025$--$0.045$ across configurations, not surviving correction. A
+winner-corrected deviance permutation test on the same nested construction is
+retained as an in-sample cross-check (Supplementary
+Table~\ref{tab:nested_deviance}); because it does not admit an out-of-fold
+form, it carries no headline weight.
+
+\subsection{Confirmatory range-statistic test for the leaders--UCE gap}
+\label{sn:range_test}
+
+The single clearly resolvable gap in the within-COVID ranking, the two
+leaders' advantage over \model{UCE} ($+0.118$ and $+0.130$), was tested
+against the winner-selection null with a range statistic on the same 10{,}000
+patient-level label permutations as the primary analysis: the max-minus-min
+AUC across the five foundation models was recorded per permutation, and the
+observed range (0.130) exceeded the null distribution
+($P = 0.011$). We report this separation as the paper's single confirmatory
+secondary result (Section~\ref{ssec:r1_within_covid}).
+
+\subsection{The 5-patient GSE167363 test set}
+\label{sn:gse167363_testset}
+
+For completeness, the cross-disease transfer analysis was also run on the
+5-patient GSE167363 sepsis test set (2 fatal). Forward point estimates were
+substantially higher (up to 1.00 patient-level AUC: \model{STATE} 1.00,
+\model{Geneformer} 1.00, \model{scGPT} 0.833, \model{UCE} 0.667,
+\model{scPRINT-2} 0.667). The reverse configuration trained on the same five
+patients and tested on COVID-19 (240 patients, 25 fatal) gave \model{STATE}
+0.799 (95\% CI [0.718, 0.876]) with logistic regression, \model{scPRINT-2}
+0.695, \model{Geneformer} 0.668, \model{scGPT} 0.661, and \model{UCE} 0.653.
+Given that the pool contains five patients, these values are reported only as
+a labeled small-sample reference and must not be compared with the 91-patient
+and 32-patient test sets used for all reported transfer conclusions. Two further
+models, TranscriptFormer \citep{pearce2025transcriptformer} and STACK, were
+evaluated under a different held-out test split; their scores are not comparable to the reported transfer and
+adaptation values, and they are excluded from all such comparisons
+(Section~\ref{ssec:r3_cross_disease}).
+
+\subsection{Per-patient cell-count association}
+\label{sn:cellcount}
+
+Per-patient platelet cell counts correlated only weakly with predicted scores
+across models (Spearman $\rho = 0.18$--0.29 for all five foundation models and
+the PCA-200 baseline; minimum 0.183 for \model{UCE}). A null model using only
+cell count and disease label reached 0.554 $\pm$ 0.046 patient-level AUC within
+COVID-19 (Supplementary Figure~\ref{fig:supp_cellcount} and Supplementary
+Table~\ref{tab:cellcount}).
+
+\subsection{Age structure of the GSE279452 sepsis cohort}
+\label{sn:age}
+
+The analysis set and the GEO series use three different counts, which we
+state once to prevent misreading: 93 is the number of Adult Sepsis candidate
+donors in GSE279452; 92 of them matched per-sample age records directly (one
+donor, \texttt{Skin-S152}, matches only after correcting a sample-title
+spelling inconsistency in the GEO series, where the sample is titled
+\texttt{Skin-152} while its same-site siblings carry the \texttt{Skin-S}
+prefix); and 91 patients enter the analysis set (93 minus two donors lacking
+the 28-day outcome label), of whom 90 have direct age records. All known ages
+are adult (median 67 years, range 19--93; the two youngest donors are 19
+years old). The full GSE279452 series additionally contains 26 pediatric
+samples (17 sepsis, 9 healthy or ICU control; ages 0.1--15 years); none of
+them entered the candidate set, so the pediatric/adult mixture and the
+site--age correlation present in the full series do not enter any reported
+analysis. Fatal outcomes stratify by age as expected:
+0 of 6 patients below 40, 7 of 30 patients aged 40--60, and 10 of 54
+patients over 60 with a known 28-day outcome (2 further donors in this stratum
+lack the 28-day label; 17 fatal in total). The cohort is single-site and single-platform
+(10x), which is reported as a cohort-level confound for the cross-disease
+transfer analyses (Section~\ref{ssec:limitations}; Supplementary
+Figure~\ref{fig:supp_age}).
+
+\subsection{Masking-based gene attribution and cross-model GSEA}
+\label{sn:attribution_gsea}
+
+The masking-attribution pipeline (Section~\ref{ssec:methods_masking}) produced
+one ranked per-gene list per model (5{,}038 genes for \model{Geneformer},
+5{,}000 for \model{STATE}, 4{,}987 for \model{scGPT}, 4{,}850 for \model{UCE},
+4{,}850 for \model{scPRINT-2}, each passing a minimum-occurrence filter of 30
+cells), of which 3{,}917 genes are ranked by all five models and form the
+common comparison set used for every cross-model statistic in
+Section~\ref{ssec:r6_attribution_gsea}. Pairwise Spearman rank correlations
+of the full lists range from $-0.03$ to $0.40$; 531 of the 3{,}917 common
+genes (365 positive, 166 negative) carry the same sign in all five models,
+exceeding the $\sim$272 expected under the models' independent marginal sign
+rates. The per-model GSEA tables (Hallmark 2020, KEGG 2021, Reactome 2022;
+FDR $q < 0.25$) contain 6/23/2 significant terms for \model{Geneformer},
+5/7/2 for \model{STATE}, 28/63/257 for \model{scGPT}, 23/70/82 for
+\model{UCE}, and 0/0/0 for \model{scPRINT-2}; no term is significant in four
+or more models. The joint-occlusion dose control masked the top-$N$ attributed
+genes jointly ($N \in \{10, 30, 128\}$, up to half of each cell's candidate
+sentence) against matched random-$N$ sets (three draws per cell, $n = 10{,}736$
+cells): joint deltas were indistinguishable from zero and from random-$N$
+occlusion across all tiers and polarities (paired tests, $P = 0.21$--$0.93$),
+while the additive prediction from single-gene attributions was 55--750 times
+larger. As stated in Section~\ref{ssec:r6_attribution_gsea}, the candidate
+gene universes differed across models by construction (the vocabulary
+intersection of the models built up to each run: 11{,}984 genes for
+\model{Geneformer} and \model{STATE}, 11{,}977 after intersecting
+\model{scGPT}'s vocabulary, smaller still after \model{UCE}'s and
+\model{scPRINT-2}'s), and \model{UCE}'s attributions used the one-line
+float-to-boolean mask correction described in
+Section~\ref{ssec:methods_masking}. Full ranked lists, GSEA tables, the
+cross-model comparison tables, and the occlusion-control per-cell results are
+available as machine-readable data (see Data and Code Availability).
+
+
+% ============================================================================
+% SUPPLEMENTARY TABLES
+% ============================================================================
+\section{Supplementary Tables}
+
+% tab:corpus_fractions — one-unit corpus metrics for all five models (main text)
+\begin{table}[t]
+\centering
+\caption{Pretraining-corpus composition in one unit per model: the fraction of
+pretraining cells from blood/bone marrow, from inflammatory or infectious
+conditions, and annotated as platelets, as documented in each corpus's own
+records. ``Not reported'' means no cell-type- or condition-resolved
+composition is published for that corpus. Checkpoint names are pinned because
+corpus claims differ across versions.}
+\label{tab:corpus_fractions}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llllll}
+\toprule
+\textbf{Model (checkpoint)} & \textbf{Corpus} & \textbf{Cells} & \textbf{Blood / marrow} & \textbf{Inflamm./infect.} & \textbf{Platelet} \\
+\midrule
+STATE (SE-600M) & scBaseCount + CxG + Tahoe-100M & 167M & largest single share of scBaseCount (43\% of corpus), exact \% not reported; Tahoe part is cancer cell lines & 30.7\% cancer within scBaseCount; rest not reported & structurally absent in scBaseCount (no platelet category); full corpus not reported \\
+Geneformer (V2-316M) & Genecorpus-104M (non-cancer) & 104M & $\leq$25\% by construction (per-tissue cap); 49 of 561 source datasets are bone marrow & disease conditions included (only high-mutational-burden cells excluded); \% not reported & not reported \\
+scPRINT-2 (small-v2) & CxG + Tahoe-100M + scBaseCount & 350M & not reported (scBaseCount part shares scBaseCount's blood/marrow skew) & not reported & 0.120--0.125\% (Census-derived part) \\
+scGPT (whole-human) & CELLxGENE, non-disease & 33M & not reported (51 organs incl. blood and bone marrow) & 0\% by design (non-disease only) & 0.125\% \\
+UCE (650M) & IMA (CxG + 28 datasets) & 36M & 6.6\% (SI Table 19 representative sample); brain $\approx$25\% & not reported (mostly reference atlases) & 0.120\% (Census-derived part); published 51-category list: none \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+% tab:property_multiplicity — candidate attributes and whether they separate the observed ranking (supplementary)
+\begin{table}[t]
+\centering
+\caption{Candidate model attributes and whether each separates the observed
+ranking, taking the clearly resolvable gap to be \model{Geneformer}/\model{STATE}
+(top two, statistically inseparable) versus \model{scGPT}/\model{UCE} (bottom
+two). \model{scPRINT-2} sits between the groups and is shown in every row
+because it breaks several otherwise-clean separations. The composite property
+discussed in Section~\ref{ssec:discussion_property} is one of the few
+attributes that fits, and the only one with a direct measurement, which
+falsifies it where it is measurable
+(Supplementary Note~\ref{sn:corpus_platelet}).}
+\label{tab:property_multiplicity}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llll}
+\toprule
+\textbf{Candidate attribute} & \textbf{Separates top-2 from bottom-2?} & \textbf{Direction} & \textbf{Contradiction} \\
+\midrule
+Corpus blood / bone-marrow fraction & \textbf{yes} & leaders blood/marrow-skewed; \model{scGPT} mixed, \model{UCE} 6.6\% & \model{scPRINT-2} shares the scBaseCount skew yet ranks third; the platelet-specific fraction is falsified where measurable (Supplementary Note~\ref{sn:corpus_platelet}) \\
+Corpus disease-condition fraction & partial & \model{scGPT} 0\% (fifth) & \model{UCE} mixed-corpus yet last \\
+Objective: rank-ordering of genes & no & \model{Geneformer} only & separates \model{Geneformer} alone, not the pair \\
+Objective includes population-level term & no & \model{STATE} only & separates \model{STATE} alone \\
+Objective: per-gene value reconstruction & no & \model{STATE}, \model{scGPT}, \model{UCE} share it & groups a leader with both bottom models \\
+Tokenization: protein-embedding genes & no & \model{STATE}, \model{UCE}, \model{scPRINT-2} & mixes leader, bottom, and middle \\
+Supervised label heads in pretraining & no & \model{scPRINT-2} only & middle rank, breaks the identity story \\
+Corpus size (cells) & no & \model{scPRINT-2} largest (350M), mid-ranked & --- \\
+Parameter count & no & \model{UCE} largest (675M), last & --- \\
+Embedding dimension & no & \model{STATE} 2{,}058 first; \model{UCE} 1{,}280 last & --- \\
+Species coverage & no & \model{UCE}, \model{scPRINT-2} multi-species & one last, one mid \\
+Release recency & no & no monotone relation & --- \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Incremental value over the QC + cell count + cohort covariate
+baseline (patient-level AUC 0.627 as-fit; 240 patients, 25 fatal). The
+PCA-200 row is the pre-specified primary for this question (nested
+likelihood-ratio test against a 10{,}000-permutation empirical null, chosen
+because it involves no model selection); the five foundation models are
+exploratory, with both readings paired. The nested-LR family establishes
+that incremental information exists; the $\Delta$AUC column quantifies its
+magnitude.}
+\label{tab:incremental_value}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Model} & \textbf{Augmented AUC} & \textbf{$\Delta$AUC} & \textbf{DeLong SE} & \textbf{DeLong $p$} & \textbf{Nested-LR $P$} \\
+\midrule
+\model{STATE} & 0.692 & $+0.065$ & 0.0171 & 0.0002 & $<0.0001$ \\
+\model{Geneformer} & 0.680 & $+0.053$ & 0.0140 & 0.0001 & $<0.0001$ \\
+PCA-200 (pre-specified primary) & 0.677 & $+0.050$ & 0.0172 & 0.0034 & $<0.0001$ \\
+\model{scPRINT-2} & 0.673 & $+0.046$ & 0.0167 & 0.0054 & $<0.0001$ \\
+\model{scGPT} & 0.653 & $+0.026$ & 0.0097 & 0.0063 & $<0.0001$ \\
+\model{UCE} & 0.643 & $+0.016$ & 0.0089 & 0.072 & 0.0022 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Each method's seed-ensemble scores against the count-plus-disease
+null model (AUC 0.554; exact DeLong paired tests, 240 patients, 25 fatal).
+Five of six methods survive Benjamini--Hochberg correction across the six
+tests; \model{UCE} is the only one that does not.}
+\label{tab:method_vs_null}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{AUC} & \textbf{$\Delta$ vs null} & \textbf{DeLong SE} & \textbf{DeLong $p$} \\
+\midrule
+\model{Geneformer} & 0.807 & $+0.252$ & 0.0738 & 0.0006 \\
+\model{STATE} & 0.795 & $+0.240$ & 0.0749 & 0.0014 \\
+\model{scPRINT-2} & 0.756 & $+0.202$ & 0.0796 & 0.011 \\
+PCA-200 & 0.742 & $+0.188$ & 0.0753 & 0.013 \\
+\model{scGPT} & 0.739 & $+0.185$ & 0.0814 & 0.023 \\
+\model{UCE} & 0.677 & $+0.122$ & 0.0863 & 0.157 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Per-cohort mortality rates and the add-one (Laplace) smoothed rate
+used by the cohort-only baseline. Smoothing is size-dependent: small
+zero-death cohorts (Wilk, Lee, Arunachalam, Combes) receive smoothed rates
+above Schulte-Schrepping's and Bernardes's raw rates, inverting the risk
+ordering by construction; the cohort-only AUC of 0.486 therefore measures
+the failure of this estimator, not the absence of cohort signal.}
+\label{tab:cohort_rates}
+\small
+\begin{tabular}{lrrcc}
+\toprule
+\textbf{Cohort} & \textbf{Patients} & \textbf{Fatal} & \textbf{Raw rate} & \textbf{Laplace rate} \\
+\midrule
+Stephenson & 90 & 8 & 0.089 & 0.098 \\
+Ren & 54 & 9 & 0.167 & 0.179 \\
+Liu & 31 & 4 & 0.129 & 0.152 \\
+Schulte-Schrepping & 18 & 3 & 0.167 & 0.200 \\
+Bernardes & 13 & 1 & 0.077 & 0.133 \\
+Combes & 13 & 0 & 0.000 & 0.067 \\
+Lee & 8 & 0 & 0.000 & 0.100 \\
+Arunachalam & 7 & 0 & 0.000 & 0.111 \\
+Wilk & 6 & 0 & 0.000 & 0.125 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Cohort balance across cross-validation folds (seed 42, one
+representative repeat): every test fold contains 48 patients from all nine
+cohorts, with 4--6 fatal patients. Per-fold per-cohort counts are available
+as machine-readable data (see Data and Code Availability).}
+\label{tab:fold_balance}
+\small
+\begin{tabular}{cccc}
+\toprule
+\textbf{Fold} & \textbf{Test patients} & \textbf{Test fatal} & \textbf{Cohorts in test} \\
+\midrule
+1 & 48 & 4 & 9 \\
+2 & 48 & 4 & 9 \\
+3 & 48 & 6 & 9 \\
+4 & 48 & 5 & 9 \\
+5 & 48 & 6 & 9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Per-cohort association between QC metrics (median UMI counts) and
+mortality (Mann--Whitney $U$, uncorrected). Cohorts with zero fatal patients
+cannot be tested. One of six testable cohorts reaches nominal $p = 0.031$;
+none survives multiple-comparison correction.}
+\label{tab:qc_by_cohort}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Cohort} & \textbf{Patients} & \textbf{Fatal} & \textbf{Median UMI (fatal)} & \textbf{Median UMI (surv.)} & \textbf{MWU $p$} \\
+\midrule
+Stephenson & 90 & 8 & 778 & 980 & 0.288 \\
+Ren & 54 & 9 & 1{,}682 & 1{,}684 & 0.790 \\
+Liu & 31 & 4 & 1{,}226 & 693 & 0.031 \\
+Schulte-Schrepping & 18 & 3 & 3{,}402 & 1{,}299 & 0.100 \\
+Bernardes & 13 & 1 & 533 & 550 & 1.000 \\
+Wilk, Lee, Arunachalam, Combes & 6--13 & 0 & \multicolumn{3}{c}{insufficient variation for within-cohort test} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Nested-comparison (complementarity) family: out-of-fold
+$\Delta$AUC (exact DeLong $p$) of each foundation-model score over three
+reduced-model comparators, refit in the repeated-CV protocol with per-fold
+standardization (the gated harness; reduced-model OOF AUCs now sit at
+0.710--0.724 against PCA-200's own 0.725). No increment survives
+Benjamini--Hochberg correction ($\alpha = 0.05$) in any configuration (0/5
+each); \model{STATE}'s nominal $p = 0.025$--$0.045$ is the only signal
+below 0.05 and does not survive correction.}
+\label{tab:nested_oof}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Reduced model (OOF AUC)} & \textbf{\model{STATE} $\Delta$ ($p$)} & \textbf{\model{Geneformer} $\Delta$ ($p$)} & \textbf{\model{scPRINT-2} $\Delta$ ($p$)} & \textbf{\model{scGPT} $\Delta$ ($p$)} & \textbf{\model{UCE} $\Delta$ ($p$)} \\
+\midrule
+QC + count + cohort + PCA-200 (0.710) & $+0.024$ (0.031) & $+0.033$ (0.083) & $-0.002$ (0.891) & $+0.000$ (0.967) & $-0.000$ (0.906) \\
+PCA-200 alone (0.724) & $+0.052$ (0.045) & $+0.049$ (0.056) & $+0.019$ (0.402) & $+0.010$ (0.496) & $-0.007$ (0.306) \\
+PCA-200 + log cell count (0.713) & $+0.060$ (0.025) & $+0.056$ (0.045) & $+0.028$ (0.264) & $+0.013$ (0.361) & $-0.008$ (0.271) \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{In-sample deviance cross-check on the nested construction
+(winner-corrected permutation null over 10{,}000 label permutations: median
+0.188, 95th percentile 0.790, 99th percentile 1.230, maximum 3.819).
+Retained as an in-sample cross-check only; because this construction does
+not admit an out-of-fold form, it carries no headline weight
+(Supplementary Note~\ref{sn:nested_comparison}).}
+\label{tab:nested_deviance}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Model} & \textbf{Deviance statistic} & \textbf{Position vs null} \\
+\midrule
+\model{STATE} & 4.328 & exceeds null maximum \\
+\model{Geneformer} & 3.223 & exceeds 99th percentile \\
+\model{scPRINT-2} & 3.184 & exceeds 99th percentile \\
+\model{scGPT} & 1.537 & exceeds 99th percentile \\
+\model{UCE} & 0.875 & exceeds 95th percentile \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Pearson correlations between the six methods' seed-ensemble
+patient-level scores (within-COVID). High inter-model correlations
+($r = 0.71$--$0.90$) are what make the winner-correction in the primary
+test necessary (Supplementary Note~\ref{sn:winner_test}).}
+\label{tab:score_correlation}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+ & \textbf{\model{STATE}} & \textbf{\model{UCE}} & \textbf{\model{Geneformer}} & \textbf{\model{scPRINT-2}} & \textbf{\model{scGPT}} & \textbf{PCA-200} \\
+\midrule
+\model{STATE} & 1.000 & 0.794 & 0.904 & 0.897 & 0.816 & 0.859 \\
+\model{UCE} & 0.794 & 1.000 & 0.734 & 0.755 & 0.843 & 0.707 \\
+\model{Geneformer} & 0.904 & 0.734 & 1.000 & 0.877 & 0.781 & 0.830 \\
+\model{scPRINT-2} & 0.897 & 0.755 & 0.877 & 1.000 & 0.759 & 0.784 \\
+\model{scGPT} & 0.816 & 0.843 & 0.781 & 0.759 & 1.000 & 0.776 \\
+PCA-200 & 0.859 & 0.707 & 0.830 & 0.784 & 0.776 & 1.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Per-model advantage over the PCA-200 baseline on the seed-ensemble
+scores with patient-level bootstrap intervals (10{,}000 resamples) and
+nominal uncorrected $p$-values. The pre-specified primary evaluates only the
+maximum of the five foundation-model contrasts (\model{Geneformer},
+$+0.064$) against the permutation max-statistic null: familywise
+$P = 0.181$ (Supplementary Note~\ref{sn:winner_test}).}
+\label{tab:winner_ensemble}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{AUC} & \textbf{$\Delta$ vs PCA-200} & \textbf{Bootstrap 95\% CI} & \textbf{Uncorrected $p$} \\
+\midrule
+\model{Geneformer} & 0.807 & $+0.064$ & [0.007, 0.127] & 0.026 \\
+\model{STATE} & 0.795 & $+0.052$ & [0.004, 0.107] & 0.033 \\
+\model{scPRINT-2} & 0.756 & $+0.014$ & [$-0.044$, 0.078] & 0.675 \\
+\model{scGPT} & 0.739 & $-0.003$ & [$-0.057$, 0.053] & 0.894 \\
+\model{UCE} & 0.677 & $-0.066$ & [$-0.140$, 0.009] & 0.087 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Variance-estimation consistency: patient-level paired bootstrap
+versus exact DeLong standard errors for all 15 within-COVID pairwise
+contrasts (seed-ensemble scores). The two estimators agree within about 5\%
+throughout (Supplementary Note~\ref{sn:se_check}).}
+\label{tab:se_check}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Pair} & \textbf{$\Delta$AUC} & \textbf{Bootstrap SE} & \textbf{Exact DeLong SE} & \textbf{DeLong $p$} \\
+\midrule
+\model{STATE} -- \model{UCE} & 0.118 & 0.0279 & 0.0278 & $<$0.0001 \\
+\model{STATE} -- \model{Geneformer} & $-0.012$ & 0.0220 & 0.0217 & 0.577 \\
+\model{STATE} -- \model{scPRINT-2} & 0.039 & 0.0194 & 0.0190 & 0.043 \\
+\model{STATE} -- \model{scGPT} & 0.055 & 0.0229 & 0.0225 & 0.014 \\
+\model{STATE} -- PCA-200 & 0.052 & 0.0266 & 0.0265 & 0.048 \\
+\model{UCE} -- \model{Geneformer} & $-0.130$ & 0.0267 & 0.0262 & $<$0.0001 \\
+\model{UCE} -- \model{scPRINT-2} & $-0.080$ & 0.0295 & 0.0293 & 0.0066 \\
+\model{UCE} -- \model{scGPT} & $-0.063$ & 0.0254 & 0.0250 & 0.012 \\
+\model{UCE} -- PCA-200 & $-0.066$ & 0.0383 & 0.0377 & 0.081 \\
+\model{Geneformer} -- \model{scPRINT-2} & 0.051 & 0.0265 & 0.0259 & 0.051 \\
+\model{Geneformer} -- \model{scGPT} & 0.068 & 0.0262 & 0.0256 & 0.008 \\
+\model{Geneformer} -- PCA-200 & 0.064 & 0.0309 & 0.0307 & 0.036 \\
+\model{scPRINT-2} -- \model{scGPT} & 0.017 & 0.0234 & 0.0228 & 0.458 \\
+\model{scPRINT-2} -- PCA-200 & 0.014 & 0.0311 & 0.0308 & 0.655 \\
+\model{scGPT} -- PCA-200 & $-0.003$ & 0.0278 & 0.0277 & 0.909 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Severe-excluded sensitivity analysis, reverse transfer direction
+(sepsis$\rightarrow$COVID, logistic regression; patient-level AUC). Point
+estimates shift by $+0.011$--$+0.079$ and the top two models reverse, the
+basis for reporting the reverse-direction ranking as rank-indeterminate
+(Section~\ref{ssec:r3_cross_disease}).}
+\label{tab:severe_sens}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{Primary (severe as survived)} & \textbf{Severe excluded} & \textbf{Shift} \\
+\midrule
+\model{STATE} & 0.721 & 0.765 & $+0.044$ \\
+\model{Geneformer} & 0.712 & 0.775 & $+0.063$ \\
+\model{UCE} & 0.693 & 0.772 & $+0.079$ \\
+\model{scGPT} & 0.642 & 0.678 & $+0.036$ \\
+\model{scPRINT-2} & 0.619 & 0.630 & $+0.011$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Aggregation sensitivity: patient-level AUC (repeat-mean $\pm$
+repeat-sd) with mean versus median aggregation of each patient's out-of-fold
+cell predictions (logistic regression). The 10\% trimmed-mean variant is
+intermediate. No ranking and no significance call changes across
+aggregation rules (Supplementary Note~\ref{sn:aggregation}).}
+\label{tab:aggregation_sens}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Method} & \textbf{Mean (primary)} & \textbf{Median} \\
+\midrule
+\model{Geneformer} & 0.786 $\pm$ 0.026 & 0.765 $\pm$ 0.029 \\
+\model{STATE} & 0.778 $\pm$ 0.033 & 0.779 $\pm$ 0.036 \\
+\model{scPRINT-2} & 0.740 $\pm$ 0.027 & 0.732 $\pm$ 0.029 \\
+PCA-200 & 0.725 $\pm$ 0.033 & 0.696 $\pm$ 0.036 \\
+\model{scGPT} & 0.720 $\pm$ 0.047 & 0.706 $\pm$ 0.050 \\
+\model{UCE} & 0.661 $\pm$ 0.046 & 0.645 $\pm$ 0.048 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Leave-one-cohort-out folds (patient-level AUC on the held-out
+cohort). Folds are computable only for cohorts containing at least one
+fatal and one survivor patient; all-survivor cohorts (Wilk, Lee,
+Arunachalam, Combes) contribute to training throughout and are never scored
+out-of-fold. The pooled estimate over concatenated held-out predictions
+(206 patients, 25 fatal) is reported in
+Section~\ref{ssec:r5_calibration}.}
+\label{tab:lobo_folds}
+\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{Model} & \textbf{Held-out cohort} & \textbf{AUC} & \textbf{Patients} & \textbf{Fatal} \\
+\midrule
+\model{STATE} & Schulte-Schrepping & 0.800 & 18 & 3 \\
+ & Ren & 0.909 & 54 & 9 \\
+ & Liu & 0.926 & 31 & 4 \\
+ & Stephenson & 0.662 & 90 & 8 \\
+ & Bernardes & 1.000 & 13 & 1 \\
+\midrule
+\model{UCE} & Schulte-Schrepping & 0.933 & 18 & 3 \\
+ & Ren & 0.770 & 54 & 9 \\
+ & Liu & 0.963 & 31 & 4 \\
+ & Stephenson & 0.582 & 90 & 8 \\
+ & Bernardes & 0.833 & 13 & 1 \\
+\midrule
+\model{Geneformer} & Schulte-Schrepping & 0.867 & 18 & 3 \\
+ & Ren & 0.891 & 54 & 9 \\
+ & Liu & 0.954 & 31 & 4 \\
+ & Stephenson & 0.634 & 90 & 8 \\
+ & Bernardes & 1.000 & 13 & 1 \\
+\midrule
+\model{scPRINT-2} & Schulte-Schrepping & 0.911 & 18 & 3 \\
+ & Ren & 0.842 & 54 & 9 \\
+ & Liu & 0.963 & 31 & 4 \\
+ & Stephenson & 0.659 & 90 & 8 \\
+ & Bernardes & 1.000 & 13 & 1 \\
+\midrule
+\model{scGPT} & Schulte-Schrepping & 0.733 & 18 & 3 \\
+ & Ren & 0.770 & 54 & 9 \\
+ & Liu & 0.944 & 31 & 4 \\
+ & Stephenson & 0.613 & 90 & 8 \\
+ & Bernardes & 0.833 & 13 & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Per-patient cell-count association with predicted scores and with
+mortality (within-COVID, 240 patients; count terciles have 80/83/77
+patients and 7/9/9 fatal). Scores correlate only weakly with cell count
+(Spearman $\rho = 0.18$--$0.29$), and the count-only null model reaches
+0.554 (Supplementary Note~\ref{sn:cellcount}).}
+\label{tab:cellcount}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Method} & \textbf{Spearman $\rho$ (score, count)} & \textbf{$p$} & \textbf{AUC, low-count third} & \textbf{AUC, mid third} & \textbf{AUC, high third} \\
+\midrule
+\model{STATE} & 0.226 & 0.0004 & 0.759 & 0.811 & 0.543 \\
+\model{UCE} & 0.183 & 0.004 & 0.687 & 0.716 & 0.397 \\
+\model{Geneformer} & 0.250 & $<$0.0001 & 0.853 & 0.825 & 0.659 \\
+\model{scPRINT-2} & 0.271 & $<$0.0001 & 0.763 & 0.754 & 0.621 \\
+\model{scGPT} & 0.217 & 0.0007 & 0.748 & 0.710 & 0.405 \\
+PCA-200 & 0.274 & $<$0.0001 & 0.732 & 0.728 & 0.489 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% ============================================================================
+% SUPPLEMENTARY FIGURES
+% ============================================================================
+\section{Supplementary Figures}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/v2/FigureS1_cellcount.pdf}
+\caption{\textbf{Per-patient cell-count association.} Predicted
+mortality-classifier scores versus per-patient platelet cell counts for each
+method (within-COVID). Scores correlate only weakly with cell count
+(Spearman $\rho = 0.18$--$0.29$; Supplementary
+Note~\ref{sn:cellcount} and Table~\ref{tab:cellcount}), so mortality is not
+readable from cell counts alone (count-only null AUC 0.554).}
+\label{fig:supp_cellcount}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/v2/FigureS2_pairwise_heatmap.pdf}
+\caption{\textbf{Within-COVID pairwise contrasts.} Full 6$\times$6 matrix of
+pairwise $\Delta$AUC (exact DeLong $p$) between the five foundation models
+and the PCA-200 baseline on the seed-ensemble scores; cells surviving
+Benjamini--Hochberg correction (family of 15) are marked. All six
+significant contrasts have \model{UCE} or \model{scGPT} on the losing side,
+and the two leaders-versus-\model{UCE} gaps are the largest
+(Supplementary Table~\ref{tab:se_check}).}
+\label{fig:supp_pairwise}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/v2/FigureS_dropout.pdf}
+\caption{\textbf{Embedding-dimension dropout robustness.} Patient-level AUC
+as a function of randomly zeroed embedding dimensions (0--70\%), per model
+(mortality endpoint, legacy analysis pool; mean $\pm$ 1 SD over five
+patient-grouped folds). \model{UCE}'s curve is flat ($\Delta = +0.003$ at
+70\% zeroing), indicating a highly distributed representation; every other
+model degrades by 0.010--0.025 AUC.}
+\label{fig:supp_dropout}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/v2/FigureS_LOBO.pdf}
+\caption{\textbf{Leave-one-cohort-out generalization.} Per-fold
+patient-level AUC on each held-out cohort (computable only for cohorts
+containing at least one fatal and one survivor patient; per-fold counts in
+Supplementary Table~\ref{tab:lobo_folds}). The top three models sit within
+0.005 AUC of each other on the pooled concatenated estimate (206 patients,
+25 fatal; Section~\ref{ssec:r5_calibration}).}
+\label{fig:supp_lobo}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/v2/FigureS_Age_gse279452.pdf}
+\caption{\textbf{Age structure of the GSE279452 sepsis cohort.} All 90
+analysis-set patients with age records are adults (median 67 years, range
+19--93); the full GEO series additionally contains 26 pediatric samples,
+none of which entered the candidate or analysis sets (Supplementary
+Note~\ref{sn:age}).}
+\label{fig:supp_age}
+\end{figure}
+
+
+% ============================================================================
+% REFERENCES CITED IN THE SUPPLEMENT
+% ============================================================================
+\begin{thebibliography}{9}
+
+\bibitem[Hanley \& McNeil(1982)]{hanley1982meaning}
+Hanley, J. A., \& McNeil, B. J. (1982).
+\newblock The meaning and use of the area under a receiver operating characteristic (ROC) curve.
+\newblock Radiology, 143(1), 29--36. doi:10.1148/radiology.143.1.7063747.
+
+\bibitem[Pearce et al.(2026)]{pearce2025transcriptformer}
+Pearce, J. D., Simmonds, S. E., Mahmoudabadi, G., et al. (2026).
+\newblock TranscriptFormer: a generative cell atlas across 1.5 billion years of evolution.
+\newblock Science, 393(6806), aec8514. doi:10.1126/science.aec8514.
+
+\end{thebibliography}
+
+\end{document}

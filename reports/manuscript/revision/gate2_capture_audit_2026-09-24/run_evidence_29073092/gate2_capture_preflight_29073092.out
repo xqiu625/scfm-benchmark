@@ -1,0 +1,9 @@
+repo    : /bigdata/godziklab/shared/Xinru/302006/worktrees/9aab7befba0bd2a59ea1224aff95d261237611c6
+commit  : 9aab7befba0bd2a59ea1224aff95d261237611c6
+sha256  : c6a86652546e6c17fc46b21e4cf93b17fd3cc00e0896c7fec2a8c4c2278fa61c  reports/manuscript/revision/gate2_capture_audit_2026-09-24/capture_preflight_GSM5102900_HC1.py
+sha256  : 31de0447e2889f88244c9ff70ac470f4c10433e43ccb66e19f288c14bdab302f  reports/manuscript/revision/gate2_capture_audit_2026-09-24/run_capture_preflight.sh
+sha256  : ed749e3f43a9b295158cef729112252d684ce63fc61f3aa0289179a10693da67  scripts/32_rebuild_upfront_qc/code/gate2_parameter_ruling.py
+sha256  : 523d3beefdcf82d02b23e2b823a05b6e7d5b03c401ee1a94989409cb07199c96  scripts/32_rebuild_upfront_qc/code/gate2_stress_design.py
+sha256  : 3633ef346f64a019d67f2b032effe6e5f99a637e53ad6ba9c1e01257129c01e0  scripts/32_rebuild_upfront_qc/code/gate2_stress_runner.py
+N_eff=7666 G_HVG=1576 PC=30 feasible=True k_adj=132 manifold=(7666, 30) status=complete
+output  : /bigdata/godziklab/shared/Xinru/302006/05_RESULTS/gate2_capture_preflight/9aab7bef_20260924_225552

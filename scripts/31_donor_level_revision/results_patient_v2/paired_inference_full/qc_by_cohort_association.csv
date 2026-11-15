@@ -1,0 +1,10 @@
+cohort,n,n_fatal,note,median_counts_fatal,median_counts_surv,mwu_p
+302004data01,6,0,insufficient variation for within-cohort test,,,
+302004data02,8,0,insufficient variation for within-cohort test,,,
+302004data04,18,3,,3402.0,1299.0,0.10049019607843138
+302004data05,7,0,insufficient variation for within-cohort test,,,
+302004data15,54,9,,1682.0,1683.5,0.7895275545685703
+302004data16,31,4,,1225.5,693.0,0.031459085072545016
+302004data17,90,8,,778.0,980.0,0.2876159215829761
+302005data01,13,1,,532.5,550.0,1.0
+302005data02,13,0,insufficient variation for within-cohort test,,,

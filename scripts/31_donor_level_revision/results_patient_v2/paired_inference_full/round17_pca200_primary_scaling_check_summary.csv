@@ -1,0 +1,3 @@
+variant,observed_LR_stat,null_median,null_95th,null_99th,empirical_permutation_P_2000perm,asymptotic_chi2_1_p
+unstandardized_round10_original,4.4772,0.0839,0.6859,1.1622,0.0005,0.03435
+standardized,18.253,0.4617,3.5864,5.896,0.0005,2e-05

@@ -1,0 +1,51 @@
+{
+  "n_cells_total": 128503,
+  "n_decontx_channel_mismatch": 0,
+  "n_decontx_score_missing": 0,
+  "n_gate1_channel_mismatch": 0,
+  "n_gate1_flag_missing": 0,
+  "per_subtype": {
+    "C1_CD16_mono": {
+      "decontx_mean_estimated_contamination": 0.29949843954368505,
+      "gate1_flag_would_delete_rate": 0.035514967021816335,
+      "n_cells": 3942,
+      "n_decontx_scores_available": 3942,
+      "n_gate1_flag_would_delete_true": 140
+    },
+    "CD14_mono": {
+      "decontx_mean_estimated_contamination": 0.059838034904485686,
+      "gate1_flag_would_delete_rate": 0.00595949591885523,
+      "n_cells": 58562,
+      "n_decontx_scores_available": 58562,
+      "n_gate1_flag_would_delete_true": 349
+    },
+    "CD16_mono": {
+      "decontx_mean_estimated_contamination": 0.2974055434129499,
+      "gate1_flag_would_delete_rate": 0.008370658638666569,
+      "n_cells": 13619,
+      "n_decontx_scores_available": 13619,
+      "n_gate1_flag_would_delete_true": 114
+    },
+    "CD83_CD14_mono": {
+      "decontx_mean_estimated_contamination": 0.05377569130218545,
+      "gate1_flag_would_delete_rate": 0.008214941528945589,
+      "n_cells": 51735,
+      "n_decontx_scores_available": 51735,
+      "n_gate1_flag_would_delete_true": 425
+    },
+    "Mono_prolif": {
+      "decontx_mean_estimated_contamination": 0.0935889972117828,
+      "gate1_flag_would_delete_rate": 0.010852713178294573,
+      "n_cells": 645,
+      "n_decontx_scores_available": 645,
+      "n_gate1_flag_would_delete_true": 7
+    }
+  },
+  "source_files": {
+    "decontx_scores_csv": "/bigdata/godziklab/shared/Xinru/302006/05_RESULTS/rebuild_upfront_qc/stephenson_decontx_input/stephenson_decontx_contamination_scores.csv",
+    "decontx_scores_csv_sha256": "6a87de6d176bddb43f3aa703d7b0af448431dcf451487bbd42578381d20ac06e",
+    "gate1_flags_csv": "/bigdata/godziklab/shared/Xinru/302006/05_RESULTS/rebuild_upfront_qc/gate1_qc/stephenson/qc_flags_per_cell.csv",
+    "gate1_flags_csv_sha256": "1034909f4c3ff3cefaba1ca5989603b09a2a64f955ca3d870a5a51b52197d4ee",
+    "h5ad_path": "/bigdata/godziklab/shared/Xinru/302006/02_EMBEDDINGS/option_c_monocyte/stephenson_monocyte_raw.h5ad"
+  }
+}

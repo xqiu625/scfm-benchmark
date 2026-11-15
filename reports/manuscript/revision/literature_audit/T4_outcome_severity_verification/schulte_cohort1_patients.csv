@@ -1,0 +1,19 @@
+Patient ID,Condition,Outcome,WHO Classification,Sampling day (Days after symptom onset),Sex,Age,Sample type
+C19-CB-0001,"COVID-19, mild",discharged,3,"7,11,16",m,21_25,"fresh, 2x frozen PBMC"
+C19-CB-0002,"COVID-19, mild",discharged,3,"8,13",f,31_35,"fresh, frozen PBMC"
+C19-CB-0003,"COVID-19, mild",discharged,3,"13,18",m,41_45,"fresh, frozen PBMC"
+C19-CB-0005,"COVID-19, mild",discharged,3,"15,20",m,71_75,frozen PBMC
+C19-CB-0052,"COVID-19, mild",discharged,4,10,m,66_70,frozen PBMC
+C19-CB-0053,"COVID-19, mild",discharged,4,3,m,71_75,frozen PBMC
+C19-CB-0204,"COVID-19, mild",ongoing,3,15,f,71_75,fresh PBMC
+C19-CB-0214,"COVID-19, mild",ongoing,3,7,m,66_70,fresh PBMC
+C19-CB-0008,"COVID-19, severe",discharged,7,"13,20",m,61_65,fresh PBMC
+C19-CB-0009,"COVID-19, severe",discharged,7,"9, 16",f,76_80,fresh PBMC
+C19-CB-0011,"COVID-19, severe",discharged,5,13,m,61_65,fresh PBMC
+C19-CB-0012,"COVID-19, severe",discharged,7,"9, 16",m,71_75,fresh PBMC
+C19-CB-0013,"COVID-19, severe",deceased,7,"8, 15",m,71_75,fresh PBMC
+C19-CB-0016,"COVID-19, severe",deceased,7,16,m,71_75,fresh PBMC
+C19-CB-0020,"COVID-19, severe",discharged,7,16,f,51_55,fresh PBMC
+C19-CB-0021,"COVID-19, severe",deceased,6,18,m,51_55,fresh PBMC
+C19-CB-0198,"COVID-19, severe",ongoing,6,18,f,41_45,fresh PBMC
+C19-CB-0199,"COVID-19, severe",ongoing,7,8,f,56_60,fresh PBMC

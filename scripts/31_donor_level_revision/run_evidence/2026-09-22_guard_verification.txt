@@ -1,0 +1,36 @@
+=== guard verification  [2026-09-22 21:07:59 PDT -0700] ===
+repo    : /Users/xinruqiu/Desktop/302006/302006_updategit
+HEAD    : 70e7bb1ada23263328dc3f31057a95fda7dde993
+capture : /Users/xinruqiu/Desktop/302006/302006_updategit/scripts/31_donor_level_revision/run_evidence/capture_test_run_evidence.sh
+sha256  : 76f99c37fd080c7d3c73b91662139cfabf1c5ae1c618a718f5f15f3090c2d286
+
+--- A. transport failure after six correct hashes are printed ---
+expected exit: 72
+actual exit  : 72
+marker       : *** REMOTE HASH QUERY FAILED (ssh exit 55) -- evidence void
+
+--- B. hash query truncated to five rows ---
+expected exit: 73
+actual exit  : 73
+marker       : *** EXPECTED 6 hash rows, GOT 5 -- evidence void
+
+--- C. remote cd fails; pytest must not run in the wrong directory ---
+expected exit: 1
+actual exit  : 1
+marker       : bash: line 3: cd: /bigdata/godziklab/shared/Xinru/302006/302006_updategit/no_such_dir: No such file or directory
+
+--- D. a tracked file differs from its HEAD blob ---
+expected exit: 74
+actual exit  : 74
+*** CLAUDE.md differs from HEAD -- the run would not belong to this commit
+
+--- E. remote content drifts after the run ---
+expected exit: 71
+actual exit  : 71
+*** MISMATCH at after the run -- this evidence is void, do not cite it
+
+--- repair: a clean capture run, whose sync restores the drifted remote file ---
+clean capture exit: 0  (must be 0)
+AGREE lines in the clean run: 2
+
+=== 0 guard(s) failed to bite ===

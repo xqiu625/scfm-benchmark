@@ -1,0 +1,43 @@
+# DE-backend isolated environment -- pytest/test-runner closure, SEPARATE from
+# de_backend_requirements.lock.txt (the pydeseq2/formulaic closure).
+#
+# Per codex_output/20261015_150231.md F1: "constraints 不是包名白名单" (a constraints
+# file bounds the versions of packages that appear in a resolution, it does not
+# forbid installing anything else, and it does not get installed by itself). Keeping
+# pytest's own closure in a SEPARATE file, resolved against de_backend_requirements.
+# lock.txt as a constraint (so shared packages like `packaging` cannot silently drift
+# to a different version between the two), makes clear that pytest was never part of
+# the ORIGINAL pydeseq2/formulaic dependency-resolution evidence -- it is a distinct,
+# separately-verified addition, needed only to run this project's own test suite
+# inside the new environment (the synthetic verification step), not to run pydeseq2
+# itself.
+#
+# Source: a REAL, executed, read-only `pip install --dry-run --ignore-installed
+# --report` run on cluster.hpcc.ucr.edu, from
+# /rhome/xinruqiu/bigdata/.conda/envs/302006_env_clean/bin/python -m pip (25.1.1),
+# 2026-10-15, exit 0, no resolver conflict:
+#
+#   pip install --dry-run --ignore-installed --report pytest_dry_run_report_py311.json \
+#       --python-version 3.11 --implementation cp --abi cp311 \
+#       --platform manylinux2014_x86_64 --only-binary=:all: \
+#       -c de_backend_requirements.lock.txt "pytest==9.1.1"
+#
+# Report path (HPCC, not committed -- machine-generated, reproducible from the command
+# above): .../claude_icu_grouping_20261015/pytest_dry_run_report_py311.json
+# Report sha256: e76287e89b350172677601c94de831461ebd4bec3ba91ea68651e75c59fa5261
+#
+# pytest==9.1.1 and pluggy==1.6.0 match the versions already verified present and
+# working in the shared 302006_env_clean environment (pip show pytest pluggy, same
+# date) -- a cross-check, not the source of this closure; pluggy resolves to 1.7.0
+# here because de_backend_requirements.lock.txt does not pin pluggy itself (only
+# pydeseq2's own transitive deps are pinned there), so pytest's own floor (`pluggy<2,
+# >=1.5`) picked the current release instead.
+
+Pygments==2.21.0
+exceptiongroup==1.3.1
+iniconfig==2.3.1
+packaging==26.3
+pluggy==1.7.0
+pytest==9.1.1
+tomli==2.5.0
+typing_extensions==4.16.0

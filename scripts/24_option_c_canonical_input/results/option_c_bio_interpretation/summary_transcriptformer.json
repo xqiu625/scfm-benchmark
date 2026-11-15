@@ -1,0 +1,24 @@
+{
+  "model": "transcriptformer",
+  "obsm_key": "X_transcriptformer",
+  "n_cells_total": 43798,
+  "n_aligned_to_raw": 43798,
+  "n_subsampled_for_spearman": 10000,
+  "embedding_dim": 2048,
+  "n_genes": 13066,
+  "train_auc": 0.9022459920960778,
+  "top_dims": [
+    1639,
+    1522,
+    657,
+    43,
+    1474
+  ],
+  "top_dim_coefs": [
+    -2.4796105726948836,
+    -2.3426562900547503,
+    -2.2027735601287963,
+    2.1749768919702386,
+    2.16004501485918
+  ]
+}

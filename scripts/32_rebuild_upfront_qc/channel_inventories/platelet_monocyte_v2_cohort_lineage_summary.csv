@@ -1,0 +1,17 @@
+cohort,harmonized_lineage,n_cells,n_donors
+COMBAT 2022,Monocyte_Myeloid,279426,123
+COMBAT 2022,Platelet,3278,121
+Chongqing sepsis 2025,Monocyte_Myeloid,164102,124
+Chongqing sepsis 2025,Platelet,38186,124
+Cillo 2021,Monocyte_Myeloid,28690,29
+Cillo 2021,Platelet,831,27
+Liu 2021,Monocyte_Myeloid,152027,33
+Liu 2021,Platelet,9384,33
+Qiu 2021,Monocyte_Myeloid,16461,7
+Qiu 2021,Platelet,5815,7
+Ren 2021,Monocyte_Myeloid,288385,196
+Ren 2021,Platelet,27206,193
+Stephenson 2021,Monocyte_Myeloid,134673,124
+Stephenson 2021,Platelet,17500,130
+Wilk 2021 JEM,Monocyte_Myeloid,60150,23
+Wilk 2021 JEM,Platelet,10767,23

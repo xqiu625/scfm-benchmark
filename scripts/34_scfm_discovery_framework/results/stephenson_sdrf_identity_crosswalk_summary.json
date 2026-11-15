@@ -1,0 +1,41 @@
+{
+  "n_cohort_samples": 102,
+  "n_distinct_patient_id_strings": 90,
+  "n_confirmed_distinct_sdrf_individuals": 86,
+  "n_samples_with_no_resolvable_sdrf_individual": 0,
+  "sdrf_confirmed_identity_unit_count": 86,
+  "resolution_method_counts": {
+    "sdrf_source_name_exact": 100,
+    "sdrf_patient_id_fallback": 2,
+    "unresolved_no_sdrf_match": 0,
+    "unresolved_conflicting_fallback": 0
+  },
+  "n_sdrf_individuals_spanning_multiple_patient_id_strings": 3,
+  "collapsed_individuals": {
+    "C-8896": [
+      "MH8919327",
+      "MH8919328",
+      "MH9143273"
+    ],
+    "C-8821": [
+      "MH9179821",
+      "newcastle004v2"
+    ],
+    "C-8884": [
+      "newcastle21",
+      "newcastle21v2"
+    ]
+  },
+  "samples_with_no_resolvable_sdrf_individual": [],
+  "patient_id_fallback_internal_conflicts": {},
+  "open_pool_membership_question_not_a_donor_count_question": {
+    "samples": [
+      "BGCV06_CV0201",
+      "BGCV13_CV0326"
+    ],
+    "note": "Both now resolve to a confirmed SDRF individual via the patient_id fallback (CV0201, CV0326 respectively), since every other SDRF row sharing their patient_id agrees on that individual regardless of pool. What remains open is ONLY which 10x pool/batch each sample belongs to for dependency-grouping purposes -- see stephenson_identity_decision_sheet_v3.md. This does not change the donor count above."
+  },
+  "counting_definitions": {
+    "sdrf_confirmed_identity_unit_count": "The number used as the donor count below (86 as of this run). Every one of the 102 cohort samples resolves to a confirmed SDRF individual under this definition; there is no remaining candidate-policy-dependent donor-count ambiguity. A prior run of this script reported 85 (undercounting CV0326, which had no exact Source Name match and no patient_id-fallback logic yet) and, in a separate ad hoc roster-building pass, 87 (treating both pool-conflicted samples as unresolved-and-separate) and 86 (an undocumented, roster-only convention). This run's number is produced by a single script shared with the roster file below, so it cannot drift from it again."
+  }
+}

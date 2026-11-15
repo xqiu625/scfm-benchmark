@@ -1,0 +1,174 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "scfm-benchmark"
+version = "1.2.0.dev0"
+description = "Donor-aware evaluation and reproducible demos for frozen single-cell representations"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Xinru Qiu", email = "xqiu014@ucr.edu" },
+]
+keywords = [
+    "single-cell",
+    "foundation-models",
+    "benchmarking",
+    "genomics",
+    "deep-learning",
+    "scrna-seq",
+    "covid-19",
+    "sepsis",
+    "mortality-prediction",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+
+# Core deps — relaxed numpy upper bound (HPCC env has 2.2.6 and works fine).
+# scanpy ≥1.11 matches our active 302006_env_clean; sklearn ≥1.5 brings
+# StratifiedGroupKFold improvements and calibration_curve fixes.
+dependencies = [
+    "numpy>=1.23.0",
+    "pandas>=1.5.0",
+    "scipy>=1.9.0",
+    "scikit-learn>=1.5.0",
+    "matplotlib>=3.6.0",
+    "seaborn>=0.12.0",
+    "h5py>=3.8.0",
+    "tqdm>=4.65.0",
+    "pyyaml>=6.0",
+    "joblib>=1.2.0",
+    "statsmodels>=0.14.0",
+    "anndata>=0.10.0",
+]
+
+[project.optional-dependencies]
+package-test = ["pytest>=7.2.0", "build>=1.0", "hatchling"]
+# Most analysis scripts only need core deps + scanpy. Foundation-model embedding
+# generation runs in dedicated HPCC envs (state_env, scprint2_env, etc.) and is
+# out of scope for this Python package's dependency tree.
+ml = [
+    "torch>=2.0.0",
+    "scanpy>=1.11.0",
+]
+tracking = [
+    "wandb>=0.16.0",
+]
+dev = [
+    "pytest>=7.2.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    # Needed for `pip install -e .[dev] && pytest` to pass collection: several
+    # test modules import scripts/ modules that `import scanpy`. scanpy is
+    # lightweight next to torch, which intentionally stays in [ml]; CI installs
+    # .[ml,dev] and is unaffected.
+    "scanpy>=1.11.0",
+]
+docs = [
+    "mkdocs-material>=9.5",
+]
+gpu = [
+    "cupy-cuda11x>=11.0.0",
+]
+esm = [
+    "fair-esm>=2.0.0",
+]
+# scPRINT-2 install must use uv per upstream docs; this extra is for documentation,
+# the actual env is created via scripts/foundation_models/scPRINT/install_scprint2.sh
+scprint2 = [
+    "scprint2",
+    "lamindb",
+    "huggingface_hub>=0.20.0",
+]
+full = [
+    "scfm-benchmark[ml,tracking,esm]",
+    "scvi-tools>=1.0.0",
+    "transformers>=4.30.0",
+    "plotly>=5.14.0",
+    "gseapy>=1.0.0",
+]
+
+[project.urls]
+Repository = "https://github.com/xqiu625/scfm-benchmark"
+Issues = "https://github.com/xqiu625/scfm-benchmark/issues"
+Documentation = "https://github.com/xqiu625/scfm-benchmark/blob/main/docs/package-demo.md"
+
+[project.scripts]
+scfm-bench = "scfm_benchmark.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/scfm_benchmark"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/scfm_benchmark",
+    "pyproject.toml",
+    "README.md",
+    "LICENSE",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short --strict-markers"
+markers = [
+    "slow: marks tests that require large data or GPU",
+    "integration: marks tests that require HPCC data files",
+    "scanpy_integration: synthetic-data integration tests against the Gate 2 approved Scanpy stack",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning:scanpy.*",
+    "ignore::FutureWarning:anndata.*",
+]
+
+[tool.coverage.run]
+source = ["scripts", "src"]
+omit = [
+    "*/tests/*",
+    "*/__pycache__/*",
+    "*/archive/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+exclude = ["archive/", "docs/reports/"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501", "E402"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E402"]                  # sys.path.insert before imports is intentional
+"tests/conftest.py" = ["F401"]        # fixtures imported via pytest discovery
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+extend-exclude = "archive/"
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+exclude = ["archive/", "docs/reports/"]

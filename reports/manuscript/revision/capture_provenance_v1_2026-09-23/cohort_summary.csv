@@ -1,0 +1,9 @@
+cohort,accession,n_donors,n_biological_samples,n_draws,n_physical_captures,n_analysis_channels,n_membership_rows,physical_capture_status,analysis_matches_physical,max_donors_per_capture,max_captures_per_donor
+COMBAT 2022,COMBAT-CITESeq,124,124,0,70,70,979,resolved=979,true=979,14,21
+Chongqing sepsis 2025,GSE279452,133,133,133,133,133,133,resolved=133,true=133,1,1
+Cillo 2021,GSE180578,29,70,70,39,44,71,resolved=66|unresolved=5,true=66|unknown=5,2,3
+Liu 2021,GSE161918,50,50,50,55,55,877,provisional=877,unknown=877,19,24
+Qiu 2021,GSE167363,7,12,10,12,12,12,resolved=12,true=12,1,2
+Ren 2021,GSE158055,196,284,206,284,284,284,resolved=284,true=284,1,6
+Stephenson 2021,E-MTAB-10026,130,143,130,0,143,143,unresolved=143,unknown=143,0,0
+Wilk 2021 JEM,GSE174072,23,23,0,23,23,23,provisional=23,unknown=23,1,1

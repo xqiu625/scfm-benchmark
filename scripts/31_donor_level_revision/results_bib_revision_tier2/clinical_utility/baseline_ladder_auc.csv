@@ -1,0 +1,10 @@
+method,source,n_patients,n_fatal,repeat_mean,repeat_sd,ensemble_oof
+Geneformer,Table 3 (verified),240,25,0.786,0.026,0.807
+STATE,Table 3 (verified),240,25,0.778,0.033,0.795
+scPRINT-2,Table 3 (verified),240,25,0.74,0.027,0.756
+PseudobulkEN,this script (patient-level),240,25,0.7190883720930231,0.029676145527419505,0.742139534883721
+PCA-200,Table 3 (verified),240,25,0.725,0.033,0.742
+scGPT,Table 3 (verified),240,25,0.72,0.047,0.739
+UCE,Table 3 (verified),240,25,0.661,0.046,0.677
+MarkerScore,this script (cell-level agg),240,25,0.5830325581395349,0.013563345054475423,0.5893953488372092
+HVG-mean,this script (cell-level agg),240,25,0.4931720930232559,0.01863455993870337,0.4902325581395349

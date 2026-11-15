@@ -1,0 +1,161 @@
+{
+  "stage": "06_batch_generalization",
+  "status": "success",
+  "metadata_complete": true,
+  "description": "Bidirectional cross-disease generalization (fatal vs survived): train on one disease, test on the other (COVID<->Sepsis), severe-excluded subset. Backs the C002 cross-disease claim.",
+  "slurm_jobs": [
+    "23761950"
+  ],
+  "run_dates": [
+    "2026-05-04",
+    "2026-04-30"
+  ],
+  "generating_code": [
+    "scripts/06_batch_generalization/code/cross_disease_fatal_vs_survived.py"
+  ],
+  "parameters": {
+    "cohort": "severe-EXCLUDED cross-disease (n_train=21286)",
+    "directions": "forward (COVID->Sepsis) + reverse (Sepsis->COVID)",
+    "classifier": "LogisticRegression (auc)"
+  },
+  "claims": [
+    {
+      "id": "C002",
+      "table": "tab:crossdisease",
+      "value": "STATE fwd 0.798 / rev 0.707 (only primary FM clearing both directions)",
+      "evidence": "results/cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260504_152836.csv"
+    }
+  ],
+  "primary_outputs": [
+    "cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260504_152836.csv",
+    "cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260430_193915.csv"
+  ],
+  "superseded_outputs": {
+    "cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260522_151856.csv": "severe-INCLUDED rerun (n_train=38673) \u2014 not the manuscript source (A006 false alarm)."
+  },
+  "inputs": [
+    {
+      "path": "data/processed/covid_sepsis_mortality.h5ad",
+      "exists": false,
+      "size_bytes": null,
+      "note": "gitignored / on HPCC (data/ not committed)"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/batch_effect_analysis_20260416_213203.json",
+      "size_bytes": 21043,
+      "sha256": "fce42e119455e59222bfd9557ccb0c6611f8c00ddd2272b2c4130b58b3b16cb9"
+    },
+    {
+      "path": "results/batch_effect_analysis_20260416_215554.json",
+      "size_bytes": 26259,
+      "sha256": "5dd7dd6ec17cccc7e944289433ffbe73e7dca68bf220b7f0e59df0ff5c95aa8e"
+    },
+    {
+      "path": "results/batch_shift_generalization.csv",
+      "size_bytes": 257,
+      "sha256": "6aaeb1e20a4e13611be7d32ee174874a535b676a249f2ce6565d32ef7a8c5ebf"
+    },
+    {
+      "path": "results/batch_shift_generalization.json",
+      "size_bytes": 2067,
+      "sha256": "1dbe2135bdbad6c86be99f56a0f3c43ea4e8e90eaed244b4f1f89ca32883d4a1"
+    },
+    {
+      "path": "results/batch_shift_generalization_20260416_213203.csv",
+      "size_bytes": 246,
+      "sha256": "7c4a60c3b9a16d62fbc4cc7f18c0ab71e9e32ea31f8f94e65258d89cb9f41aaa"
+    },
+    {
+      "path": "results/batch_shift_generalization_20260416_215554.csv",
+      "size_bytes": 257,
+      "sha256": "1a4e28a125b940c6693a970f5dbaea6261a3f6bb7875a0227a90d3465b80be96"
+    },
+    {
+      "path": "results/cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260430_193915.csv",
+      "size_bytes": 3093,
+      "sha256": "e943d156e0a7c656bce3337f58edc2338e3caad34339eea84f2490e39152b840"
+    },
+    {
+      "path": "results/cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260430_193915.json",
+      "size_bytes": 6215,
+      "sha256": "59a2e4ed335879b4efcf3607a2d818200c3b4ba600f1b389e13466880dcc0cb1"
+    },
+    {
+      "path": "results/cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260501_232351.csv",
+      "size_bytes": 3083,
+      "sha256": "724d7329b07cf8d850c3573f509239a547ac5c7721721d3674502ce71716160c"
+    },
+    {
+      "path": "results/cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260501_232351.json",
+      "size_bytes": 6211,
+      "sha256": "2c08bb6498a82f382d88e9ce2cfda1a88097718903e2145d594ffab4e4ea9679"
+    },
+    {
+      "path": "results/cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260502_103729.csv",
+      "size_bytes": 3083,
+      "sha256": "724d7329b07cf8d850c3573f509239a547ac5c7721721d3674502ce71716160c"
+    },
+    {
+      "path": "results/cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260502_103729.json",
+      "size_bytes": 6211,
+      "sha256": "2c08bb6498a82f382d88e9ce2cfda1a88097718903e2145d594ffab4e4ea9679"
+    },
+    {
+      "path": "results/cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260504_115234.csv",
+      "size_bytes": 3083,
+      "sha256": "724d7329b07cf8d850c3573f509239a547ac5c7721721d3674502ce71716160c"
+    },
+    {
+      "path": "results/cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260504_115234.json",
+      "size_bytes": 6211,
+      "sha256": "2c08bb6498a82f382d88e9ce2cfda1a88097718903e2145d594ffab4e4ea9679"
+    },
+    {
+      "path": "results/cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260504_150758.csv",
+      "size_bytes": 3083,
+      "sha256": "724d7329b07cf8d850c3573f509239a547ac5c7721721d3674502ce71716160c"
+    },
+    {
+      "path": "results/cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260504_150758.json",
+      "size_bytes": 6211,
+      "sha256": "2c08bb6498a82f382d88e9ce2cfda1a88097718903e2145d594ffab4e4ea9679"
+    },
+    {
+      "path": "results/cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260504_152836.csv",
+      "size_bytes": 3684,
+      "sha256": "16a408515a80d401167e511ca410f799573a1d191e833602afb9b4d493a0825a"
+    },
+    {
+      "path": "results/cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260504_152836.json",
+      "size_bytes": 7454,
+      "sha256": "24e443288aabd6e6f1a1b5d0af274c7a9410c9f9ade41e501420813e39fdede6"
+    },
+    {
+      "path": "results/cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260522_151856.csv",
+      "size_bytes": 3612,
+      "sha256": "cb1fe6bea6ec73b7a2397a0585fcab0624ee07dadcfcebf8982917d3101bd6ce"
+    },
+    {
+      "path": "results/cross_disease_fatal_vs_survived/cross_disease_fatal_vs_survived_20260522_151856.json",
+      "size_bytes": 7382,
+      "sha256": "6b9b0a0e0b87eb7cb5bda0664a2d85c22b9b4e5c75585d339f380f63936ab890"
+    }
+  ],
+  "n_outputs": 20,
+  "in_repo_outputs": true,
+  "no_results_reason": null,
+  "git_commit": "2f56a829ff085fbb57787e32d3f4238a75a7a93c",
+  "runtime_seconds": null,
+  "package_versions": null,
+  "config": "configs/hpcc.yaml",
+  "environment_ref": "environment.yml",
+  "provenance": {
+    "reconstructed_post_hoc": true,
+    "generated_at": "2026-06-07T19:32:27+00:00",
+    "generated_by": "scripts/99_audit/code/emit_manifests.py",
+    "verified_in": "docs/claim-traceability.md (2026-06-06 traceability audit)",
+    "note": "Manifest reconstructed during the 2026-06-06/07 audit (item A001). Outputs were produced on the HPCC before the repo restructure; sizes + sha256 + git_commit are verifiable, but run-time wall-clock and package versions were not captured in-repo and are recorded as null rather than back-filled. When metadata_complete=false, slurm_jobs/parameters/claims were not curated for this stage \u2014 the output inventory + hashes + git pin are still authoritative."
+  }
+}

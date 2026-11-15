@@ -1,0 +1,13 @@
+cut,fm,auc_monocyte_mean,auc_monocyte_sd,n_patients_monocyte,n_fatal_monocyte,auc_platelet_mean,auc_platelet_sd,n_patients_platelet,n_fatal_platelet,delta_monocyte_minus_platelet
+COVID_only_Ren_Stephenson,STATE,0.6864,0.0396,143,17,0.7778,0.0329,240,25,-0.0914
+COVID_only_Ren_Stephenson,Geneformer,0.6665,0.0421,143,17,0.7856,0.0264,240,25,-0.1191
+COVID_only_Ren_Stephenson,scPRINT-2,0.6552,0.0647,143,17,0.7402,0.0270,240,25,-0.0850
+COVID_only_Ren_Stephenson,scGPT,0.6642,0.0340,143,17,0.7196,0.0474,240,25,-0.0554
+COVID_only_Ren_Stephenson,UCE,0.6564,0.0328,143,17,0.6611,0.0461,240,25,-0.0047
+COVID_only_Ren_Stephenson,PCA-200,0.6537,0.0300,143,17,0.7251,0.0326,240,25,-0.0714
+ALL_incl_Qiu_sepsis,STATE,0.6964,0.0370,148,19,0.7778,0.0329,240,25,-0.0814
+ALL_incl_Qiu_sepsis,Geneformer,0.6741,0.0465,148,19,0.7856,0.0264,240,25,-0.1115
+ALL_incl_Qiu_sepsis,scPRINT-2,0.6723,0.0577,148,19,0.7402,0.0270,240,25,-0.0679
+ALL_incl_Qiu_sepsis,scGPT,0.6765,0.0370,148,19,0.7196,0.0474,240,25,-0.0431
+ALL_incl_Qiu_sepsis,UCE,0.6475,0.0561,148,19,0.6611,0.0461,240,25,-0.0136
+ALL_incl_Qiu_sepsis,PCA-200,0.6535,0.0432,148,19,0.7251,0.0326,240,25,-0.0716

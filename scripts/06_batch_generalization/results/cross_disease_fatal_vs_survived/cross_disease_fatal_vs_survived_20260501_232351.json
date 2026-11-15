@@ -1,0 +1,212 @@
+{
+  "STATE": {
+    "COVID->Sepsis": {
+      "n_train": 21286,
+      "n_test": 3422,
+      "fatal_train": 6237,
+      "fatal_test": 2613,
+      "LogReg": {
+        "auc": 0.7975138096718084,
+        "balanced_accuracy": 0.7187678134950426,
+        "boot_auc_mean": 0.8034992330590564,
+        "boot_ci_lo": 0.6310402072101935,
+        "boot_ci_hi": 0.9239822619566339
+      },
+      "RandomForest": {
+        "auc": 0.8232593805717064,
+        "balanced_accuracy": 0.5274665466997995,
+        "boot_auc_mean": 0.8238841026600051,
+        "boot_ci_lo": 0.7243056067712221,
+        "boot_ci_hi": 0.9028561083291516
+      }
+    },
+    "Sepsis->COVID": {
+      "n_train": 3422,
+      "n_test": 21286,
+      "fatal_train": 2613,
+      "fatal_test": 6237,
+      "LogReg": {
+        "auc": 0.7066616430472279,
+        "balanced_accuracy": 0.627232026494436,
+        "boot_auc_mean": 0.7011228598250855,
+        "boot_ci_lo": 0.6383723019112956,
+        "boot_ci_hi": 0.7738059174726765
+      },
+      "RandomForest": {
+        "auc": 0.6333947925526546,
+        "balanced_accuracy": 0.5977905343533181,
+        "boot_auc_mean": 0.6297888016215024,
+        "boot_ci_lo": 0.5713254049677016,
+        "boot_ci_hi": 0.6888491426588373
+      }
+    }
+  },
+  "UCE": {
+    "COVID->Sepsis": {
+      "n_train": 21286,
+      "n_test": 3422,
+      "fatal_train": 6237,
+      "fatal_test": 2613,
+      "LogReg": {
+        "auc": 0.8073505251152244,
+        "balanced_accuracy": 0.7324835837925519,
+        "boot_auc_mean": 0.810074955003149,
+        "boot_ci_lo": 0.7569845778939616,
+        "boot_ci_hi": 0.8650620134452921
+      },
+      "RandomForest": {
+        "auc": 0.8010508454210832,
+        "balanced_accuracy": 0.5831979212050427,
+        "boot_auc_mean": 0.7998998218930726,
+        "boot_ci_lo": 0.7496036766327904,
+        "boot_ci_hi": 0.8494240761387557
+      }
+    },
+    "Sepsis->COVID": {
+      "n_train": 3422,
+      "n_test": 21286,
+      "fatal_train": 2613,
+      "fatal_test": 6237,
+      "LogReg": {
+        "auc": 0.6459655340201113,
+        "balanced_accuracy": 0.5712925665635702,
+        "boot_auc_mean": 0.6430614156646441,
+        "boot_ci_lo": 0.548761328393503,
+        "boot_ci_hi": 0.7244379785427438
+      },
+      "RandomForest": {
+        "auc": 0.5731215659117845,
+        "balanced_accuracy": 0.4834102884028682,
+        "boot_auc_mean": 0.5701765840830771,
+        "boot_ci_lo": 0.5151535701520338,
+        "boot_ci_hi": 0.6303775802607479
+      }
+    }
+  },
+  "TranscriptFormer": {
+    "COVID->Sepsis": {
+      "n_train": 20676,
+      "n_test": 3414,
+      "fatal_train": 6108,
+      "fatal_test": 2612,
+      "LogReg": {
+        "auc": 0.7748536392556129,
+        "balanced_accuracy": 0.6940960195224037,
+        "boot_auc_mean": 0.7838470797522454,
+        "boot_ci_lo": 0.6928717412131564,
+        "boot_ci_hi": 0.876570242007478
+      },
+      "RandomForest": {
+        "auc": 0.7376860776848079,
+        "balanced_accuracy": 0.5195147659182824,
+        "boot_auc_mean": 0.7428042945641572,
+        "boot_ci_lo": 0.6975021040668316,
+        "boot_ci_hi": 0.7952027342634289
+      }
+    },
+    "Sepsis->COVID": {
+      "n_train": 3414,
+      "n_test": 20676,
+      "fatal_train": 2612,
+      "fatal_test": 6108,
+      "LogReg": {
+        "auc": 0.6293201022002994,
+        "balanced_accuracy": 0.5730709799123735,
+        "boot_auc_mean": 0.6273914323974943,
+        "boot_ci_lo": 0.5746100282959156,
+        "boot_ci_hi": 0.6953510407675708
+      },
+      "RandomForest": {
+        "auc": 0.5888384030252454,
+        "balanced_accuracy": 0.5647963240474319,
+        "boot_auc_mean": 0.5890186623185294,
+        "boot_ci_lo": 0.5008558867220022,
+        "boot_ci_hi": 0.7007457777495462
+      }
+    }
+  },
+  "scPRINT2": {
+    "COVID->Sepsis": {
+      "n_train": 20678,
+      "n_test": 3417,
+      "fatal_train": 6108,
+      "fatal_test": 2613,
+      "LogReg": {
+        "auc": 0.8554048547922463,
+        "balanced_accuracy": 0.7673650975889782,
+        "boot_auc_mean": 0.8568390230123535,
+        "boot_ci_lo": 0.7158237728715254,
+        "boot_ci_hi": 0.9527461464181847
+      },
+      "RandomForest": {
+        "auc": 0.8524439132313937,
+        "balanced_accuracy": 0.5284634519709146,
+        "boot_auc_mean": 0.8570976758745604,
+        "boot_ci_lo": 0.7872425800734241,
+        "boot_ci_hi": 0.9176049431849442
+      }
+    },
+    "Sepsis->COVID": {
+      "n_train": 3417,
+      "n_test": 20678,
+      "fatal_train": 2613,
+      "fatal_test": 6108,
+      "LogReg": {
+        "auc": 0.5425598773664072,
+        "balanced_accuracy": 0.514046859121042,
+        "boot_auc_mean": 0.5417041865736111,
+        "boot_ci_lo": 0.47570291858292457,
+        "boot_ci_hi": 0.6191516280761784
+      },
+      "RandomForest": {
+        "auc": 0.5747118218441875,
+        "balanced_accuracy": 0.5341623933237416,
+        "boot_auc_mean": 0.5719585164913742,
+        "boot_ci_lo": 0.48793078427396447,
+        "boot_ci_hi": 0.6817775855674846
+      }
+    }
+  },
+  "STACK": {
+    "COVID->Sepsis": {
+      "n_train": 21286,
+      "n_test": 3422,
+      "fatal_train": 6237,
+      "fatal_test": 2613,
+      "LogReg": {
+        "auc": 0.9173070655091944,
+        "balanced_accuracy": 0.8108166025439978,
+        "boot_auc_mean": 0.8966132754111522,
+        "boot_ci_lo": 0.6970414400693885,
+        "boot_ci_hi": 0.9750417005048585
+      },
+      "RandomForest": {
+        "auc": 0.837686389768378,
+        "balanced_accuracy": 0.5003694563220789,
+        "boot_auc_mean": 0.8271143042987795,
+        "boot_ci_lo": 0.681843710727269,
+        "boot_ci_hi": 0.9200721910234383
+      }
+    },
+    "Sepsis->COVID": {
+      "n_train": 3422,
+      "n_test": 21286,
+      "fatal_train": 2613,
+      "fatal_test": 6237,
+      "LogReg": {
+        "auc": 0.6981639998451746,
+        "balanced_accuracy": 0.5147872782377844,
+        "boot_auc_mean": 0.695145261736013,
+        "boot_ci_lo": 0.5655299086609751,
+        "boot_ci_hi": 0.816343990005364
+      },
+      "RandomForest": {
+        "auc": 0.6678338015968422,
+        "balanced_accuracy": 0.583418877735222,
+        "boot_auc_mean": 0.6618507797220855,
+        "boot_ci_lo": 0.5118216179896071,
+        "boot_ci_hi": 0.7734288741854426
+      }
+    }
+  }
+}

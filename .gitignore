@@ -1,0 +1,149 @@
+# ignore figures/images
+*.png
+*.pdf
+
+# README display generated from the committed historical coordinate table.
+!docs/assets/readme/historical_umap.png
+!examples/platelet/multimodel_umap.png
+
+# EXCEPTION: the frozen evidence package sent to independent methodological
+# review. It must be tracked so "which version did the reviewer see" has an
+# exact answer -- a claim that it is reproducible is not the same as a
+# recorded correspondence between the circulated file and a commit.
+# Regenerate it with build_sensitivity_review_packet.py; never edit by hand.
+!reports/manuscript/revision/sensitivity_design_review/sensitivity_design_review_packet.pdf
+# ...but never its build intermediates. They are regenerated on every build and
+# were once swept in by a `git add -A` that ran while they happened to exist.
+reports/manuscript/revision/sensitivity_design_review/_*
+reports/manuscript/revision/sensitivity_design_review/missfont.log
+
+# optionally ignore all figures folders
+figures/
+**/figures/
+
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+*.out
+*.err
+
+# LaTeX / pdflatex compile artifacts (manuscript builds in Overleaf;
+# main.tex + supplementary.tex + figures/ are the source of truth)
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.tex.bak.*
+
+# Office exports (derived from tracked .md sources, e.g. P0_onepager.docx)
+*.docx
+
+# Data files (too large for git)
+*.h5ad
+*.h5
+*.pkl
+*.npy
+*.npz
+*.arrow
+*.safetensors
+
+# Large model files
+*.sif
+*.bin
+*.pth
+*.ckpt
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+
+# SLURM output
+slurm-*.out
+slurm-*.err
+
+# W&B
+wandb/
+
+# Coverage
+htmlcov/
+.coverage
+
+# Caches and OS junk (added 2026-05-01 cleanup)
+__pycache__/
+*.pyc
+*.pyo
+.ruff_cache/
+.DS_Store
+.pytest_cache/
+
+# Local development instructions and session notes
+/AGENTS.md
+/CLAUDE.md
+/.claude/
+/.codex/
+/claude-code_output/
+/claude_output/
+/codex_output/
+
+# Workflows maintained in the related research repository
+/scripts/34_scfm_discovery_framework/mouse_eosinophils/
+/scripts/cross_species/
+/scripts/foundation_models/SATURN/
+/reports/manuscript/revision/eosinophil_fm_next_project.md
+/archive/superseded_2026-05-01/scprint_v1/run_scprint_mouse_eosinophil.sh
+/archive/superseded_2026-05-01/old_step2/step2_generate_embeddings.sh
+/archive/superseded_figures_2026-08-06/run_generate_main_figures.sh

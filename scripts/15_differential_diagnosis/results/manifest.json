@@ -1,0 +1,51 @@
+{
+  "stage": "15_differential_diagnosis",
+  "status": "success",
+  "metadata_complete": false,
+  "description": "15 - Differential Diagnosis of Inflammatory Conditions (auto-derived from README; metadata not curated)",
+  "slurm_jobs": [],
+  "run_dates": [],
+  "generating_code": [],
+  "parameters": {},
+  "claims": [],
+  "primary_outputs": [],
+  "superseded_outputs": {},
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "results/README.md",
+      "size_bytes": 2185,
+      "sha256": "be60ef48eeb79af5f5096e963437d5f7f8c5a895ea2ec1d90429dfb9e3fd7ac9"
+    },
+    {
+      "path": "results/differential_diagnosis_5class_results.csv",
+      "size_bytes": 688,
+      "sha256": "826a735b20c71744fe6ff8aad6f2dfeddaf00653ed9d151b16f32751ecb18b66"
+    },
+    {
+      "path": "results/scgpt_clean_differential_diagnosis.csv",
+      "size_bytes": 403,
+      "sha256": "e5bed5c9f97d440dbb2f7568337e39c200d3672bc770a4034981caaee1163ca4"
+    },
+    {
+      "path": "results/scgpt_clean_finetuned_results.csv",
+      "size_bytes": 288,
+      "sha256": "af5cdb529fe091440ce86944c09a752b2b7c76d78f5cd7e994f49188be228e1a"
+    }
+  ],
+  "n_outputs": 4,
+  "in_repo_outputs": true,
+  "no_results_reason": null,
+  "git_commit": "2f56a829ff085fbb57787e32d3f4238a75a7a93c",
+  "runtime_seconds": null,
+  "package_versions": null,
+  "config": "configs/hpcc.yaml",
+  "environment_ref": "environment.yml",
+  "provenance": {
+    "reconstructed_post_hoc": true,
+    "generated_at": "2026-06-07T19:32:28+00:00",
+    "generated_by": "scripts/99_audit/code/emit_manifests.py",
+    "verified_in": "docs/claim-traceability.md (2026-06-06 traceability audit)",
+    "note": "Manifest reconstructed during the 2026-06-06/07 audit (item A001). Outputs were produced on the HPCC before the repo restructure; sizes + sha256 + git_commit are verifiable, but run-time wall-clock and package versions were not captured in-repo and are recorded as null rather than back-filled. When metadata_complete=false, slurm_jobs/parameters/claims were not curated for this stage \u2014 the output inventory + hashes + git pin are still authoritative."
+  }
+}

@@ -1,0 +1,35 @@
+% tab:property_multiplicity — candidate attributes and whether they separate the observed ranking (supplementary)
+\begin{table}[t]
+\centering
+\caption{Candidate model attributes and whether each separates the observed
+ranking, taking the clearly resolvable gap to be \model{Geneformer}/\model{STATE}
+(top two, statistically inseparable) versus \model{scGPT}/\model{UCE} (bottom
+two). \model{scPRINT-2} sits between the groups and is shown in every row
+because it breaks several otherwise-clean separations. The composite property
+discussed in Section~\ref{ssec:discussion_property} is one of the few
+attributes that fits, and the only one with a direct measurement, which
+falsifies it where it is measurable
+(Supplementary Note~\ref{sn:corpus_platelet}).}
+\label{tab:property_multiplicity}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llll}
+\toprule
+\textbf{Candidate attribute} & \textbf{Separates top-2 from bottom-2?} & \textbf{Direction} & \textbf{Contradiction} \\
+\midrule
+Corpus blood / bone-marrow fraction & \textbf{yes} & leaders blood/marrow-skewed; \model{scGPT} mixed, \model{UCE} 6.6\% & \model{scPRINT-2} shares the scBaseCount skew yet ranks third; the platelet-specific fraction is falsified where measurable (Supplementary Note~\ref{sn:corpus_platelet}) \\
+Corpus disease-condition fraction & partial & \model{scGPT} 0\% (fifth) & \model{UCE} mixed-corpus yet last \\
+Objective: rank-ordering of genes & no & \model{Geneformer} only & separates \model{Geneformer} alone, not the pair \\
+Objective includes population-level term & no & \model{STATE} only & separates \model{STATE} alone \\
+Objective: per-gene value reconstruction & no & \model{STATE}, \model{scGPT}, \model{UCE} share it & groups a leader with both bottom models \\
+Tokenization: protein-embedding genes & no & \model{STATE}, \model{UCE}, \model{scPRINT-2} & mixes leader, bottom, and middle \\
+Supervised label heads in pretraining & no & \model{scPRINT-2} only & middle rank, breaks the identity story \\
+Corpus size (cells) & no & \model{scPRINT-2} largest (350M), mid-ranked & --- \\
+Parameter count & no & \model{UCE} largest (675M), last & --- \\
+Embedding dimension & no & \model{STATE} 2{,}058 first; \model{UCE} 1{,}280 last & --- \\
+Species coverage & no & \model{UCE}, \model{scPRINT-2} multi-species & one last, one mid \\
+Release recency & no & no monotone relation & --- \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

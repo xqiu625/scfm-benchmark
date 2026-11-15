@@ -1,0 +1,6 @@
+fm,n_patients_pooled,n_fatal_pooled,n_duplicate_patients_across_cohorts,pooled_auc,n_cohorts_pooled
+STATE,206,25,0,0.7525,5
+UCE,206,25,0,0.6813,5
+Geneformer,206,25,0,0.7481,5
+scPRINT-2,206,25,0,0.7514,5
+scGPT,206,25,0,0.6376,5

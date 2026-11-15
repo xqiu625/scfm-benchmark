@@ -1,0 +1,21 @@
+{
+  "decision_citation": "docs/decisions.md 2026-10-15 (via codex_output/20261015_142903.md Sec.1): Cindy's direct reply 'ru guo zhi neng jin ru yi zu, jiu jin ru mu qian fen zu shao de na zu' (if it can only enter one group, assign it to whichever group currently has FEWER members) -- a one-time decision under the CURRENT candidate roster, not the authors' original analysis rule, and not derived from any expression/pathway result.",
+  "donor_level_group_counts_after_resolution_one_group_per_donor": {
+    "comparison_severe_critical_icu_at_sampling": 25,
+    "excluded_other_severity": 9,
+    "reference_mild_moderate": 52
+  },
+  "donor_level_group_counts_before_resolution_any_visit": {
+    "comparison_severe_critical_icu_at_sampling": 25,
+    "excluded_other_severity": 9,
+    "reference_mild_moderate": 53
+  },
+  "excluded_sample_id": "MH9179821",
+  "input_file_hashes_this_resolution_was_applied_against": {
+    "stephenson_icu_severity_grouping_v1.tsv": "1bd3e72e503d50e24205488f3a0d9eadc80bf797908bc8fee7ac82c813b85090",
+    "stephenson_icu_severity_grouping_v1_summary.json": "e758edf6a6edcc7d3bd6ea37f49fc5bc540c67cf7755422bc10495fd49e16ee2"
+  },
+  "kept_sample_id": "newcastle004v2",
+  "note": "This resolves ONLY the one named cross-group donor above, as a one-time, hash-pinned decision -- it is NOT a general tie-break rule. A future round with additional mixed-group donors needs a fresh, explicit counting-basis decision, never an automatic re-application of this script's logic. Repeated-visit selection WITHIN an already-resolved group (e.g. a donor with two Mild visits) remains a separate, still-open question -- see MONOCYTE_PILOT_PREREG_v1.md Sec.6.",
+  "resolved_donor": "sdrf::C-8821"
+}

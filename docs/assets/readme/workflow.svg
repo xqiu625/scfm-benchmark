@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="921.6pt" height="385.2pt" viewBox="0 0 921.6 385.2" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.3, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 385.2 
+L 921.6 385.2 
+L 921.6 0 
+L 0 0 
+z
+" style="fill: #f4f7fb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 37.44 127.44 
+L 175.68 127.44 
+Q 184.32 127.44 184.32 136.08 
+L 184.32 263.52 
+Q 184.32 272.16 175.68 272.16 
+L 37.44 272.16 
+Q 28.8 272.16 28.8 263.52 
+L 28.8 136.08 
+Q 28.8 127.44 37.44 127.44 
+z
+" clip-path="url(#pd7305ea00e)" style="fill: #ffffff; stroke: #dce4ed; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 189.920391 198 
+Q 195.11969 198 198.753741 198 
+" clip-path="url(#pd7305ea00e)" style="fill: none; stroke: #087e8b; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 193.553741 195.4 
+L 198.753741 198 
+L 193.553741 200.6 
+z
+" clip-path="url(#pd7305ea00e)" style="fill: #087e8b; stroke: #087e8b; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 214.56 127.44 
+L 352.8 127.44 
+Q 361.44 127.44 361.44 136.08 
+L 361.44 263.52 
+Q 361.44 272.16 352.8 272.16 
+L 214.56 272.16 
+Q 205.92 272.16 205.92 263.52 
+L 205.92 136.08 
+Q 205.92 127.44 214.56 127.44 
+z
+" clip-path="url(#pd7305ea00e)" style="fill: #ffffff; stroke: #dce4ed; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 367.040391 198 
+Q 372.23969 198 375.873741 198 
+" clip-path="url(#pd7305ea00e)" style="fill: none; stroke: #087e8b; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 370.673741 195.4 
+L 375.873741 198 
+L 370.673741 200.6 
+z
+" clip-path="url(#pd7305ea00e)" style="fill: #087e8b; stroke: #087e8b; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 391.68 127.44 
+L 529.92 127.44 
+Q 538.56 127.44 538.56 136.08 
+L 538.56 263.52 
+Q 538.56 272.16 529.92 272.16 
+L 391.68 272.16 
+Q 383.04 272.16 383.04 263.52 
+L 383.04 136.08 
+Q 383.04 127.44 391.68 127.44 
+z
+" clip-path="url(#pd7305ea00e)" style="fill: #ffffff; stroke: #dce4ed; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 544.160391 198 
+Q 549.35969 198 552.993741 198 
+" clip-path="url(#pd7305ea00e)" style="fill: none; stroke: #087e8b; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 547.793741 195.4 
+L 552.993741 198 
+L 547.793741 200.6 
+z
+" clip-path="url(#pd7305ea00e)" style="fill: #087e8b; stroke: #087e8b; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 568.8 127.44 
+L 707.04 127.44 
+Q 715.68 127.44 715.68 136.08 
+L 715.68 263.52 
+Q 715.68 272.16 707.04 272.16 
+L 568.8 272.16 
+Q 560.16 272.16 560.16 263.52 
+L 560.16 136.08 
+Q 560.16 127.44 568.8 127.44 
+z
+" clip-path="url(#pd7305ea00e)" style="fill: #ffffff; stroke: #dce4ed; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 721.280391 198 
+Q 726.47969 198 730.113741 198 
+" clip-path="url(#pd7305ea00e)" style="fill: none; stroke: #087e8b; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 724.913741 195.4 
+L 730.113741 198 
+L 724.913741 200.6 
+z
+" clip-path="url(#pd7305ea00e)" style="fill: #087e8b; stroke: #087e8b; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 745.92 127.44 
+L 884.16 127.44 
+Q 892.8 127.44 892.8 136.08 
+L 892.8 263.52 
+Q 892.8 272.16 884.16 272.16 
+L 745.92 272.16 
+Q 737.28 272.16 737.28 263.52 
+L 737.28 136.08 
+Q 737.28 127.44 745.92 127.44 
+z
+" clip-path="url(#pd7305ea00e)" style="fill: #ffffff; stroke: #dce4ed; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 37.44 295.92 
+L 884.16 295.92 
+Q 892.8 295.92 892.8 304.56 
+L 892.8 336.96 
+Q 892.8 345.6 884.16 345.6 
+L 37.44 345.6 
+Q 28.8 345.6 28.8 336.96 
+L 28.8 304.56 
+Q 28.8 295.92 37.44 295.92 
+z
+" clip-path="url(#pd7305ea00e)" style="fill: #172b44"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #087e8b" x="28.8" y="31.358437" transform="rotate(-0 28.8 31.358437)">SCFM-BENCHMARK  /  PORTABLE WORKFLOW</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 22px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172b44" x="28.8" y="67.116562" transform="rotate(-0 28.8 67.116562)">From frozen embeddings to donor-level evaluation</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="28.8" y="94.078125" transform="rotate(-0 28.8 94.078125)">One set of cells. Shared folds. Inspectable predictions.</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #087e8b" x="41.04" y="149.478281" transform="rotate(-0 41.04 149.478281)">01</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172b44" x="41.04" y="178.698047" transform="rotate(-0 41.04 178.698047)">Supply inputs</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="41.04" y="210.070406" transform="rotate(-0 41.04 210.070406)">Cell metadata</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="41.04" y="228.790406" transform="rotate(-0 41.04 228.790406)">cell_id / donor_id</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="41.04" y="247.510406" transform="rotate(-0 41.04 247.510406)">cv_group / binary label</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="41.04" y="266.230406" transform="rotate(-0 41.04 266.230406)">Frozen embedding CSVs</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #087e8b" x="218.16" y="149.478281" transform="rotate(-0 218.16 149.478281)">02</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172b44" x="218.16" y="178.698047" transform="rotate(-0 218.16 178.698047)">Align &amp; validate</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="218.16" y="210.070406" transform="rotate(-0 218.16 210.070406)">Join rows by cell_id</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="218.16" y="228.790406" transform="rotate(-0 218.16 228.790406)">Check identities and values</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="218.16" y="247.510406" transform="rotate(-0 218.16 247.510406)">Reject inconsistent labels</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #087e8b" x="395.28" y="149.478281" transform="rotate(-0 395.28 149.478281)">03</text>
+   </g>
+   <g id="text_16">
+    <text style="font-weight: 700; font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172b44" x="395.28" y="178.698047" transform="rotate(-0 395.28 178.698047)">Split by group</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="395.28" y="210.070406" transform="rotate(-0 395.28 210.070406)">Shared folds for all models</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="395.28" y="228.790406" transform="rotate(-0 395.28 228.790406)">Keep cv_group intact</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="395.28" y="247.510406" transform="rotate(-0 395.28 247.510406)">Repeat across seeds</text>
+   </g>
+   <g id="text_20">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #087e8b" x="572.4" y="149.478281" transform="rotate(-0 572.4 149.478281)">04</text>
+   </g>
+   <g id="text_21">
+    <text style="font-weight: 700; font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172b44" x="572.4" y="178.698047" transform="rotate(-0 572.4 178.698047)">Fit on training cells</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="572.4" y="210.070406" transform="rotate(-0 572.4 210.070406)">Scale / optional PCA</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="572.4" y="228.790406" transform="rotate(-0 572.4 228.790406)">Fit logistic regression</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="572.4" y="247.510406" transform="rotate(-0 572.4 247.510406)">Predict held-out cells</text>
+   </g>
+   <g id="text_25">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #087e8b" x="749.52" y="149.478281" transform="rotate(-0 749.52 149.478281)">05</text>
+   </g>
+   <g id="text_26">
+    <text style="font-weight: 700; font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172b44" x="749.52" y="178.698047" transform="rotate(-0 749.52 178.698047)">Score donors</text>
+   </g>
+   <g id="text_27">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="749.52" y="210.070406" transform="rotate(-0 749.52 210.070406)">Average cell probabilities</text>
+   </g>
+   <g id="text_28">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="749.52" y="228.790406" transform="rotate(-0 749.52 228.790406)">within each held-out donor</text>
+   </g>
+   <g id="text_29">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="749.52" y="247.510406" transform="rotate(-0 749.52 247.510406)">AUROC, AP and Brier</text>
+   </g>
+   <g id="text_30">
+    <text style="font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="749.52" y="266.230406" transform="rotate(-0 749.52 266.230406)">Training-prior baseline</text>
+   </g>
+   <g id="text_31">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #ffffff" x="43.92" y="320.816406" transform="rotate(-0 43.92 320.816406)">Inspect every run</text>
+   </g>
+   <g id="text_32">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #d9e6f1" x="201.6" y="321.598125" transform="rotate(-0 201.6 321.598125)">Predictions  /  Folds  /  Metrics  /  HTML report  /  Input and output hashes</text>
+   </g>
+   <g id="text_33">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="28.8" y="370.478437" transform="rotate(-0 28.8 370.478437)">Embeddings are prepared upstream. Training weights cells equally; metrics weight donors equally.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pd7305ea00e">
+   <rect x="0" y="0" width="921.6" height="385.2"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -1,0 +1,44 @@
+### mutation harness
+  target sha256 : c6a86652546e6c17fc46b21e4cf93b17fd3cc00e0896c7fec2a8c4c2278fa61c
+  harness       : /bigdata/godziklab/shared/Xinru/302006/_runlogs/mut_pre.py
+
+== baseline == rc=0 :: ============================== 23 passed in 0.04s ==============================
+
+[input-hash comparison skipped]
+  KILLED   rc=1 :: ========================= 1 failed, 22 passed in 0.16s =========================
+
+[byte-size assertion removed]
+  KILLED   rc=1 :: ========================= 1 failed, 22 passed in 0.17s =========================
+
+[simulated matrix left unnormalised]
+  KILLED   rc=1 :: ========================= 1 failed, 22 passed in 0.17s =========================
+
+[joint-fit SVD restored]
+  KILLED   rc=1 :: ========================= 1 failed, 22 passed in 0.14s =========================
+
+[base k substituted for k_adj]
+  KILLED   rc=1 :: ========================= 1 failed, 22 passed in 0.15s =========================
+
+[invented seed instead of capture_seed]
+  KILLED   rc=1 :: ========================= 1 failed, 22 passed in 0.15s =========================
+
+[ruling copied back into the script]
+  KILLED   rc=1 :: ========================= 1 failed, 22 passed in 0.20s =========================
+
+[ruling version check removed]
+  KILLED   rc=1 :: ========================= 1 failed, 22 passed in 0.15s =========================
+
+[non-atomic manifest write]
+  KILLED   rc=1 :: ========================= 1 failed, 22 passed in 0.16s =========================
+
+[artificial prior loop reintroduced]
+  KILLED   rc=1 :: ========================= 1 failed, 22 passed in 0.16s =========================
+
+[sklearn graph rebuilt and checksummed]
+  KILLED   rc=1 :: ========================= 1 failed, 22 passed in 0.15s =========================
+
+[scores computed]
+  KILLED   rc=1 :: ========================= 1 failed, 22 passed in 0.14s =========================
+
+== restored c6a86652546e OK ==
+============================== 23 passed in 0.05s ==============================

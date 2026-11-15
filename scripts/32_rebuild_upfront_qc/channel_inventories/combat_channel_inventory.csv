@@ -1,0 +1,71 @@
+Pool_ID,Channel_ID,n_cells,n_donors,region,n_PLT,n_lineages
+gPlexA,A1,15167,14,A: CD4/naive/reg. T cells,34,18
+gPlexA,A2,15718,14,A: CD4/naive/reg. T cells,29,17
+gPlexA,A3,16641,14,A: CD4/naive/reg. T cells,23,17
+gPlexA,A4,17006,14,A: CD4/naive/reg. T cells,34,18
+gPlexA,A5,17068,14,A: CD4/naive/reg. T cells,31,18
+gPlexA,A6,16956,14,A: CD4/naive/reg. T cells,30,18
+gPlexA,A7,16341,14,A: CD4/naive/reg. T cells,22,18
+gPlexB,B1,13421,14,A: CD4/naive/reg. T cells,27,18
+gPlexB,B2,14402,14,A: CD4/naive/reg. T cells,40,18
+gPlexB,B3,15077,14,A: CD4/naive/reg. T cells,47,18
+gPlexB,B4,14482,14,A: CD4/naive/reg. T cells,36,18
+gPlexB,B5,14422,14,A: CD4/naive/reg. T cells,44,18
+gPlexB,B6,14273,14,A: CD4/naive/reg. T cells,48,18
+gPlexB,B7,13408,14,A: CD4/naive/reg. T cells,54,18
+gPlexC,C1,12272,14,A: CD4/naive/reg. T cells,12,18
+gPlexC,C2,13190,14,A: CD4/naive/reg. T cells,20,18
+gPlexC,C3,12573,13,A: CD4/naive/reg. T cells,13,18
+gPlexC,C4,12903,14,A: CD4/naive/reg. T cells,27,17
+gPlexC,C5,13706,14,A: CD4/naive/reg. T cells,21,18
+gPlexC,C6,13516,14,A: CD4/naive/reg. T cells,27,18
+gPlexC,C7,12757,14,A: CD4/naive/reg. T cells,18,18
+gPlexD,D1,12152,14,C: Monocytes/cDC,11,17
+gPlexD,D2,12907,14,C: Monocytes/cDC,12,18
+gPlexD,D3,13683,14,C: Monocytes/cDC,10,18
+gPlexD,D4,12358,14,C: Monocytes/cDC,15,18
+gPlexD,D5,11256,14,A: CD4/naive/reg. T cells,12,18
+gPlexD,D6,13152,14,C: Monocytes/cDC,13,18
+gPlexD,D7,13269,14,C: Monocytes/cDC,20,17
+gPlexE,E1,9524,14,A: CD4/naive/reg. T cells,11,17
+gPlexE,E2,10817,14,A: CD4/naive/reg. T cells,15,18
+gPlexE,E3,11776,14,A: CD4/naive/reg. T cells,20,16
+gPlexE,E4,11797,14,A: CD4/naive/reg. T cells,12,17
+gPlexE,E5,11476,14,A: CD4/naive/reg. T cells,17,17
+gPlexE,E6,11717,14,A: CD4/naive/reg. T cells,17,17
+gPlexE,E7,10847,14,A: CD4/naive/reg. T cells,14,18
+gPlexF,F1,10652,14,A: CD4/naive/reg. T cells,28,17
+gPlexF,F2,10140,14,A: CD4/naive/reg. T cells,32,17
+gPlexF,F3,10644,14,A: CD4/naive/reg. T cells,24,18
+gPlexF,F4,11405,14,A: CD4/naive/reg. T cells,33,17
+gPlexF,F5,11303,14,A: CD4/naive/reg. T cells,32,18
+gPlexF,F6,10698,14,A: CD4/naive/reg. T cells,38,18
+gPlexF,F7,10995,14,A: CD4/naive/reg. T cells,23,17
+gPlexG,G1,8651,14,A: CD4/naive/reg. T cells,9,17
+gPlexG,G2,10113,14,A: CD4/naive/reg. T cells,12,18
+gPlexG,G3,10612,14,A: CD4/naive/reg. T cells,17,18
+gPlexG,G4,9356,14,A: CD4/naive/reg. T cells,10,18
+gPlexG,G5,10323,14,A: CD4/naive/reg. T cells,12,17
+gPlexG,G6,10468,14,A: CD4/naive/reg. T cells,11,17
+gPlexG,G7,9883,14,A: CD4/naive/reg. T cells,12,18
+gPlexH,H1,10036,14,C: Monocytes/cDC,21,17
+gPlexH,H2,10221,14,C: Monocytes/cDC,25,18
+gPlexH,H3,10956,14,C: Monocytes/cDC,11,18
+gPlexH,H4,10962,14,C: Monocytes/cDC,18,17
+gPlexH,H5,11373,14,C: Monocytes/cDC,28,17
+gPlexH,H6,11289,14,C: Monocytes/cDC,20,17
+gPlexH,H7,10099,14,C: Monocytes/cDC,11,16
+gPlexJ,J1,9382,14,C: Monocytes/cDC,16,16
+gPlexJ,J2,9626,14,C: Monocytes/cDC,22,17
+gPlexJ,J3,10612,14,C: Monocytes/cDC,28,18
+gPlexJ,J4,10098,14,C: Monocytes/cDC,26,17
+gPlexJ,J5,11257,14,C: Monocytes/cDC,32,17
+gPlexJ,J6,9645,14,C: Monocytes/cDC,22,17
+gPlexJ,J7,9502,14,C: Monocytes/cDC,22,18
+gPlexK,K1,9460,14,A: CD4/naive/reg. T cells,11,16
+gPlexK,K2,10668,14,A: CD4/naive/reg. T cells,21,18
+gPlexK,K3,10886,14,A: CD4/naive/reg. T cells,20,18
+gPlexK,K4,10980,14,A: CD4/naive/reg. T cells,15,18
+gPlexK,K5,10689,14,A: CD4/naive/reg. T cells,26,18
+gPlexK,K6,10917,14,A: CD4/naive/reg. T cells,19,17
+gPlexK,K7,10217,14,A: CD4/naive/reg. T cells,20,18

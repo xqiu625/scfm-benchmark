@@ -1,0 +1,928 @@
+Term,NES_Geneformer,NES_STATE,NES_scGPT,NES_UCE,NES_scPRINT-2,sig_Geneformer,sig_STATE,sig_scGPT,sig_UCE,sig_scPRINT-2,n_models_sig
+ABC Transporter Disorders R-HSA-5619084,1.090,-0.932,2.102,0.516,0.779,0,0,1,0,0,1
+ABC-family Proteins Mediated Transport R-HSA-382556,1.103,-0.713,2.127,0.644,0.668,0,0,1,0,0,1
+ADORA2B Mediated Anti-Inflammatory Cytokine Production R-HSA-9660821,-0.976,-0.955,-1.555,-1.358,1.115,0,0,1,0,0,1
+ADP Signaling Thru P2Y Purinoceptor 1 R-HSA-418592,-0.909,-0.899,0.759,-0.587,1.051,0,0,0,0,0,0
+ADP Signaling Thru P2Y Purinoceptor 12 R-HSA-392170,,-1.212,-1.344,-1.433,1.116,0,0,0,0,0,0
+AKT Phosphorylates Targets In Cytosol R-HSA-198323,-0.936,,0.774,,,0,0,0,0,0,0
+APC-Cdc20 Mediated Degradation Of Nek2A R-HSA-179409,-0.989,-1.079,0.932,-0.646,-1.007,0,0,0,0,0,0
+APC/C-mediated Degradation Of Cell Cycle Proteins R-HSA-174143,0.909,-0.990,1.930,-0.825,-0.874,0,0,1,0,0,1
+APC/C:Cdc20 Mediated Degradation Of Cyclin B R-HSA-174048,-0.904,-1.146,0.989,-0.653,-1.214,0,0,0,0,0,0
+APC/C:Cdc20 Mediated Degradation Of Mitotic Proteins R-HSA-176409,0.968,-1.123,2.090,-0.664,-0.798,0,0,1,0,0,1
+APC/C:Cdc20 Mediated Degradation Of Securin R-HSA-174154,1.008,-1.148,2.104,-0.673,-0.926,0,0,1,0,0,1
+APC/C:Cdh1 Mediated Degradation Of Cdc20 And APC/C:Cdh1 Targets In Late Mitosis/Early G1 R-HSA-174178,0.997,-1.030,2.075,-0.640,-0.866,0,0,1,0,0,1
+APC:Cdc20 Mediated Degradation Of Cell Cycle Proteins Before Cycle Checkpoint Satisfied R-HSA-179419,0.968,-1.123,2.090,-0.434,-0.834,0,0,1,0,0,1
+ATF4 Activates Genes In Response To Endoplasmic Reticulum Stress R-HSA-380994,-1.453,-1.477,-1.920,-1.632,0.797,0,0,1,1,0,2
+AUF1 (hnRNP D0) Binds And Destabilizes mRNA R-HSA-450408,1.007,-0.979,2.133,0.521,-0.861,0,0,1,0,0,1
+AURKA Activation By TPX2 R-HSA-8854518,-0.775,1.135,1.263,1.101,-1.012,0,0,0,0,0,0
+Aberrant Regulation Of Mitotic Cell Cycle Due To RB1 Defects R-HSA-9687139,-0.856,1.377,1.021,-1.097,-0.945,0,0,0,0,0,0
+Aberrant Regulation Of Mitotic Exit In Cancer Due To RB1 Defects R-HSA-9687136,-0.612,-0.869,1.176,0.705,-1.088,0,0,0,0,0,0
+Aberrant Regulation Of Mitotic G1/S Transition In Cancer Due To RB1 Defects R-HSA-9659787,-0.793,2.013,0.761,-1.097,0.844,0,1,0,0,0,1
+Abortive Elongation Of HIV-1 Transcript In Absence Of Tat R-HSA-167242,0.469,-0.736,1.219,1.077,-0.814,0,0,0,0,0,0
+Activated NOTCH1 Transmits Signal To Nucleus R-HSA-2122948,-0.825,-0.959,1.185,0.578,-0.634,0,0,0,0,0,0
+Activated TAK1 Mediates P38 MAPK Activation R-HSA-450302,,-0.749,1.051,-1.305,-0.906,0,0,0,0,0,0
+Activation Of APC/C And APC/C:Cdc20 Mediated Degradation Of Mitotic Proteins R-HSA-176814,0.968,-1.123,2.090,-0.664,-0.798,0,0,1,0,0,1
+Activation Of BAD And Translocation To Mitochondria R-HSA-111447,1.097,-0.683,-0.670,-0.788,-1.326,0,0,0,0,0,0
+Activation Of BH3-only Proteins R-HSA-114452,-0.940,-0.949,-1.362,-1.693,-0.802,0,0,0,1,0,1
+Activation Of Gene Expression By SREBF (SREBP) R-HSA-2426168,0.480,-1.008,1.297,0.954,-1.438,0,0,0,0,0,0
+Activation Of HOX Genes During Differentiation R-HSA-5619507,0.890,-1.378,0.812,-1.082,0.972,0,0,0,0,0,0
+Activation Of IRF3/IRF7 Mediated By TBK1/IKK Epsilon R-HSA-936964,-1.024,-0.715,1.097,-0.561,0.839,0,0,0,0,0,0
+Activation Of Kainate Receptors Upon Glutamate Binding R-HSA-451326,-1.414,-1.205,-0.748,-0.603,1.034,0,0,0,0,0,0
+Activation Of NF-kappaB In B Cells R-HSA-1169091,1.035,-0.998,2.096,-0.649,-0.832,0,0,1,0,0,1
+Activation Of NMDA Receptors And Postsynaptic Events R-HSA-442755,0.604,-0.943,0.630,-0.606,-0.897,0,0,0,0,0,0
+Adaptive Immune System R-HSA-1280218,1.046,-1.172,1.321,-1.183,0.916,0,0,0,0,0,0
+Advanced Glycosylation Endproduct Receptor Signaling R-HSA-879415,-0.736,0.585,1.327,1.445,-1.048,0,0,0,0,0,0
+Aggrephagy R-HSA-9646399,-0.899,-1.000,0.836,0.698,-0.776,0,0,0,0,0,0
+Amino Acids Regulate mTORC1 R-HSA-9639288,1.448,0.752,1.764,0.964,0.772,0,0,1,0,0,1
+Amyloid Fiber Formation R-HSA-977225,-1.232,-1.200,-1.255,-0.745,1.062,0,0,0,0,0,0
+Anchoring Of Basal Body To Plasma Membrane R-HSA-5620912,-0.863,1.378,1.285,1.000,-0.836,0,0,0,0,0,0
+Anti-inflammatory Response Favoring Leishmania Infection R-HSA-9662851,1.379,-0.733,-1.143,-0.674,-0.720,0,0,0,0,0,0
+Antigen Activates B Cell Receptor Leading To Second Messenger Generation R-HSA-983695,0.915,-1.074,-0.825,1.649,-0.888,0,0,0,1,0,1
+"Antigen Presentation: Folding, Assembly, Peptide Loading Of Class I MHC R-HSA-983170",-0.439,-1.462,1.157,1.485,1.242,0,0,0,0,0,0
+Antigen Processing: Ubiquitination And Proteasome Degradation R-HSA-983168,-0.929,-1.277,1.727,-1.098,0.804,0,0,1,0,0,1
+Antigen processing-Cross Presentation R-HSA-1236975,0.784,-1.094,1.887,-0.464,0.582,0,0,1,0,0,1
+Antimicrobial Peptides R-HSA-6803157,1.028,0.625,1.058,-0.432,0.942,0,0,0,0,0,0
+Antiviral Mechanism By IFN-stimulated Genes R-HSA-1169410,1.421,-1.504,1.343,-1.329,0.631,0,0,0,0,0,0
+Apoptosis R-HSA-109581,0.814,-0.930,1.400,-0.692,-1.433,0,0,1,0,0,1
+Apoptotic Cleavage Of Cellular Proteins R-HSA-111465,-1.348,0.798,-0.624,0.785,-1.607,0,0,0,0,0,0
+Apoptotic Execution Phase R-HSA-75153,-1.063,-0.810,0.603,0.950,-1.618,0,0,0,0,0,0
+Apoptotic Factor-Mediated Response R-HSA-111471,1.051,-1.122,1.161,,,0,0,0,0,0,0
+Aquaporin-mediated Transport R-HSA-445717,-1.170,-1.195,-1.242,-1.161,1.324,0,0,0,0,0,0
+Arachidonic Acid Metabolism R-HSA-2142753,1.152,1.418,0.933,1.464,1.165,0,0,0,0,0,0
+Asparagine N-linked Glycosylation R-HSA-446203,0.996,-0.844,1.841,1.692,-1.187,0,0,1,1,0,2
+Assembly Of HIV Virion R-HSA-175474,-1.089,1.191,1.089,-0.560,1.341,0,0,0,0,0,0
+Assembly Of Pre-Replicative Complex R-HSA-68867,1.019,-1.337,2.151,-0.879,-1.004,0,0,1,0,0,1
+Association Of TriC/CCT With Target Proteins During Biosynthesis R-HSA-390471,1.306,0.841,1.544,0.913,-1.272,0,0,1,0,0,1
+Asymmetric Localization Of PCP Proteins R-HSA-4608870,1.011,-0.972,2.179,-0.427,-0.801,0,0,1,0,0,1
+Attenuation Phase R-HSA-3371568,-1.130,-0.692,-0.816,1.573,1.206,0,0,0,1,0,1
+Autodegradation Of Cdh1 By Cdh1:APC/C R-HSA-174084,0.972,-1.275,2.147,-0.431,-1.031,0,0,1,0,0,1
+Autodegradation Of E3 Ubiquitin Ligase COP1 R-HSA-349425,0.977,-0.841,2.080,-0.469,-0.782,0,0,1,0,0,1
+Autophagy R-HSA-9612973,1.133,-1.103,1.773,1.160,-1.362,0,0,1,0,0,1
+Axon Guidance R-HSA-422475,1.516,-0.794,1.033,0.876,0.738,0,0,0,0,0,0
+B-WICH Complex Positively Regulates rRNA Expression R-HSA-5250924,0.773,0.820,1.179,0.914,1.192,0,0,0,0,0,0
+BBSome-mediated Cargo-Targeting To Cilium R-HSA-5620922,1.040,0.736,1.218,-0.754,-1.000,0,0,0,0,0,0
+"BMAL1:CLOCK,NPAS2 Activates Circadian Gene Expression R-HSA-1368108",1.121,-1.316,-0.577,-1.048,-0.751,0,0,0,0,0,0
+Base Excision Repair R-HSA-73884,1.065,-1.446,0.827,,,0,0,0,0,0,0
+Basigin Interactions R-HSA-210991,0.947,,-0.912,,,0,0,0,0,0,0
+Beta-catenin Independent WNT Signaling R-HSA-3858494,0.994,-0.907,1.927,0.784,-0.767,0,0,1,0,0,1
+Beta-catenin Phosphorylation Cascade R-HSA-196299,0.582,,,,,0,0,0,0,0,0
+Binding And Uptake Of Ligands By Scavenger Receptors R-HSA-2173782,-1.914,1.047,-1.202,1.200,-0.940,0,0,0,0,0,0
+Biological Oxidations R-HSA-211859,-0.614,1.278,1.242,1.845,-0.947,0,0,0,1,0,1
+Biosynthesis Of N-glycan Precursor (Dolichol LLO) And Transfer To Protein R-HSA-446193,0.673,-1.188,0.779,1.261,-0.991,0,0,0,0,0,0
+Budding And Maturation Of HIV Virion R-HSA-162588,-1.098,1.588,1.296,-0.570,1.026,0,0,0,0,0,0
+Butyrate Response Factor 1 Binds And Destabilizes mRNA R-HSA-450385,-1.019,,,,,0,0,0,0,0,0
+C-type Lectin Receptors (CLRs) R-HSA-5621481,0.747,-1.294,1.648,-0.777,-0.854,0,0,1,0,0,1
+CD209 (DC-SIGN) Signaling R-HSA-5621575,0.772,-1.279,-0.824,-0.544,1.247,0,0,0,0,0,0
+CD28 Co-Stimulation R-HSA-389356,1.209,-1.367,0.895,1.105,0.680,0,0,0,0,0,0
+CD28 Dependent PI3K/Akt Signaling R-HSA-389357,1.106,,,,,0,0,0,0,0,0
+CDC42 GTPase Cycle R-HSA-9013148,0.914,-0.708,0.653,0.856,0.938,0,0,0,0,0,0
+CDK-mediated Phosphorylation And Removal Of Cdc6 R-HSA-69017,1.003,-1.147,2.084,-0.622,-1.082,0,0,1,0,0,1
+CLEC7A (Dectin-1) Signaling R-HSA-5607764,-0.751,-1.211,1.701,-0.941,-1.184,0,0,1,0,0,1
+COPI-dependent Golgi-to-ER Retrograde Traffic R-HSA-6811434,1.090,1.098,1.799,0.995,-0.779,0,0,1,0,0,1
+COPI-independent Golgi-to-ER Retrograde Traffic R-HSA-6811436,0.786,-0.800,1.761,1.185,-0.657,0,0,1,0,0,1
+COPI-mediated Anterograde Transport R-HSA-6807878,1.022,-0.934,1.688,1.599,-0.991,0,0,1,1,0,2
+COPII-mediated Vesicle Transport R-HSA-204005,0.991,-0.744,1.647,1.319,-0.921,0,0,1,0,0,1
+CTLA4 Inhibitory Signaling R-HSA-389513,1.180,-1.441,1.157,0.879,0.779,0,0,0,0,0,0
+CTNNB1 S33 Mutants Not Phosphorylated R-HSA-5358747,0.582,,,,,0,0,0,0,0,0
+Ca-dependent Events R-HSA-111996,-0.947,-0.612,-0.864,-1.249,-0.915,0,0,0,0,0,0
+Ca2+ Pathway R-HSA-4086398,-1.172,-1.065,-1.336,-0.733,-0.815,0,0,0,0,0,0
+CaM Pathway R-HSA-111997,-1.000,0.635,-0.902,-1.317,-1.134,0,0,0,0,0,0
+Calnexin/calreticulin Cycle R-HSA-901042,-0.950,0.906,1.030,1.270,-1.029,0,0,0,0,0,0
+Cap-dependent Translation Initiation R-HSA-72737,1.530,0.523,-1.633,-0.700,-0.501,0,0,1,0,0,1
+Carboxyterminal Post-Translational Modifications Of Tubulin R-HSA-8955332,0.765,-1.208,1.008,-1.010,1.127,0,0,0,0,0,0
+Cardiac Conduction R-HSA-5576891,0.651,-0.682,-1.047,0.865,-1.582,0,0,0,0,0,0
+Cargo Concentration In ER R-HSA-5694530,0.864,1.104,1.448,1.397,-0.810,0,0,1,0,0,1
+Cargo Recognition For Clathrin-Mediated Endocytosis R-HSA-8856825,1.478,0.857,0.939,-0.576,1.371,0,0,0,0,0,0
+Cargo Trafficking To Periciliary Membrane R-HSA-5620920,1.162,1.125,1.216,0.690,-1.350,0,0,0,0,0,0
+Caspase Activation Via Extrinsic Apoptotic Signaling Pathway R-HSA-5357769,-0.982,-1.050,0.819,-0.783,0.839,0,0,0,0,0,0
+Cdc20:Phospho-APC/C Mediated Degradation Of Cyclin A R-HSA-174184,0.968,-1.123,2.090,-0.434,-0.834,0,0,1,0,0,1
+Cell Cycle Checkpoints R-HSA-69620,0.795,1.031,1.775,-0.864,0.617,0,0,1,0,0,1
+Cell Cycle R-HSA-1640170,0.642,0.822,1.489,-0.810,0.818,0,0,1,0,0,1
+"Cell Cycle, Mitotic R-HSA-69278",-0.780,0.889,1.462,-0.793,0.798,0,0,1,0,0,1
+"Cell Death Signaling Via NRAGE, NRIF And NADE R-HSA-204998",-1.030,-1.490,0.879,-0.700,1.130,0,0,0,0,0,0
+Cell Junction Organization R-HSA-446728,0.806,1.227,0.955,1.310,0.878,0,0,0,0,0,0
+Cell Recruitment (Pro-Inflammatory Response) R-HSA-9664424,-0.659,-0.524,0.647,-1.713,0.984,0,0,0,1,0,1
+Cell Surface Interactions At Vascular Wall R-HSA-202733,1.120,0.994,-1.358,0.877,0.655,0,0,0,0,0,0
+Cell-Cell Communication R-HSA-1500931,1.113,1.030,0.930,1.239,0.774,0,0,0,0,0,0
+Cellular Response To Chemical Stress R-HSA-9711123,1.101,0.741,1.852,1.058,0.693,0,0,1,0,0,1
+Cellular Response To Heat Stress R-HSA-3371556,-0.755,-0.847,0.844,1.610,0.831,0,0,0,1,0,1
+Cellular Response To Hypoxia R-HSA-1234174,1.041,-0.811,2.141,-0.468,0.610,0,0,1,0,0,1
+Cellular Response To Starvation R-HSA-9711097,1.454,0.600,-1.519,-0.968,0.588,0,0,1,0,0,1
+Cellular Responses To Stimuli R-HSA-8953897,1.226,0.718,1.239,0.886,-0.679,0,0,0,0,0,0
+Cellular Responses To Stress R-HSA-2262752,1.205,0.712,1.203,-0.742,-0.670,0,0,0,0,0,0
+Cellular Senescence R-HSA-2559583,-0.985,-0.610,-0.768,-1.647,-0.809,0,0,0,1,0,1
+Centrosome Maturation R-HSA-380287,-0.843,1.102,1.096,1.046,-0.798,0,0,0,0,0,0
+Chaperone Mediated Autophagy R-HSA-9613829,1.215,0.958,1.451,1.591,0.853,0,0,1,1,0,2
+Chaperonin-mediated Protein Folding R-HSA-390466,1.023,-0.766,1.282,-0.732,-1.066,0,0,0,0,0,0
+Chemokine Receptors Bind Chemokines R-HSA-380108,-1.678,-1.539,-2.464,-1.913,0.597,0,0,1,1,0,2
+Cholesterol Biosynthesis R-HSA-191273,,0.540,,-0.862,-1.446,0,0,0,0,0,0
+Chondroitin Sulfate/Dermatan Sulfate Metabolism R-HSA-1793185,0.699,0.541,-0.683,1.442,-0.894,0,0,0,0,0,0
+Chromatin Modifying Enzymes R-HSA-3247509,0.814,-1.181,1.495,1.096,1.344,0,0,1,0,0,1
+Chromosome Maintenance R-HSA-73886,0.965,-1.060,1.191,-1.302,-1.078,0,0,0,0,0,0
+Cilium Assembly R-HSA-5617833,0.576,1.452,1.349,0.896,-1.268,0,0,0,0,0,0
+Circadian Clock R-HSA-400253,0.851,-1.437,-0.582,-0.881,-0.845,0,0,0,0,0,0
+Citric Acid (TCA) Cycle And Respiratory Electron Transport R-HSA-1428517,1.332,1.193,1.801,1.731,0.800,0,0,1,1,0,2
+Citric Acid Cycle (TCA Cycle) R-HSA-71403,0.982,1.164,1.395,1.684,-0.915,0,0,1,1,0,2
+Class A/1 (Rhodopsin-like Receptors) R-HSA-373076,-1.404,-1.022,-2.608,-2.205,-0.624,0,0,1,1,0,2
+Class B/2 (Secretin Family Receptors) R-HSA-373080,-1.277,-1.276,-1.268,-1.118,1.121,0,0,0,0,0,0
+Class I MHC Mediated Antigen Processing And Presentation R-HSA-983169,-0.939,-1.377,1.681,-0.985,0.954,0,0,1,0,0,1
+Clathrin-mediated Endocytosis R-HSA-8856828,1.469,0.998,0.892,0.789,1.211,0,0,0,0,0,0
+Collagen Formation R-HSA-1474290,0.921,-0.920,1.696,2.052,-1.273,0,0,1,1,0,2
+Complement Cascade R-HSA-166658,-1.393,1.053,0.671,1.931,0.763,0,0,0,1,0,1
+Complex I Biogenesis R-HSA-6799198,1.326,1.776,1.925,1.189,-0.829,0,0,1,0,0,1
+Constitutive Signaling By AKT1 E17K In Cancer R-HSA-5674400,-1.271,0.645,-0.860,-0.449,-0.766,0,0,0,0,0,0
+Constitutive Signaling By Aberrant PI3K In Cancer R-HSA-2219530,1.068,-1.095,0.956,1.037,0.975,0,0,0,0,0,0
+Constitutive Signaling By EGFRvIII R-HSA-5637810,1.306,,,,,0,0,0,0,0,0
+Constitutive Signaling By Ligand-Responsive EGFR Cancer Variants R-HSA-1236382,-0.759,1.667,-0.589,0.692,0.774,0,0,0,0,0,0
+Constitutive Signaling By NOTCH1 HD+PEST Domain Mutants R-HSA-2894862,-0.639,1.026,0.716,0.641,0.886,0,0,0,0,0,0
+Conversion From APC/C:Cdc20 To APC/C:Cdh1 In Late Anaphase R-HSA-176407,-0.648,-1.154,0.890,-0.617,-1.082,0,0,0,0,0,0
+Cooperation Of PDCL (PhLP1) And TRiC/CCT In G-protein Beta Folding R-HSA-6814122,1.110,-0.821,1.209,0.641,-0.767,0,0,0,0,0,0
+Cooperation Of Prefoldin And TriC/CCT In Actin And Tubulin Folding R-HSA-389958,1.083,-0.879,1.136,-0.531,-0.719,0,0,0,0,0,0
+Costimulation By CD28 Family R-HSA-388841,1.127,-1.537,0.753,-0.831,1.106,0,0,0,0,0,0
+Cristae Formation R-HSA-8949613,1.385,-0.774,1.388,1.338,-1.220,0,0,1,0,0,1
+Cross-presentation Of Soluble Exogenous Antigens (Endosomes) R-HSA-1236978,1.313,-0.975,2.251,-0.415,-0.781,0,0,1,0,0,1
+Cyclin A:Cdk2-associated Events At S Phase Entry R-HSA-69656,0.794,-0.858,1.899,-0.981,0.684,0,0,1,0,0,1
+Cyclin D Associated Events In G1 R-HSA-69231,-1.160,1.514,0.500,-0.832,0.859,0,0,0,0,0,0
+Cyclin E Associated Events During G1/S Transition R-HSA-69202,0.798,-0.892,1.900,-0.770,-0.832,0,0,1,0,0,1
+Cytokine Signaling In Immune System R-HSA-1280215,1.330,-1.155,1.196,-1.567,-0.781,0,0,0,0,0,0
+Cytoprotection By HMOX1 R-HSA-9707564,1.182,-0.857,0.991,1.039,0.975,0,0,0,0,0,0
+Cytosolic Sensors Of Pathogen-Associated DNA R-HSA-1834949,1.060,-0.709,1.172,-0.549,1.234,0,0,0,0,0,0
+DAG And IP3 Signaling R-HSA-1489509,-0.932,0.580,-0.865,-1.074,-1.432,0,0,0,0,0,0
+DAP12 Interactions R-HSA-2172127,1.393,-1.239,0.651,1.711,-0.734,0,0,0,1,0,1
+DAP12 Signaling R-HSA-2424491,1.379,-1.293,0.741,1.711,-0.734,0,0,0,1,0,1
+DARPP-32 Events R-HSA-180024,-0.767,-0.533,0.534,0.818,0.631,0,0,0,0,0,0
+DDX58/IFIH1-mediated Induction Of Interferon-Alpha/Beta R-HSA-168928,0.856,-0.756,1.057,-1.210,0.833,0,0,0,0,0,0
+DNA Damage Bypass R-HSA-73893,-0.864,-1.659,1.084,-0.899,0.783,0,0,0,0,0,0
+DNA Damage Recognition In GG-NER R-HSA-5696394,-0.786,-1.290,1.297,0.670,-0.778,0,0,0,0,0,0
+DNA Damage/Telomere Stress Induced Senescence R-HSA-2559586,1.109,0.912,-0.557,-0.820,0.803,0,0,0,0,0,0
+DNA Double Strand Break Response R-HSA-5693606,-0.652,1.038,1.221,0.793,0.822,0,0,0,0,0,0
+DNA Double-Strand Break Repair R-HSA-5693532,0.632,-0.803,1.449,-0.754,0.905,0,0,1,0,0,1
+DNA Repair R-HSA-73894,0.658,-1.372,1.447,-0.625,1.012,0,0,1,0,0,1
+DNA Replication Pre-Initiation R-HSA-69002,0.989,-1.378,2.062,-1.021,-1.170,0,0,1,0,0,1
+DNA Replication R-HSA-69306,0.995,-1.342,1.983,-1.010,-1.183,0,0,1,0,0,1
+Deactivation Of Beta-Catenin Transactivating Complex R-HSA-3769402,-0.805,-0.955,-1.004,-1.544,0.691,0,0,0,0,0,0
+Deadenylation Of mRNA R-HSA-429947,-0.687,-1.023,0.717,1.549,0.746,0,0,0,0,0,0
+Deadenylation-dependent mRNA Decay R-HSA-429914,-0.622,-0.956,0.925,1.498,0.949,0,0,0,0,0,0
+Death Receptor Signaling R-HSA-73887,0.938,-0.822,0.808,-0.966,1.100,0,0,0,0,0,0
+Dectin-1 Mediated Noncanonical NF-kB Signaling R-HSA-5607761,0.721,-1.254,2.019,-0.319,-0.904,0,0,1,0,0,1
+Defective CFTR Causes Cystic Fibrosis R-HSA-5678895,1.098,-1.027,2.124,0.668,0.766,0,0,1,0,0,1
+Defective Intrinsic Pathway For Apoptosis R-HSA-9734009,-0.696,1.322,-0.897,-1.143,0.706,0,0,0,0,0,0
+Defective TPR May Confer Susceptibility Towards Thyroid Papillary Carcinoma (TPC) R-HSA-5619107,,-0.883,1.139,0.813,0.521,0,0,0,0,0,0
+Degradation Of AXIN R-HSA-4641257,0.895,-1.019,2.131,-0.437,0.638,0,0,1,0,0,1
+Degradation Of Beta-Catenin By Destruction Complex R-HSA-195253,0.941,-0.693,1.958,-0.652,-0.731,0,0,1,0,0,1
+Degradation Of DVL R-HSA-4641258,0.915,-1.066,2.104,-0.601,-0.702,0,0,1,0,0,1
+Degradation Of Extracellular Matrix R-HSA-1474228,1.722,1.598,1.421,1.530,-0.662,0,0,1,0,0,1
+Degradation Of GLI1 By Proteasome R-HSA-5610780,0.863,-1.109,2.099,-0.427,-0.757,0,0,1,0,0,1
+Degradation Of GLI2 By Proteasome R-HSA-5610783,0.976,-1.037,2.132,-0.468,-0.794,0,0,1,0,0,1
+Deposition Of New CENPA-containing Nucleosomes At Centromere R-HSA-606279,-1.057,-0.731,,-1.584,0.779,0,0,0,1,0,1
+Deregulated CDK5 Triggers Neurodegenerative Pathways In Alzheimers Disease Models R-HSA-8862803,-0.836,1.330,-1.001,-1.120,0.880,0,0,0,0,0,0
+Detoxification Of Reactive Oxygen Species R-HSA-3299685,1.087,1.202,1.324,1.189,-0.845,0,0,0,0,0,0
+Deubiquitination R-HSA-5688426,1.084,-0.895,1.885,-0.978,1.005,0,0,1,0,0,1
+Developmental Biology R-HSA-1266738,1.409,-1.030,0.866,-0.662,0.900,0,0,0,0,0,0
+Disassembly Of Destruction Complex And Recruitment Of AXIN To Membrane R-HSA-4641262,0.496,1.052,-0.753,0.814,1.045,0,0,0,0,0,0
+Diseases Associated With TLR Signaling Cascade R-HSA-5602358,1.163,0.671,0.991,-0.993,0.793,0,0,0,0,0,0
+Diseases Of Carbohydrate Metabolism R-HSA-5663084,-0.961,0.838,0.885,1.471,0.916,0,0,0,0,0,0
+Diseases Of Glycosylation R-HSA-3781865,0.779,-0.822,0.620,1.973,0.823,0,0,0,1,0,1
+Diseases Of Metabolism R-HSA-5668914,-0.746,0.786,-0.842,2.067,1.118,0,0,0,1,0,1
+Diseases Of Mitotic Cell Cycle R-HSA-9675126,-0.793,1.332,0.966,-1.050,-0.894,0,0,0,0,0,0
+Diseases Of Programmed Cell Death R-HSA-9645723,-0.749,1.407,0.820,-0.771,-0.788,0,0,0,0,0,0
+Diseases Of Signal Transduction By Growth Factor Receptors And Second Messengers R-HSA-5663202,1.115,0.955,1.484,1.214,0.762,0,0,1,0,0,1
+Disorders Of Developmental Biology R-HSA-9675151,-1.013,0.446,0.673,-0.834,-0.862,0,0,0,0,0,0
+Disorders Of Transmembrane Transporters R-HSA-5619115,1.125,-0.875,1.893,-0.594,0.869,0,0,1,0,0,1
+Downregulation Of ERBB2 Signaling R-HSA-8863795,0.754,1.017,-1.380,0.465,0.896,0,0,0,0,0,0
+Downregulation Of SMAD2/3:SMAD4 Transcriptional Activity R-HSA-2173795,-0.943,-0.614,1.160,0.827,0.722,0,0,0,0,0,0
+Downregulation Of TGF-beta Receptor Signaling R-HSA-2173788,-1.183,-1.135,1.011,-0.484,0.543,0,0,0,0,0,0
+Downstream Signal Transduction R-HSA-186763,1.021,-1.267,1.030,0.504,0.567,0,0,0,0,0,0
+Downstream Signaling Events Of B Cell Receptor (BCR) R-HSA-1168372,-0.852,-0.982,1.991,-0.728,-0.739,0,0,1,0,0,1
+Downstream TCR Signaling R-HSA-202424,0.980,-1.040,1.737,-1.235,-0.673,0,0,1,0,0,1
+Drug ADME R-HSA-9748784,-0.714,1.110,1.609,1.624,0.932,0,0,1,1,0,2
+Dual Incision In GG-NER R-HSA-5696400,-0.920,-1.321,0.880,-0.472,-0.924,0,0,0,0,0,0
+Dual Incision In TC-NER R-HSA-6782135,-0.784,-1.505,1.225,-0.496,1.005,0,0,0,0,0,0
+E3 Ubiquitin Ligases Ubiquitinate Target Proteins R-HSA-8866654,-0.999,0.848,1.349,0.706,1.536,0,0,0,0,0,0
+ECM Proteoglycans R-HSA-3000178,1.444,-0.979,-1.027,1.792,1.345,0,0,0,1,0,1
+EGFR Downregulation R-HSA-182971,1.193,1.718,-0.975,1.463,1.358,0,0,0,0,0,0
+EML4 And NUDC In Mitotic Spindle Formation R-HSA-9648025,-0.978,1.542,1.217,1.133,1.217,0,0,0,0,0,0
+EPH-Ephrin Signaling R-HSA-2682334,1.321,-1.021,1.479,1.451,0.995,0,0,1,0,0,1
+EPH-ephrin Mediated Repulsion Of Cells R-HSA-3928665,1.543,-1.222,1.809,1.124,0.877,0,0,1,0,0,1
+EPHA-mediated Growth Cone Collapse R-HSA-3928663,1.706,-0.406,1.116,1.224,-1.039,0,0,0,0,0,0
+EPHB-mediated Forward Signaling R-HSA-3928662,1.542,-0.901,1.300,1.775,0.747,0,0,0,1,0,1
+ER Quality Control Compartment (ERQC) R-HSA-901032,-0.970,1.081,0.827,1.304,0.614,0,0,0,0,0,0
+ER To Golgi Anterograde Transport R-HSA-199977,1.128,-0.884,1.842,1.687,-1.070,0,0,1,1,0,2
+ER-Phagosome Pathway R-HSA-1236974,0.967,-1.163,2.007,-0.452,0.467,0,0,1,0,0,1
+ERK/MAPK Targets R-HSA-198753,0.564,-1.036,-0.834,-0.726,0.608,0,0,0,0,0,0
+ESR-mediated Signaling R-HSA-8939211,-1.095,-0.932,-1.145,-0.908,0.871,0,0,0,0,0,0
+Early SARS-CoV-2 Infection Events R-HSA-9772572,0.993,0.923,1.327,1.641,-1.275,0,0,0,1,0,1
+Effects Of PIP2 Hydrolysis R-HSA-114508,1.027,0.959,-0.635,1.011,-1.198,0,0,0,0,0,0
+Endosomal Sorting Complex Required For Transport (ESCRT) R-HSA-917729,0.717,1.738,1.125,-0.667,1.126,0,0,0,0,0,0
+Energy Dependent Regulation Of mTOR By LKB1-AMPK R-HSA-380972,-0.709,-0.948,1.173,-0.851,-1.330,0,0,0,0,0,0
+Ephrin Signaling R-HSA-3928664,-1.537,-1.516,1.029,,,0,0,0,0,0,0
+Epigenetic Regulation Of Gene Expression R-HSA-212165,1.258,1.203,1.169,0.777,-0.901,0,0,0,0,0,0
+Estrogen-dependent Gene Expression R-HSA-9018519,-1.328,-1.136,-0.992,-1.264,-1.047,0,0,0,0,0,0
+Estrogen-dependent Nuclear Events Downstream Of ESR-membrane Signaling R-HSA-9634638,1.030,1.085,-1.246,1.223,1.020,0,0,0,0,0,0
+Eukaryotic Translation Elongation R-HSA-156842,1.585,0.580,-2.462,-1.334,1.035,0,0,1,0,0,1
+Eukaryotic Translation Termination R-HSA-72764,1.565,0.566,-2.307,-1.509,1.058,0,0,1,0,0,1
+Export Of Viral Ribonucleoproteins From Nucleus R-HSA-168274,-1.158,-1.166,1.301,0.842,0.904,0,0,0,0,0,0
+Extension Of Telomeres R-HSA-180786,1.243,-0.414,1.204,-0.774,-1.069,0,0,0,0,0,0
+Extra-nuclear Estrogen Signaling R-HSA-9009391,0.789,-0.686,-1.270,1.094,1.179,0,0,0,0,0,0
+Extracellular Matrix Organization R-HSA-1474244,1.632,1.229,1.289,2.129,0.870,0,0,0,1,0,1
+FBXL7 Down-Regulates AURKA During Mitotic Entry And In Early Mitosis R-HSA-8854050,0.970,-0.996,2.121,-0.441,-0.863,0,0,1,0,0,1
+FCERI Mediated Ca+2 Mobilization R-HSA-2871809,0.672,-0.993,-1.186,1.675,-1.806,0,0,0,1,0,1
+FCERI Mediated MAPK Activation R-HSA-2871796,-0.527,-1.275,-0.809,1.177,-0.943,0,0,0,0,0,0
+FCERI Mediated NF-kB Activation R-HSA-2871837,1.048,-1.068,2.027,-0.849,-0.964,0,0,1,0,0,1
+FCGR3A-mediated IL10 Synthesis R-HSA-9664323,1.202,-0.563,1.108,1.479,-1.187,0,0,0,0,0,0
+FCGR3A-mediated Phagocytosis R-HSA-9664422,1.709,1.041,1.316,1.663,1.200,0,0,0,1,0,1
+FGFR1 Mutant Receptor Activation R-HSA-1839124,1.001,0.768,1.193,1.399,-1.105,0,0,0,0,0,0
+FGFR2 Alternative Splicing R-HSA-6803529,0.618,-1.090,1.220,0.652,-0.908,0,0,0,0,0,0
+FGFR2 Mutant Receptor Activation R-HSA-1839126,0.669,-0.728,1.275,0.800,-1.110,0,0,0,0,0,0
+FLT3 Signaling In Disease R-HSA-9682385,-0.731,1.219,1.261,1.047,-0.887,0,0,0,0,0,0
+FLT3 Signaling R-HSA-9607240,0.793,0.732,0.570,-0.725,-0.774,0,0,0,0,0,0
+FOXO-mediated Transcription Of Cell Cycle Genes R-HSA-9617828,-1.206,,,,,0,0,0,0,0,0
+FOXO-mediated Transcription Of Cell Death Genes R-HSA-9614657,-1.901,,,,,0,0,0,0,0,0
+"FOXO-mediated Transcription Of Oxidative Stress, Metabolic And Neuronal Genes R-HSA-9615017",-1.145,,,,,0,0,0,0,0,0
+FOXO-mediated Transcription R-HSA-9614085,-1.063,-1.007,-1.631,-1.719,0.908,0,0,1,1,0,2
+Factors Involved In Megakaryocyte Development And Platelet Production R-HSA-983231,-0.789,1.369,-0.977,-1.322,-0.838,0,0,0,0,0,0
+Fanconi Anemia Pathway R-HSA-6783310,,-1.107,-0.554,-1.356,1.453,0,0,0,0,0,0
+Fatty Acid Metabolism R-HSA-8978868,1.202,1.185,1.597,1.852,1.207,0,0,1,1,0,2
+Fatty acyl-CoA Biosynthesis R-HSA-75105,0.550,-0.931,1.504,1.464,0.892,0,0,1,0,0,1
+Fc Epsilon Receptor (FCERI) Signaling R-HSA-2454202,0.877,-1.170,1.736,0.774,-1.249,0,0,1,0,0,1
+Fcgamma Receptor (FCGR) Dependent Phagocytosis R-HSA-2029480,1.426,0.879,1.180,2.061,0.859,0,0,0,1,0,1
+Formation Of A Pool Of Free 40S Subunits R-HSA-72689,1.555,0.673,-2.124,-0.959,-0.483,0,0,1,0,0,1
+Formation Of ATP By Chemiosmotic Coupling R-HSA-163210,1.294,-0.520,1.144,1.115,-0.540,0,0,0,0,0,0
+Formation Of Early Elongation Complex R-HSA-113418,0.415,-0.640,1.179,0.952,-1.293,0,0,0,0,0,0
+Formation Of Fibrin Clot (Clotting Cascade) R-HSA-140877,1.069,-0.914,-0.817,1.600,1.236,0,0,0,1,0,1
+Formation Of HIV Elongation Complex In Absence Of HIV Tat R-HSA-167152,-0.485,-0.596,1.214,0.821,-1.412,0,0,0,0,0,0
+Formation Of HIV-1 Elongation Complex Containing HIV-1 Tat R-HSA-167200,-0.503,-0.604,1.274,0.811,-1.185,0,0,0,0,0,0
+Formation Of Incision Complex In GG-NER R-HSA-5696395,-0.831,0.575,1.073,0.694,-0.907,0,0,0,0,0,0
+Formation Of RNA Pol II Elongation Complex R-HSA-112382,0.580,1.047,1.272,1.255,-1.345,0,0,0,0,0,0
+Formation Of TC-NER Pre-Incision Complex R-HSA-6781823,-0.768,-1.378,1.241,0.573,-1.261,0,0,0,0,0,0
+"Formation Of Ternary Complex, And Subsequently, 43S Complex R-HSA-72695",-1.794,-0.543,-1.536,0.386,-0.804,0,0,1,0,0,1
+Formation Of Tubulin Folding Intermediates By CCT/TriC R-HSA-389960,1.046,-0.973,1.165,0.736,-0.529,0,0,0,0,0,0
+Formation Of beta-catenin:TCF Transactivating Complex R-HSA-201722,0.681,0.964,-0.648,-1.245,1.234,0,0,0,0,0,0
+G Alpha (12/13) Signaling Events R-HSA-416482,1.125,-1.242,-0.857,0.768,1.101,0,0,0,0,0,0
+G Alpha (I) Signaling Events R-HSA-418594,-1.772,-1.152,-2.243,-1.694,-0.788,0,0,1,1,0,2
+G Alpha (Q) Signaling Events R-HSA-416476,-0.924,-0.675,-1.321,-1.302,0.949,0,0,0,0,0,0
+G Alpha (S) Signaling Events R-HSA-418555,0.788,-0.807,-1.491,-1.290,0.761,0,0,1,0,0,1
+G Alpha (Z) Signaling Events R-HSA-418597,-1.573,-1.239,-2.054,-1.117,1.370,0,0,1,0,0,1
+G Beta:Gamma Signaling Thru CDC42 R-HSA-8964616,,-1.559,-1.042,,,0,0,0,0,0,0
+G Beta:Gamma Signaling Thru PI3Kgamma R-HSA-392451,0.831,-1.022,0.585,,,0,0,0,0,0,0
+G-protein Activation R-HSA-202040,,-1.045,-0.526,0.407,1.094,0,0,0,0,0,0
+G-protein Beta:Gamma Signaling R-HSA-397795,0.962,-1.365,-0.748,-0.944,1.438,0,0,0,0,0,0
+G-protein Mediated Events R-HSA-112040,-0.754,0.596,-0.840,-0.864,-1.209,0,0,0,0,0,0
+G0 And Early G1 R-HSA-1538133,-0.780,-0.935,-0.786,,,0,0,0,0,0,0
+G1/S DNA Damage Checkpoints R-HSA-69615,0.807,-0.733,2.034,-0.740,-0.994,0,0,1,0,0,1
+G1/S Transition R-HSA-69206,0.799,-0.905,1.760,-1.002,-0.849,0,0,1,0,0,1
+G2/M Checkpoints R-HSA-69481,1.124,-0.733,1.832,-1.162,-0.751,0,0,1,0,0,1
+G2/M DNA Damage Checkpoint R-HSA-69473,1.120,1.030,0.827,-0.919,0.888,0,0,0,0,0,0
+G2/M Transition R-HSA-69275,0.598,0.867,1.614,0.611,-0.757,0,0,1,0,0,1
+GABA Receptor Activation R-HSA-977443,-0.772,-1.319,-1.246,-1.344,1.131,0,0,0,0,0,0
+GLI3 Is Processed To GLI3R By Proteasome R-HSA-5610785,0.976,-1.037,2.132,-0.468,-0.794,0,0,1,0,0,1
+GPCR Downstream Signaling R-HSA-388396,-1.259,-0.937,-2.056,-1.635,0.777,0,0,1,1,0,2
+GPCR Ligand Binding R-HSA-500792,-1.491,-1.089,-2.559,-2.136,0.863,0,0,1,1,0,2
+GPER1 Signaling R-HSA-9634597,-1.176,-1.100,-0.903,-1.117,1.036,0,0,0,0,0,0
+GPVI-mediated Activation Cascade R-HSA-114604,1.595,0.701,0.890,1.410,-0.666,0,0,0,0,0,0
+GRB2:SOS Provides Linkage To MAPK Signaling For Integrins R-HSA-354194,0.743,1.249,0.649,1.068,0.443,0,0,0,0,0,0
+GSK3B And BTRC:CUL1-mediated-degradation Of NFE2L2 R-HSA-9762114,0.927,-1.080,2.168,-0.452,-0.868,0,0,1,0,0,1
+GTP Hydrolysis And Joining Of 60S Ribosomal Subunit R-HSA-72706,1.534,0.507,-1.973,-0.736,-0.480,0,0,1,0,0,1
+"Gamma Carboxylation, Hypusine Formation And Arylsulfatase Activation R-HSA-163841",0.616,0.873,0.840,1.340,1.308,0,0,0,0,0,0
+Gap-filling DNA Repair Synthesis And Ligation In GG-NER R-HSA-5696397,,-1.373,-0.855,,,0,0,0,0,0,0
+Gap-filling DNA Repair Synthesis And Ligation In TC-NER R-HSA-6782210,-0.628,-1.339,1.250,-0.553,-1.150,0,0,0,0,0,0
+Gene And Protein Expression By JAK-STAT Signaling After Interleukin-12 Stimulation R-HSA-8950505,-1.013,0.831,1.121,1.224,0.870,0,0,0,0,0,0
+Gene Expression (Transcription) R-HSA-74160,,,,-1.017,0.979,0,0,0,0,0,0
+Gene Silencing By RNA R-HSA-211000,0.653,-1.472,1.320,0.816,-0.844,0,0,0,0,0,0
+Generation Of Second Messenger Molecules R-HSA-202433,0.876,-1.201,-1.790,0.925,0.951,0,0,1,0,0,1
+Generic Transcription Pathway R-HSA-212436,-0.914,-1.136,1.000,-1.206,0.907,0,0,0,0,0,0
+Global Genome Nucleotide Excision Repair (GG-NER) R-HSA-5696399,-0.718,-1.184,1.108,0.556,-1.020,0,0,0,0,0,0
+Glucagon Signaling In Metabolic Regulation R-HSA-163359,-1.484,-1.289,-0.681,-0.848,1.346,0,0,0,0,0,0
+Glucagon-like Peptide-1 (GLP1) Regulates Insulin Secretion R-HSA-381676,-1.357,-1.072,-0.661,0.580,0.959,0,0,0,0,0,0
+Gluconeogenesis R-HSA-70263,-0.838,,1.796,,,0,0,1,0,0,1
+Glucose Metabolism R-HSA-70326,0.863,-1.057,1.709,1.552,1.022,0,0,1,0,0,1
+"Glutamate Binding, Activation Of AMPA Receptors And Synaptic Plasticity R-HSA-399721",1.005,-0.551,1.376,0.946,-0.880,0,0,1,0,0,1
+Glutathione Conjugation R-HSA-156590,0.694,1.025,1.007,1.673,-0.655,0,0,0,1,0,1
+Glycerophospholipid Biosynthesis R-HSA-1483206,-0.566,0.807,1.285,1.101,0.682,0,0,0,0,0,0
+Glycogen Metabolism R-HSA-8982491,-1.060,0.933,0.912,1.534,0.798,0,0,0,0,0,0
+Glycolysis R-HSA-70171,-0.730,-1.006,1.671,1.415,0.857,0,0,1,0,0,1
+Glycosaminoglycan Metabolism R-HSA-1630316,0.785,0.870,1.058,1.045,0.535,0,0,0,0,0,0
+Glycosphingolipid Metabolism R-HSA-1660662,-1.204,0.696,1.268,1.326,0.658,0,0,0,0,0,0
+Golgi Associated Vesicle Biogenesis R-HSA-432722,-1.597,-0.863,1.302,-0.619,1.195,0,0,0,0,0,0
+Golgi-to-ER Retrograde Transport R-HSA-8856688,1.012,1.001,2.027,1.198,-0.802,0,0,1,0,0,1
+Growth Hormone Receptor Signaling R-HSA-982772,0.447,0.778,0.874,0.833,0.558,0,0,0,0,0,0
+HATs Acetylate Histones R-HSA-3214847,-0.709,-0.772,0.564,-1.043,1.039,0,0,0,0,0,0
+HCMV Early Events R-HSA-9609690,0.827,-1.062,1.236,1.001,-0.968,0,0,0,0,0,0
+HCMV Infection R-HSA-9609646,0.936,-0.813,1.246,0.763,0.682,0,0,0,0,0,0
+HCMV Late Events R-HSA-9610379,1.016,0.903,1.253,0.628,0.969,0,0,0,0,0,0
+HDACs Deacetylate Histones R-HSA-3214815,1.077,0.828,1.112,-0.749,1.163,0,0,0,0,0,0
+HDMs Demethylate Histones R-HSA-3214842,,1.046,1.441,1.254,1.313,0,0,1,0,0,1
+HDR Thru Homologous Recombination (HRR) Or Single Strand Annealing (SSA) R-HSA-5693567,-0.739,0.651,1.313,-0.974,0.823,0,0,0,0,0,0
+HDR Thru Homologous Recombination (HRR) R-HSA-5685942,-0.929,-0.766,0.973,-1.021,-0.416,0,0,0,0,0,0
+HIV Elongation Arrest And Recovery R-HSA-167287,-0.550,-0.811,1.306,0.985,-1.248,0,0,0,0,0,0
+HIV Infection R-HSA-162906,1.107,-0.874,1.866,-0.574,-0.979,0,0,1,0,0,1
+HIV Life Cycle R-HSA-162587,-0.741,0.843,1.327,0.559,-1.211,0,0,0,0,0,0
+HIV Transcription Initiation R-HSA-167161,0.443,-0.755,1.031,-0.991,-1.500,0,0,0,0,0,0
+HSF1 Activation R-HSA-3371511,-1.244,0.577,0.465,1.611,-0.382,0,0,0,1,0,1
+HSF1-dependent Transactivation R-HSA-3371571,-1.001,-0.661,-0.708,1.631,-0.929,0,0,0,1,0,1
+HSP90 Chaperone Cycle For Steroid Hormone Receptors (SHR) In Presence Of Ligand R-HSA-3371497,-1.256,0.980,1.178,1.880,-0.704,0,0,0,1,0,1
+Hedgehog Ligand Biogenesis R-HSA-5358346,1.165,-0.990,2.243,0.780,-0.825,0,0,1,0,0,1
+Hedgehog Off State R-HSA-5610787,-0.810,-0.977,2.032,-0.541,-0.578,0,0,1,0,0,1
+Hedgehog On State R-HSA-5632684,0.887,-1.181,2.047,-0.764,-0.792,0,0,1,0,0,1
+Heme Signaling R-HSA-9707616,-0.807,-0.789,-1.023,0.912,0.825,0,0,0,0,0,0
+Hemostasis R-HSA-109582,1.101,1.241,-1.108,1.148,0.885,0,0,0,0,0,0
+Heparan Sulfate/Heparin (HS-GAG) Metabolism R-HSA-1638091,1.033,0.656,0.982,1.290,0.785,0,0,0,0,0,0
+Hh Mutants Abrogate Ligand Secretion R-HSA-5387390,1.090,-0.975,2.185,0.694,-0.590,0,0,1,0,0,1
+Hh Mutants Are Degraded By ERAD R-HSA-5362768,1.090,-0.975,2.185,0.694,-0.590,0,0,1,0,0,1
+Homology Directed Repair R-HSA-5693538,-0.669,0.640,1.351,-0.927,0.788,0,0,0,0,0,0
+Host Interactions Of HIV Factors R-HSA-162909,1.244,-1.064,1.928,-0.610,0.527,0,0,1,0,0,1
+IGF1R Signaling Cascade R-HSA-2428924,1.062,1.537,1.101,1.319,-0.801,0,0,0,0,0,0
+IKK Complex Recruitment Mediated By RIP1 R-HSA-937041,-1.098,-1.003,0.448,-0.432,0.733,0,0,0,0,0,0
+IRE1alpha Activates Chaperones R-HSA-381070,0.731,-1.009,1.188,0.953,-0.783,0,0,0,0,0,0
+IRS-mediated Signaling R-HSA-112399,0.930,1.372,0.975,0.792,-0.802,0,0,0,0,0,0
+IRS-related Events Triggered By IGF1R R-HSA-2428928,1.004,1.511,1.047,1.329,-0.757,0,0,0,0,0,0
+ISG15 Antiviral Mechanism R-HSA-1169408,1.153,-1.408,1.255,-0.970,0.600,0,0,0,0,0,0
+Immunoregulatory Interactions Between A Lymphoid And A non-Lymphoid Cell R-HSA-198933,2.088,1.341,-2.217,-1.809,0.949,1,0,1,1,0,3
+Inactivation Of APC/C Via Direct Inhibition Of APC/C Complex R-HSA-141430,-0.796,-1.099,1.170,-0.669,-0.991,0,0,0,0,0,0
+Inactivation Of CSF3 (G-CSF) Signaling R-HSA-9705462,0.763,-0.897,0.684,0.972,0.818,0,0,0,0,0,0
+"Inactivation, Recovery And Regulation Of Phototransduction Cascade R-HSA-2514859",-0.962,-1.359,0.860,-1.147,-0.587,0,0,0,0,0,0
+Infection With Mycobacterium Tuberculosis R-HSA-9635486,-1.358,-1.617,1.253,1.083,0.646,0,0,0,0,0,0
+Infectious Disease R-HSA-5663205,1.421,0.903,,-0.584,0.919,0,0,0,0,0,0
+Inflammasomes R-HSA-622312,0.613,1.225,0.602,-1.185,0.756,0,0,0,0,0,0
+Influenza Infection R-HSA-168255,1.587,-0.777,-1.126,-0.667,-0.613,0,0,0,0,0,0
+Influenza Viral RNA Transcription And Replication R-HSA-168273,1.545,-0.522,-1.501,-0.681,-0.636,0,0,1,0,0,1
+Inhibition Of DNA Recombination At Telomere R-HSA-9670095,0.991,-1.351,1.178,0.619,-1.065,0,0,0,0,0,0
+Initiation Of Nuclear Envelope (NE) Reformation R-HSA-2995383,0.917,-0.666,0.951,1.293,0.958,0,0,0,0,0,0
+InlB-mediated Entry Of Listeria Monocytogenes Into Host Cell R-HSA-8875360,-0.883,1.023,0.752,0.891,0.617,0,0,0,0,0,0
+Innate Immune System R-HSA-168249,,,,1.004,0.754,0,0,0,0,0,0
+Inositol Phosphate Metabolism R-HSA-1483249,-1.288,0.819,-1.431,1.253,1.044,0,0,0,0,0,0
+Insertion Of Tail-Anchored Proteins Into Endoplasmic Reticulum Membrane R-HSA-9609523,-0.695,-1.028,-0.909,0.907,-0.799,0,0,0,0,0,0
+Insulin Processing R-HSA-264876,-0.413,,,,,0,0,0,0,0,0
+Insulin Receptor Recycling R-HSA-77387,1.463,1.093,1.764,1.313,1.433,0,0,1,0,0,1
+Insulin Receptor Signaling Cascade R-HSA-74751,0.834,1.330,1.042,0.735,-0.733,0,0,0,0,0,0
+Integration Of Energy Metabolism R-HSA-163685,-1.175,-1.088,-1.065,-0.707,-0.905,0,0,0,0,0,0
+Integrin Cell Surface Interactions R-HSA-216083,1.268,1.152,-0.986,0.744,1.396,0,0,0,0,0,0
+Integrin Signaling R-HSA-354192,1.061,1.028,0.927,0.866,-0.655,0,0,0,0,0,0
+Interactions Of Rev With Host Cellular Proteins R-HSA-177243,0.698,-0.901,1.379,0.958,0.869,0,0,1,0,0,1
+Interactions Of Vpr With Host Cellular Proteins R-HSA-176033,1.487,-1.252,1.372,1.000,-0.544,0,0,1,0,0,1
+Interconversion Of Nucleotide Di- And Triphosphates R-HSA-499943,0.869,-1.103,1.176,1.370,-0.884,0,0,0,0,0,0
+Interferon Alpha/Beta Signaling R-HSA-909733,1.804,0.829,1.483,-1.807,-1.080,0,0,1,1,0,2
+Interferon Gamma Signaling R-HSA-877300,1.092,-1.307,-1.140,-1.901,-1.125,0,0,0,1,0,1
+Interferon Signaling R-HSA-913531,1.365,-1.241,1.015,-1.926,-0.951,0,0,0,1,0,1
+Interleukin Receptor SHC Signaling R-HSA-912526,1.315,0.914,0.616,-1.050,0.673,0,0,0,0,0,0
+Interleukin-1 Family Signaling R-HSA-446652,1.026,-0.823,2.019,-0.758,-0.722,0,0,1,0,0,1
+Interleukin-1 Signaling R-HSA-9020702,0.994,-0.664,2.038,-0.772,-0.801,0,0,1,0,0,1
+Interleukin-10 Signaling R-HSA-6783783,1.188,-1.209,-1.678,-1.491,0.957,0,0,1,0,0,1
+Interleukin-12 Family Signaling R-HSA-447115,-0.866,1.023,1.330,1.485,0.645,0,0,0,0,0,0
+Interleukin-12 Signaling R-HSA-9020591,-0.923,0.922,1.232,1.385,0.702,0,0,0,0,0,0
+Interleukin-15 Signaling R-HSA-8983432,1.077,,,,,0,0,0,0,0,0
+Interleukin-17 Signaling R-HSA-448424,-0.852,-0.944,-0.732,-1.283,-0.957,0,0,0,0,0,0
+Interleukin-2 Family Signaling R-HSA-451927,1.283,0.772,0.878,-0.722,0.980,0,0,0,0,0,0
+Interleukin-20 Family Signaling R-HSA-8854691,1.009,0.684,1.386,,,0,0,1,0,0,1
+"Interleukin-3, Interleukin-5 And GM-CSF Signaling R-HSA-512988",1.722,0.778,0.902,-0.827,-0.694,0,0,0,0,0,0
+Interleukin-37 Signaling R-HSA-9008059,0.534,-0.890,1.241,0.852,1.110,0,0,0,0,0,0
+Interleukin-4 And Interleukin-13 Signaling R-HSA-6785807,1.222,1.255,-1.439,-1.423,1.115,0,0,0,0,0,0
+Interleukin-6 Family Signaling R-HSA-6783589,0.988,1.291,1.240,1.199,0.786,0,0,0,0,0,0
+Interleukin-7 Signaling R-HSA-1266695,0.849,1.395,-0.850,1.058,0.641,0,0,0,0,0,0
+Intra-Golgi And Retrograde Golgi-to-ER Traffic R-HSA-6811442,0.850,0.906,1.918,1.441,-0.952,0,0,1,0,0,1
+Intra-Golgi Traffic R-HSA-6811438,0.719,1.002,0.818,1.250,-1.188,0,0,0,0,0,0
+Intracellular Signaling By Second Messengers R-HSA-9006925,-0.853,-0.935,1.243,-1.146,0.797,0,0,0,0,0,0
+Intraflagellar Transport R-HSA-5620924,-0.992,,,,,0,0,0,0,0,0
+Intrinsic Pathway For Apoptosis R-HSA-109606,0.968,-0.955,-0.874,-1.305,-1.504,0,0,0,0,0,0
+Intrinsic Pathway Of Fibrin Clot Formation R-HSA-140837,-1.297,-0.915,0.927,1.559,1.265,0,0,0,1,0,1
+Ion Channel Transport R-HSA-983712,0.804,1.209,1.140,-0.767,0.975,0,0,0,0,0,0
+Ion Homeostasis R-HSA-5578775,-0.790,-0.710,-1.087,0.631,-1.301,0,0,0,0,0,0
+Ion Transport By P-type ATPases R-HSA-936837,-0.762,0.966,0.585,-1.087,-1.020,0,0,0,0,0,0
+Iron Uptake And Transport R-HSA-917937,-1.600,1.542,1.711,1.216,1.273,0,0,1,0,0,1
+JNK (c-Jun Kinases) Phosphorylation And Activation Mediated By Activated Human TAK1 R-HSA-450321,,,1.247,,,0,0,0,0,0,0
+Josephin Domain DUBs R-HSA-5689877,-0.782,,,,,0,0,0,0,0,0
+KEAP1-NFE2L2 Pathway R-HSA-9755511,0.764,-0.809,2.029,0.795,0.574,0,0,1,0,0,1
+Keratan Sulfate Biosynthesis R-HSA-2022854,,-0.590,,-0.938,0.952,0,0,0,0,0,0
+Keratan Sulfate/Keratin Metabolism R-HSA-1638074,0.624,-0.917,0.983,-0.786,0.875,0,0,0,0,0,0
+Keratinization R-HSA-6805567,,-0.846,,0.730,-1.150,0,0,0,0,0,0
+L13a-mediated Translational Silencing Of Ceruloplasmin Expression R-HSA-156827,1.549,0.529,-1.986,-0.778,-0.472,0,0,1,0,0,1
+L1CAM Interactions R-HSA-373760,1.272,-1.050,1.354,1.304,0.827,0,0,0,0,0,0
+LDL Clearance R-HSA-8964038,,-0.736,,,,0,0,0,0,0,0
+Late Endosomal Microautophagy R-HSA-9615710,1.199,1.194,1.573,1.202,1.153,0,0,1,0,0,1
+Late Phase Of HIV Life Cycle R-HSA-162599,-0.978,0.933,1.378,0.592,-1.196,0,0,1,0,0,1
+Late SARS-CoV-2 Infection Events R-HSA-9772573,-0.626,1.353,1.359,-0.645,1.335,0,0,0,0,0,0
+Leishmania Infection R-HSA-9658195,1.268,0.899,0.698,0.935,1.100,0,0,0,0,0,0
+Listeria Monocytogenes Entry Into Host Cells R-HSA-8876384,-0.829,1.206,0.899,0.520,0.833,0,0,0,0,0,0
+Loss Of Nlp From Mitotic Centrosomes R-HSA-380259,-0.775,1.135,1.263,1.101,-1.012,0,0,0,0,0,0
+Lysosome Vesicle Biogenesis R-HSA-432720,1.222,-1.065,0.889,0.816,0.765,0,0,0,0,0,0
+M Phase R-HSA-68886,-0.696,-0.764,1.741,0.673,0.746,0,0,1,0,0,1
+MAP Kinase Activation R-HSA-450294,-0.846,-0.886,-0.736,-1.248,-0.718,0,0,0,0,0,0
+MAP2K And MAPK Activation R-HSA-5674135,0.903,1.054,0.897,0.689,0.732,0,0,0,0,0,0
+MAP3K8 (TPL2)-dependent MAPK1/3 Activation R-HSA-5684264,-0.965,-0.659,0.972,-0.889,-0.933,0,0,0,0,0,0
+MAPK Family Signaling Cascades R-HSA-5683057,0.875,1.089,1.283,-0.721,0.899,0,0,0,0,0,0
+MAPK Targets/ Nuclear Events Mediated By MAP Kinases R-HSA-450282,-0.925,-1.077,-1.216,-1.228,0.524,0,0,0,0,0,0
+MAPK1/MAPK3 Signaling R-HSA-5684996,1.032,1.096,1.428,0.748,0.814,0,0,1,0,0,1
+MAPK6/MAPK4 Signaling R-HSA-5687128,-0.752,-1.031,1.798,-0.804,0.585,0,0,1,0,0,1
+MECP2 Regulates Neuronal Receptors And Channels R-HSA-9022699,1.338,,,,,0,0,0,0,0,0
+MET Promotes Cell Motility R-HSA-8875878,1.123,-1.149,1.105,1.759,0.845,0,0,0,1,0,1
+MHC Class II Antigen Presentation R-HSA-2132295,0.883,1.101,1.801,-0.645,0.820,0,0,1,0,0,1
+MTOR Signaling R-HSA-165159,0.779,-0.725,1.296,-0.625,-1.278,0,0,0,0,0,0
+Macroautophagy R-HSA-1632852,1.200,-1.146,1.695,0.993,-1.673,0,0,1,0,0,1
+Major Pathway Of rRNA Processing In Nucleolus And Cytosol R-HSA-6791226,1.618,0.697,-1.954,-1.471,1.339,0,0,1,0,0,1
+Meiosis R-HSA-1500620,-1.111,-0.961,0.645,1.038,0.527,0,0,0,0,0,0
+Meiotic Synapsis R-HSA-1221632,-0.964,-0.744,-0.438,1.207,0.426,0,0,0,0,0,0
+Membrane Binding And Targetting Of GAG Proteins R-HSA-174490,-0.799,1.202,0.967,0.595,1.318,0,0,0,0,0,0
+Membrane Trafficking R-HSA-199991,1.036,1.132,1.610,1.211,-0.888,0,0,1,0,0,1
+Metabolism Of Amino Acids And Derivatives R-HSA-71291,1.447,0.860,1.388,0.922,0.676,0,0,1,0,0,1
+Metabolism Of Carbohydrates R-HSA-71387,0.850,0.878,1.656,1.821,0.825,0,0,1,1,0,2
+Metabolism Of Lipids R-HSA-556833,0.730,0.895,1.438,1.380,0.970,0,0,1,0,0,1
+Metabolism Of Non-Coding RNA R-HSA-194441,0.743,-1.198,1.225,-0.769,-0.727,0,0,0,0,0,0
+Metabolism Of Nucleotides R-HSA-15869,-0.542,-0.834,1.042,1.954,-0.831,0,0,0,1,0,1
+Metabolism Of Polyamines R-HSA-351202,1.263,-1.103,2.199,-0.448,-0.876,0,0,1,0,0,1
+Metabolism Of RNA R-HSA-8953854,1.293,-0.878,0.877,-0.611,1.035,0,0,0,0,0,0
+Metabolism Of Steroids R-HSA-8957322,-0.490,-0.741,1.591,1.148,-1.134,0,0,1,0,0,1
+Metabolism Of Vitamins And Cofactors R-HSA-196854,0.590,1.311,1.730,1.238,1.012,0,0,1,0,0,1
+Metabolism Of Water-Soluble Vitamins And Cofactors R-HSA-196849,0.778,1.378,1.886,0.845,0.892,0,0,1,0,0,1
+Metalloprotease DUBs R-HSA-5689901,0.751,1.142,0.865,-1.586,1.372,0,0,0,0,0,0
+MicroRNA (miRNA) Biogenesis R-HSA-203927,-0.353,-1.477,1.345,0.624,-1.056,0,0,0,0,0,0
+Miscellaneous Transport And Binding Events R-HSA-5223345,,0.814,1.582,-0.900,0.726,0,0,1,0,0,1
+Mitochondrial Biogenesis R-HSA-1592230,1.043,-0.819,1.113,1.297,-1.114,0,0,0,0,0,0
+Mitochondrial Calcium Ion Transport R-HSA-8949215,-0.428,,,,,0,0,0,0,0,0
+Mitochondrial Fatty Acid Beta-Oxidation R-HSA-77289,1.466,1.206,1.240,1.843,0.847,0,0,0,1,0,1
+Mitochondrial Protein Import R-HSA-1268020,1.681,1.730,1.190,1.315,-0.813,0,0,0,0,0,0
+Mitochondrial Translation Elongation R-HSA-5389840,1.139,1.290,1.993,-1.624,-0.927,0,0,1,1,0,2
+Mitochondrial Translation Initiation R-HSA-5368286,1.072,1.259,2.025,-1.683,-0.924,0,0,1,1,0,2
+Mitochondrial Translation R-HSA-5368287,1.109,1.298,1.963,-1.654,-0.959,0,0,1,1,0,2
+Mitochondrial Translation Termination R-HSA-5419276,1.071,1.306,2.007,-1.669,-0.969,0,0,1,1,0,2
+Mitophagy R-HSA-5205647,-0.989,-1.617,1.182,-0.684,-1.117,0,0,0,0,0,0
+Mitotic Anaphase R-HSA-68882,0.661,0.835,1.892,0.663,0.806,0,0,1,0,0,1
+Mitotic G1 Phase And G1/S Transition R-HSA-453279,0.697,0.785,1.585,-0.972,-0.922,0,0,1,0,0,1
+Mitotic G2-G2/M Phases R-HSA-453274,-0.626,0.999,1.608,-0.668,-0.695,0,0,1,0,0,1
+Mitotic Metaphase And Anaphase R-HSA-2555396,0.661,0.835,1.892,0.663,0.806,0,0,1,0,0,1
+Mitotic Prometaphase R-HSA-68877,-0.887,1.269,1.200,1.009,0.851,0,0,0,0,0,0
+Mitotic Prophase R-HSA-68875,-0.756,-0.696,0.840,-0.594,0.828,0,0,0,0,0,0
+Mitotic Spindle Checkpoint R-HSA-69618,-0.991,1.273,1.389,0.857,0.909,0,0,1,0,0,1
+Muscle Contraction R-HSA-397014,-1.047,-0.874,-1.163,0.798,-1.307,0,0,0,0,0,0
+MyD88 Cascade Initiated On Plasma Membrane R-HSA-975871,-0.812,-0.648,-0.711,-1.150,-0.854,0,0,0,0,0,0
+MyD88 Dependent Cascade Initiated On Endosome R-HSA-975155,-0.803,-0.712,-0.638,-1.070,-0.739,0,0,0,0,0,0
+MyD88-independent TLR4 Cascade R-HSA-166166,0.848,-0.751,0.732,-1.094,0.584,0,0,0,0,0,0
+MyD88:MAL(TIRAP) Cascade Initiated On Plasma Membrane R-HSA-166058,1.008,-0.612,0.586,-0.953,-0.676,0,0,0,0,0,0
+N-glycan Antennae Elongation In medial/trans-Golgi R-HSA-975576,,1.511,0.588,0.745,0.681,0,0,0,0,0,0
+N-glycan Trimming In ER And Calnexin/Calreticulin Cycle R-HSA-532668,-0.767,-0.822,1.567,1.314,-0.891,0,0,1,0,0,1
+NCAM Signaling For Neurite Out-Growth R-HSA-375165,0.789,-1.120,0.528,1.389,-0.944,0,0,0,0,0,0
+NEP/NS2 Interacts With Cellular Export Machinery R-HSA-168333,-1.158,-1.166,1.301,0.842,0.904,0,0,0,0,0,0
+NGF-stimulated Transcription R-HSA-9031628,-1.603,-1.309,-1.997,-1.914,1.046,0,0,1,1,0,2
+NIK To Noncanonical NF-kB Signaling R-HSA-5676590,0.728,-1.254,2.029,-0.319,-0.976,0,0,1,0,0,1
+NLRP3 Inflammasome R-HSA-844456,-0.723,0.842,0.756,-1.275,0.764,0,0,0,0,0,0
+NOD1/2 Signaling Pathway R-HSA-168638,-1.198,0.565,1.129,-1.688,0.641,0,0,0,1,0,1
+NOTCH1 Intracellular Domain Regulates Transcription R-HSA-2122947,-1.115,1.056,0.547,0.988,0.924,0,0,0,0,0,0
+NOTCH2 Activation And Transmission Of Signal To Nucleus R-HSA-2979096,-0.844,0.722,0.767,,,0,0,0,0,0,0
+NOTCH3 Activation And Transmission Of Signal To Nucleus R-HSA-9013507,0.869,0.673,-0.870,-0.725,0.981,0,0,0,0,0,0
+NOTCH3 Intracellular Domain Regulates Transcription R-HSA-9013508,1.038,0.582,-1.145,-0.658,1.425,0,0,0,0,0,0
+NR1H2 And NR1H3-mediated Signaling R-HSA-9024446,0.586,1.124,-0.618,-0.817,0.772,0,0,0,0,0,0
+NR1H3 And NR1H2 Regulate Gene Expression Linked To Cholesterol Transport And Efflux R-HSA-9029569,0.803,1.067,0.445,-0.862,0.814,0,0,0,0,0,0
+NRAGE Signals Death Thru JNK R-HSA-193648,0.706,-1.544,0.796,1.032,1.055,0,0,0,0,0,0
+NRIF Signals Cell Death From Nucleus R-HSA-205043,-1.211,,0.966,,,0,0,0,0,0,0
+NS1 Mediated Effects On Host Pathways R-HSA-168276,1.238,-1.307,1.179,-0.710,0.725,0,0,0,0,0,0
+Neddylation R-HSA-8951664,-0.907,-0.980,1.664,-1.179,-0.918,0,0,1,0,0,1
+Nef-mediated Downmodulation Of Cell Surface Receptors By Recruitment To Clathrin Adapters R-HSA-164938,1.154,-1.082,1.088,-1.538,0.940,0,0,0,0,0,0
+Negative Epigenetic Regulation Of rRNA Expression R-HSA-5250941,1.105,1.126,1.132,1.102,-1.434,0,0,0,0,0,0
+Negative Regulation Of FGFR1 Signaling R-HSA-5654726,-0.725,0.786,0.965,1.061,-0.718,0,0,0,0,0,0
+Negative Regulation Of FGFR2 Signaling R-HSA-5654727,-0.725,0.786,0.965,1.061,-0.718,0,0,0,0,0,0
+Negative Regulation Of FGFR3 Signaling R-HSA-5654732,-0.725,0.786,0.965,1.061,-0.718,0,0,0,0,0,0
+Negative Regulation Of FGFR4 Signaling R-HSA-5654733,-0.725,0.786,0.965,1.061,-0.718,0,0,0,0,0,0
+Negative Regulation Of FLT3 R-HSA-9706369,-0.945,1.232,0.449,-1.075,-0.754,0,0,0,0,0,0
+Negative Regulation Of MAPK Pathway R-HSA-5675221,-1.104,-1.189,-0.670,-0.958,0.848,0,0,0,0,0,0
+Negative Regulation Of MET Activity R-HSA-6807004,0.893,-1.214,1.183,0.682,0.542,0,0,0,0,0,0
+Negative Regulation Of NOTCH4 Signaling R-HSA-9604323,1.021,-1.218,2.099,-0.673,-1.082,0,0,1,0,0,1
+Negative Regulation Of PI3K/AKT Network R-HSA-199418,1.019,-1.032,0.780,1.045,1.457,0,0,0,0,0,0
+Negative Regulators Of DDX58/IFIH1 Signaling R-HSA-936440,0.778,-0.873,0.926,-1.368,-0.723,0,0,0,0,0,0
+Nephrin Family Interactions R-HSA-373753,1.010,1.168,0.573,0.884,-0.591,0,0,0,0,0,0
+Nervous System Development R-HSA-9675108,1.525,-0.781,1.067,0.874,0.733,0,0,0,0,0,0
+Netrin-1 Signaling R-HSA-373752,1.031,-1.084,0.942,1.331,1.070,0,0,0,0,0,0
+Neurexins And Neuroligins R-HSA-6794361,0.774,,,,,0,0,0,0,0,0
+Neuronal System R-HSA-112316,0.841,-0.821,0.890,-0.675,-1.059,0,0,0,0,0,0
+Neurotransmitter Receptors And Postsynaptic Signal Transmission R-HSA-112314,-0.808,-0.956,0.908,-0.756,0.880,0,0,0,0,0,0
+Neurotransmitter Release Cycle R-HSA-112310,1.538,,,,,0,0,0,0,0,0
+Neutrophil Degranulation R-HSA-6798695,-1.172,1.238,1.345,1.019,-0.669,0,0,0,0,0,0
+Nicotinate Metabolism R-HSA-196807,,-0.765,1.477,-0.848,0.961,0,0,1,0,0,1
+NoRC Negatively Regulates rRNA Expression R-HSA-427413,1.105,1.148,1.080,1.102,-1.434,0,0,0,0,0,0
+Non-integrin membrane-ECM Interactions R-HSA-3000171,0.635,-1.497,-0.668,1.894,-0.570,0,0,0,1,0,1
+Nonhomologous End-Joining (NHEJ) R-HSA-5693571,0.854,0.759,1.245,-0.749,1.061,0,0,0,0,0,0
+Nonsense Mediated Decay (NMD) Enhanced By Exon Junction Complex (EJC) R-HSA-975957,1.580,0.914,-1.921,-0.706,0.784,0,0,1,0,0,1
+Nonsense Mediated Decay (NMD) Independent Of Exon Junction Complex (EJC) R-HSA-975956,1.576,0.588,-2.310,-1.396,0.670,0,0,1,0,0,1
+Notch-HLH Transcription Pathway R-HSA-350054,0.536,0.686,-0.716,0.627,-0.964,0,0,0,0,0,0
+Nuclear Envelope (NE) Reassembly R-HSA-2995410,-0.663,-0.951,1.344,0.919,0.815,0,0,0,0,0,0
+Nuclear Envelope Breakdown R-HSA-2980766,-1.028,-1.203,0.801,0.665,-0.940,0,0,0,0,0,0
+Nuclear Events (Kinase And Transcription Factor Activation) R-HSA-198725,-1.322,-1.226,-1.897,-1.858,0.970,0,0,1,1,0,2
+Nuclear Events Mediated By NFE2L2 R-HSA-9759194,0.832,-0.760,2.194,0.753,0.603,0,0,1,0,0,1
+Nuclear Events Stimulated By ALK Signaling In Cancer R-HSA-9725371,0.892,-1.130,-0.775,-0.733,0.817,0,0,0,0,0,0
+Nuclear Import Of Rev Protein R-HSA-180746,,-1.152,1.234,0.977,0.877,0,0,0,0,0,0
+Nuclear Pore Complex (NPC) Disassembly R-HSA-3301854,,-0.846,1.015,,,0,0,0,0,0,0
+Nuclear Receptor Transcription Pathway R-HSA-383280,-1.080,0.736,-1.324,-0.898,-0.923,0,0,0,0,0,0
+Nuclear Signaling By ERBB4 R-HSA-1251985,0.414,1.160,0.725,0.616,-1.338,0,0,0,0,0,0
+Nucleotide Catabolism R-HSA-8956319,-0.914,-1.226,0.888,1.829,0.565,0,0,0,1,0,1
+Nucleotide Excision Repair R-HSA-5696398,-0.604,-1.372,1.320,0.427,-1.012,0,0,0,0,0,0
+"Nucleotide-binding Domain, Leucine Rich Repeat Containing NLR Signaling Pathways R-HSA-168643",-0.966,0.908,0.767,-1.515,0.669,0,0,0,0,0,0
+O-linked Glycosylation R-HSA-5173105,0.926,-0.983,-1.120,1.451,0.663,0,0,0,0,0,0
+Oncogene Induced Senescence R-HSA-2559585,-1.115,1.212,0.515,-1.266,0.811,0,0,0,0,0,0
+Oncogenic MAPK Signaling R-HSA-6802957,0.857,1.146,0.731,0.747,-1.050,0,0,0,0,0,0
+Opioid Signaling R-HSA-111885,-0.824,-0.801,-0.853,-0.713,-0.945,0,0,0,0,0,0
+Orc1 Removal From Chromatin R-HSA-68949,0.955,-1.020,2.065,-1.144,-1.071,0,0,1,0,0,1
+Organelle Biogenesis And Maintenance R-HSA-1852241,0.857,1.105,1.354,1.123,-1.213,0,0,0,0,0,0
+Other Interleukin Signaling R-HSA-449836,-1.379,-1.497,-1.386,-0.822,-1.038,0,0,0,0,0,0
+Ovarian Tumor Domain Proteases R-HSA-5689896,-0.865,-0.745,0.961,-1.066,-0.898,0,0,0,0,0,0
+Oxidative Stress Induced Senescence R-HSA-2559580,-1.089,0.565,0.603,-1.477,-0.879,0,0,0,0,0,0
+Oxygen-dependent Proline Hydroxylation Of Hypoxia-inducible Factor Alpha R-HSA-1234176,1.001,-0.893,2.166,-0.366,-0.688,0,0,1,0,0,1
+P75 NTR Receptor-Mediated Signaling R-HSA-193704,0.964,-1.089,0.703,-0.881,1.429,0,0,0,0,0,0
+PCP/CE Pathway R-HSA-4086400,1.189,-0.877,2.188,1.010,0.695,0,0,1,0,0,1
+PD-1 Signaling R-HSA-389948,1.168,,-1.439,,,0,0,0,0,0,0
+PERK Regulates Gene Expression R-HSA-381042,-1.254,-1.355,-1.721,-1.651,0.887,0,0,1,1,0,2
+PI Metabolism R-HSA-1483255,1.116,-1.107,0.880,-0.823,-0.906,0,0,0,0,0,0
+PI3K Cascade R-HSA-109704,0.798,1.414,0.907,,,0,0,0,0,0,0
+PI3K/AKT Signaling In Cancer R-HSA-2219528,-0.768,-0.954,0.845,0.839,0.752,0,0,0,0,0,0
+"PI5P, PP2A And IER3 Regulate PI3K/AKT Signaling R-HSA-6811558",0.935,-1.037,0.833,1.031,1.424,0,0,0,0,0,0
+PINK1-PRKN Mediated Mitophagy R-HSA-5205685,-0.995,-1.454,0.892,0.869,-1.066,0,0,0,0,0,0
+PIP3 Activates AKT Signaling R-HSA-1257604,-0.748,-0.977,1.347,-1.132,0.889,0,0,0,0,0,0
+PIWI-interacting RNA (piRNA) Biogenesis R-HSA-5601884,0.876,-1.047,1.236,-0.407,-1.160,0,0,0,0,0,0
+PKMTs Methylate Histone Lysines R-HSA-3214841,1.179,-1.455,1.270,1.312,0.772,0,0,0,0,0,0
+PLC Beta Mediated Events R-HSA-112043,-0.890,-0.567,-0.750,-0.939,-1.193,0,0,0,0,0,0
+PPARA Activates Gene Expression R-HSA-1989781,-0.780,-0.947,0.839,0.937,1.137,0,0,0,0,0,0
+PTEN Regulation R-HSA-6807070,-0.772,-1.205,1.658,-1.408,0.784,0,0,1,0,0,1
+Paradoxical Activation Of RAF Signaling By Kinase Inactive BRAF R-HSA-6802955,-0.890,1.008,0.758,-0.476,-1.089,0,0,0,0,0,0
+Pausing And Recovery Of Tat-mediated HIV Elongation R-HSA-167238,-0.569,-0.817,1.350,0.949,0.963,0,0,0,0,0,0
+Peptide Chain Elongation R-HSA-156902,1.575,0.604,-2.443,-1.357,1.029,0,0,1,0,0,1
+Peptide Hormone Metabolism R-HSA-2980736,0.493,0.920,-0.914,-0.829,-1.198,0,0,0,0,0,0
+Peptide Ligand-Binding Receptors R-HSA-375276,-1.525,-1.388,-2.288,-1.860,0.533,0,0,1,1,0,2
+Peroxisomal Protein Import R-HSA-9033241,-0.868,0.843,1.011,1.679,0.490,0,0,0,1,0,1
+Phase I - Functionalization Of Compounds R-HSA-211945,-0.794,1.165,1.094,1.491,-1.006,0,0,0,0,0,0
+Phase II - Conjugation Of Compounds R-HSA-156580,0.685,1.314,1.013,1.702,-0.655,0,0,0,1,0,1
+Phospholipid Metabolism R-HSA-1483257,0.836,-0.958,1.230,0.847,-0.801,0,0,0,0,0,0
+Phosphorylation Of APC/C R-HSA-176412,-0.648,-1.162,1.239,-0.679,-1.197,0,0,0,0,0,0
+Phosphorylation Of CD3 And TCR Zeta Chains R-HSA-202427,1.166,-0.953,-2.105,-1.601,1.157,0,0,1,1,0,2
+Phototransduction Cascade R-HSA-2514856,-0.962,-1.359,0.860,-1.147,-0.587,0,0,0,0,0,0
+"Plasma Lipoprotein Assembly, Remodeling, And Clearance R-HSA-174824",1.283,-1.015,1.497,0.929,0.635,0,0,1,0,0,1
+Plasma Lipoprotein Clearance R-HSA-8964043,1.130,-0.823,1.419,0.952,0.945,0,0,1,0,0,1
+"Platelet Activation, Signaling And Aggregation R-HSA-76002",1.060,1.208,0.804,1.476,1.010,0,0,0,0,0,0
+Platelet Aggregation (Plug Formation) R-HSA-76009,-0.919,1.047,0.881,-0.826,0.908,0,0,0,0,0,0
+Platelet Calcium Homeostasis R-HSA-418360,-1.094,-0.908,-0.811,-0.745,-1.113,0,0,0,0,0,0
+Platelet Degranulation R-HSA-114608,-1.323,1.442,0.733,1.888,0.993,0,0,0,1,0,1
+Platelet Homeostasis R-HSA-418346,-1.234,-1.231,-1.223,-0.716,1.021,0,0,0,0,0,0
+Platelet Sensitization By LDL R-HSA-432142,1.092,-1.512,1.055,1.041,1.143,0,0,0,0,0,0
+Positive Epigenetic Regulation Of rRNA Expression R-HSA-5250913,1.025,0.938,1.174,0.649,1.086,0,0,0,0,0,0
+Post NMDA Receptor Activation Events R-HSA-438064,0.604,-0.872,0.640,-0.606,-0.897,0,0,0,0,0,0
+Post-chaperonin Tubulin Folding Pathway R-HSA-389977,-1.018,-1.235,0.807,-1.350,0.454,0,0,0,0,0,0
+Post-translational Modification: Synthesis Of GPI-anchored Proteins R-HSA-163125,-0.908,-0.723,-0.744,0.763,0.639,0,0,0,0,0,0
+Post-translational Protein Phosphorylation R-HSA-8957275,1.385,1.581,1.588,2.133,-0.886,0,0,1,1,0,2
+Postmitotic Nuclear Pore Complex (NPC) Reformation R-HSA-9615933,0.756,-0.834,1.431,1.203,0.655,0,0,1,0,0,1
+Potassium Channels R-HSA-1296071,-1.064,-1.177,-0.925,0.877,-0.919,0,0,0,0,0,0
+Potential Therapeutics For SARS R-HSA-9679191,1.257,1.509,1.162,1.427,1.460,0,0,0,0,0,0
+Pre-NOTCH Expression And Processing R-HSA-1912422,-0.724,0.908,0.566,-0.761,1.204,0,0,0,0,0,0
+Pre-NOTCH Processing In Golgi R-HSA-1912420,0.660,-0.752,1.152,0.920,1.250,0,0,0,0,0,0
+Pre-NOTCH Transcription And Translation R-HSA-1912408,-0.971,1.234,-0.793,-1.080,1.047,0,0,0,0,0,0
+Prefoldin Mediated Transfer Of Substrate To CCT/TriC R-HSA-389957,-0.930,-0.833,1.049,-0.547,-0.721,0,0,0,0,0,0
+Processing Of Capped Intron-Containing Pre-mRNA R-HSA-72203,-0.769,-1.104,0.942,-0.574,1.110,0,0,0,0,0,0
+Processing Of Capped Intronless Pre-mRNA R-HSA-75067,0.955,0.929,0.736,-0.859,0.689,0,0,0,0,0,0
+Processing Of DNA Double-Strand Break Ends R-HSA-5693607,-0.747,0.810,1.172,-1.039,0.731,0,0,0,0,0,0
+Processing Of Intronless Pre-mRNAs R-HSA-77595,0.618,,,,,0,0,0,0,0,0
+Processing Of SMDT1 R-HSA-8949664,-0.956,,,,,0,0,0,0,0,0
+Programmed Cell Death R-HSA-5357801,0.777,0.833,1.314,-0.886,-1.387,0,0,0,0,0,0
+Prolonged ERK Activation Events R-HSA-169893,0.776,,,,,0,0,0,0,0,0
+Protein Folding R-HSA-391251,1.035,-0.822,1.267,-0.917,-1.081,0,0,0,0,0,0
+Protein Localization R-HSA-9609507,1.252,1.345,1.160,1.542,-0.823,0,0,0,0,0,0
+Protein Ubiquitination R-HSA-8852135,0.830,-0.660,1.550,-0.521,1.611,0,0,1,0,0,1
+Protein-protein Interactions At Synapses R-HSA-6794362,0.655,1.093,0.847,1.052,-0.972,0,0,0,0,0,0
+Pyroptosis R-HSA-5620971,1.188,-0.829,1.071,-1.460,-1.181,0,0,0,0,0,0
+Pyruvate Metabolism And Citric Acid (TCA) Cycle R-HSA-71406,0.880,-1.145,1.478,1.903,-0.702,0,0,1,1,0,2
+Pyruvate Metabolism R-HSA-70268,0.827,-1.511,1.238,1.481,0.938,0,0,0,0,0,0
+RAB GEFs Exchange GTP For GDP On RABs R-HSA-8876198,0.967,1.050,1.520,-0.731,0.607,0,0,1,0,0,1
+RAB Geranylgeranylation R-HSA-8873719,0.731,0.471,1.267,-1.101,-0.797,0,0,0,0,0,0
+RAC1 GTPase Cycle R-HSA-9013149,0.767,0.731,-0.747,1.119,-1.026,0,0,0,0,0,0
+RAC2 GTPase Cycle R-HSA-9013404,0.714,-0.707,0.899,0.893,0.883,0,0,0,0,0,0
+RAC3 GTPase Cycle R-HSA-9013423,0.840,-0.800,0.639,0.767,-0.927,0,0,0,0,0,0
+RAF Activation R-HSA-5673000,-0.941,0.829,0.943,0.898,-0.995,0,0,0,0,0,0
+RAF-independent MAPK1/3 Activation R-HSA-112409,-0.749,-0.906,-0.852,-1.246,0.835,0,0,0,0,0,0
+RAF/MAP Kinase Cascade R-HSA-5673001,0.997,1.091,1.409,0.704,0.805,0,0,1,0,0,1
+RAS Processing R-HSA-9648002,-1.197,0.781,0.912,-0.911,0.934,0,0,0,0,0,0
+RET Signaling R-HSA-8853659,1.022,-0.659,0.963,-0.605,-0.986,0,0,0,0,0,0
+RHO GTPase Cycle R-HSA-9012999,1.140,1.039,1.171,1.397,0.856,0,0,0,0,0,0
+RHO GTPase Effectors R-HSA-195258,1.330,1.426,1.008,1.433,1.120,0,0,0,0,0,0
+RHO GTPases Activate CIT R-HSA-5625900,1.695,0.737,0.830,1.047,1.006,0,0,0,0,0,0
+RHO GTPases Activate Formins R-HSA-5663220,0.968,1.628,1.282,1.114,0.987,0,0,0,0,0,0
+RHO GTPases Activate NADPH Oxidases R-HSA-5668599,-1.101,-1.205,0.621,0.837,1.469,0,0,0,0,0,0
+RHO GTPases Activate PAKs R-HSA-5627123,1.133,-1.141,0.995,1.732,1.103,0,0,0,1,0,1
+RHO GTPases Activate PKNs R-HSA-5625740,1.872,-0.651,0.697,1.289,0.799,0,0,0,0,0,0
+RHO GTPases Activate ROCKs R-HSA-5627117,1.725,0.541,-0.796,1.147,1.187,0,0,0,0,0,0
+RHO GTPases Activate WASPs And WAVEs R-HSA-5663213,1.246,1.359,1.443,1.481,1.019,0,0,1,0,0,1
+RHOA GTPase Cycle R-HSA-8980692,1.088,0.848,0.770,1.191,-1.221,0,0,0,0,0,0
+RHOB GTPase Cycle R-HSA-9013026,0.994,-0.783,-0.906,0.957,0.723,0,0,0,0,0,0
+RHOBTB GTPase Cycle R-HSA-9706574,-0.828,0.738,1.034,1.382,-0.473,0,0,0,0,0,0
+RHOBTB1 GTPase Cycle R-HSA-9013422,-0.943,-0.601,0.778,0.935,0.486,0,0,0,0,0,0
+RHOBTB2 GTPase Cycle R-HSA-9013418,0.690,1.391,1.197,1.416,-0.435,0,0,0,0,0,0
+RHOC GTPase Cycle R-HSA-9013106,0.989,0.920,0.806,1.375,-0.919,0,0,0,0,0,0
+RHOD GTPase Cycle R-HSA-9013405,0.890,1.177,1.413,0.929,-0.877,0,0,1,0,0,1
+RHOF GTPase Cycle R-HSA-9035034,1.085,1.013,0.703,0.686,-0.873,0,0,0,0,0,0
+RHOG GTPase Cycle R-HSA-9013408,1.143,0.713,1.483,1.147,-0.868,0,0,1,0,0,1
+RHOH GTPase Cycle R-HSA-9013407,1.358,0.791,1.143,0.953,1.084,0,0,0,0,0,0
+RHOJ GTPase Cycle R-HSA-9013409,0.958,-0.811,1.026,1.383,1.056,0,0,0,0,0,0
+RHOQ GTPase Cycle R-HSA-9013406,1.128,0.769,0.990,1.394,1.294,0,0,0,0,0,0
+RHOU GTPase Cycle R-HSA-9013420,0.616,-0.897,0.861,0.890,1.332,0,0,0,0,0,0
+RHOV GTPase Cycle R-HSA-9013424,1.185,-0.725,0.923,0.784,1.080,0,0,0,0,0,0
+RIP-mediated NFkB Activation Via ZBP1 R-HSA-1810476,1.250,,,,,0,0,0,0,0,0
+RIPK1-mediated Regulated Necrosis R-HSA-5213460,-0.916,1.309,-0.698,-0.677,-0.838,0,0,0,0,0,0
+RMTs Methylate Histone Arginines R-HSA-3214858,0.739,-1.441,1.711,0.766,-0.932,0,0,1,0,0,1
+RNA Pol II CTD Phosphorylation And Interaction With CE R-HSA-77075,0.412,-1.065,1.381,1.054,-1.521,0,0,1,0,0,1
+RNA Polymerase I Promoter Clearance R-HSA-73854,0.974,0.981,1.041,-0.723,-1.330,0,0,0,0,0,0
+RNA Polymerase I Promoter Escape R-HSA-73772,0.750,0.978,1.009,0.596,-1.671,0,0,0,0,0,0
+RNA Polymerase I Transcription Initiation R-HSA-73762,0.968,0.984,1.046,-0.728,-1.392,0,0,0,0,0,0
+RNA Polymerase I Transcription R-HSA-73864,0.974,0.981,1.041,-0.723,-1.330,0,0,0,0,0,0
+RNA Polymerase I Transcription Termination R-HSA-73863,0.613,,,,,0,0,0,0,0,0
+RNA Polymerase II Pre-transcription Events R-HSA-674695,0.533,0.974,1.102,0.787,-1.435,0,0,0,0,0,0
+RNA Polymerase II Transcribes snRNA Genes R-HSA-6807505,0.574,-0.695,0.738,0.979,0.979,0,0,0,0,0,0
+RNA Polymerase II Transcription R-HSA-73857,-0.952,-1.115,0.917,-1.086,0.996,0,0,0,0,0,0
+RNA Polymerase II Transcription Termination R-HSA-73856,-1.020,-0.972,-0.616,-0.758,1.034,0,0,0,0,0,0
+RNA Polymerase III Abortive And Retractive Initiation R-HSA-749476,0.754,-0.795,1.308,0.716,-1.024,0,0,0,0,0,0
+RNA Polymerase III Transcription Initiation From Type 1 Promoter R-HSA-76061,0.633,-0.660,1.178,0.825,-1.409,0,0,0,0,0,0
+RNA Polymerase III Transcription Initiation From Type 2 Promoter R-HSA-76066,0.528,-0.684,1.183,0.835,-1.384,0,0,0,0,0,0
+RNA Polymerase III Transcription Initiation From Type 3 Promoter R-HSA-76071,0.657,-0.974,1.281,,,0,0,0,0,0,0
+RNA Polymerase III Transcription Initiation R-HSA-76046,0.598,-0.876,1.312,0.773,-1.215,0,0,0,0,0,0
+RND1 GTPase Cycle R-HSA-9696273,0.786,-0.493,0.689,-0.725,-0.827,0,0,0,0,0,0
+RND2 GTPase Cycle R-HSA-9696270,0.594,-0.627,0.787,-0.770,0.575,0,0,0,0,0,0
+RND3 GTPase Cycle R-HSA-9696264,1.202,0.486,1.081,0.868,-1.339,0,0,0,0,0,0
+RORA Activates Gene Expression R-HSA-1368082,,-1.206,-0.988,1.051,0.992,0,0,0,0,0,0
+ROS And RNS Production In Phagocytes R-HSA-1222556,1.116,0.960,1.492,0.635,1.606,0,0,1,0,0,1
+RUNX1 Interacts With Co-Factors Whose Precise Effect On RUNX1 Targets Is Not Known R-HSA-8939243,-0.784,-1.367,1.397,-0.851,1.091,0,0,1,0,0,1
+RUNX1 Regulates Genes Involved In Megakaryocyte Differentiation And Platelet Function R-HSA-8936459,1.133,0.969,-1.145,0.958,0.852,0,0,0,0,0,0
+RUNX1 Regulates Transcription Of Genes Involved In Differentiation Of HSCs R-HSA-8939236,0.900,-1.188,1.992,-1.305,-0.611,0,0,1,0,0,1
+Rab Regulation Of Trafficking R-HSA-9007101,0.800,0.838,1.416,-0.730,-0.704,0,0,1,0,0,1
+Rap1 Signaling R-HSA-392517,1.029,,,,,0,0,0,0,0,0
+Recognition Of DNA Damage By PCNA-containing Replication Complex R-HSA-110314,-1.061,-1.522,0.513,-1.011,0.540,0,0,0,0,0,0
+Recruitment And ATM-mediated Phosphorylation Of Repair And Signal Proteins At DNA Double Strand Breaks R-HSA-5693565,-0.652,1.038,1.221,0.793,0.822,0,0,0,0,0,0
+Recruitment Of NuMA To Mitotic Centrosomes R-HSA-380320,-0.821,1.161,1.116,0.924,-0.689,0,0,0,0,0,0
+Recycling Pathway Of L1 R-HSA-437239,1.356,-0.522,1.490,0.620,0.816,0,0,1,0,0,1
+Regulated Necrosis R-HSA-5218859,0.864,0.970,0.636,-1.112,-1.104,0,0,0,0,0,0
+Regulation Of APC/C Activators Between G1/S And Early Anaphase R-HSA-176408,0.918,-1.107,2.044,-0.582,-1.000,0,0,1,0,0,1
+Regulation Of Actin Dynamics For Phagocytic Cup Formation R-HSA-2029482,1.393,1.107,1.349,1.818,1.354,0,0,0,1,0,1
+Regulation Of Activated PAK-2p34 By Proteasome Mediated Degradation R-HSA-211733,1.049,-1.094,2.157,-0.351,-0.759,0,0,1,0,0,1
+Regulation Of Apoptosis R-HSA-169911,1.030,-1.097,2.145,0.491,-0.893,0,0,1,0,0,1
+Regulation Of Beta-Cell Development R-HSA-186712,-0.800,,,,,0,0,0,0,0,0
+Regulation Of Cholesterol Biosynthesis By SREBP (SREBF) R-HSA-1655829,0.618,-0.937,1.448,1.007,-1.045,0,0,1,0,0,1
+Regulation Of Complement Cascade R-HSA-977606,-0.735,-0.665,1.267,1.876,0.950,0,0,0,1,0,1
+Regulation Of Expression Of SLITs And ROBOs R-HSA-9010553,1.508,-0.494,1.211,-0.980,-0.336,0,0,0,0,0,0
+Regulation Of HSF1-mediated Heat Shock Response R-HSA-3371453,0.746,-1.115,0.878,1.554,0.982,0,0,0,0,0,0
+Regulation Of IFNA/IFNB Signaling R-HSA-912694,1.103,-1.483,1.524,,,0,0,1,0,0,1
+Regulation Of IFNG Signaling R-HSA-877312,0.577,-1.028,1.346,1.287,-1.139,0,0,0,0,0,0
+Regulation Of IGF Transport And Uptake By IGFBPs R-HSA-381426,1.310,1.319,1.534,2.146,0.670,0,0,1,1,0,2
+Regulation Of Insulin Secretion R-HSA-422356,-1.234,-1.313,-1.265,-0.972,-1.049,0,0,0,0,0,0
+Regulation Of KIT Signaling R-HSA-1433559,0.611,-1.036,-0.888,-1.068,-0.967,0,0,0,0,0,0
+Regulation Of Lipid Metabolism By PPARalpha R-HSA-400206,-0.752,-0.921,0.819,0.931,1.091,0,0,0,0,0,0
+Regulation Of MECP2 Expression And Activity R-HSA-9022692,-0.729,0.671,0.937,-0.511,-1.266,0,0,0,0,0,0
+Regulation Of NF-kappa B Signaling R-HSA-9758274,-1.063,0.927,0.513,,,0,0,0,0,0,0
+Regulation Of Necroptotic Cell Death R-HSA-5675482,-0.916,1.309,-0.698,-0.660,-0.898,0,0,0,0,0,0
+Regulation Of Ornithine Decarboxylase (ODC) R-HSA-350562,1.348,-1.042,2.203,-0.438,-0.881,0,0,1,0,0,1
+Regulation Of PLK1 Activity At G2/M Transition R-HSA-2565942,-0.931,1.122,1.115,1.097,-1.028,0,0,0,0,0,0
+Regulation Of PTEN Gene Transcription R-HSA-8943724,-0.944,-0.876,0.735,-1.799,0.724,0,0,0,1,0,1
+Regulation Of PTEN Stability And Activity R-HSA-8948751,0.858,-1.387,2.022,-0.616,0.806,0,0,1,0,0,1
+Regulation Of RAS By GAPs R-HSA-5658442,0.911,-1.045,2.113,0.472,0.564,0,0,1,0,0,1
+Regulation Of RUNX1 Expression And Activity R-HSA-8934593,-0.773,1.287,0.947,0.852,-1.469,0,0,0,0,0,0
+Regulation Of RUNX2 Expression And Activity R-HSA-8939902,0.775,-1.111,2.243,-0.607,-0.944,0,0,1,0,0,1
+Regulation Of RUNX3 Expression And Activity R-HSA-8941858,0.868,-1.116,2.181,-0.793,0.695,0,0,1,0,0,1
+Regulation Of Signaling By CBL R-HSA-912631,1.528,0.824,,0.649,0.638,0,0,0,0,0,0
+Regulation Of TNFR1 Signaling R-HSA-5357905,-0.994,-0.580,0.731,-0.635,-0.556,0,0,0,0,0,0
+Regulation Of TP53 Activity R-HSA-5633007,-0.770,-0.802,0.581,-1.265,0.956,0,0,0,0,0,0
+Regulation Of TP53 Activity Thru Acetylation R-HSA-6804758,0.706,-0.848,0.691,-0.850,1.164,0,0,0,0,0,0
+Regulation Of TP53 Activity Thru Methylation R-HSA-6804760,-1.051,,0.826,,,0,0,0,0,0,0
+Regulation Of TP53 Activity Thru Phosphorylation R-HSA-6804756,-1.110,-0.738,-0.703,-1.440,-0.827,0,0,0,0,0,0
+Regulation Of TP53 Degradation R-HSA-6804757,0.785,0.977,0.762,-0.970,0.925,0,0,0,0,0,0
+Regulation Of TP53 Expression And Degradation R-HSA-6806003,0.866,0.967,0.611,-0.944,0.912,0,0,0,0,0,0
+Regulation Of mRNA Stability By Proteins That Bind AU-rich Elements R-HSA-450531,0.964,-1.393,1.911,0.519,-0.642,0,0,1,0,0,1
+Reproduction R-HSA-1474165,-1.247,-0.865,0.749,1.094,0.464,0,0,0,0,0,0
+Resolution Of Abasic Sites (AP Sites) R-HSA-73933,0.999,-1.421,0.868,,,0,0,0,0,0,0
+Resolution Of Sister Chromatid Cohesion R-HSA-2500257,-0.942,1.487,1.233,1.116,1.146,0,0,0,0,0,0
+Respiratory Electron Transport R-HSA-611105,1.213,1.350,1.762,1.337,0.918,0,0,1,0,0,1
+"Respiratory Electron Transport, ATP Synthesis By Chemiosmotic Coupling, Heat Production By Uncoupling Proteins R-HSA-163200",1.356,1.296,1.722,1.368,0.855,0,0,1,0,0,1
+Response Of EIF2AK1 (HRI) To Heme Deficiency R-HSA-9648895,-1.276,,,,,0,0,0,0,0,0
+Response Of EIF2AK4 (GCN2) To Amino Acid Deficiency R-HSA-9633012,1.512,0.496,-2.520,-1.619,0.631,0,0,1,1,0,2
+Response Of Mtb To Phagocytosis R-HSA-9637690,-1.230,-1.084,1.335,1.069,0.672,0,0,0,0,0,0
+Response To Elevated Platelet Cytosolic Ca2+ R-HSA-76005,-1.370,1.367,0.806,1.853,0.914,0,0,0,1,0,1
+Retrograde Neurotrophin Signaling R-HSA-177504,1.462,0.513,1.545,,,0,0,1,0,0,1
+Retrograde Transport At Trans-Golgi-Network R-HSA-6811440,-0.494,-1.231,1.590,1.218,-0.920,0,0,1,0,0,1
+Rev-mediated Nuclear Export Of HIV RNA R-HSA-165054,-0.604,-0.997,1.371,0.866,0.719,0,0,1,0,0,1
+Ribosomal Scanning And Start Codon Recognition R-HSA-72702,-1.751,-0.801,-1.481,0.456,-0.868,0,0,1,0,0,1
+Role Of GTSE1 In G2/M Progression After G2 Checkpoint R-HSA-8852276,0.818,-0.699,2.085,0.381,-0.709,0,0,1,0,0,1
+Role Of Nef In HIV-1 Replication And Disease Pathogenesis R-HSA-164952,1.274,-1.098,1.177,-1.235,0.877,0,0,0,0,0,0
+Role Of Phospholipids In Phagocytosis R-HSA-2029485,1.180,-0.538,1.112,1.944,-1.290,0,0,0,1,0,1
+S Phase R-HSA-69242,0.803,-0.931,1.764,-1.004,-0.971,0,0,1,0,0,1
+SARS-CoV Infections R-HSA-9679506,-1.269,0.825,1.132,1.097,1.089,0,0,0,0,0,0
+SARS-CoV-1 Infection R-HSA-9678108,0.655,0.399,1.350,-0.716,-0.916,0,0,0,0,0,0
+SARS-CoV-2 Activates/Modulates Innate And Adaptive Immune Responses R-HSA-9705671,1.057,-1.417,1.137,-0.997,-1.072,0,0,0,0,0,0
+SARS-CoV-2 Infection R-HSA-9694516,-1.458,-0.838,1.027,-0.699,0.814,0,0,0,0,0,0
+SARS-CoV-2 Modulates Host Translation Machinery R-HSA-9754678,-2.136,-1.045,-1.893,-1.403,0.545,1,0,1,0,0,2
+SARS-CoV-2-host Interactions R-HSA-9705683,-1.673,-1.353,0.597,-0.908,-0.998,0,0,0,0,0,0
+SCF(Skp2)-mediated Degradation Of P27/P21 R-HSA-187577,0.828,-1.080,2.136,-0.808,-0.899,0,0,1,0,0,1
+SCF-beta-TrCP Mediated Degradation Of Emi1 R-HSA-174113,0.979,-1.005,2.118,-0.438,-0.866,0,0,1,0,0,1
+SLC Transporter Disorders R-HSA-5619102,0.866,0.888,0.825,-0.741,0.833,0,0,0,0,0,0
+SLC-mediated Transmembrane Transport R-HSA-425407,0.943,1.442,0.865,-0.898,0.620,0,0,0,0,0,0
+SMAD2/SMAD3:SMAD4 Heterotrimer Regulates Transcription R-HSA-2173796,0.821,1.190,0.598,1.264,1.231,0,0,0,0,0,0
+SRP-dependent Cotranslational Protein Targeting To Membrane R-HSA-1799339,1.578,0.579,-1.546,-1.074,0.973,0,0,1,0,0,1
+SUMO E3 Ligases SUMOylate Target Proteins R-HSA-3108232,1.024,1.157,0.858,0.876,0.869,0,0,0,0,0,0
+SUMOylation Of Chromatin Organization Proteins R-HSA-4551638,-0.831,-0.868,1.026,-0.763,0.739,0,0,0,0,0,0
+SUMOylation Of DNA Damage Response And Repair Proteins R-HSA-3108214,0.941,0.643,1.190,0.813,0.682,0,0,0,0,0,0
+SUMOylation Of DNA Replication Proteins R-HSA-4615885,-0.789,1.074,1.268,0.815,0.734,0,0,0,0,0,0
+SUMOylation Of Immune Response Proteins R-HSA-4755510,,1.279,,,,0,0,0,0,0,0
+SUMOylation Of Intracellular Receptors R-HSA-4090294,-0.949,1.322,-1.049,1.165,-0.780,0,0,0,0,0,0
+SUMOylation Of RNA Binding Proteins R-HSA-4570464,-0.800,-0.872,1.114,-0.722,0.703,0,0,0,0,0,0
+SUMOylation Of SUMOylation Proteins R-HSA-4085377,-0.756,-0.695,0.966,0.951,0.677,0,0,0,0,0,0
+SUMOylation Of Transcription Cofactors R-HSA-3899300,0.936,1.168,-0.607,-0.940,0.947,0,0,0,0,0,0
+SUMOylation Of Transcription Factors R-HSA-3232118,-0.474,,,,,0,0,0,0,0,0
+SUMOylation Of Ubiquitinylation Proteins R-HSA-3232142,0.782,-0.766,1.330,1.108,0.616,0,0,0,0,0,0
+SUMOylation R-HSA-2990846,0.986,1.151,0.825,0.881,0.910,0,0,0,0,0,0
+Sealing Of Nuclear Envelope (NE) By ESCRT-III R-HSA-9668328,-1.122,-1.038,1.068,-0.919,0.751,0,0,0,0,0,0
+Selective Autophagy R-HSA-9663891,1.258,-1.234,1.397,1.062,-0.935,0,0,1,0,0,1
+Selenoamino Acid Metabolism R-HSA-2408522,1.556,0.426,-2.118,-1.353,0.773,0,0,1,0,0,1
+Selenocysteine Synthesis R-HSA-2408557,1.554,0.479,-2.326,-1.368,1.024,0,0,1,0,0,1
+Sema4D In Semaphorin Signaling R-HSA-400685,1.781,-1.266,0.948,1.045,-1.114,0,0,0,0,0,0
+Sema4D Induced Cell Migration And Growth-Cone Collapse R-HSA-416572,1.835,0.731,-0.810,0.882,0.719,0,0,0,0,0,0
+Semaphorin Interactions R-HSA-373755,1.424,-1.272,1.025,1.032,-0.777,0,0,0,0,0,0
+Senescence-Associated Secretory Phenotype (SASP) R-HSA-2559582,-1.536,-0.656,-1.104,-1.619,-0.977,0,0,0,1,0,1
+Sensory Perception R-HSA-9709957,1.126,-0.822,-1.184,1.225,-0.729,0,0,0,0,0,0
+Sensory Processing Of Sound By Inner Hair Cells Of Cochlea R-HSA-9662360,1.536,0.737,0.753,0.511,-0.696,0,0,0,0,0,0
+Sensory Processing Of Sound By Outer Hair Cells Of Cochlea R-HSA-9662361,1.668,1.045,0.967,1.083,0.758,0,0,0,0,0,0
+Sensory Processing Of Sound R-HSA-9659379,1.587,0.832,0.694,0.639,-0.695,0,0,0,0,0,0
+Separation Of Sister Chromatids R-HSA-2467813,0.730,0.996,1.955,0.774,0.718,0,0,1,0,0,1
+Sialic Acid Metabolism R-HSA-4085001,0.848,-0.992,0.981,1.050,-0.995,0,0,0,0,0,0
+Signal Amplification R-HSA-392518,-0.895,-0.852,0.577,-1.373,1.182,0,0,0,0,0,0
+Signal Regulatory Protein Family Interactions R-HSA-391160,,-1.284,0.904,0.652,1.023,0,0,0,0,0,0
+Signal Transduction By L1 R-HSA-445144,-0.809,-1.353,,,,0,0,0,0,0,0
+Signaling By ALK Fusions And Activated Point Mutants R-HSA-9725370,0.986,-0.742,1.211,1.179,0.966,0,0,0,0,0,0
+Signaling By ALK R-HSA-201556,0.987,1.589,0.840,1.461,1.426,0,0,0,0,0,0
+Signaling By B Cell Receptor (BCR) R-HSA-983705,0.908,-1.106,1.774,0.860,-0.865,0,0,1,0,0,1
+Signaling By BRAF And RAF1 Fusions R-HSA-6802952,0.778,0.985,0.892,0.915,-1.170,0,0,0,0,0,0
+Signaling By CSF3 (G-CSF) R-HSA-9674555,0.824,-0.836,0.883,0.815,0.588,0,0,0,0,0,0
+Signaling By Cytosolic FGFR1 Fusion Mutants R-HSA-1839117,1.001,0.811,1.263,1.407,-1.290,0,0,0,0,0,0
+Signaling By EGFR In Cancer R-HSA-1643713,0.941,1.850,-0.852,1.256,1.090,0,1,0,0,0,1
+Signaling By EGFR R-HSA-177929,1.392,1.405,-0.649,1.153,1.139,0,0,0,0,0,0
+Signaling By ERBB2 ECD Mutants R-HSA-9665348,1.282,,,,,0,0,0,0,0,0
+Signaling By ERBB2 In Cancer R-HSA-1227990,1.416,1.504,-1.087,0.447,0.772,0,0,0,0,0,0
+Signaling By ERBB2 KD Mutants R-HSA-9664565,1.337,1.348,-1.134,0.473,0.814,0,0,0,0,0,0
+Signaling By ERBB2 R-HSA-1227986,0.935,0.769,-0.965,0.436,0.598,0,0,0,0,0,0
+Signaling By ERBB2 TMD/JMD Mutants R-HSA-9665686,1.314,,,,,0,0,0,0,0,0
+Signaling By ERBB4 R-HSA-1236394,-0.719,1.193,-0.769,0.463,-0.927,0,0,0,0,0,0
+Signaling By Erythropoietin R-HSA-9006335,1.043,1.109,-0.580,1.456,0.619,0,0,0,0,0,0
+Signaling By FGFR In Disease R-HSA-1226099,1.104,0.675,1.491,1.358,-1.168,0,0,1,0,0,1
+Signaling By FGFR R-HSA-190236,0.889,-0.817,1.248,0.858,-0.881,0,0,0,0,0,0
+Signaling By FGFR1 In Disease R-HSA-5655302,1.181,0.731,1.231,1.300,-0.925,0,0,0,0,0,0
+Signaling By FGFR1 R-HSA-5654736,0.760,-0.582,0.958,0.916,-0.689,0,0,0,0,0,0
+Signaling By FGFR2 IIIa TM R-HSA-8851708,0.669,-0.728,1.275,0.800,-1.110,0,0,0,0,0,0
+Signaling By FGFR2 In Disease R-HSA-5655253,0.858,-0.655,1.313,0.597,-0.892,0,0,0,0,0,0
+Signaling By FGFR2 R-HSA-5654738,0.889,-0.685,1.248,0.885,-0.888,0,0,0,0,0,0
+Signaling By FGFR3 R-HSA-5654741,0.760,0.649,0.958,0.962,-0.708,0,0,0,0,0,0
+Signaling By FGFR4 R-HSA-5654743,0.760,0.649,0.958,0.962,-0.708,0,0,0,0,0,0
+Signaling By FLT3 Fusion Proteins R-HSA-9703465,0.532,-0.551,1.071,1.120,-0.723,0,0,0,0,0,0
+Signaling By GPCR R-HSA-372790,-1.201,-0.962,-2.071,-1.661,0.779,0,0,1,1,0,2
+Signaling By Hedgehog R-HSA-5358351,0.772,-1.043,2.031,-0.525,-0.749,0,0,1,0,0,1
+Signaling By High-Kinase Activity BRAF Mutants R-HSA-6802948,0.715,1.054,0.765,0.678,0.675,0,0,0,0,0,0
+Signaling By Hippo R-HSA-2028269,,-0.628,-0.954,-0.991,0.778,0,0,0,0,0,0
+Signaling By Insulin Receptor R-HSA-74752,1.248,1.442,1.505,1.013,0.993,0,0,1,0,0,1
+Signaling By Interleukins R-HSA-449147,1.134,-1.066,1.229,-1.092,0.713,0,0,0,0,0,0
+Signaling By KIT In Disease R-HSA-9669938,1.279,-0.740,1.112,0.809,-0.506,0,0,0,0,0,0
+Signaling By MET R-HSA-6806834,1.142,-0.833,1.237,1.139,0.784,0,0,0,0,0,0
+Signaling By NODAL R-HSA-1181150,0.474,,,,,0,0,0,0,0,0
+Signaling By NOTCH R-HSA-157118,1.118,-0.617,1.493,-0.568,0.824,0,0,1,0,0,1
+Signaling By NOTCH1 R-HSA-1980143,-0.861,0.750,0.790,0.812,0.843,0,0,0,0,0,0
+Signaling By NOTCH2 R-HSA-1980145,1.246,-0.474,0.893,0.930,1.256,0,0,0,0,0,0
+Signaling By NOTCH3 R-HSA-9012852,1.011,-0.644,-1.158,-0.623,1.382,0,0,0,0,0,0
+Signaling By NOTCH4 R-HSA-9013694,0.949,-1.023,1.987,-0.481,-0.747,0,0,1,0,0,1
+Signaling By NTRK1 (TRKA) R-HSA-187037,0.870,-0.883,-1.172,-1.690,0.909,0,0,0,1,0,1
+Signaling By NTRK2 (TRKB) R-HSA-9006115,1.249,,,,,0,0,0,0,0,0
+Signaling By NTRKs R-HSA-166520,0.889,-1.031,-0.996,-1.562,0.803,0,0,0,0,0,0
+Signaling By Non-Receptor Tyrosine Kinases R-HSA-9006927,0.705,-0.747,1.361,0.844,0.658,0,0,0,0,0,0
+Signaling By Nuclear Receptors R-HSA-9006931,-1.086,-0.911,-1.050,-0.912,-0.921,0,0,0,0,0,0
+Signaling By PDGF R-HSA-186797,1.209,-1.131,0.998,1.392,0.452,0,0,0,0,0,0
+Signaling By PDGFR In Disease R-HSA-9671555,-0.692,1.040,1.324,1.178,1.036,0,0,0,0,0,0
+Signaling By RAF1 Mutants R-HSA-9656223,-0.893,1.025,0.778,0.616,-0.966,0,0,0,0,0,0
+Signaling By ROBO Receptors R-HSA-376176,1.545,0.621,1.198,-0.559,0.638,0,0,0,0,0,0
+Signaling By Receptor Tyrosine Kinases R-HSA-9006934,1.130,0.977,0.795,1.214,1.028,0,0,0,0,0,0
+Signaling By Rho GTPases R-HSA-194315,1.249,1.243,1.157,1.352,0.927,0,0,0,0,0,0
+"Signaling By Rho GTPases, Miro GTPases And RHOBTB3 R-HSA-9716542",1.235,1.258,1.230,1.315,0.940,0,0,0,0,0,0
+Signaling By SCF-KIT R-HSA-1433557,1.212,-1.095,1.137,0.954,-0.692,0,0,0,0,0,0
+Signaling By TGF-beta Receptor Complex R-HSA-170834,0.844,0.762,0.652,0.872,1.000,0,0,0,0,0,0
+Signaling By TGFB Family Members R-HSA-9006936,0.874,0.739,0.710,0.819,1.061,0,0,0,0,0,0
+Signaling By Type 1 Insulin-like Growth Factor 1 Receptor (IGF1R) R-HSA-2404192,1.062,1.537,1.101,1.319,-0.801,0,0,0,0,0,0
+Signaling By VEGF R-HSA-194138,0.775,0.704,0.700,1.706,0.973,0,0,0,1,0,1
+Signaling By WNT In Cancer R-HSA-4791275,0.530,0.967,0.967,0.817,0.968,0,0,0,0,0,0
+Signaling By WNT R-HSA-195721,1.015,-1.045,1.559,-0.651,1.011,0,0,1,0,0,1
+Signaling To ERKs R-HSA-187687,0.804,-0.980,0.817,-0.909,-0.577,0,0,0,0,0,0
+Signaling To RAS R-HSA-167044,1.160,-0.683,1.054,-0.876,-0.486,0,0,0,0,0,0
+Smooth Muscle Contraction R-HSA-445355,-1.272,-0.693,-0.916,0.836,-0.762,0,0,0,0,0,0
+Sphingolipid De Novo Biosynthesis R-HSA-1660661,0.498,0.699,0.783,0.942,1.366,0,0,0,0,0,0
+Sphingolipid Metabolism R-HSA-428157,-0.911,0.793,1.074,1.267,1.097,0,0,0,0,0,0
+Spry Regulation Of FGF Signaling R-HSA-1295596,-0.725,0.786,0.965,1.061,-0.718,0,0,0,0,0,0
+Stabilization Of P53 R-HSA-69541,0.916,-0.796,2.133,-0.462,-0.776,0,0,1,0,0,1
+Stimuli-sensing Channels R-HSA-2672351,-1.232,1.217,-0.601,-0.983,-1.135,0,0,0,0,0,0
+Suppression Of Phagosomal Maturation R-HSA-9637687,-1.350,,1.214,,,0,0,0,0,0,0
+Switching Of Origins To A Post-Replicative State R-HSA-69052,0.953,-1.145,2.024,-1.034,-1.175,0,0,1,0,0,1
+Syndecan Interactions R-HSA-3000170,0.713,-0.936,0.628,1.777,-0.803,0,0,0,1,0,1
+Synthesis Of Active Ubiquitin: Roles Of E1 And E2 Enzymes R-HSA-8866652,-0.834,-1.144,1.380,-0.764,1.118,0,0,1,0,0,1
+Synthesis Of DNA R-HSA-69239,0.950,-1.297,1.984,-1.086,-1.248,0,0,1,0,0,1
+Synthesis Of PA R-HSA-1483166,-0.778,-0.843,-0.937,1.116,-0.784,0,0,0,0,0,0
+Synthesis Of PC R-HSA-1483191,,,,0.447,0.855,0,0,0,0,0,0
+Synthesis Of PIPs At Plasma Membrane R-HSA-1660499,1.300,-0.975,0.830,-1.049,0.751,0,0,0,0,0,0
+Synthesis Of Substrates In N-glycan Biosythesis R-HSA-446219,0.708,-1.289,0.824,1.291,-1.070,0,0,0,0,0,0
+Synthesis Of Very Long-Chain Fatty acyl-CoAs R-HSA-75876,0.406,,,1.327,-1.075,0,0,0,0,0,0
+TAK1-dependent IKK And NF-kappa-B Activation R-HSA-445989,1.025,1.087,0.955,-0.942,-0.654,0,0,0,0,0,0
+TBC/RABGAPs R-HSA-8854214,-1.011,-0.611,1.221,0.591,-0.777,0,0,0,0,0,0
+TCF Dependent Signaling In Response To WNT R-HSA-201681,0.949,-0.935,1.620,-1.037,1.056,0,0,1,0,0,1
+TCR Signaling R-HSA-202403,0.954,-1.249,1.581,-0.937,-0.580,0,0,1,0,0,1
+TGF-beta Receptor Signaling Activates SMADs R-HSA-2173789,-1.068,0.944,0.830,-0.360,0.538,0,0,0,0,0,0
+TGF-beta Receptor Signaling In EMT (Epithelial To Mesenchymal Transition) R-HSA-2173791,-0.988,-1.217,-0.699,0.414,0.752,0,0,0,0,0,0
+"TICAM1, RIP1-mediated IKK Complex Recruitment R-HSA-168927",-1.012,-1.005,0.417,-0.804,0.725,0,0,0,0,0,0
+TNF Signaling R-HSA-75893,-0.987,0.626,0.825,-0.761,-0.659,0,0,0,0,0,0
+TNFR1-induced NFkappaB Signaling Pathway R-HSA-5357956,0.885,-0.764,0.998,-0.926,-0.728,0,0,0,0,0,0
+TNFR2 Non-Canonical NF-kB Pathway R-HSA-5668541,1.014,-0.917,1.952,-0.725,-1.120,0,0,1,0,0,1
+TP53 Regulates Metabolic Genes R-HSA-5628897,1.336,0.692,1.289,1.133,-0.826,0,0,0,0,0,0
+TP53 Regulates Transcription Of Additional Cell Cycle Genes With Uncertain Roles In P53 Pathway R-HSA-6804115,,-1.068,-1.638,-1.204,0.870,0,0,1,0,0,1
+TP53 Regulates Transcription Of Cell Cycle Genes R-HSA-6791312,-1.612,-1.080,-1.271,-1.476,1.137,0,0,0,0,0,0
+TP53 Regulates Transcription Of Cell Death Genes R-HSA-5633008,-0.655,1.013,0.821,-1.341,0.830,0,0,0,0,0,0
+TP53 Regulates Transcription Of DNA Repair Genes R-HSA-6796648,-0.961,0.613,0.946,-0.612,-1.203,0,0,0,0,0,0
+TP53 Regulates Transcription Of Genes Involved In Cytochrome C Release R-HSA-6803204,-0.816,1.049,-1.231,-1.368,-1.647,0,0,0,0,0,0
+TRAF6 Mediated IRF7 Activation R-HSA-933541,,-0.526,,-1.291,1.048,0,0,0,0,0,0
+TRAF6 Mediated Induction Of NFkB And MAP Kinases Upon TLR7/8 Or 9 Activation R-HSA-975138,-0.804,-0.644,-0.664,-1.065,-0.783,0,0,0,0,0,0
+TRAF6 Mediated NF-kB Activation R-HSA-933542,1.173,0.888,1.109,-0.933,-1.437,0,0,0,0,0,0
+Telomere Maintenance R-HSA-157579,1.342,-1.052,1.388,-0.743,-1.139,0,0,1,0,0,1
+Termination Of Translesion DNA Synthesis R-HSA-5656169,0.888,-1.488,0.950,-0.986,0.714,0,0,0,0,0,0
+Thrombin Signaling Thru Proteinase Activated Receptors (PARs) R-HSA-456926,0.738,-0.865,0.563,-1.221,1.148,0,0,0,0,0,0
+Thromboxane Signaling Thru TP Receptor R-HSA-428930,-0.857,-0.994,0.717,-0.788,1.309,0,0,0,0,0,0
+Tie2 Signaling R-HSA-210993,1.320,1.156,0.673,0.544,-0.780,0,0,0,0,0,0
+Toll Like Receptor 3 (TLR3) Cascade R-HSA-168164,0.885,-0.695,0.649,-1.151,0.647,0,0,0,0,0,0
+Toll Like Receptor 4 (TLR4) Cascade R-HSA-166016,0.940,-0.641,0.692,-0.743,-0.789,0,0,0,0,0,0
+Toll Like Receptor 7/8 (TLR7/8) Cascade R-HSA-168181,-0.803,-0.712,-0.638,-1.070,-0.739,0,0,0,0,0,0
+Toll Like Receptor 9 (TLR9) Cascade R-HSA-168138,-0.795,-0.682,0.507,-0.957,-0.737,0,0,0,0,0,0
+Toll-like Receptor Cascades R-HSA-168898,0.915,-0.592,0.787,-0.696,-0.806,0,0,0,0,0,0
+Transcription Of HIV Genome R-HSA-167172,-0.629,-0.822,1.132,-0.639,-1.478,0,0,0,0,0,0
+Transcription-Coupled Nucleotide Excision Repair (TC-NER) R-HSA-6781827,-0.756,-1.587,1.253,-0.398,-1.094,0,0,0,0,0,0
+Transcriptional Activation Of Mitochondrial Biogenesis R-HSA-2151201,-0.949,-0.797,0.681,0.894,-0.878,0,0,0,0,0,0
+Transcriptional Activity Of SMAD2/SMAD3:SMAD4 Heterotrimer R-HSA-2173793,0.717,0.725,0.985,1.054,1.067,0,0,0,0,0,0
+Transcriptional Regulation By AP-2 (TFAP2) Family Of Transcription Factors R-HSA-8864260,0.947,0.644,0.944,-1.442,1.048,0,0,0,0,0,0
+Transcriptional Regulation By E2F6 R-HSA-8953750,0.667,-1.352,-0.824,-0.922,-0.620,0,0,0,0,0,0
+Transcriptional Regulation By MECP2 R-HSA-8986944,1.034,-1.172,0.716,1.023,-1.205,0,0,0,0,0,0
+Transcriptional Regulation By RUNX1 R-HSA-8878171,0.887,-1.087,1.616,-0.947,-0.785,0,0,1,0,0,1
+Transcriptional Regulation By RUNX2 R-HSA-8878166,0.965,-0.864,2.090,0.665,0.698,0,0,1,0,0,1
+Transcriptional Regulation By RUNX3 R-HSA-8878159,0.788,-0.813,1.928,-0.932,0.798,0,0,1,0,0,1
+Transcriptional Regulation By Small RNAs R-HSA-5578749,0.635,-1.498,1.401,0.858,-0.980,0,0,1,0,0,1
+Transcriptional Regulation By TP53 R-HSA-3700989,-0.851,-0.840,0.923,-1.116,-0.931,0,0,0,0,0,0
+Transcriptional Regulation By VENTX R-HSA-8853884,-1.014,-0.793,0.824,-1.095,-1.202,0,0,0,0,0,0
+Transcriptional Regulation Of Granulopoiesis R-HSA-9616222,-1.125,0.801,-1.351,-1.121,1.365,0,0,0,0,0,0
+Transcriptional Regulation Of White Adipocyte Differentiation R-HSA-381340,-0.664,-1.234,-0.882,-1.117,1.301,0,0,0,0,0,0
+Transferrin Endocytosis And Recycling R-HSA-917977,1.463,1.093,1.764,1.313,1.433,0,0,1,0,0,1
+Translation Initiation Complex Formation R-HSA-72649,-1.756,-0.674,-1.498,0.454,-0.942,0,0,1,0,0,1
+Translation Of Structural Proteins R-HSA-9683701,-0.824,-0.793,1.618,-0.833,-0.853,0,0,1,0,0,1
+Translation R-HSA-72766,1.480,0.638,1.178,-1.026,-0.816,0,0,0,0,0,0
+Translesion Synthesis By POLH R-HSA-110320,,-1.318,,,,0,0,0,0,0,0
+Translesion Synthesis By Y Family DNA Polymerases Bypasses Lesions On DNA Template R-HSA-110313,0.770,-1.534,1.138,-0.771,-0.694,0,0,0,0,0,0
+Translocation Of SLC2A4 (GLUT4) To Plasma Membrane R-HSA-1445148,1.075,0.923,1.044,1.231,-1.338,0,0,0,0,0,0
+Transmission Across Chemical Synapses R-HSA-112315,0.876,-1.016,0.736,-0.875,0.825,0,0,0,0,0,0
+"Transport Of Bile Salts And Organic Acids, Metal Ions And Amine Compounds R-HSA-425366",1.056,1.852,1.108,-0.705,0.567,0,0,0,0,0,0
+Transport Of Inorganic Cations/Anions And Amino Acids/Oligopeptides R-HSA-425393,-0.696,1.079,1.342,0.764,0.437,0,0,0,0,0,0
+Transport Of Mature Transcript To Cytoplasm R-HSA-72202,-1.346,-1.168,0.532,0.743,0.989,0,0,0,0,0,0
+Transport Of Mature mRNA Derived From An Intron-Containing Transcript R-HSA-159236,-1.318,-1.330,0.462,0.731,0.950,0,0,0,0,0,0
+Transport Of Mature mRNA Derived From An Intronless Transcript R-HSA-159231,0.486,-0.684,1.191,0.947,0.613,0,0,0,0,0,0
+Transport Of Mature mRNAs Derived From Intronless Transcripts R-HSA-159234,-0.674,-0.656,1.169,0.854,0.558,0,0,0,0,0,0
+Transport Of Ribonucleoproteins Into Host Nucleus R-HSA-168271,-0.802,-1.124,1.357,1.005,0.831,0,0,0,0,0,0
+Transport Of SLBP Dependant Mature mRNA R-HSA-159230,,-1.033,1.126,0.836,-0.541,0,0,0,0,0,0
+Transport Of SLBP Independent Mature mRNA R-HSA-159227,,-0.937,1.148,0.919,-0.579,0,0,0,0,0,0
+Transport Of Small Molecules R-HSA-382551,0.870,1.034,1.762,-0.571,0.836,0,0,1,0,0,1
+Transport To Golgi And Subsequent Modification R-HSA-948021,1.078,0.901,1.801,1.599,-1.038,0,0,1,1,0,2
+Triglyceride Catabolism R-HSA-163560,,0.993,-0.821,0.589,-0.758,0,0,0,0,0,0
+Triglyceride Metabolism R-HSA-8979227,1.067,-0.729,0.707,0.983,-0.588,0,0,0,0,0,0
+"Tristetraprolin (TTP, ZFP36) Binds And Destabilizes mRNA R-HSA-450513",-0.591,,,,,0,0,0,0,0,0
+UCH Proteinases R-HSA-5689603,0.770,-1.056,2.219,-0.490,-0.660,0,0,1,0,0,1
+Ub-specific Processing Proteases R-HSA-5689880,1.144,-0.970,1.946,-0.709,0.938,0,0,1,0,0,1
+Ubiquitin Mediated Degradation Of Phosphorylated Cdc25A R-HSA-69601,1.021,-1.016,2.147,-0.473,-0.807,0,0,1,0,0,1
+Ubiquitin-dependent Degradation Of Cyclin D R-HSA-75815,1.085,-0.972,2.231,-0.438,-0.745,0,0,1,0,0,1
+Unattached Kinetochores Signal Amplification Via A MAD2 Inhibitory Signal R-HSA-141444,-1.011,1.534,1.249,1.025,1.234,0,0,0,0,0,0
+Unfolded Protein Response (UPR) R-HSA-381119,-1.247,-1.180,-1.123,-1.318,0.648,0,0,0,0,0,0
+Uptake And Actions Of Bacterial Toxins R-HSA-5339562,-1.873,-1.248,-0.678,0.658,-0.957,0,0,0,0,0,0
+VEGFA-VEGFR2 Pathway R-HSA-4420097,0.775,0.707,0.700,1.700,0.881,0,0,0,1,0,1
+VEGFR2 Mediated Cell Proliferation R-HSA-5218921,-1.535,-1.107,-0.707,1.031,-0.897,0,0,0,0,0,0
+VEGFR2 Mediated Vascular Permeability R-HSA-5218920,-0.693,-0.991,0.719,1.482,0.638,0,0,0,0,0,0
+VLDLR Internalisation And Degradation R-HSA-8866427,1.164,0.809,1.364,0.952,1.309,0,0,0,0,0,0
+Vasopressin Regulates Renal Water Homeostasis Via Aquaporins R-HSA-432040,-1.212,-1.187,-1.091,-1.212,1.309,0,0,0,0,0,0
+Vesicle-mediated Transport R-HSA-5653656,1.038,1.142,1.527,1.249,-0.887,0,0,1,0,0,1
+Vif-mediated Degradation Of APOBEC3G R-HSA-180585,1.071,-0.987,2.169,-0.349,-0.726,0,0,1,0,0,1
+Viral Messenger RNA Synthesis R-HSA-168325,-0.656,-1.087,1.441,1.010,-0.856,0,0,1,0,0,1
+Viral mRNA Translation R-HSA-192823,1.556,0.410,-2.254,-1.366,0.678,0,0,1,0,0,1
+Visual Phototransduction R-HSA-2187338,-0.673,-0.956,1.014,1.474,-0.699,0,0,0,0,0,0
+Vpr-mediated Nuclear Import Of PICs R-HSA-180910,1.267,-1.282,1.340,0.868,-0.565,0,0,0,0,0,0
+Vpu Mediated Degradation Of CD4 R-HSA-180534,0.901,-1.002,2.034,-0.458,-0.807,0,0,1,0,0,1
+VxPx Cargo-Targeting To Cilium R-HSA-5620916,,1.457,0.759,,,0,0,0,0,0,0
+WNT5A-dependent Internalization Of FZD4 R-HSA-5099900,1.262,-1.164,1.590,,,0,0,1,0,0,1
+XBP1(S) Activates Chaperone Genes R-HSA-381038,0.874,-1.011,1.183,0.953,-0.787,0,0,0,0,0,0
+ZBP1(DAI) Mediated Induction Of Type I IFNs R-HSA-1606322,1.221,-0.640,,,,0,0,0,0,0,0
+mRNA 3-End Processing R-HSA-72187,-1.246,-0.943,-0.801,-0.574,0.876,0,0,0,0,0,0
+"mRNA Activation Upon Binding Of Cap-Binding Complex And eIFs, Subsequent Binding To 43S R-HSA-72662",-1.756,-0.556,-1.217,0.507,-0.923,0,0,0,0,0,0
+mRNA Capping R-HSA-72086,0.419,-0.995,1.327,1.007,-1.602,0,0,0,0,0,0
+mRNA Decay By 5 To 3 Exoribonuclease R-HSA-430039,,-0.913,-0.991,0.788,1.227,0,0,0,0,0,0
+mRNA Splicing - Major Pathway R-HSA-72163,0.719,-1.038,0.847,-0.629,1.153,0,0,0,0,0,0
+mRNA Splicing - Minor Pathway R-HSA-72165,-0.761,-1.421,1.175,-0.830,0.650,0,0,0,0,0,0
+mRNA Splicing R-HSA-72172,0.695,-1.084,0.841,-0.614,1.165,0,0,0,0,0,0
+mTORC1-mediated Signaling R-HSA-166208,0.709,0.450,1.430,0.597,-1.199,0,0,1,0,0,1
+p130Cas Linkage To MAPK Signaling For Integrins R-HSA-372708,1.050,,,,,0,0,0,0,0,0
+p53-Dependent G1 DNA Damage Response R-HSA-69563,0.807,-0.733,2.034,-0.740,-0.994,0,0,1,0,0,1
+p75NTR Signals Via NF-kB R-HSA-193639,,-0.679,0.959,,,0,0,0,0,0,0
+rRNA Modification In Nucleus And Cytosol R-HSA-6790901,1.056,0.932,0.891,-1.262,1.498,0,0,0,0,0,0
+rRNA Processing In Nucleus And Cytosol R-HSA-8868773,1.593,0.609,-1.752,-1.425,1.296,0,0,1,0,0,1
+rRNA Processing R-HSA-72312,1.579,0.585,-1.662,-1.462,1.415,0,0,1,0,0,1
+tRNA Processing In Nucleus R-HSA-6784531,0.978,-1.060,1.125,0.849,1.046,0,0,0,0,0,0
+tRNA Processing R-HSA-72306,0.955,-1.138,1.121,0.883,0.996,0,0,0,0,0,0
+trans-Golgi Network Vesicle Budding R-HSA-199992,-1.529,-1.022,1.378,0.836,1.036,0,0,1,0,0,1
