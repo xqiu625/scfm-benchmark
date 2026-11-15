@@ -1,0 +1,885 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Donor-aware evaluation of frozen single-cell representations.">
+      
+      
+      
+        <link rel="canonical" href="https://xqiu625.github.io/scfm-benchmark/results/">
+      
+      
+        <link rel="prev" href="../diagnostic-suite/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Historical results (superseded) - scfm-benchmark</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#results" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="scfm-benchmark" class="md-header__button md-logo" aria-label="scfm-benchmark" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            scfm-benchmark
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Historical results (superseded)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xqiu625/scfm-benchmark" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xqiu625/scfm-benchmark
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="scfm-benchmark" class="md-nav__button md-logo" aria-label="scfm-benchmark" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    scfm-benchmark
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xqiu625/scfm-benchmark" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xqiu625/scfm-benchmark
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diagnostic-suite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical diagnostic design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical results (superseded)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical results (superseded)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#primary-task-in-hospital-mortality-binary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primary task: in-hospital mortality (binary)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#robustness-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Robustness profile
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-disease-bidirectional-transfer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-disease bidirectional transfer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adaptation-curve-the-null-finding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adaptation curve (the null finding)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multimodal-fusion-the-silver-lining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multimodal fusion (the silver lining)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-this-means-for-the-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What this means for the field
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#primary-task-in-hospital-mortality-binary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primary task: in-hospital mortality (binary)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#robustness-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Robustness profile
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-disease-bidirectional-transfer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-disease bidirectional transfer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adaptation-curve-the-null-finding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adaptation curve (the null finding)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multimodal-fusion-the-silver-lining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multimodal fusion (the silver lining)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-this-means-for-the-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What this means for the field
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Provisional historical results.</strong> This page predates the 2026-09
+eight-cohort QC rebuild. Do not use these values as current evidence; see
+<code>../current-status.md</code>. Regenerate this page after P2/P3 completes.</p>
+</blockquote>
+<p>Headline numbers from the BIB submission (manuscript ~97% complete, May 2026).
+All AUCs use patient-level <code>StratifiedGroupKFold</code> with <code>Sample_ID</code> (413
+unique donors in the COVID cohort).</p>
+<h2 id="primary-task-in-hospital-mortality-binary">Primary task: in-hospital mortality (binary)<a class="headerlink" href="#primary-task-in-hospital-mortality-binary" title="Permanent link">&para;</a></h2>
+<p>47,808 platelets from 12 cohorts. <code>fatal = 1</code> (n = 6,237 COVID + 2,613 sepsis)
+vs <code>survived = 0</code> (mild + moderate + recovered + severe; severe = ICU-discharged
+survivor).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Rank</th>
+<th>Model</th>
+<th style="text-align: right;">Binary AUC (LR)</th>
+<th style="text-align: right;">LOBO mean AUC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td><strong>STATE</strong></td>
+<td style="text-align: right;"><strong>0.825</strong></td>
+<td style="text-align: right;"><strong>0.789</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;">—</td>
+<td>PCA-200 baseline</td>
+<td style="text-align: right;">0.814</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>UCE</td>
+<td style="text-align: right;">0.794</td>
+<td style="text-align: right;">0.750</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>Geneformer</td>
+<td style="text-align: right;">0.778</td>
+<td style="text-align: right;">0.730</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>TranscriptFormer</td>
+<td style="text-align: right;">0.776</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td>scGPT</td>
+<td style="text-align: right;">0.663</td>
+<td style="text-align: right;">0.494</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PCA-200 beats 4 of 5 foundation models.</strong> Only STATE beats raw expression
+with PCA. All DeLong pairwise tests significant except TF vs Geneformer.</p>
+<h2 id="robustness-profile">Robustness profile<a class="headerlink" href="#robustness-profile" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Axis</th>
+<th>Best model</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Distribution shift (LOBO)</td>
+<td>STATE</td>
+<td>0.789</td>
+</tr>
+<tr>
+<td>Gene dropout @ 70% missing</td>
+<td>UCE</td>
+<td>0.0% drop</td>
+</tr>
+<tr>
+<td>Sample efficiency @ 5% labels</td>
+<td>UCE</td>
+<td>-8.5%</td>
+</tr>
+<tr>
+<td>FP16 quantisation</td>
+<td>(all)</td>
+<td>0% AUC loss, 2× speedup</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cross-disease-bidirectional-transfer">Cross-disease bidirectional transfer<a class="headerlink" href="#cross-disease-bidirectional-transfer" title="Permanent link">&para;</a></h2>
+<p>Train COVID-mortality → test sepsis-mortality, and reverse. Same LR
+hyperplane applied across diseases — a pure test of embedding-space
+geometry.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th style="text-align: right;">COVID → Sepsis</th>
+<th style="text-align: right;">Sepsis → COVID</th>
+<th>Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>STATE</strong></td>
+<td style="text-align: right;"><strong>0.800</strong></td>
+<td style="text-align: right;"><strong>0.706</strong></td>
+<td>Bidirectional generalizer</td>
+</tr>
+<tr>
+<td>STACK</td>
+<td style="text-align: right;">0.917</td>
+<td style="text-align: right;">0.698</td>
+<td>Bidirectional generalizer</td>
+</tr>
+<tr>
+<td>UCE</td>
+<td style="text-align: right;">0.798</td>
+<td style="text-align: right;">0.514</td>
+<td>Forward-only</td>
+</tr>
+<tr>
+<td>scPRINT-2</td>
+<td style="text-align: right;">0.855</td>
+<td style="text-align: right;">0.543</td>
+<td>Forward-only</td>
+</tr>
+<tr>
+<td>TF</td>
+<td style="text-align: right;">0.775</td>
+<td style="text-align: right;">0.629</td>
+<td>Moderate bidirectional</td>
+</tr>
+<tr>
+<td>Geneformer</td>
+<td style="text-align: right;">0.742</td>
+<td style="text-align: right;">0.581</td>
+<td>Weak bidirectional</td>
+</tr>
+<tr>
+<td><strong>scGPT</strong></td>
+<td style="text-align: right;"><strong>0.352</strong> ⚠</td>
+<td style="text-align: right;">0.555</td>
+<td><strong>Anti-correlated</strong> (CI [0.22, 0.50])</td>
+</tr>
+</tbody>
+</table>
+<p>scGPT systematically inverts mortality prediction sign across diseases,
+likely because its 512-dim embedding compresses platelet activation —
+hyper-activated in COVID-fatal but exhausted in sepsis-fatal.</p>
+<h2 id="adaptation-curve-the-null-finding">Adaptation curve (the null finding)<a class="headerlink" href="#adaptation-curve-the-null-finding" title="Permanent link">&para;</a></h2>
+<p><code>PCA-200+LR</code> from-scratch vs FMs, varying labelled sepsis cells <code>n</code> added
+to the COVID training pool. 10 seeds per <code>n</code>, patient-stratified holdout.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align: right;"><code>n=0</code> (zero-shot)</th>
+<th style="text-align: right;"><code>n=100</code></th>
+<th style="text-align: right;">Asymptote</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PCA-200+LR</strong></td>
+<td style="text-align: right;">0.891</td>
+<td style="text-align: right;"><strong>0.936</strong></td>
+<td style="text-align: right;"><strong>0.964</strong></td>
+</tr>
+<tr>
+<td>scPRINT-2</td>
+<td style="text-align: right;"><strong>0.920</strong></td>
+<td style="text-align: right;">0.931</td>
+<td style="text-align: right;">0.950</td>
+</tr>
+<tr>
+<td>STATE</td>
+<td style="text-align: right;">0.882</td>
+<td style="text-align: right;">0.912</td>
+<td style="text-align: right;">0.948</td>
+</tr>
+<tr>
+<td>TranscriptFormer</td>
+<td style="text-align: right;">0.811</td>
+<td style="text-align: right;">0.860</td>
+<td style="text-align: right;">0.912</td>
+</tr>
+<tr>
+<td>Geneformer</td>
+<td style="text-align: right;">0.804</td>
+<td style="text-align: right;">0.833</td>
+<td style="text-align: right;">0.878</td>
+</tr>
+<tr>
+<td>UCE</td>
+<td style="text-align: right;">0.646</td>
+<td style="text-align: right;">0.756</td>
+<td style="text-align: right;">0.876</td>
+</tr>
+<tr>
+<td>STACK</td>
+<td style="text-align: right;">0.643</td>
+<td style="text-align: right;">0.887</td>
+<td style="text-align: right;">0.890</td>
+</tr>
+</tbody>
+</table>
+<p><strong>No FM has both higher Y-intercept AND steeper early slope than the
+from-scratch baseline.</strong> Only scPRINT-2 beats PCA on the zero-shot
+intercept, but it is already flat (slope +0.010 to <code>n=100</code>). PCA's
+asymptote beats every FM at full data.</p>
+<h2 id="multimodal-fusion-the-silver-lining">Multimodal fusion (the silver lining)<a class="headerlink" href="#multimodal-fusion-the-silver-lining" title="Permanent link">&para;</a></h2>
+<p>Late-averaging predicted probabilities across all 6 FMs beats any single
+FM (AUC 0.849 vs STATE's 0.831). Suggests the FMs encode partially
+non-redundant information — supported by the SHAP-Jaccard mechanism
+diagnostic showing two distinct biological axes.</p>
+<h2 id="what-this-means-for-the-field">What this means for the field<a class="headerlink" href="#what-this-means-for-the-field" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Patient-level CV must be the floor</strong> for any clinical scFM benchmark.
+   Cell-level CV reports AUCs that are 7–17 percentage points inflated.</li>
+<li><strong>PCA + LR is a required baseline.</strong> Any FM that does not beat PCA on
+   the target task does not justify its computational cost.</li>
+<li><strong>High AUC is necessary but not sufficient.</strong> Two FMs at the same AUC
+   can encode incompatible biology — verify with the
+   <a href="../diagnostic-suite/">Diagnostic Suite</a> before deploying.</li>
+<li><strong>Multimodal fusion is currently the best deployment strategy.</strong>
+   No single FM dominates across robustness, calibration, and generalisation.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "content.code.copy", "content.code.annotate", "search.highlight", "search.suggest"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

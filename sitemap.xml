@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://xqiu625.github.io/scfm-benchmark/</loc>
+         <lastmod>2026-11-15</lastmod>
+    </url>
+    <url>
+         <loc>https://xqiu625.github.io/scfm-benchmark/cli/</loc>
+         <lastmod>2026-11-15</lastmod>
+    </url>
+    <url>
+         <loc>https://xqiu625.github.io/scfm-benchmark/diagnostic-suite/</loc>
+         <lastmod>2026-11-15</lastmod>
+    </url>
+    <url>
+         <loc>https://xqiu625.github.io/scfm-benchmark/results/</loc>
+         <lastmod>2026-11-15</lastmod>
+    </url>
+</urlset>
